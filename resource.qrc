@@ -4,5 +4,6 @@
         <file>Image/background.png</file>
         <file>Image/templat.png</file>
         <file>Image/road-image.png</file>
+        <file>Image/terrain.svg</file>
     </qresource>
 </RCC>

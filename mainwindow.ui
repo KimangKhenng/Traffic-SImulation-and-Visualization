@@ -413,6 +413,13 @@ background-color: rgb(231, 76, 60);
              </spacer>
             </item>
             <item>
+             <widget class="QPushButton" name="m_control">
+              <property name="text">
+               <string>Simulation Control</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QPushButton" name="data">
               <property name="text">
                <string>Data</string>

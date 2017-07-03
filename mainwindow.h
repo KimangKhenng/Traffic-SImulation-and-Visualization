@@ -7,6 +7,7 @@
 #include "vehicle.h"
 #include "road.h"
 #include "simulationscene.h"
+#include "datawidget.h"
 namespace Ui {
 class MainWindow;
 }
@@ -18,8 +19,10 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     virtual void resizeEvent(QResizeEvent *event);
+    virtual void keyPressEvent (QKeyEvent *event);
     ~MainWindow();
-
+public slots:
+    void check_state();
 private slots:
     void on_actionExit_triggered();
     void on_play_clicked();
@@ -33,13 +36,21 @@ private slots:
     void on_exit_clicked();
     void on_reset_clicked();
     void on_pause_clicked();
+    void on_data_clicked();
+    void on_stop_clicked();
+
+    void on_m_control_clicked();
+
 private:
     Ui::MainWindow *ui;
-    QTimer *m_timer;
-    SimulationScene *m_scene;
-    Vehicle *m_car;
+    DataWidget *m_data_widget;
+    //SimulationScene *m_scene;
+    QGraphicsScene *m_scene;
+    QList<Vehicle *> *m_car_list;
     road *m_road;
-    bool simulate_state;
+    bool m_simulate_state;
+    bool m_traffic_state;
+    QTimer *m_machine_state;
 
 };
 

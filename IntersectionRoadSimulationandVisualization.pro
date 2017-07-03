@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui svg widgets
 CONFIG   += console
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -18,15 +18,21 @@ SOURCES += main.cpp\
     graphicsview.cpp \
     vehicle.cpp \
     road.cpp \
-    simulationscene.cpp
+    simulationscene.cpp \
+    datawidget.cpp \
+    simulationcontrol.cpp
 
 HEADERS  += mainwindow.h \
     graphicsview.h \
     vehicle.h \
     road.h \
-    simulationscene.h
+    simulationscene.h \
+    datawidget.h \
+    simulationcontrol.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    datawidget.ui \
+    simulationcontrol.ui
 
 RESOURCES += \
     resource.qrc

@@ -3,12 +3,14 @@
 #include <QtWidgets>
 road::road(QGraphicsScene *scene)
 {
-    m_path_4.moveTo(410,600);
-    m_path_4.lineTo(410,328);
-    m_path_4.arcTo(310,282,100,100,0,78);
-    m_path_4.lineTo(0,282);
-    m_path_1.moveTo(scene->sceneRect().x()+10,600);
-    m_path_1.lineTo(scene->sceneRect().x()+10,0);
+    m_path_4.moveTo(325,600);
+    m_path_4.lineTo(325,328 + 30 +20);
+    m_path_4.arcTo(225-150,282 + 30 - 50 ,100 + 150,100 + 150,5,75);
+    m_path_4.lineTo(0,282 - 20);
+    QBrush brush(Qt::blue);
+    QPen pen;
+    pen.setBrush (brush);
+    setPen (pen);
     setPath(m_path_4);
     setTransformOriginPoint(0,0);
     setFlag(QGraphicsItem::ItemIsMovable);
