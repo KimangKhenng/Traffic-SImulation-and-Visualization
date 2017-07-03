@@ -213,4 +213,5 @@ void Vehicle::advance()
     setPos(x()+dx,y()+dy);
     //qDebug()<<"Speed of"<<m_car_list->indexOf (this)<<" "<<m_speed;
     //qDebug()<<m_order_in_list;
+    qDebug()<<"Current Index"<<m_point_index;
 }

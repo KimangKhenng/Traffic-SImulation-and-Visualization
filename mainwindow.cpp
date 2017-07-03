@@ -118,7 +118,8 @@ void MainWindow::on_terrains_clicked()
 {
     QGraphicsPixmapItem *m_picture = new QGraphicsPixmapItem(QPixmap(":/image/Image/road-image.png").scaled (600,600));
     QGraphicsSvgItem *m_terrain = new QGraphicsSvgItem(":/image/Image/terrain.svg");
-    m_terrain->moveBy (-100,0);
+    m_terrain->moveBy (-60,0);
+    m_picture->moveBy(30,0);
     m_picture->setZValue (-1);
     m_terrain->setZValue (-2);
     m_scene->addItem (m_picture);

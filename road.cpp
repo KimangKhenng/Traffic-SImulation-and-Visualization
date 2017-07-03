@@ -5,8 +5,8 @@ road::road(QGraphicsScene *scene)
 {
     m_path_4.moveTo(325,600);
     m_path_4.lineTo(325,328 + 30 +20);
-    m_path_4.arcTo(225-150,282 + 30 - 50 ,100 + 150,100 + 150,5,75);
-    m_path_4.lineTo(0,282 - 20);
+    m_path_4.arcTo(225-150,280 + 30 - 50 ,100 + 150,100 + 150,5,75);
+    m_path_4.lineTo(0,280 - 20);
     QBrush brush(Qt::blue);
     QPen pen;
     pen.setBrush (brush);
