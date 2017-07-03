@@ -8,6 +8,7 @@
 #include "road.h"
 #include "simulationscene.h"
 #include "datawidget.h"
+#include "traffic_light_widget.h"
 namespace Ui {
 class MainWindow;
 }
@@ -38,19 +39,19 @@ private slots:
     void on_pause_clicked();
     void on_data_clicked();
     void on_stop_clicked();
-
     void on_m_control_clicked();
 
 private:
     Ui::MainWindow *ui;
     DataWidget *m_data_widget;
-    //SimulationScene *m_scene;
-    QGraphicsScene *m_scene;
+    SimulationScene *m_scene;
+    //QGraphicsScene *m_scene;
     QList<Vehicle *> *m_car_list;
     road *m_road;
     bool m_simulate_state;
     bool m_traffic_state;
     QTimer *m_machine_state;
+    QList<Traffic_Light_widget *> *m_traffic_widget_list;
 
 };
 

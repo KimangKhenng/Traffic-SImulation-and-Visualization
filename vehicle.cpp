@@ -46,11 +46,11 @@ void Vehicle::rotate_to_point(QPointF point)
     setRotation(-1*line.angle());
 }
 
-void Vehicle::extract_coordinate(road *path)
+void Vehicle::extract_coordinate(QPainterPath path)
 {
     for(double i = 0;i <= 1;i += 0.01){
         //m_path_to_follow<<mapToScene(path->path().pointAtPercent(i));
-        m_path_to_follow<<QPointF(path->m_path_4.pointAtPercent(i));
+        m_path_to_follow<<QPointF(path.pointAtPercent (i));
         m_step_count++;
     }
     //qDebug()<<m_path_to_follow;
@@ -213,5 +213,5 @@ void Vehicle::advance()
     setPos(x()+dx,y()+dy);
     //qDebug()<<"Speed of"<<m_car_list->indexOf (this)<<" "<<m_speed;
     //qDebug()<<m_order_in_list;
-    qDebug()<<"Current Index"<<m_point_index;
+    //qDebug()<<"Current Index"<<m_point_index;
 }

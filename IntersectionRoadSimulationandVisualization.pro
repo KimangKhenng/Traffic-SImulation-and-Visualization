@@ -20,7 +20,11 @@ SOURCES += main.cpp\
     road.cpp \
     simulationscene.cpp \
     datawidget.cpp \
-    simulationcontrol.cpp
+    simulationcontrol.cpp \
+    road_ui.cpp \
+    trafficlight.cpp \
+    lightwidget.cpp \
+    traffic_light_widget.cpp
 
 HEADERS  += mainwindow.h \
     graphicsview.h \
@@ -28,7 +32,11 @@ HEADERS  += mainwindow.h \
     road.h \
     simulationscene.h \
     datawidget.h \
-    simulationcontrol.h
+    simulationcontrol.h \
+    road_ui.h \
+    trafficlight.h \
+    lightwidget.h \
+    traffic_light_widget.h
 
 FORMS    += mainwindow.ui \
     datawidget.ui \

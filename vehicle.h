@@ -11,7 +11,7 @@ public:
     QPainterPath shape() const Q_DECL_OVERRIDE;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
     void rotate_to_point(QPointF point);
-    void extract_coordinate(road *path);
+    void extract_coordinate(QPainterPath path);
     void initialize();
     double distance_to_other_vehicle(Vehicle *car);
     bool is_on_action();
