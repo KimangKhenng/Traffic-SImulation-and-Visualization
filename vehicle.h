@@ -29,6 +29,7 @@ public:
     QTimer *get_timer();
     void get_list_of_all(QList<Vehicle *> *car_list);
     void set_order_in_list(int x);
+    bool is_enter_the_junction();
     void stop_advance();
 public slots:
     void advance();

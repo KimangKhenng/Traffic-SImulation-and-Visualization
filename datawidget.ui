@@ -32,7 +32,7 @@
    <item>
     <widget class="QTabWidget" name="m_graph">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="m_space_time">
       <attribute name="title">

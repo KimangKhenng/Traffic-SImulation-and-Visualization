@@ -8,7 +8,6 @@ class SimulationScene: public QGraphicsScene
 
 public:
     SimulationScene();
-    void mousePressEvent(QGraphicsSceneMouseEvent *event);
 };
 
 #endif // SIMULATIONSCENE_H

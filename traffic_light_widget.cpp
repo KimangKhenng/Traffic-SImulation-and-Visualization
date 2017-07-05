@@ -6,6 +6,8 @@ Traffic_Light_widget::Traffic_Light_widget(QWidget *parent):QWidget(parent)
     this->setGeometry (0,0,35,80);
     QVBoxLayout *vbox = new QVBoxLayout(this);
     m_traffic_light = new TrafficLight();
+    m_machine = new QStateMachine(this);
+    initiate_instance ();
     vbox->addWidget(m_traffic_light);
     vbox->setMargin(0);
 
@@ -19,29 +21,73 @@ void Traffic_Light_widget::set_duration(int red, int yello, int green)
 
 void Traffic_Light_widget::set_up()
 {
-    m_machine = new QStateMachine(this);
-    QState *redGoingYellow = make_light_state(m_traffic_light->redLight(), m_red_duration);
-    redGoingYellow->setObjectName("redGoingYellow");
-    QState *yellowGoingGreen = make_light_state(m_traffic_light->yellowLight(), m_yellow_duration);
-    yellowGoingGreen->setObjectName("yellowGoingGreen");
-    redGoingYellow->addTransition(redGoingYellow, SIGNAL(finished()), yellowGoingGreen);
-    QState *greenGoingYellow = make_light_state(m_traffic_light->greenLight(), m_green_duration);
-    greenGoingYellow->setObjectName("greenGoingYellow");
-    yellowGoingGreen->addTransition(yellowGoingGreen, SIGNAL(finished()), greenGoingYellow);
-    QState *yellowGoingRed = make_light_state(m_traffic_light->yellowLight(), m_yellow_duration);
-    yellowGoingRed->setObjectName("yellowGoingRed");
-    greenGoingYellow->addTransition(greenGoingYellow, SIGNAL(finished()), yellowGoingRed);
-    yellowGoingRed->addTransition(yellowGoingRed, SIGNAL(finished()), redGoingYellow);
-    m_machine->addState(redGoingYellow);
-    m_machine->addState(yellowGoingGreen);
-    m_machine->addState(greenGoingYellow);
-    m_machine->addState(yellowGoingRed);
-    m_machine->setInitialState(redGoingYellow);
+    m_redGoingYellow = make_light_state(m_traffic_light->redLight(), m_red_duration);
+    m_redGoingYellow->setObjectName("redGoingYellow");
+    m_yellowGoingGreen = make_light_state(m_traffic_light->yellowLight(), m_yellow_duration);
+    m_yellowGoingGreen->setObjectName("yellowGoingGreen");
+    m_redGoingYellow->addTransition(m_redGoingYellow, SIGNAL(finished()), m_yellowGoingGreen);
+    m_greenGoingYellow = make_light_state(m_traffic_light->greenLight(), m_green_duration);
+    m_greenGoingYellow->setObjectName("greenGoingYellow");
+    m_yellowGoingGreen->addTransition(m_yellowGoingGreen, SIGNAL(finished()), m_greenGoingYellow);
+    m_yellowGoingRed = make_light_state(m_traffic_light->yellowLight(), m_yellow_duration);
+    m_yellowGoingRed->setObjectName("yellowGoingRed");
+    m_greenGoingYellow->addTransition(m_greenGoingYellow, SIGNAL(finished()), m_yellowGoingRed);
+    m_yellowGoingRed->addTransition(m_yellowGoingRed, SIGNAL(finished()), m_redGoingYellow);
 }
 
 void Traffic_Light_widget::start()
 {
+    m_machine->addState(m_redGoingYellow);
+    m_machine->addState(m_yellowGoingGreen);
+    m_machine->addState(m_greenGoingYellow);
+    m_machine->addState(m_yellowGoingRed);
+    m_machine->setInitialState(m_redGoingYellow);
     m_machine->start();
+}
+
+void Traffic_Light_widget::stop()
+{
+    m_machine->stop ();
+//    delete m_redGoingYellow;
+//    delete m_yellowGoingGreen;
+//    delete m_greenGoingYellow;
+//    delete m_yellowGoingRed;
+
+}
+
+void Traffic_Light_widget::initiate_instance()
+{
+    m_redGoingYellow = new QState();
+    m_yellowGoingGreen = new QState();
+    m_greenGoingYellow = new QState();
+    m_yellowGoingRed = new QState();
+}
+
+QState *Traffic_Light_widget::get_current_state()
+{
+    if(m_machine->configuration ().contains (m_redGoingYellow)){
+        return m_redGoingYellow;
+    }
+    if(m_machine->configuration ().contains (m_greenGoingYellow)){
+        return m_greenGoingYellow;
+    }
+    if(m_machine->configuration ().contains (m_yellowGoingGreen)){
+        return m_yellowGoingGreen;
+    }
+    if(m_machine->configuration ().contains (m_yellowGoingRed)){
+        return m_yellowGoingRed;
+    }
+    return nullptr;
+}
+
+bool Traffic_Light_widget::is_running()
+{
+    return m_machine->isRunning ();
+}
+
+void Traffic_Light_widget::mousePressEvent(QMouseEvent *event)
+{
+
 }
 
 QState *Traffic_Light_widget::make_light_state(LightWidget *light, int duration, QState *parent)

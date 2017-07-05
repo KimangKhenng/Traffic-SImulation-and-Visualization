@@ -24,7 +24,8 @@ SOURCES += main.cpp\
     road_ui.cpp \
     trafficlight.cpp \
     lightwidget.cpp \
-    traffic_light_widget.cpp
+    traffic_light_widget.cpp \
+    trafficsignalcontrol.cpp
 
 HEADERS  += mainwindow.h \
     graphicsview.h \
@@ -36,7 +37,8 @@ HEADERS  += mainwindow.h \
     road_ui.h \
     trafficlight.h \
     lightwidget.h \
-    traffic_light_widget.h
+    traffic_light_widget.h \
+    trafficsignalcontrol.h
 
 FORMS    += mainwindow.ui \
     datawidget.ui \

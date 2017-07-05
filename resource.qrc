@@ -7,5 +7,6 @@
         <file>Image/terrain.svg</file>
         <file>Image/path-image.png</file>
         <file>Image/road-path.svg</file>
+        <file>Image/Loading.png</file>
     </qresource>
 </RCC>
