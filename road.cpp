@@ -113,77 +113,138 @@ QList<QPainterPath> road::get_all_path()
 
 QPainterPath road::draw_1_1()
 {
-
+    QTransform transform;
+    transform.rotate (90);
+    transform.translate (-25,-615);
+    QPainterPath m_path = transform.map(get_2_1());
+    return m_path;
 }
 
 QPainterPath road::draw_1_2()
 {
-
+    QTransform transform;
+    transform.rotate (90);
+    transform.translate (-25,-615);
+    QPainterPath m_path = transform.map(get_2_2());
+    return m_path;
 }
 
 QPainterPath road::draw_1_3()
 {
-
+    QTransform transform;
+    transform.rotate (90);
+    transform.translate (-25,-615);
+    QPainterPath m_path = transform.map(get_2_3());
+    return m_path;
 }
 
 QPainterPath road::draw_1_4()
 {
-
+    QTransform transform;
+    transform.rotate (90);
+    transform.translate (-25,-615);
+    QPainterPath m_path = transform.map(get_2_4());
+    return m_path;
 }
 
 QPainterPath road::draw_1_5()
 {
-
+    QTransform transform;
+    transform.rotate (90);
+    transform.translate (-25,-615);
+    QPainterPath m_path = transform.map(get_2_5());
+    return m_path;
 }
 
 QPainterPath road::draw_2_1()
 {
-
+    QTransform transform;
+    transform.rotate (90);
+    transform.translate (-25,-615);
+    QPainterPath m_path = transform.map(get_3_1());
+    return m_path;
 }
 
 QPainterPath road::draw_2_2()
 {
-
+    QTransform transform;
+    transform.rotate (90);
+    transform.translate (-25,-615);
+    QPainterPath m_path = transform.map(get_3_2());
+    return m_path;
 }
 
 QPainterPath road::draw_2_3()
 {
-
+    QTransform transform;
+    transform.rotate (90);
+    transform.translate (-25,-615);
+    QPainterPath m_path = transform.map(get_3_3());
+    return m_path;
 }
 
 QPainterPath road::draw_2_4()
 {
-
+    QTransform transform;
+    transform.rotate (90);
+    transform.translate (-25,-615);
+    QPainterPath m_path = transform.map(get_3_4());
+    return m_path;
 }
 
 QPainterPath road::draw_2_5()
 {
-
+    QTransform transform;
+    transform.rotate (90);
+    transform.translate (-25,-615);
+    QPainterPath m_path = transform.map(get_3_5());
+    return m_path;
 }
 
 QPainterPath road::draw_3_1()
 {
-
+    QTransform transform;
+    transform.rotate (90);
+    transform.translate (-25,-615);
+    QPainterPath m_path = transform.map(get_4_1());
+    //m_path.translate (100,100);
+    return m_path;
 }
 
 QPainterPath road::draw_3_2()
 {
-
+    QTransform transform;
+    transform.rotate (90);
+    transform.translate (-25,-615);
+    QPainterPath m_path = transform.map(get_4_2());
+    return m_path;
 }
 
 QPainterPath road::draw_3_3()
 {
-
+    QTransform transform;
+    transform.rotate (90);
+    transform.translate (-25,-615);
+    QPainterPath m_path = transform.map(get_4_3());
+    return m_path;
 }
 
 QPainterPath road::draw_3_4()
 {
-
+    QTransform transform;
+    transform.rotate (90);
+    transform.translate (-25,-615);
+    QPainterPath m_path = transform.map(get_4_4());
+    return m_path;
 }
 
 QPainterPath road::draw_3_5()
 {
-
+    QTransform transform;
+    transform.rotate (90);
+    transform.translate (-25,-615);
+    QPainterPath m_path = transform.map(get_4_5());
+    return m_path;
 }
 
 QPainterPath road::draw_4_1()

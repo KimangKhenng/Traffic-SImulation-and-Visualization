@@ -86,7 +86,7 @@ void MainWindow::check_state()
     if(m_simulate_state){
         for(int i = 0 ; i<m_car_list->size ();i++){
             if(!m_car_list->at (i)->is_on_action ()){
-            m_car_list->at (i)->get_timer ()->start (100);
+            m_car_list->at (i)->get_timer ()->start (10);
             m_car_list->at (i)->set_on_action (true);
             }
         }
@@ -108,7 +108,7 @@ void MainWindow::on_play_clicked()
 
     for(int i = 0 ; i<m_car_list->size ();i++){
         if(!m_car_list->at (i)->is_on_action ()){
-        m_car_list->at (i)->get_timer ()->start (100);
+        m_car_list->at (i)->get_timer ()->start (10);
         m_car_list->at (i)->set_on_action (true);
         }
     }
@@ -123,7 +123,7 @@ void MainWindow::on_vehicles_clicked()
     m_car_list->append (m_car);
     m_car->set_order_in_list (m_car_list->indexOf (m_car));
     m_car->get_list_of_all (m_car_list);
-    m_car->extract_coordinate(m_road->get_4_1 ());
+    m_car->extract_coordinate(m_road->get_1_1 ());
     m_car->initialize ();
     m_scene->addItem(m_car);
     m_car->setPos(m_car->get_initial_path());
@@ -132,8 +132,8 @@ void MainWindow::on_vehicles_clicked()
 
 void MainWindow::on_road_clicked()
 {
-    //m_road->moveBy (15,0);
-    //m_road->setPos(m_road->mapToScene(m_scene->sceneRect().x(),m_scene->sceneRect().y()));
+    m_scene->addPath (m_road->get_1_1 ());
+    //qDebug()<<QGraphicsPathItem(m_road->get_4_1 ()).boundingRect ();
 }
 
 void MainWindow::on_trafficLight_clicked()
@@ -257,7 +257,7 @@ void MainWindow::set_up()
     m_scene->addText ("1",QFont("Century",18))->setPos (450,180);
     m_scene->addText ("2",QFont("Century",18))->setPos (150,180);
     m_scene->addText ("3",QFont("Century",18))->setPos (180,380);
-    m_scene->addText ("4",QFont("Century",18))->setPos (420,420);
+    m_scene->addText ("4",QFont("Century",18))->setPos (400,420);
     //Add path for vehicle
     m_scene->setSceneRect(0,0,800,600);
     //Add traffic
