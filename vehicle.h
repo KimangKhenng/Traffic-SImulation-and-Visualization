@@ -23,6 +23,7 @@ public:
     bool is_on_the_same_path(Vehicle *vehicle);
     QList<QPointF> get_path();
     Vehicle *get_next_vehicle();
+    bool Isinthejunction();
     QPointF get_position();
     int get_current_index();
     QPointF get_initial_path();

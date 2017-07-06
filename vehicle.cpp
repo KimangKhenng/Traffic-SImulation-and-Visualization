@@ -131,6 +131,16 @@ Vehicle *Vehicle::get_next_vehicle()
         return m_car_list->at (m_car_list->indexOf (this)-1);
     }
 }
+
+bool Vehicle::Isinthejunction()
+{
+    if(m_point_index > 40){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
 QPointF Vehicle::get_position()
 {
     return this->pos ();
@@ -213,5 +223,5 @@ void Vehicle::advance()
     setPos(x()+dx,y()+dy);
     //qDebug()<<"Speed of"<<m_car_list->indexOf (this)<<" "<<m_speed;
     //qDebug()<<m_order_in_list;
-    //qDebug()<<"Current Index"<<m_point_index;
+    qDebug()<<"Current Index"<<m_point_index;
 }

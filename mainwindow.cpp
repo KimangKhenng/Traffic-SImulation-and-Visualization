@@ -40,7 +40,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     if(event->key () == Qt::Key_R){
         on_road_clicked ();
     }
-    qDebug()<<m_traffic_widget_list->at (0)->get_current_state ()->objectName ();
+    //qDebug()<<m_traffic_widget_list->at (0)->get_current_state ()->objectName ();
 }
 
 QList<Traffic_Light_widget *> *MainWindow::get_traffic_list()
@@ -86,7 +86,7 @@ void MainWindow::check_state()
     if(m_simulate_state){
         for(int i = 0 ; i<m_car_list->size ();i++){
             if(!m_car_list->at (i)->is_on_action ()){
-            m_car_list->at (i)->get_timer ()->start (10);
+            m_car_list->at (i)->get_timer ()->start (100);
             m_car_list->at (i)->set_on_action (true);
             }
         }
@@ -108,7 +108,7 @@ void MainWindow::on_play_clicked()
 
     for(int i = 0 ; i<m_car_list->size ();i++){
         if(!m_car_list->at (i)->is_on_action ()){
-        m_car_list->at (i)->get_timer ()->start (10);
+        m_car_list->at (i)->get_timer ()->start (100);
         m_car_list->at (i)->set_on_action (true);
         }
     }
@@ -123,7 +123,7 @@ void MainWindow::on_vehicles_clicked()
     m_car_list->append (m_car);
     m_car->set_order_in_list (m_car_list->indexOf (m_car));
     m_car->get_list_of_all (m_car_list);
-    m_car->extract_coordinate(m_road->get_4_5 ());
+    m_car->extract_coordinate(m_road->get_4_1 ());
     m_car->initialize ();
     m_scene->addItem(m_car);
     m_car->setPos(m_car->get_initial_path());
@@ -141,6 +141,7 @@ void MainWindow::on_trafficLight_clicked()
     //First Traffic
     m_traffic_widget_1 = new Traffic_Light_widget();
     m_traffic_widget_list->append (m_traffic_widget_1);
+    m_traffic_widget_1->get_other_widget (m_traffic_widget_list);
     //m_traffic_widget_1->set_duration (300,100,300);
     //m_traffic_widget_1->set_up ();
     //m_traffic_widget_1->start ();
@@ -152,6 +153,7 @@ void MainWindow::on_trafficLight_clicked()
     //Second Traffic
     m_traffic_widget_2 = new Traffic_Light_widget();
     m_traffic_widget_list->append (m_traffic_widget_2);
+    m_traffic_widget_2->get_other_widget (m_traffic_widget_list);
     //m_traffic_widget_2->set_duration (300,100,300);
     //m_traffic_widget_2->set_up ();
     //m_traffic_widget_2->start ();
@@ -163,6 +165,7 @@ void MainWindow::on_trafficLight_clicked()
     //Third Traffic
     m_traffic_widget_3 = new Traffic_Light_widget();
     m_traffic_widget_list->append (m_traffic_widget_3);
+    m_traffic_widget_3->get_other_widget (m_traffic_widget_list);
     //m_traffic_widget_3->set_duration (300,100,300);
     //m_traffic_widget_3->set_up ();
     //m_traffic_widget_3->start ();
@@ -174,6 +177,7 @@ void MainWindow::on_trafficLight_clicked()
     //Fourth Traffic
     m_traffic_widget_4 = new Traffic_Light_widget();
     m_traffic_widget_list->append (m_traffic_widget_4);
+    m_traffic_widget_4->get_other_widget (m_traffic_widget_list);
     //m_traffic_widget_4->set_duration (300,100,300);
     //m_traffic_widget_4->set_up ();
     //m_traffic_widget_4->start ();
@@ -250,6 +254,10 @@ void MainWindow::set_up()
     m_scene->addItem (m_picture);
     m_scene->addItem (m_terrain);
     m_scene->addItem (m_path);
+    m_scene->addText ("1",QFont("Century",18))->setPos (450,180);
+    m_scene->addText ("2",QFont("Century",18))->setPos (150,180);
+    m_scene->addText ("3",QFont("Century",18))->setPos (180,380);
+    m_scene->addText ("4",QFont("Century",18))->setPos (420,420);
     //Add path for vehicle
     m_scene->setSceneRect(0,0,800,600);
     //Add traffic

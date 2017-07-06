@@ -1,7 +1,7 @@
 #include "traffic_light_widget.h"
 #include <QtWidgets>
 #include "mainwindow.h"
-Traffic_Light_widget::Traffic_Light_widget(QWidget *parent):QWidget(parent)
+Traffic_Light_widget::Traffic_Light_widget(QWidget *parent):QWidget(parent),m_is_check(false)
 {
     this->setGeometry (0,0,35,80);
     QVBoxLayout *vbox = new QVBoxLayout(this);
@@ -33,15 +33,11 @@ void Traffic_Light_widget::set_up()
     m_yellowGoingRed->setObjectName("yellowGoingRed");
     m_greenGoingYellow->addTransition(m_greenGoingYellow, SIGNAL(finished()), m_yellowGoingRed);
     m_yellowGoingRed->addTransition(m_yellowGoingRed, SIGNAL(finished()), m_redGoingYellow);
+
 }
 
 void Traffic_Light_widget::start()
 {
-    m_machine->addState(m_redGoingYellow);
-    m_machine->addState(m_yellowGoingGreen);
-    m_machine->addState(m_greenGoingYellow);
-    m_machine->addState(m_yellowGoingRed);
-    m_machine->setInitialState(m_redGoingYellow);
     m_machine->start();
 }
 
@@ -87,7 +83,66 @@ bool Traffic_Light_widget::is_running()
 
 void Traffic_Light_widget::mousePressEvent(QMouseEvent *event)
 {
+    //Make other false
 
+    m_is_check = true;
+    make_other_widget_state_false ();
+    if(m_is_check){
+        set_opacity (0.5);
+    }
+}
+
+void Traffic_Light_widget::set_opacity(float num)
+{
+    setWindowOpacity (num);
+}
+
+void Traffic_Light_widget::get_other_widget(QList<Traffic_Light_widget *> *m_traffic)
+{
+    m_traffic_list = m_traffic;
+}
+
+void Traffic_Light_widget::make_other_widget_state_false()
+{
+    for(int i = 0 ; i<m_traffic_list->size ();i++){
+        if(m_traffic_list->at (i) != this){
+            m_traffic_list->at (i)->make_state_check (false);
+            m_traffic_list->at (i)->set_opacity (1);
+        }
+    }
+}
+
+bool Traffic_Light_widget::get_check_state()
+{
+    return m_is_check;
+}
+
+void Traffic_Light_widget::set_initial_state_nornal()
+{
+    m_machine->addState(m_redGoingYellow);
+    m_machine->addState(m_yellowGoingGreen);
+    m_machine->addState(m_greenGoingYellow);
+    m_machine->addState(m_yellowGoingRed);
+    m_machine->setInitialState(m_redGoingYellow);
+}
+
+void Traffic_Light_widget::make_state_check(bool value)
+{
+    m_is_check = value;
+}
+
+void Traffic_Light_widget::set_initial_state(bool red,bool green)
+{
+    m_machine->addState(m_redGoingYellow);
+    m_machine->addState(m_yellowGoingGreen);
+    m_machine->addState(m_greenGoingYellow);
+    m_machine->addState(m_yellowGoingRed);
+    if(red){
+        m_machine->setInitialState(m_redGoingYellow);
+    }
+    if(green){
+        m_machine->setInitialState (m_greenGoingYellow);
+    }
 }
 
 QState *Traffic_Light_widget::make_light_state(LightWidget *light, int duration, QState *parent)
