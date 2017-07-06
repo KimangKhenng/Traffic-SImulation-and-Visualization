@@ -104,7 +104,7 @@ bool Traffic_Light_widget::is_running()
 void Traffic_Light_widget::mousePressEvent(QMouseEvent *event)
 {
     //Make other false
-
+    Q_UNUSED(event);
     m_is_check = true;
     make_other_widget_state_false ();
     if(m_is_check){

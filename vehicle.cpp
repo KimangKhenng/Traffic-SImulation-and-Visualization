@@ -6,7 +6,6 @@
 #include "road.h"
 #include <qmath.h>
 #include <exception>
-
 //Declear static Macro variable
 static const double Pi = 3.14159265358979323846264338327950288419717;
 static double TwoPi = 2.0*Pi;
@@ -56,12 +55,13 @@ void Vehicle::extract_coordinate(QPainterPath path)
     //qDebug()<<m_path_to_follow;
 }
 
-void Vehicle::initialize()
+void Vehicle::initialize(Traffic_Light_widget *m_traffic)
 {
     m_destination = m_path_to_follow[0];
     rotate_to_point(m_destination);
     setPos(m_destination);
-    m_next = get_next_vehicle ();
+    m_next = get_next_vehicle();
+    m_traffic_widget = m_traffic;
 }
 
 double Vehicle::distance_to_other_vehicle(Vehicle *car)
@@ -77,6 +77,16 @@ double Vehicle::distance_to_other_vehicle(Vehicle *car)
 bool Vehicle::is_on_action()
 {
     return m_on_action_state;
+}
+
+bool Vehicle::is_in_stop_point()
+{
+    if(m_point_index > 35 && m_point_index < 40){
+            return true;
+        }
+        else{
+            return false;
+        }
 }
 
 void Vehicle::set_on_action(bool state)
@@ -198,13 +208,25 @@ void Vehicle::advance()
 //        accerlerate ();
 //    }
 
-    if(distance_to_other_vehicle (m_next) <= 25 && distance_to_other_vehicle (m_next) != -1){
-        m_driving_state = false;
-        stop_advance ();
-    }
-    if(distance_to_other_vehicle (m_next) > 25 &&  m_driving_state == false ){
-        m_driving_state = true;
-        accerlerate ();
+    if(m_traffic_widget->get_current_state () == m_traffic_widget->get_red () || m_traffic_widget->get_current_state () == m_traffic_widget->get_red_yellow ()){
+        if(is_in_stop_point ()){
+            m_driving_state = false;
+            stop_advance ();
+            }
+        if(distance_to_other_vehicle (m_next) <= 25 && distance_to_other_vehicle (m_next) != -1){
+            m_driving_state = false;
+            stop_advance ();
+            }
+        }
+     if(m_traffic_widget->get_current_state () == m_traffic_widget->get_green () || m_traffic_widget->get_current_state () == m_traffic_widget->get_green_yellow ()){
+         if(distance_to_other_vehicle (m_next) <= 25 && distance_to_other_vehicle (m_next) != -1){
+             m_driving_state = false;
+             stop_advance ();
+             }
+         if(distance_to_other_vehicle (m_next) > 25 &&  m_driving_state == false ){
+            m_driving_state = true;
+            accerlerate ();
+            }
     }
 
     QLineF line(pos(),m_destination);

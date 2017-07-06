@@ -2,6 +2,7 @@
 #define VEHICLE_H
 #include <QtWidgets>
 #include "road.h"
+#include "traffic_light_widget.h"
 class Vehicle: public QObject,public QGraphicsItem
 {
     Q_OBJECT
@@ -12,9 +13,10 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
     void rotate_to_point(QPointF point);
     void extract_coordinate(QPainterPath path);
-    void initialize();
+    void initialize(Traffic_Light_widget *m_traffic);
     double distance_to_other_vehicle(Vehicle *car);
     bool is_on_action();
+    bool is_in_stop_point();
     void set_on_action(bool state);
     bool is_no_car_infront();
     void reset_speed();
@@ -48,7 +50,7 @@ private:
     int m_order_in_list;
     Vehicle *m_next;
     bool m_driving_state;
-
+    Traffic_Light_widget *m_traffic_widget;
 };
 
 #endif // VEHICLE_H

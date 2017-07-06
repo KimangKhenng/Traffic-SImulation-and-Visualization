@@ -124,7 +124,7 @@ void MainWindow::on_vehicles_clicked()
     m_car->set_order_in_list (m_car_list->indexOf (m_car));
     m_car->get_list_of_all (m_car_list);
     m_car->extract_coordinate(m_road->get_1_1 ());
-    m_car->initialize ();
+    m_car->initialize (m_traffic_widget_1);
     m_scene->addItem(m_car);
     m_car->setPos(m_car->get_initial_path());
 
