@@ -2,7 +2,6 @@
 #define TRAFFICSIGNALCONTROL_H
 
 #include "traffic_light_widget.h"
-
 class TrafficSignalControl
 {
 public:

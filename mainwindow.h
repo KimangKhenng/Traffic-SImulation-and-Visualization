@@ -29,9 +29,14 @@ public:
     void set_duration_for_2_traffic(int red,int yellow,int green);
     void set_duration_for_3_traffic(int red,int yellow,int green);
     void set_duration_for_4_traffic(int red,int yellow,int green);
+    void set_up_random();
     ~MainWindow();
 public slots:
     void check_state();
+    void random_of_1();
+    void random_of_2();
+    void random_of_3();
+    void random_of_4();
 private slots:
     void on_actionExit_triggered();
     void on_play_clicked();
@@ -54,7 +59,18 @@ private:
     DataWidget *m_data_widget;
     SimulationScene *m_scene;
     //QGraphicsScene *m_scene;
-    QList<Vehicle *> *m_car_list;
+    QList<Vehicle *> *m_car_list_1;
+    QList<Vehicle *> *m_car_list_2;
+    QList<Vehicle *> *m_car_list_3;
+    QList<Vehicle *> *m_car_list_4;
+    QList<Vehicle *> *m_car_list_5;
+    QList<Vehicle *> *m_car_list_6;
+    QList<Vehicle *> *m_car_list_7;
+    QList<Vehicle *> *m_car_list_8;
+    QList<Vehicle *> *m_car_list_9;
+    QList<Vehicle *> *m_car_list_10;
+    QList<Vehicle *> *m_car_list_11;
+    QList<Vehicle *> *m_car_list_12;
     road *m_road;
     bool m_simulate_state;
     bool m_traffic_state;

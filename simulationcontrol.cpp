@@ -93,5 +93,6 @@ void SimulationControl::on_m_auto_traffic_clicked()
 
 void SimulationControl::on_m_random_birth_clicked()
 {
-
+    on_m_auto_traffic_clicked ();
+    m_main_window->set_up_random ();
 }

@@ -6,12 +6,13 @@
 #include "road.h"
 #include <qmath.h>
 #include <exception>
+#include "mainwindow.h"
 //Declear static Macro variable
 static const double Pi = 3.14159265358979323846264338327950288419717;
 static double TwoPi = 2.0*Pi;
 
 Vehicle::Vehicle():m_angle(0),m_speed(0),m_color(qrand()%256,qrand()%256,qrand()%256)
-  ,m_point_index(0),m_on_action_state(false),m_step_count(0),m_order_in_list(0),m_driving_state(false)
+  ,m_point_index(0),m_on_action_state(false),m_step_count(0),m_order_in_list(0),m_driving_state(false),m_back(nullptr)
 {
     setTransformOriginPoint(10,5);
     setFlag(QGraphicsItem::ItemIsMovable);
@@ -61,6 +62,7 @@ void Vehicle::initialize(Traffic_Light_widget *m_traffic)
     rotate_to_point(m_destination);
     setPos(m_destination);
     m_next = get_next_vehicle();
+    //m_back = get_back_vehicle ();
     m_traffic_widget = m_traffic;
 }
 
@@ -96,7 +98,7 @@ void Vehicle::set_on_action(bool state)
 
 bool Vehicle::is_no_car_infront()
 {
-    if(m_car_list->indexOf (this) == 0){
+    if(m_list->indexOf (this) == 0){
         return true;
     }
     return false;
@@ -134,11 +136,12 @@ QList<QPointF> Vehicle::get_path()
 
 Vehicle *Vehicle::get_next_vehicle()
 {
-    if(m_car_list->size () == 1){
+    if(m_list->size () == 1){
         return nullptr;
     }
     else{
-        return m_car_list->at (m_car_list->indexOf (this)-1);
+        //qDebug()<<"Error 1";
+        return m_list->at (m_list->indexOf (this)-1);
     }
 }
 
@@ -173,7 +176,12 @@ QTimer *Vehicle::get_timer()
 
 void Vehicle::get_list_of_all(QList<Vehicle *> *car_list)
 {
-    m_car_list = car_list;
+    m_list = car_list;
+}
+
+QList<Vehicle *> *Vehicle::get_list()
+{
+    return m_list;
 }
 
 void Vehicle::set_order_in_list(int x)
@@ -184,6 +192,33 @@ void Vehicle::set_order_in_list(int x)
 void Vehicle::stop_advance()
 {
     m_speed = 0;
+}
+
+void Vehicle::remove_next()
+{
+    m_next = nullptr;
+}
+
+int Vehicle::get_index_in_list()
+{
+    qDebug()<<m_list->size ();
+    return m_list->size ()-1;
+}
+
+Vehicle *Vehicle::get_back_vehicle()
+{
+    if(m_list->size () == 1){
+        return nullptr;
+    }else{
+        //qDebug()<<"Error 2";
+        //qDebug()<<m_list->size ();
+        //qDebug()<<m_list->indexOf (this)+1;
+        if((m_list->indexOf (this)+1) == m_list->size ()){
+            return nullptr;
+        }
+        return m_list->at (m_list->indexOf (this)+1);
+    }
+
 }
 
 void Vehicle::advance()
@@ -207,7 +242,7 @@ void Vehicle::advance()
 //    if(is_no_car_infront ()){
 //        accerlerate ();
 //    }
-
+    //With Traffic
     if(m_traffic_widget->get_current_state () == m_traffic_widget->get_red () || m_traffic_widget->get_current_state () == m_traffic_widget->get_red_yellow ()){
         if(is_in_stop_point ()){
             m_driving_state = false;
@@ -228,7 +263,20 @@ void Vehicle::advance()
             accerlerate ();
             }
     }
-
+     // No Traffic
+//     if(distance_to_other_vehicle (m_next) <= 25 && distance_to_other_vehicle (m_next) != -1){
+//         m_driving_state = false;
+//         stop_advance ();
+//         }
+//     if(distance_to_other_vehicle (m_next) <= 25 && distance_to_other_vehicle (m_next) != -1){
+//         m_driving_state = false;
+//         stop_advance ();
+//         }
+//     if(distance_to_other_vehicle (m_next) > 25 &&  m_driving_state == false ){
+//        m_driving_state = true;
+//        accerlerate ();
+//        }
+    //No traffic
     QLineF line(pos(),m_destination);
     //qDebug()<<line.length ();
     if(int(line.length()) <= 1){
