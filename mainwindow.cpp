@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QtWidgets>
 #include <QGraphicsSvgItem>
+#include <time.h>
 MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent),ui(new Ui::MainWindow),m_road(nullptr),m_simulate_state(false)
 {
         ui->setupUi(this);
@@ -28,7 +29,7 @@ MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent),ui(new Ui::MainWind
         m_car_list_12 = new QList<Vehicle *>();
         m_traffic_widget_list = new QList<Traffic_Light_widget *>();
         this->connect (m_machine_state,SIGNAL(timeout()),this,SLOT(check_state()));
-
+        qsrand (time(NULL));
 }
 
 void MainWindow::resizeEvent(QResizeEvent *event)
@@ -93,16 +94,16 @@ void MainWindow::set_up_random()
     m_machine_state->start (10);
     QTimer *t1 = new QTimer();
     connect(t1,SIGNAL(timeout()),this,SLOT(random_of_1()));
-    t1->start (3000);
+    t1->start (1000);
     QTimer *t2 = new QTimer();
     connect(t2,SIGNAL(timeout()),this,SLOT(random_of_2()));
-    t2->start (3000);
+    t2->start (2000);
     QTimer *t3 = new QTimer();
     connect(t3,SIGNAL(timeout()),this,SLOT(random_of_3()));
     t3->start (3000);
     QTimer *t4 = new QTimer();
     connect(t4,SIGNAL(timeout()),this,SLOT(random_of_4()));
-    t4->start (3000);
+    t4->start (4000);
 
 }
 
@@ -115,11 +116,13 @@ void MainWindow::check_state()
 {
     // List 1
     for(int i = 0 ; i<m_car_list_1->size ();i++){
-        if(m_car_list_1->at (i)->get_current_index () >= 100){
+        if(m_car_list_1->at (i)->get_current_index () >= 99){
             if(m_car_list_1->at (i)->get_back_vehicle () == nullptr){
-                //m_car_list_1->removeAt (i);
+                m_scene->removeItem (m_car_list_1->at (i));
+                m_car_list_1->removeAt (i);
                 //delete m_car_list_1->at (i);
-                m_car_list_1->clear ();
+                //m_car_list_1->removeLast ();
+                //m_car_list_1->detach ();
                 return;
             }
             m_car_list_1->at (i)->get_back_vehicle ()->remove_next ();
@@ -130,9 +133,11 @@ void MainWindow::check_state()
     }
     // List 2
     for(int i = 0 ; i<m_car_list_2->size ();i++){
-        if(m_car_list_2->at (i)->get_current_index () >= 100){
+        if(m_car_list_2->at (i)->get_current_index () >= 99){
             if(m_car_list_2->at (i)->get_back_vehicle () == nullptr){
-                m_car_list_2->clear ();
+                //m_car_list_2->removeLast ();
+                m_scene->removeItem (m_car_list_2->at (i));
+                m_car_list_2->removeAt (i);
                 return;
             }
             m_car_list_2->at (i)->get_back_vehicle ()->remove_next ();
@@ -143,9 +148,11 @@ void MainWindow::check_state()
     }
     // List 3
     for(int i = 0 ; i<m_car_list_3->size ();i++){
-        if(m_car_list_3->at (i)->get_current_index () >= 100){
+        if(m_car_list_3->at (i)->get_current_index () >= 99){
             if(m_car_list_3->at (i)->get_back_vehicle () == nullptr){
-                m_car_list_3->clear ();
+                //m_car_list_3->removeLast ();
+                m_scene->removeItem (m_car_list_3->at (i));
+                m_car_list_3->removeAt (i);
                 return;
             }
             m_car_list_3->at (i)->get_back_vehicle ()->remove_next ();
@@ -156,9 +163,11 @@ void MainWindow::check_state()
     }
     //List 4
     for(int i = 0 ; i<m_car_list_4->size ();i++){
-        if(m_car_list_4->at (i)->get_current_index () >= 100){
+        if(m_car_list_4->at (i)->get_current_index () >= 99){
             if(m_car_list_4->at (i)->get_back_vehicle () == nullptr){
-                m_car_list_4->clear ();
+                //m_car_list_4->removeLast ();
+                m_scene->removeItem (m_car_list_4->at (i));
+                m_car_list_4->removeAt (i);
                 return;
             }
             m_car_list_4->at (i)->get_back_vehicle ()->remove_next ();
@@ -169,9 +178,11 @@ void MainWindow::check_state()
     }
     //List 5
     for(int i = 0 ; i<m_car_list_5->size ();i++){
-        if(m_car_list_5->at (i)->get_current_index () >= 100){
+        if(m_car_list_5->at (i)->get_current_index () >= 99){
             if(m_car_list_5->at (i)->get_back_vehicle () == nullptr){
-                m_car_list_5->clear ();
+                //m_car_list_4->removeLast ();
+                m_scene->removeItem (m_car_list_5->at (i));
+                m_car_list_5->removeAt (i);
                 return;
             }
             m_car_list_5->at (i)->get_back_vehicle ()->remove_next ();
@@ -182,9 +193,11 @@ void MainWindow::check_state()
     }
     //List 6
     for(int i = 0 ; i<m_car_list_6->size ();i++){
-        if(m_car_list_6->at (i)->get_current_index () >= 100){
+        if(m_car_list_6->at (i)->get_current_index () >= 99){
             if(m_car_list_6->at (i)->get_back_vehicle () == nullptr){
-                m_car_list_6->clear ();
+                //m_car_list_6->removeLast ();
+                m_scene->removeItem (m_car_list_6->at (i));
+                m_car_list_6->removeAt (i);
                 return;
             }
             m_car_list_6->at (i)->get_back_vehicle ()->remove_next ();
@@ -195,9 +208,11 @@ void MainWindow::check_state()
     }
     //List 7
     for(int i = 0 ; i<m_car_list_7->size ();i++){
-        if(m_car_list_7->at (i)->get_current_index () >= 100){
+        if(m_car_list_7->at (i)->get_current_index () >= 99){
             if(m_car_list_7->at (i)->get_back_vehicle () == nullptr){
-                m_car_list_7->clear ();
+                m_scene->removeItem (m_car_list_7->at (i));
+                //m_car_list_7->removeLast ();
+                m_car_list_7->removeAt (i);
                 return;
             }
             m_car_list_7->at (i)->get_back_vehicle ()->remove_next ();
@@ -208,9 +223,11 @@ void MainWindow::check_state()
     }
     //List 8
     for(int i = 0 ; i<m_car_list_8->size ();i++){
-        if(m_car_list_8->at (i)->get_current_index () >= 100){
+        if(m_car_list_8->at (i)->get_current_index () >= 99){
             if(m_car_list_8->at (i)->get_back_vehicle () == nullptr){
-                m_car_list_8->clear ();
+                m_scene->removeItem (m_car_list_8->at (i));
+                //m_car_list_8->removeLast ();
+                m_car_list_8->removeAt (i);
                 return;
             }
             m_car_list_8->at (i)->get_back_vehicle ()->remove_next ();
@@ -221,9 +238,11 @@ void MainWindow::check_state()
     }
     //List 9
     for(int i = 0 ; i<m_car_list_9->size ();i++){
-        if(m_car_list_9->at (i)->get_current_index () >= 100){
+        if(m_car_list_9->at (i)->get_current_index () >= 99){
             if(m_car_list_9->at (i)->get_back_vehicle () == nullptr){
-                m_car_list_9->clear ();m_car_list_3->clear ();
+                m_scene->removeItem (m_car_list_9->at (i));
+                //m_car_list_9->removeLast ();
+                m_car_list_9->removeAt (i);
                 return;
             }
             m_car_list_9->at (i)->get_back_vehicle ()->remove_next ();
@@ -234,9 +253,11 @@ void MainWindow::check_state()
     }
     //List 10
     for(int i = 0 ; i<m_car_list_10->size ();i++){
-        if(m_car_list_10->at (i)->get_current_index () >= 100){
+        if(m_car_list_10->at (i)->get_current_index () >= 99){
             if(m_car_list_10->at (i)->get_back_vehicle () == nullptr){
-                m_car_list_10->clear ();
+                m_scene->removeItem (m_car_list_10->at (i));
+                m_car_list_10->removeAt (i);
+                //m_car_list_10->removeLast ();
                 return;
             }
             m_car_list_10->at (i)->get_back_vehicle ()->remove_next ();
@@ -247,9 +268,11 @@ void MainWindow::check_state()
     }
     //List 11
     for(int i = 0 ; i<m_car_list_11->size ();i++){
-        if(m_car_list_11->at (i)->get_current_index () >= 100){
+        if(m_car_list_11->at (i)->get_current_index () >= 99){
             if(m_car_list_11->at (i)->get_back_vehicle () == nullptr){
-                m_car_list_11->clear ();
+                //m_car_list_11->removeLast ();
+                m_scene->removeItem (m_car_list_11->at (i));
+                m_car_list_11->removeAt (i);
                 return;
             }
             m_car_list_11->at (i)->get_back_vehicle ()->remove_next ();
@@ -260,9 +283,11 @@ void MainWindow::check_state()
     }
     //List 12
     for(int i = 0 ; i<m_car_list_12->size ();i++){
-        if(m_car_list_12->at (i)->get_current_index () >= 100){
+        if(m_car_list_12->at (i)->get_current_index () >= 99){
             if(m_car_list_12->at (i)->get_back_vehicle () == nullptr){
-                m_car_list_12->clear ();
+                //m_car_list_12->removeLast ();
+                m_scene->removeItem (m_car_list_12->at (i));
+                m_car_list_12->removeAt (i);
                 return;
             }
             m_car_list_12->at (i)->get_back_vehicle ()->remove_next ();
