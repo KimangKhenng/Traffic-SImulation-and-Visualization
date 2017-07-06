@@ -13,6 +13,10 @@ public:
     void stop();
     void initiate_instance();
     QState *get_current_state();
+    QState *get_red();
+    QState *get_green();
+    QState *get_red_yellow();
+    QState *get_green_yellow();
     bool is_running();
     virtual void mousePressEvent (QMouseEvent *event);
     void set_opacity(float num);

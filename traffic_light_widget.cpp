@@ -76,6 +76,26 @@ QState *Traffic_Light_widget::get_current_state()
     return nullptr;
 }
 
+QState *Traffic_Light_widget::get_red()
+{
+    return m_redGoingYellow;
+}
+
+QState *Traffic_Light_widget::get_green()
+{
+    return m_greenGoingYellow;
+}
+
+QState *Traffic_Light_widget::get_red_yellow()
+{
+    return m_yellowGoingRed;
+}
+
+QState *Traffic_Light_widget::get_green_yellow()
+{
+    return m_yellowGoingGreen;
+}
+
 bool Traffic_Light_widget::is_running()
 {
     return m_machine->isRunning ();
