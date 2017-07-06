@@ -68,9 +68,9 @@ void SimulationControl::on_m_stop_clicked()
 void SimulationControl::on_m_auto_traffic_clicked()
 {
     for(int i = 0;i<m_main_window->get_traffic_list ()->size ();i++){
-    m_main_window->get_traffic_list ()->at (i)->set_duration (ui->m_red->text ().toInt (),
-                                                              ui->m_yellow->text ().toInt (),
-                                                              ui->m_green->text ().toInt ());
+    m_main_window->get_traffic_list ()->at (i)->set_duration (5000,
+                                                              1000,
+                                                              5000);
     }
     // Initialize first traffic
     m_main_window->get_traffic_list ()->at (0)->set_up ();
@@ -88,5 +88,10 @@ void SimulationControl::on_m_auto_traffic_clicked()
     m_main_window->get_traffic_list ()->at (3)->set_up ();
     m_main_window->get_traffic_list ()->at (3)->set_initial_state (true,false);
     m_main_window->get_traffic_list ()->at (3)->start ();
+
+}
+
+void SimulationControl::on_m_random_birth_clicked()
+{
 
 }

@@ -24,6 +24,8 @@ private slots:
 
     void on_m_auto_traffic_clicked();
 
+    void on_m_random_birth_clicked();
+
 private:
     Ui::SimulationControl *ui;
     MainWindow *m_main_window;
