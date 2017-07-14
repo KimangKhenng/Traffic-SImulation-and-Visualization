@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui svg widgets
+QT       += core gui svg widgets printsupport
 CONFIG   += console
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -25,7 +25,8 @@ SOURCES += main.cpp\
     trafficlight.cpp \
     lightwidget.cpp \
     traffic_light_widget.cpp \
-    trafficsignalcontrol.cpp
+    trafficsignalcontrol.cpp \
+    qcustomplot.cpp
 
 HEADERS  += mainwindow.h \
     graphicsview.h \
@@ -38,7 +39,8 @@ HEADERS  += mainwindow.h \
     trafficlight.h \
     lightwidget.h \
     traffic_light_widget.h \
-    trafficsignalcontrol.h
+    trafficsignalcontrol.h \
+    qcustomplot.h
 
 FORMS    += mainwindow.ui \
     datawidget.ui \

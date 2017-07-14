@@ -54,8 +54,8 @@ private:
     int m_step_count;
     int m_order_in_list;
     Vehicle *m_next;
-    Vehicle *m_back;
     bool m_driving_state;
+    Vehicle *m_back; 
     Traffic_Light_widget *m_traffic_widget;
 };
 
