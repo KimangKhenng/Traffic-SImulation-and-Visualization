@@ -123,16 +123,6 @@ font: italic 13pt &quot;Century Gothic&quot;;
           <property name="spacing">
            <number>0</number>
           </property>
-          <item row="0" column="1">
-           <widget class="QGraphicsView" name="demo_simulation">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-           </widget>
-          </item>
           <item row="0" column="0">
            <layout class="QVBoxLayout" name="verticalLayout_3">
             <property name="spacing">
@@ -238,6 +228,16 @@ font: italic 13pt &quot;Century Gothic&quot;;
             </item>
            </layout>
           </item>
+          <item row="0" column="1">
+           <widget class="QGraphicsView" name="demo_simulation">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
          </layout>
         </item>
        </layout>
@@ -334,6 +334,9 @@ background-color: rgb(231, 76, 60);
              <widget class="QPushButton" name="reset">
               <property name="text">
                <string>reset</string>
+              </property>
+              <property name="flat">
+               <bool>false</bool>
               </property>
              </widget>
             </item>
@@ -480,7 +483,7 @@ background-color: rgb(231, 76, 60);
      <x>0</x>
      <y>0</y>
      <width>898</width>
-     <height>23</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

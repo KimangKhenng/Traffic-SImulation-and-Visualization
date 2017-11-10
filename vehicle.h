@@ -1,47 +1,71 @@
 #ifndef VEHICLE_H
 #define VEHICLE_H
+#define GAPACCAPANCE 10
+
 #include <QtWidgets>
+#include "commonenum.h"
 #include "road.h"
-#include "traffic_light_widget.h"
 class Vehicle: public QObject,public QGraphicsItem
 {
     Q_OBJECT
+    Q_INTERFACES(QGraphicsItem)
 public:
-    Vehicle();
+    Vehicle(QGraphicsItem *parent = 0);
+    // @Overloading Function
     QRectF boundingRect() const Q_DECL_OVERRIDE;
     QPainterPath shape() const Q_DECL_OVERRIDE;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
+    // Overloading Funcion
+    //////////////////////
+    /// \brief rotate_to_point
+    /// \param point
+    /// use to rotate to a specfic point
+    /// //////////////////
     void rotate_to_point(QPointF point);
+    /////////////////////
+    /// \brief extract_coordinate
+    /// \param path
+    /// Give vehile a path to follow
+    /// path = QPainterPath
+    /// Draw By Yourself
     void extract_coordinate(QPainterPath path);
-    void initialize(Traffic_Light_widget *m_traffic);
+    /////////////////////
+    /// \brief setDirection
+    /// \param dir
+    /// set turning direction for vehicle
+    void setDirection(Direction dir);
+    /////////////////////
+    /// \brief setTrafficLight
+    /// \param light
+    /// set Traffic to be obeyed for vehicle
+    /// ////////////
+    void initialize();
+    void setRegion(region r);
     double distance_to_other_vehicle(Vehicle *car);
     bool is_on_action();
     bool is_in_stop_point();
     void set_on_action(bool state);
-    bool is_no_car_infront();
     void reset_speed();
     void decelerate();
     void accerlerate();
-    bool is_on_the_same_path(Vehicle *vehicle);
     QList<QPointF> get_path();
-    Vehicle *get_next_vehicle();
-    Vehicle *get_back_vehicle();
     bool Isinthejunction();
-    QPointF get_position();
-    int get_current_index();
-    QPointF get_initial_path();
+    QPointF get_position() const;
+    int get_current_index() const;
+    QPointF get_initial_path() const;
     QTimer *get_timer();
-    void get_list_of_all(QList<Vehicle *> *car_list);
-    QList<Vehicle *> *get_list();
-    void set_order_in_list(int x);
     bool is_enter_the_junction();
     void stop_advance();
-    void remove_next();
-    int get_index_in_list();
+    region getRegion() const;
+    bool ifAllowed() const;
+    Direction getDir() const;
+    void setDir(const Direction &dir);
 
 public slots:
     void advance();
 private:
+    Vehicle *getCollding();
+    bool hasInfront();
     qreal m_angle;
     qreal m_speed;
     QColor m_color;
@@ -50,13 +74,11 @@ private:
     int m_point_index;
     QTimer *m_internal_timer;
     bool m_on_action_state;
-    QList<Vehicle *> *m_list;
     int m_step_count;
-    int m_order_in_list;
-    Vehicle *m_next;
     bool m_driving_state;
-    Vehicle *m_back; 
-    Traffic_Light_widget *m_traffic_widget;
+    QGraphicsRectItem *m_sightseeing;
+    Direction m_dir;
+    region m_region;
 };
 
 #endif // VEHICLE_H

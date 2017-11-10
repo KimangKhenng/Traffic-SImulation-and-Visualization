@@ -11,6 +11,7 @@ public:
     void Initializer();
 
 protected:
+    // Control Mouse wheel to zoom
     virtual void wheelEvent(QWheelEvent *event);
     //virtual void resizeEvent(QResizeEvent *event);
     //virtual void mousePressEvent(QMouseEvent *event);

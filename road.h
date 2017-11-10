@@ -3,53 +3,56 @@
 
 #include <QtCore>
 #include <QtWidgets>
+#include "trafficlight.h"
+#include "commonenum.h"
 class road
 {
 public:
-    road();
-    QPainterPath get_1_1();
-    QPainterPath get_1_2();
-    QPainterPath get_1_3();
-    QPainterPath get_1_4();
-    QPainterPath get_1_5();
-    QPainterPath get_2_1();
-    QPainterPath get_2_2();
-    QPainterPath get_2_3();
-    QPainterPath get_2_4();
-    QPainterPath get_2_5();
-    QPainterPath get_3_1();
-    QPainterPath get_3_2();
-    QPainterPath get_3_3();
-    QPainterPath get_3_4();
-    QPainterPath get_3_5();
-    QPainterPath get_4_1();
-    QPainterPath get_4_2();
-    QPainterPath get_4_3();
-    QPainterPath get_4_4();
-    QPainterPath get_4_5();
-    QList<QPainterPath> get_all_path();
+    static QPainterPath getLeft(region approach);
+    static QPainterPath getThrough(region approach,int lane);
+    static QPainterPath getRight(region approach);
+protected:
+    static QPainterPath get_1_1();
+    static QPainterPath get_1_2();
+    static QPainterPath get_1_3();
+    static QPainterPath get_1_4();
+    static QPainterPath get_1_5();
+    static QPainterPath get_2_1();
+    static QPainterPath get_2_2();
+    static QPainterPath get_2_3();
+    static QPainterPath get_2_4();
+    static QPainterPath get_2_5();
+    static QPainterPath get_3_1();
+    static QPainterPath get_3_2();
+    static QPainterPath get_3_3();
+    static QPainterPath get_3_4();
+    static QPainterPath get_3_5();
+    static QPainterPath get_4_1();
+    static QPainterPath get_4_2();
+    static QPainterPath get_4_3();
+    static QPainterPath get_4_4();
+    static QPainterPath get_4_5();
 private:
-    QPainterPath draw_1_1();
-    QPainterPath draw_1_2();
-    QPainterPath draw_1_3();
-    QPainterPath draw_1_4();
-    QPainterPath draw_1_5();
-    QPainterPath draw_2_1();
-    QPainterPath draw_2_2();
-    QPainterPath draw_2_3();
-    QPainterPath draw_2_4();
-    QPainterPath draw_2_5();
-    QPainterPath draw_3_1();
-    QPainterPath draw_3_2();
-    QPainterPath draw_3_3();
-    QPainterPath draw_3_4();
-    QPainterPath draw_3_5();
-    QPainterPath draw_4_1();
-    QPainterPath draw_4_2();
-    QPainterPath draw_4_3();
-    QPainterPath draw_4_4();
-    QPainterPath draw_4_5();
-    QList<QPainterPath> m_path_list;
+    static QPainterPath draw_1_1();
+    static QPainterPath draw_1_2();
+    static QPainterPath draw_1_3();
+    static QPainterPath draw_1_4();
+    static QPainterPath draw_1_5();
+    static QPainterPath draw_2_1();
+    static QPainterPath draw_2_2();
+    static QPainterPath draw_2_3();
+    static QPainterPath draw_2_4();
+    static QPainterPath draw_2_5();
+    static QPainterPath draw_3_1();
+    static QPainterPath draw_3_2();
+    static QPainterPath draw_3_3();
+    static QPainterPath draw_3_4();
+    static QPainterPath draw_3_5();
+    static QPainterPath draw_4_1();
+    static QPainterPath draw_4_2();
+    static QPainterPath draw_4_3();
+    static QPainterPath draw_4_4();
+    static QPainterPath draw_4_5();
 };
 
 #endif // ROAD_H

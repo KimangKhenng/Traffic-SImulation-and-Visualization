@@ -9,9 +9,9 @@
 #include "road.h"
 #include "simulationscene.h"
 #include "datawidget.h"
-#include "traffic_light_widget.h"
 #include "simulationcontrol.h"
-#include "datapath.h"
+#include "vehiclesgenerator.h"
+#include "trafficcontroller.h"
 namespace Ui {
 class MainWindow;
 }
@@ -24,7 +24,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     virtual void resizeEvent(QResizeEvent *event);
     virtual void keyPressEvent (QKeyEvent *event);
-    QList<Traffic_Light_widget *> *get_traffic_list();
+//    QList<Traffic_Light_widget *> *get_traffic_list();
     void set_duration_for_1_traffic(int red,int yellow,int green);
     void set_duration_for_2_traffic(int red,int yellow,int green);
     void set_duration_for_3_traffic(int red,int yellow,int green);
@@ -59,31 +59,32 @@ private:
     DataWidget *m_data_widget;
     SimulationScene *m_scene;
     //QGraphicsScene *m_scene;
-    QList<Vehicle *> *m_car_list_1;
-    QList<Vehicle *> *m_car_list_2;
-    QList<Vehicle *> *m_car_list_3;
-    QList<Vehicle *> *m_car_list_4;
-    QList<Vehicle *> *m_car_list_5;
-    QList<Vehicle *> *m_car_list_6;
-    QList<Vehicle *> *m_car_list_7;
-    QList<Vehicle *> *m_car_list_8;
-    QList<Vehicle *> *m_car_list_9;
-    QList<Vehicle *> *m_car_list_10;
-    QList<Vehicle *> *m_car_list_11;
-    QList<Vehicle *> *m_car_list_12;
+//    QList<Vehicle *> *m_car_list_1;
+//    QList<Vehicle *> *m_car_list_2;
+//    QList<Vehicle *> *m_car_list_3;
+//    QList<Vehicle *> *m_car_list_4;
+//    QList<Vehicle *> *m_car_list_5;
+//    QList<Vehicle *> *m_car_list_6;
+//    QList<Vehicle *> *m_car_list_7;
+//    QList<Vehicle *> *m_car_list_8;
+//    QList<Vehicle *> *m_car_list_9;
+//    QList<Vehicle *> *m_car_list_10;
+//    QList<Vehicle *> *m_car_list_11;
+//    QList<Vehicle *> *m_car_list_12;
     road *m_road;
     bool m_simulate_state;
     bool m_traffic_state;
     QTimer *m_machine_state;
-    QList<Traffic_Light_widget *> *m_traffic_widget_list;
+//    QList<Traffic_Light_widget *> *m_traffic_widget_list;
     QSplashScreen *m_loading_screen;
     SimulationControl *m_simulation_control_widget;
     QGraphicsProxyWidget *m_control_sim;
     QGraphicsProxyWidget *m_data_control;
-    Traffic_Light_widget *m_traffic_widget_1;
-    Traffic_Light_widget *m_traffic_widget_2;
-    Traffic_Light_widget *m_traffic_widget_3;
-    Traffic_Light_widget *m_traffic_widget_4;
+//    Traffic_Light_widget *m_traffic_widget_1;
+//    Traffic_Light_widget *m_traffic_widget_2;
+//    Traffic_Light_widget *m_traffic_widget_3;
+//    Traffic_Light_widget *m_traffic_widget_4;
+    TrafficController *m_controller;
 };
 
 #endif // MAINWINDOW_H

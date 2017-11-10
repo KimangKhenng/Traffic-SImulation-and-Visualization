@@ -21,12 +21,13 @@ SOURCES += main.cpp\
     simulationscene.cpp \
     datawidget.cpp \
     simulationcontrol.cpp \
-    road_ui.cpp \
     trafficlight.cpp \
     lightwidget.cpp \
-    traffic_light_widget.cpp \
-    trafficsignalcontrol.cpp \
-    qcustomplot.cpp
+    qcustomplot.cpp \
+    vehiclesgenerator.cpp \
+    lightwidgetleft.cpp \
+    trafficcontroller.cpp \
+    trafficdetector.cpp
 
 HEADERS  += mainwindow.h \
     graphicsview.h \
@@ -35,12 +36,14 @@ HEADERS  += mainwindow.h \
     simulationscene.h \
     datawidget.h \
     simulationcontrol.h \
-    road_ui.h \
     trafficlight.h \
     lightwidget.h \
-    traffic_light_widget.h \
-    trafficsignalcontrol.h \
-    qcustomplot.h
+    qcustomplot.h \
+    commonenum.h \
+    vehiclesgenerator.h \
+    lightwidgetleft.h \
+    trafficcontroller.h \
+    trafficdetector.h
 
 FORMS    += mainwindow.ui \
     datawidget.ui \

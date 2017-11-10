@@ -2,6 +2,6 @@
 
 SimulationScene::SimulationScene()
 {
-setItemIndexMethod(QGraphicsScene::NoIndex);
-setBackgroundBrush (Qt::Dense7Pattern);
+    setItemIndexMethod(QGraphicsScene::NoIndex);
+    setBackgroundBrush (Qt::Dense6Pattern);
 }

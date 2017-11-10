@@ -1,10 +1,6 @@
 #include "road.h"
 #include <QtCore>
 #include <QtWidgets>
-road::road()
-{
-
-}
 
 QPainterPath road::get_1_1()
 {
@@ -104,11 +100,6 @@ QPainterPath road::get_4_4()
 QPainterPath road::get_4_5()
 {
     return draw_4_5 ();
-}
-
-QList<QPainterPath> road::get_all_path()
-{
-    return m_path_list;
 }
 
 QPainterPath road::draw_1_1()
@@ -289,4 +280,77 @@ QPainterPath road::draw_4_5()
     m_path.quadTo (QPointF(355,328 + 30-25),QPointF(410,330));
     m_path.lineTo (700,330);
     return m_path;
+}
+
+QPainterPath road::getLeft(region approach)
+{
+    switch (approach) {
+    case region::REGION_W_E:
+        return get_1_1();
+    case region::REGION_N_S:
+        return get_2_1();
+    case region::REGION_E_W:
+        return get_3_1();
+    case region::REGION_S_N:
+        return get_4_1();
+    }
+    return QPainterPath(QPointF(0,0));
+}
+
+QPainterPath road::getThrough(region approach, int lane)
+{
+    switch (approach) {
+    case region::REGION_W_E :
+        switch (lane) {
+        case 1:
+            return get_1_2();
+        case 2 :
+            return get_1_3();
+        case 3 :
+            return get_1_4();
+        }
+    case region::REGION_N_S:
+        switch (lane) {
+        case 1:
+            return get_2_2();
+        case 2 :
+            return get_2_3();
+        case 3 :
+            return get_2_4();
+        }
+    case region::REGION_E_W:
+        switch (lane) {
+        case 1:
+            return get_3_2();
+        case 2 :
+            return get_3_3();
+        case 3 :
+            return get_3_4();
+        }
+    case region::REGION_S_N:
+        switch (lane) {
+        case 1:
+            return get_4_2();
+        case 2 :
+            return get_4_3();
+        case 3 :
+            return get_4_4();
+        }
+    }
+    return QPainterPath(QPointF(0,0));
+}
+
+QPainterPath road::getRight(region approach)
+{
+    switch (approach) {
+    case region::REGION_W_E:
+        return get_1_5();
+    case region::REGION_N_S:
+        return get_2_5();
+    case region::REGION_E_W:
+        return get_3_5();
+    case region::REGION_S_N:
+        return get_4_5();
+    }
+    return QPainterPath(QPointF(0,0));
 }

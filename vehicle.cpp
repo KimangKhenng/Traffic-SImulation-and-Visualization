@@ -9,11 +9,13 @@
 #include "mainwindow.h"
 //Declear static Macro variable
 static const double Pi = 3.14159265358979323846264338327950288419717;
-static double TwoPi = 2.0*Pi;
+//static double TwoPi = 2.0*Pi;
 
-Vehicle::Vehicle():m_angle(0),m_speed(0),m_color(qrand()%256,qrand()%256,qrand()%256)
-  ,m_point_index(0),m_on_action_state(false),m_step_count(0),m_order_in_list(0),m_driving_state(false),m_back(nullptr)
+Vehicle::Vehicle(QGraphicsItem *parent):QGraphicsItem(parent),m_angle(0),m_speed(0),m_color(qrand()%256,qrand()%256,qrand()%256)
+  ,m_point_index(0),m_on_action_state(false),m_step_count(0),m_driving_state(false)
 {
+    m_sightseeing = new QGraphicsRectItem(QRectF(30,5,GAPACCAPANCE,10),this);
+    m_sightseeing->setOpacity(0);
     setTransformOriginPoint(10,5);
     setFlag(QGraphicsItem::ItemIsMovable);
     m_internal_timer = new QTimer();
@@ -56,15 +58,22 @@ void Vehicle::extract_coordinate(QPainterPath path)
     //qDebug()<<m_path_to_follow;
 }
 
-void Vehicle::initialize(Traffic_Light_widget *m_traffic)
+void Vehicle::setDirection(Direction dir)
+{
+    m_dir = dir;
+}
+
+void Vehicle::initialize()
 {
     m_destination = m_path_to_follow[0];
     rotate_to_point(m_destination);
     setPos(m_destination);
-    m_next = get_next_vehicle();
-    //m_back = get_back_vehicle ();
-    m_traffic_widget = m_traffic;
 }
+void Vehicle::setRegion(region r)
+{
+    m_region = r;
+}
+
 
 double Vehicle::distance_to_other_vehicle(Vehicle *car)
 {
@@ -96,14 +105,6 @@ void Vehicle::set_on_action(bool state)
     m_on_action_state = state;
 }
 
-bool Vehicle::is_no_car_infront()
-{
-    if(m_list->indexOf (this) == 0){
-        return true;
-    }
-    return false;
-}
-
 void Vehicle::reset_speed()
 {
     m_speed = 0;
@@ -122,29 +123,10 @@ void Vehicle::accerlerate()
     m_speed += 0.01;
 }
 
-bool Vehicle::is_on_the_same_path(Vehicle *vehicle)
-{
-    if(vehicle->get_path () == m_path_to_follow){
-        return true;
-    }
-}
-
 QList<QPointF> Vehicle::get_path()
 {
     return m_path_to_follow;
 }
-
-Vehicle *Vehicle::get_next_vehicle()
-{
-    if(m_list->size () == 1){
-        return nullptr;
-    }
-    else{
-        //qDebug()<<"Error 1";
-        return m_list->at (m_list->indexOf (this)-1);
-    }
-}
-
 bool Vehicle::Isinthejunction()
 {
     if(m_point_index > 40){
@@ -154,17 +136,17 @@ bool Vehicle::Isinthejunction()
         return false;
     }
 }
-QPointF Vehicle::get_position()
+QPointF Vehicle::get_position() const
 {
     return this->pos ();
 }
 
-int Vehicle::get_current_index()
+int Vehicle::get_current_index() const
 {
     return m_point_index;
 }
 
-QPointF Vehicle::get_initial_path()
+QPointF Vehicle::get_initial_path() const
 {
     return m_path_to_follow[0];
 }
@@ -174,52 +156,12 @@ QTimer *Vehicle::get_timer()
     return m_internal_timer;
 }
 
-void Vehicle::get_list_of_all(QList<Vehicle *> *car_list)
-{
-    m_list = car_list;
-}
-
-QList<Vehicle *> *Vehicle::get_list()
-{
-    return m_list;
-}
-
-void Vehicle::set_order_in_list(int x)
-{
-    m_order_in_list = x;
-}
 
 void Vehicle::stop_advance()
 {
     m_speed = 0;
 }
 
-void Vehicle::remove_next()
-{
-    m_next = nullptr;
-}
-
-int Vehicle::get_index_in_list()
-{
-    qDebug()<<m_list->size ();
-    return m_list->size ()-1;
-}
-
-Vehicle *Vehicle::get_back_vehicle()
-{
-    if(m_list->size () == 1){
-        return nullptr;
-    }else{
-        //qDebug()<<"Error 2";
-        //qDebug()<<m_list->size ();
-        //qDebug()<<m_list->indexOf (this)+1;
-        if((m_list->indexOf (this)+1) == m_list->size ()){
-            return nullptr;
-        }
-        return m_list->at (m_list->indexOf (this)+1);
-    }
-
-}
 
 void Vehicle::advance()
 {
@@ -243,26 +185,26 @@ void Vehicle::advance()
 //        accerlerate ();
 //    }
     //With Traffic
-    if(m_traffic_widget->get_current_state () == m_traffic_widget->get_red () || m_traffic_widget->get_current_state () == m_traffic_widget->get_red_yellow ()){
-        if(is_in_stop_point ()){
-            m_driving_state = false;
-            stop_advance ();
-            }
-        if(distance_to_other_vehicle (m_next) <= 25 && distance_to_other_vehicle (m_next) != -1){
-            m_driving_state = false;
-            stop_advance ();
-            }
-        }
-     if(m_traffic_widget->get_current_state () == m_traffic_widget->get_green () || m_traffic_widget->get_current_state () == m_traffic_widget->get_green_yellow ()){
-         if(distance_to_other_vehicle (m_next) <= 25 && distance_to_other_vehicle (m_next) != -1){
-             m_driving_state = false;
-             stop_advance ();
-             }
-         if(distance_to_other_vehicle (m_next) > 25 &&  m_driving_state == false ){
-            m_driving_state = true;
-            accerlerate ();
-            }
-    }
+//    if(m_traffic_widget->get_current_state () == m_traffic_widget->get_red () || m_traffic_widget->get_current_state () == m_traffic_widget->get_red_yellow ()){
+//        if(is_in_stop_point ()){
+//            m_driving_state = false;
+//            stop_advance ();
+//            }
+//        if(distance_to_other_vehicle (getCollding()) <= 25 && distance_to_other_vehicle (getCollding()) != -1){
+//            m_driving_state = false;
+//            stop_advance ();
+//            }
+//        }
+//     if(m_traffic_widget->get_current_state () == m_traffic_widget->get_green () || m_traffic_widget->get_current_state () == m_traffic_widget->get_green_yellow ()){
+//         if(distance_to_other_vehicle (getCollding()) <= 25 && distance_to_other_vehicle (getCollding()) != -1){
+//             m_driving_state = false;
+//             stop_advance ();
+//             }
+//         if(distance_to_other_vehicle (getCollding()) > 25 &&  m_driving_state == false ){
+//            m_driving_state = true;
+//            accerlerate ();
+//            }
+//    }
      // No Traffic
 //     if(distance_to_other_vehicle (m_next) <= 25 && distance_to_other_vehicle (m_next) != -1){
 //         m_driving_state = false;
@@ -277,6 +219,13 @@ void Vehicle::advance()
 //        accerlerate ();
 //        }
     //No traffic
+//    if(!ifAllowed()){
+//        m_driving_state = false;
+//        stop_advance();
+//    }
+    if(hasInfront()){
+        stop_advance();
+    }
     QLineF line(pos(),m_destination);
     //qDebug()<<line.length ();
     if(int(line.length()) <= 1){
@@ -294,4 +243,62 @@ void Vehicle::advance()
     //qDebug()<<"Speed of"<<m_car_list->indexOf (this)<<" "<<m_speed;
     //qDebug()<<m_order_in_list;
     //qDebug()<<"Current Index"<<m_path_to_follow[m_point_index];
+}
+Vehicle *Vehicle::getCollding()
+{
+    Vehicle *next = nullptr;
+    QList<QGraphicsItem *> list_of_collding_vehicle = m_sightseeing->collidingItems();
+    for(int i = 0 ; i < list_of_collding_vehicle.size() ; ++i){
+        next = dynamic_cast<Vehicle *>(list_of_collding_vehicle.at(i));
+        if(next&&(next !=this)){
+            return next;
+        }
+    }
+    return nullptr;
+}
+
+bool Vehicle::hasInfront()
+{
+    Vehicle *next = nullptr;
+    QList<QGraphicsItem *> list_of_collding_vehicle = m_sightseeing->collidingItems();
+    for(int i = 0 ; i < list_of_collding_vehicle.size() ; ++i){
+        next = dynamic_cast<Vehicle *>(list_of_collding_vehicle.at(i));
+        if(next&&(next !=this)){
+            return true;
+        }
+    }
+    return false;
+}
+
+Direction Vehicle::getDir() const
+{
+    return m_dir;
+}
+
+void Vehicle::setDir(const Direction &dir)
+{
+    m_dir = dir;
+}
+
+region Vehicle::getRegion() const
+{
+    return m_region;
+}
+
+bool Vehicle::ifAllowed() const
+{
+    QList<QGraphicsItem *> item = scene()->items();
+    QList<TrafficLight *> light_list;
+    for(int i = 0 ; i < item.size() ; ++i){
+        TrafficLight *light = dynamic_cast<TrafficLight *>(item.at(i));
+        if(light){
+            light_list.append(light);
+        }
+    }
+    for(int i = 0 ; i < light_list.size() ; ++i){
+        if(light_list.at(i)->getRegion() == this->getRegion()){
+            return light_list.at(i)->checkDir(this->getDir());
+        }
+    }
+    return false;
 }
