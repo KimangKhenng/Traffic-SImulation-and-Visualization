@@ -25,13 +25,16 @@ TrafficDetector::TrafficDetector(float length, QGraphicsItem *parent):QGraphicsI
     setTransformOriginPoint(QPointF(15/2,static_cast<qreal>(m_detector_length)/2));
     m_timer = new QElapsedTimer;
     m_timer->start();
-    m_counter = new QTimer();
-    QObject::connect(m_counter,SIGNAL(timeout()),this,SLOT(isActive()));
-    m_counter->start(100);
 }
 
-void TrafficDetector::isActive()
+TrafficDetector::~TrafficDetector()
 {
+    delete m_timer;
+}
+
+void TrafficDetector::advance(int phase)
+{
+    Q_UNUSED(phase)
     QList<QGraphicsItem *> collding_vehicles = this->collidingItems();
     //qDebug()<<"Size "<<collding_vehicles.size();
     for(int i = 0 ; i < collding_vehicles.size() ; ++i){
@@ -99,4 +102,14 @@ float TrafficDetector::getHeadWay() const
     }else{
         return 0;
     }
+}
+
+void TrafficDetector::turnOffDisplay()
+{
+    setOpacity(0.0);
+}
+
+void TrafficDetector::turnOnDisplay()
+{
+    setOpacity(1.0);
 }

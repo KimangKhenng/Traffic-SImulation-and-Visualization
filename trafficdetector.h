@@ -16,6 +16,7 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
     //Override
     TrafficDetector(float length, QGraphicsItem *parent = 0);
+    ~TrafficDetector();
     float getFlow() const;
     bool isContainedVehicles();
     int getNumbersOfVehicles() const;
@@ -23,8 +24,10 @@ public:
     float getSaturationFlowRate() const;
     float getAverageSpeed() const;
     float getHeadWay() const;
+    void turnOffDisplay();
+    void turnOnDisplay();
 public slots:
-    void isActive();
+    void advance(int phase) Q_DECL_OVERRIDE;
 private:
     float m_detector_length;
     float m_flow;
@@ -32,7 +35,6 @@ private:
     float m_density;
     float m_saturation_flow_rate;
     QElapsedTimer *m_timer;
-    QTimer *m_counter;
     bool m_is_active;
 
 };

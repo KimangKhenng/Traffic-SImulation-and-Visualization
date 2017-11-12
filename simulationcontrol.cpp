@@ -88,11 +88,9 @@ void SimulationControl::on_m_auto_traffic_clicked()
 //    m_main_window->get_traffic_list ()->at (3)->set_up ();
 //    m_main_window->get_traffic_list ()->at (3)->set_initial_state (true,false);
 //    m_main_window->get_traffic_list ()->at (3)->start ();
-
 }
 
 void SimulationControl::on_m_random_birth_clicked()
 {
-    on_m_auto_traffic_clicked ();
     m_main_window->set_up_random ();
 }

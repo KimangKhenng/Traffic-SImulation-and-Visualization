@@ -11,6 +11,7 @@ class Vehicle: public QObject,public QGraphicsItem
     Q_INTERFACES(QGraphicsItem)
 public:
     Vehicle(QGraphicsItem *parent = 0);
+    ~Vehicle();
     // @Overloading Function
     QRectF boundingRect() const Q_DECL_OVERRIDE;
     QPainterPath shape() const Q_DECL_OVERRIDE;
@@ -40,11 +41,15 @@ public:
     /// set Traffic to be obeyed for vehicle
     /// ////////////
     void initialize();
+    /////////////////
+    /// \brief setRegion
+    /// \param r
+    /// set Which region vehicle belong to
     void setRegion(region r);
-    double distance_to_other_vehicle(Vehicle *car);
     bool is_on_action();
     bool is_in_stop_point();
-    void set_on_action(bool state);
+    void setActionOn();
+    void setActionOff();
     void reset_speed();
     void decelerate();
     void accerlerate();
@@ -53,16 +58,16 @@ public:
     QPointF get_position() const;
     int get_current_index() const;
     QPointF get_initial_path() const;
-    QTimer *get_timer();
     bool is_enter_the_junction();
     void stop_advance();
     region getRegion() const;
     bool ifAllowed() const;
     Direction getDir() const;
     void setDir(const Direction &dir);
-
+    void turnOnSightSeeing();
+    void turnOffSightSeeing();
 public slots:
-    void advance();
+    void advance(int phase) Q_DECL_OVERRIDE ;
 private:
     Vehicle *getCollding();
     bool hasInfront();
@@ -72,7 +77,6 @@ private:
     QList<QPointF> m_path_to_follow;
     QPointF m_destination;
     int m_point_index;
-    QTimer *m_internal_timer;
     bool m_on_action_state;
     int m_step_count;
     bool m_driving_state;

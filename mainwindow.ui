@@ -34,7 +34,7 @@ QWidget#open_simulation{
 background-color: rgb(52, 73, 94);
 }
 QWidget#main_windows{
-background-color: rgb(127, 140, 141);
+background-color: #34495e;
 }</string>
   </property>
   <widget class="QWidget" name="centralWidget">
@@ -271,6 +271,12 @@ background-color: rgb(149, 165, 166);
 }
 QPushButton#stop{
 background-color: rgb(231, 76, 60);
+}
+QCheckBox{
+font: 12pt &quot;Segoe UI Light&quot;;
+color: rgb(255, 255, 255);
+background-color: rgb(52, 152, 219);
+border-radius:5px;
 }</string>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -409,37 +415,30 @@ background-color: rgb(231, 76, 60);
              <number>10</number>
             </property>
             <item>
-             <widget class="QPushButton" name="vehicles">
-              <property name="text">
-               <string>Vehicles</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="road">
+             <widget class="QCheckBox" name="m_road_check_button">
               <property name="text">
                <string>Road</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="trafficLight">
+             <widget class="QCheckBox" name="m_sightseeing_button">
               <property name="text">
-               <string>Traffic Light</string>
+               <string>Sightseeing</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="matherials">
+             <widget class="QCheckBox" name="m_detector_button">
               <property name="text">
-               <string>Materials</string>
+               <string>Detector</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="terrains">
+             <widget class="QPushButton" name="m_drop_in">
               <property name="text">
-               <string>Terrain</string>
+               <string>DropIn</string>
               </property>
              </widget>
             </item>
@@ -483,7 +482,7 @@ background-color: rgb(231, 76, 60);
      <x>0</x>
      <y>0</y>
      <width>898</width>
-     <height>22</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

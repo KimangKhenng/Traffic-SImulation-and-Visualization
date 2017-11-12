@@ -7,8 +7,8 @@ Vehicle *VehiclesGenerator::getLeftTurningVehicle(region approach)
     p->setDirection(Direction::LEFT_TURNING);
     p->setRegion(approach);
     p->initialize();
-    p->get_timer()->start(10);
-    p->set_on_action(true);
+//    p->get_timer()->start(10);
+//    p->set_on_action(true);
     return p;
 
 }
@@ -20,8 +20,8 @@ Vehicle *VehiclesGenerator::getThroughVehicle(region approach, int lane)
     p->setDirection(Direction::THROUGH);
     p->setRegion(approach);
     p->initialize();
-    p->get_timer()->start(10);
-    p->set_on_action(true);
+//    p->get_timer()->start(10);
+//    p->set_on_action(true);
     return p;
 }
 
@@ -32,7 +32,7 @@ Vehicle *VehiclesGenerator::getRightTurningVehicle(region approach)
     p->setDirection(Direction::RIGHT_TURNING);
     p->setRegion(approach);
     p->initialize();
-    p->get_timer()->start(10);
-    p->set_on_action(true);
+//    p->get_timer()->start(10);
+//    p->set_on_action(true);
     return p;
 }

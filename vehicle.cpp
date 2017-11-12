@@ -18,8 +18,11 @@ Vehicle::Vehicle(QGraphicsItem *parent):QGraphicsItem(parent),m_angle(0),m_speed
     m_sightseeing->setOpacity(0);
     setTransformOriginPoint(10,5);
     setFlag(QGraphicsItem::ItemIsMovable);
-    m_internal_timer = new QTimer();
-    QObject::connect (m_internal_timer,SIGNAL(timeout()),this,SLOT(advance()));
+}
+
+Vehicle::~Vehicle()
+{
+    delete m_sightseeing;
 }
 
 QRectF Vehicle::boundingRect() const
@@ -73,18 +76,6 @@ void Vehicle::setRegion(region r)
 {
     m_region = r;
 }
-
-
-double Vehicle::distance_to_other_vehicle(Vehicle *car)
-{
-    if(car == nullptr){
-        return -1;
-    }
-    double x = qAbs(get_position ().x ()- car->get_position ().x ());
-    double y = qAbs(get_position ().y ()- car->get_position ().y ());
-    return qSqrt (x*x + y*y);
-}
-
 bool Vehicle::is_on_action()
 {
     return m_on_action_state;
@@ -100,9 +91,14 @@ bool Vehicle::is_in_stop_point()
         }
 }
 
-void Vehicle::set_on_action(bool state)
+void Vehicle::setActionOn()
 {
-    m_on_action_state = state;
+    m_on_action_state = true;
+}
+
+void Vehicle::setActionOff()
+{
+    m_on_action_state = false;
 }
 
 void Vehicle::reset_speed()
@@ -151,27 +147,21 @@ QPointF Vehicle::get_initial_path() const
     return m_path_to_follow[0];
 }
 
-QTimer *Vehicle::get_timer()
-{
-    return m_internal_timer;
-}
-
-
 void Vehicle::stop_advance()
 {
     m_speed = 0;
 }
 
 
-void Vehicle::advance()
+void Vehicle::advance(int phase)
 {
-    if(is_on_action ()){
-        m_driving_state = true;
+    Q_UNUSED(phase)
+    if(m_on_action_state){
         accerlerate ();
     }else{
-        m_driving_state = false;
-        stop_advance ();
+        return;
     }
+//    }
     //qDebug()<<"Distance =" <<distance_to_other_vehicle (m_next);
     //qDebug()<<"Size of list" << m_car_list->size ();
     //qDebug()<<"Current Position"<<pos();
@@ -278,6 +268,16 @@ Direction Vehicle::getDir() const
 void Vehicle::setDir(const Direction &dir)
 {
     m_dir = dir;
+}
+
+void Vehicle::turnOnSightSeeing()
+{
+    m_sightseeing->setOpacity(1.0);
+}
+
+void Vehicle::turnOffSightSeeing()
+{
+    m_sightseeing->setOpacity(0.0);
 }
 
 region Vehicle::getRegion() const
