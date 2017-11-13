@@ -21,20 +21,20 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QMenuBar{
-background-color:rgb(44,62,80);
-font:9pt&quot;Century Gothic&quot;;
-color:rgb(255,255,255);
+	background-color:rgb(44,62,80);
+	font:9pt&quot;Century Gothic&quot;;
+	color:rgb(255,255,255);
 }
 QMenuBar::item:selected{
-background-color:rgb(255,255,255);
-font:10pt&quot;Century Gothic&quot;;
-color:rgb(52,73,94);
+	background-color:rgb(255,255,255);
+	font:10pt&quot;Century Gothic&quot;;
+	color:rgb(52,73,94);
 }
 QWidget#open_simulation{
-background-color: rgb(52, 73, 94);
+	background-color: rgb(52, 73, 94);
 }
 QWidget#main_windows{
-background-color: #34495e;
+	background-color: #34495e;
 }</string>
   </property>
   <widget class="QWidget" name="centralWidget">
@@ -47,7 +47,7 @@ background-color: #34495e;
    <property name="styleSheet">
     <string notr="true"/>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout_5">
     <property name="spacing">
      <number>0</number>
     </property>
@@ -78,7 +78,7 @@ background-color: #34495e;
        <enum>QFrame::NoFrame</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="main_windows">
        <property name="sizePolicy">
@@ -89,17 +89,17 @@ background-color: #34495e;
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{
-font: 15pt &quot;Century Gothic&quot;;
-color: rgb(255, 255, 255);
-background-color: #1abc9c;
-border-radius: 10px;
+	font: 15pt &quot;Century Gothic&quot;;
+	color: rgb(255, 255, 255);
+	background-color: #1abc9c;
+	border-radius: 10px;
 }
- QPushButton:pressed {
- background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #dadbde, stop: 1 #f6f7fa);
+	QPushButton:pressed {
+ 	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #dadbde, 		stop: 1 #f6f7fa);
   }
 QPushButton:hover{
-background-color:#3498db;
-font: italic 13pt &quot;Century Gothic&quot;;
+	background-color:#3498db;
+	font: italic 13pt &quot;Century Gothic&quot;;
 }</string>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -188,6 +188,25 @@ font: italic 13pt &quot;Century Gothic&quot;;
               </property>
               <property name="text">
                <string>Open Scene</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="m_aboutus_button">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>160</width>
+                <height>44</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>AboutUs</string>
               </property>
              </widget>
             </item>
@@ -458,6 +477,26 @@ border-radius:5px;
               </property>
              </spacer>
             </item>
+            <item>
+             <widget class="QCheckBox" name="m_data_widget">
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(255, 0, 0);</string>
+              </property>
+              <property name="text">
+               <string>Data</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="m_control_button">
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(255, 0, 0);</string>
+              </property>
+              <property name="text">
+               <string>SimControl</string>
+              </property>
+             </widget>
+            </item>
            </layout>
           </item>
          </layout>
@@ -471,6 +510,115 @@ border-radius:5px;
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+      </widget>
+      <widget class="QWidget" name="m_about_us_page">
+       <property name="styleSheet">
+        <string notr="true">QWidget{
+	
+	background-color: rgb(236, 240, 241);
+	font: 14pt &quot;Century Gothic&quot;;
+}
+QLabel{	
+	font: 24pt &quot;Century Gothic&quot;;
+	color: rgb(236, 240, 241);
+	background-color: rgb(44, 62, 80);
+}</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QLabel" name="m_aboutus_label">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="acceptDrops">
+           <bool>true</bool>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Box</enum>
+          </property>
+          <property name="text">
+           <string>AboutUs</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolBox" name="toolBox">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="QWidget" name="m_introduction_page">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>880</width>
+             <height>496</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <attribute name="label">
+            <string>Who are we?</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_6">
+            <item>
+             <widget class="QFrame" name="frame">
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="m_our_mission">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>880</width>
+             <height>496</height>
+            </rect>
+           </property>
+           <attribute name="label">
+            <string>Our Misssion</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_7">
+            <item>
+             <widget class="QFrame" name="frame_2">
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+             </widget>
+            </item>
+           </layout>
+           <zorder>label</zorder>
+           <zorder>frame_2</zorder>
+          </widget>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>

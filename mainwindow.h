@@ -5,7 +5,6 @@
 #include <QtCore>
 #include <QtWidgets>
 #include <QGraphicsSvgItem>
-#include <QSplashScreen>
 #include "vehicle.h"
 #include "road.h"
 #include "simulationscene.h"
@@ -30,6 +29,7 @@ public:
     void set_duration_for_3_traffic(int red,int yellow,int green);
     void set_duration_for_4_traffic(int red,int yellow,int green);
     void set_up_random();
+    void trunSimControlCheckOff();
     ~MainWindow();
 public slots:
     void check_state();
@@ -51,9 +51,14 @@ private slots:
     void on_m_road_check_button_toggled(bool checked);
     void on_m_detector_button_clicked(bool checked);
     void on_m_sightseeing_button_clicked(bool checked);
+    void on_m_data_widget_clicked(bool checked);
+
+    void on_m_control_button_clicked(bool checked);
+
+    void on_m_aboutus_button_clicked();
+
 private:
     Ui::MainWindow *ui;
-    DataWidget *m_data_widget;
     SimulationScene *m_scene;
     QGraphicsSvgItem *m_path;
     road *m_road;
@@ -63,8 +68,7 @@ private:
     QTimer *m_machine_state;
     QSplashScreen *m_loading_screen;
     SimulationControl *m_simulation_control_widget;
-    QGraphicsProxyWidget *m_control_sim;
-    QGraphicsProxyWidget *m_data_control;
+    DataWidget *m_data_widget;
     TrafficController *m_controller;
 };
 

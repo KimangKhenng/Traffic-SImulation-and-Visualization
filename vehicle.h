@@ -4,7 +4,6 @@
 
 #include <QtWidgets>
 #include "commonenum.h"
-#include "road.h"
 class Vehicle: public QObject,public QGraphicsItem
 {
     Q_OBJECT
@@ -19,20 +18,20 @@ public:
     // Overloading Funcion
     //////////////////////
     /// \brief rotate_to_point
-    /// \param point
+    /// \param point = point for vehicle to rotate to
     /// use to rotate to a specfic point
     /// //////////////////
     void rotate_to_point(QPointF point);
     /////////////////////
     /// \brief extract_coordinate
-    /// \param path
+    /// \param path = QPainterPath as path to follow
     /// Give vehile a path to follow
     /// path = QPainterPath
     /// Draw By Yourself
     void extract_coordinate(QPainterPath path);
     /////////////////////
     /// \brief setDirection
-    /// \param dir
+    /// \param dir = region for vehicle to appear
     /// set turning direction for vehicle
     void setDirection(Direction dir);
     /////////////////////

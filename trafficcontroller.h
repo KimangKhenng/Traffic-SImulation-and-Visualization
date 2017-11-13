@@ -13,6 +13,8 @@ public:
     TrafficLight *getTrafficLight(region r);
     void turnTrafficOn();
     void turnTrafficOff();
+    void turnOffDetector();
+    void turnOnDetector();
     QList<TrafficDetector *> *getDetector() const;
     void setDetector(QList<TrafficDetector *> *detector);
     QList<TrafficLight *> *getTraffic_light() const;

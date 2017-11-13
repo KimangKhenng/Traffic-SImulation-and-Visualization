@@ -8,6 +8,11 @@
 class road
 {
 public:
+    ///////////////////
+    /// \brief getLeft
+    /// \param approach = region for vehicle to appear
+    /// \return Path for vehicle
+    /// function to return path for vehicle
     static QPainterPath getLeft(region approach);
     static QPainterPath getThrough(region approach,int lane);
     static QPainterPath getRight(region approach);

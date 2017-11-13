@@ -102,6 +102,20 @@ void TrafficController::turnTrafficOff()
     m_state->stop();
 }
 
+void TrafficController::turnOffDetector()
+{
+    for(int i = 0 ; i < m_detector->size() ; ++i){
+        m_detector->at(i)->setOpacity(0.0);
+    }
+}
+
+void TrafficController::turnOnDetector()
+{
+    for(int i = 0 ; i < m_detector->size() ; ++i){
+        m_detector->at(i)->setOpacity(1.0);
+    }
+}
+
 QState *TrafficController::makeState(LightWidget *light, int duration)
 {
     QState *lightState = new QState();

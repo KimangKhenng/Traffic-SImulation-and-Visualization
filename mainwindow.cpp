@@ -2,7 +2,8 @@
 #include "ui_mainwindow.h"
 #include <QtWidgets>
 #include <time.h>
-MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent),ui(new Ui::MainWindow),m_road(nullptr),m_simulate_state(false),m_sightseeing(false)
+MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent),ui(new Ui::MainWindow),m_road(nullptr),m_simulate_state(false)
+  ,m_sightseeing(false),m_simulation_control_widget(nullptr),m_data_widget(nullptr)
 {
         ui->setupUi(this);
         setWindowTitle ("Intersection Road Simulation and Visulization");
@@ -81,6 +82,11 @@ void MainWindow::set_up_random()
     connect(t4,SIGNAL(timeout()),this,SLOT(random_of_4()));
     t4->start (2500);
 
+}
+
+void MainWindow::trunSimControlCheckOff()
+{
+    ui->m_control_button->setCheckState(Qt::CheckState::Unchecked);
 }
 
 MainWindow::~MainWindow()
@@ -252,9 +258,6 @@ void MainWindow::on_stop_clicked()
 void MainWindow::set_up()
 {
 
-    m_simulation_control_widget = new SimulationControl();
-    m_simulation_control_widget->get_main_windows (this);
-    m_data_widget = new DataWidget();
     //Add Road and Background to scene
     QGraphicsPixmapItem *m_picture = new QGraphicsPixmapItem(QPixmap(":/image/Image/road-image.png").scaled (600,600));
     QGraphicsSvgItem *m_terrain = new QGraphicsSvgItem(":/image/Image/terrain.svg");
@@ -285,18 +288,18 @@ void MainWindow::set_up()
     }
     m_scene->addItem(m_controller);
     //Add Control Widget
-    m_control_sim = new QGraphicsProxyWidget();
-    m_control_sim->setWidget (m_simulation_control_widget);
+//    m_control_sim = new QGraphicsProxyWidget();
+//    m_control_sim->setWidget (m_simulation_control_widget);
     //m_control_sim->setFlags (QGraphicsItem::ItemIsMovable);
     //m_control_sim->setFlags (QGraphicsItem::ItemIsFocusable);
     //m_control_sim->setFlags (QGraphicsItem::ItemIsPanel);
-    m_control_sim->setPos (500,0);
-    m_scene->addItem (m_control_sim);
-    m_data_control = new QGraphicsProxyWidget();
+//    m_control_sim->setPos (500,0);
+//    m_scene->addItem (m_control_sim);
+//    m_data_control = new QGraphicsProxyWidget();
     //m_data_control->setFlags (QGraphicsItem::ItemIsSelectable);
-    m_data_control->setWidget (m_data_widget);
-    m_scene->addItem (m_data_control);
-    m_data_control->setPos (500,400);
+//    m_data_control->setWidget (m_data_widget);
+//    m_scene->addItem (m_data_control);
+//    m_data_control->setPos (500,400);
     //AddSecen
     ui->graphicsView->setScene(m_scene);
 //    ui->graphicsView->Initializer();
@@ -319,13 +322,9 @@ void MainWindow::on_m_road_check_button_toggled(bool checked)
 void MainWindow::on_m_detector_button_clicked(bool checked)
 {
     if(checked){
-        for(int i = 0 ; i < m_controller->getDetector()->size() ; ++i){
-            m_controller->getDetector()->at(i)->turnOnDisplay();
-        }
+        m_controller->turnOnDetector();
     }else{
-        for(int i = 0 ; i < m_controller->getDetector()->size() ; ++i){
-            m_controller->getDetector()->at(i)->turnOffDisplay();
-        }
+        m_controller->turnOffDetector();
     }
 }
 
@@ -336,4 +335,32 @@ void MainWindow::on_m_sightseeing_button_clicked(bool checked)
     }else{
         m_sightseeing = false;
     }
+}
+
+void MainWindow::on_m_data_widget_clicked(bool checked)
+{
+
+}
+
+void MainWindow::on_m_control_button_clicked(bool checked)
+{
+    if(checked){
+        if(!m_simulation_control_widget){
+            qDebug()<<"Hello";
+            m_simulation_control_widget = new SimulationControl(this);
+            m_simulation_control_widget->setWindowTitle(QApplication::translate("toplevel", "Simulation Control"));
+            m_simulation_control_widget->setWindowFlags(Qt::Window);
+            m_simulation_control_widget->show();
+        }else{
+            qDebug()<<"Hi";
+            m_simulation_control_widget->show();
+        }
+    }else{
+        m_simulation_control_widget->hide();
+    }
+}
+
+void MainWindow::on_m_aboutus_button_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(3);
 }

@@ -14,8 +14,6 @@ class SimulationControl : public QWidget
 
 public:
     explicit SimulationControl(QWidget *parent = 0);
-    void get_main_windows(MainWindow *window);
-//    void get_traffic_list(QList<Traffic_Light_widget *> *m_traffic);
     ~SimulationControl();
 
 private slots:
@@ -27,8 +25,6 @@ private slots:
 
 private:
     Ui::SimulationControl *ui;
-    MainWindow *m_main_window;
-//    QList<Traffic_Light_widget *> *m_traffic_widget_list;
     QList<QTimer> m_timer;
 };
 
