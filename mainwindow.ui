@@ -78,7 +78,7 @@ QWidget#main_windows{
        <enum>QFrame::NoFrame</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="main_windows">
        <property name="sizePolicy">
@@ -296,6 +296,12 @@ font: 12pt &quot;Segoe UI Light&quot;;
 color: rgb(255, 255, 255);
 background-color: rgb(52, 152, 219);
 border-radius:5px;
+}
+QRadioButton{
+font: 12pt &quot;Segoe UI Light&quot;;
+color: rgb(44, 62, 80);
+background-color: rgb(241, 196, 15);
+border-radius:5px;
 }</string>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -409,6 +415,9 @@ border-radius:5px;
             <property name="mouseTracking">
              <bool>true</bool>
             </property>
+            <property name="focusPolicy">
+             <enum>Qt::ClickFocus</enum>
+            </property>
             <property name="sceneRect">
              <rectf>
               <x>0.000000000000000</x>
@@ -455,9 +464,36 @@ border-radius:5px;
              </widget>
             </item>
             <item>
+             <widget class="QCheckBox" name="m_manul_control_button">
+              <property name="focusPolicy">
+               <enum>Qt::StrongFocus</enum>
+              </property>
+              <property name="text">
+               <string>Traffic Control</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QPushButton" name="m_drop_in">
               <property name="text">
                <string>DropIn</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="m_3_lanes">
+              <property name="text">
+               <string>3 Lanes</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="m_5_lanes">
+              <property name="text">
+               <string>5 lanes</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -566,8 +602,8 @@ QLabel{
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>880</width>
-             <height>496</height>
+             <width>65</width>
+             <height>28</height>
             </rect>
            </property>
            <property name="styleSheet">
@@ -594,8 +630,8 @@ QLabel{
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>880</width>
-             <height>496</height>
+             <width>100</width>
+             <height>30</height>
             </rect>
            </property>
            <attribute name="label">
@@ -613,8 +649,6 @@ QLabel{
              </widget>
             </item>
            </layout>
-           <zorder>label</zorder>
-           <zorder>frame_2</zorder>
           </widget>
          </widget>
         </item>

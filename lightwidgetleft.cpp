@@ -1,8 +1,8 @@
 #include "lightwidgetleft.h"
-#
-LightWidgetLeft::LightWidgetLeft(const QColor &color, LightWidget *parent):LightWidget(color,parent)
-{
 
+LightWidgetLeft::LightWidgetLeft(const QColor &color, QGraphicsItem *parent):LightWidget(color,parent)
+{
+    setTransformOriginPoint(SIZE/2,SIZE/2);
 }
 
 void LightWidgetLeft::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
@@ -11,11 +11,13 @@ void LightWidgetLeft::paint(QPainter *painter, const QStyleOptionGraphicsItem *o
     painter->setRenderHint(QPainter::Antialiasing);
     Q_UNUSED(option);
     Q_UNUSED(widget);
-    if (!isOn()){
-//        painter->setBrush(Qt::red);
-//        painter->drawPolygon(points,3,Qt::OddEvenFill);
-        return;
-    }
+    painter->setPen(Qt::NoPen);
     painter->setBrush(getColor());
     painter->drawPolygon(points,3,Qt::OddEvenFill);
+    painter->scale(0.8,0.8);
+    if (!isOn()){
+        setOpacity(0.3);
+    }else{
+        setOpacity(1.0);
+    }
 }

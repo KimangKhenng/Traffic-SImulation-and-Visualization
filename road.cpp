@@ -286,11 +286,11 @@ QPainterPath road::getLeft(region approach)
 {
     switch (approach) {
     case region::REGION_W_E:
-        return get_1_1();
+        return get_3_1();
     case region::REGION_N_S:
         return get_2_1();
     case region::REGION_E_W:
-        return get_3_1();
+        return get_1_1();
     case region::REGION_S_N:
         return get_4_1();
     }
@@ -303,11 +303,11 @@ QPainterPath road::getThrough(region approach, int lane)
     case region::REGION_W_E :
         switch (lane) {
         case 1:
-            return get_1_2();
+            return get_3_2();
         case 2 :
-            return get_1_3();
+            return get_3_3();
         case 3 :
-            return get_1_4();
+            return get_3_4();
         }
     case region::REGION_N_S:
         switch (lane) {
@@ -321,11 +321,11 @@ QPainterPath road::getThrough(region approach, int lane)
     case region::REGION_E_W:
         switch (lane) {
         case 1:
-            return get_3_2();
+            return get_1_2();
         case 2 :
-            return get_3_3();
+            return get_1_3();
         case 3 :
-            return get_3_4();
+            return get_1_4();
         }
     case region::REGION_S_N:
         switch (lane) {
@@ -344,11 +344,11 @@ QPainterPath road::getRight(region approach)
 {
     switch (approach) {
     case region::REGION_W_E:
-        return get_1_5();
+        return get_3_5();
     case region::REGION_N_S:
         return get_2_5();
     case region::REGION_E_W:
-        return get_3_5();
+        return get_1_5();
     case region::REGION_S_N:
         return get_4_5();
     }

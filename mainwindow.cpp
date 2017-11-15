@@ -84,9 +84,30 @@ void MainWindow::set_up_random()
 
 }
 
+void MainWindow::turnOnSimulationState()
+{
+    m_simulate_state = true;
+}
+
+void MainWindow::turnOffSimulationState()
+{
+    m_simulate_state = false;
+}
+
 void MainWindow::trunSimControlCheckOff()
 {
     ui->m_control_button->setCheckState(Qt::CheckState::Unchecked);
+}
+
+GENMETHOD MainWindow::getCurrentMethod()
+{
+    if(ui->m_3_lanes->isChecked()){
+        return GENMETHOD::GEN_3;
+    }
+    if(ui->m_5_lanes->isChecked()){
+        return GENMETHOD::GEN_5;
+    }
+    return GEN_5;
 }
 
 MainWindow::~MainWindow()
@@ -287,6 +308,35 @@ void MainWindow::set_up()
         m_controller->getDetector()->at(i)->setOpacity(0);
     }
     m_scene->addItem(m_controller);
+    m_traffic_light = new QList<TrafficLight *>();
+    for(int i = 0 ; i < 4 ; ++i){
+        m_traffic_light->append(new TrafficLight());
+        m_traffic_light->at(i)->setUpFacilities();
+    }
+    m_controller->setTraffic_light(m_traffic_light);
+    //Arrange Traffic Light
+    //TrafficLight 1
+    m_traffic_light->at(0)->setPos(400,380);
+    m_traffic_light->at(0)->setRegion(region::REGION_S_N);
+    //TrafficLight 2
+    m_traffic_light->at(1)->setRotation(90);
+    m_traffic_light->at(1)->setPos(260,380);
+    m_traffic_light->at(1)->setRegion(region::REGION_W_E);
+    //TrafficLight 3
+    m_traffic_light->at(2)->setPos(160,220);
+    m_traffic_light->at(2)->setRegion(region::REGION_N_S);
+    //TrafficLight 4
+    m_traffic_light->at(3)->setRotation(90);
+    m_traffic_light->at(3)->setPos(420,140);
+    m_traffic_light->at(3)->setRegion(region::REGION_E_W);
+    for(int i = 0 ; i < m_traffic_light->size() ; ++i){
+        m_scene->addItem(m_traffic_light->at(i));
+    }
+    for(int i = 0 ; i < m_traffic_light->size() ; ++i){
+        for(int j = 0 ; j < m_traffic_light->at(i)->getLight()->size() ; j++){
+            m_traffic_light->at(i)->getLight()->at(j)->setScale(0.8);
+        }
+    }
     //Add Control Widget
 //    m_control_sim = new QGraphicsProxyWidget();
 //    m_control_sim->setWidget (m_simulation_control_widget);
@@ -346,13 +396,13 @@ void MainWindow::on_m_control_button_clicked(bool checked)
 {
     if(checked){
         if(!m_simulation_control_widget){
-            qDebug()<<"Hello";
+            //qDebug()<<"Hello";
             m_simulation_control_widget = new SimulationControl(this);
             m_simulation_control_widget->setWindowTitle(QApplication::translate("toplevel", "Simulation Control"));
             m_simulation_control_widget->setWindowFlags(Qt::Window);
             m_simulation_control_widget->show();
         }else{
-            qDebug()<<"Hi";
+            //qDebug()<<"Hi";
             m_simulation_control_widget->show();
         }
     }else{
@@ -363,4 +413,31 @@ void MainWindow::on_m_control_button_clicked(bool checked)
 void MainWindow::on_m_aboutus_button_clicked()
 {
     ui->stackedWidget->setCurrentIndex(3);
+}
+
+
+void MainWindow::on_m_manul_control_button_clicked(bool checked)
+{
+    if(checked){
+        for(int i = 0 ; i < m_traffic_light->size() ; ++i){
+            m_traffic_light->at(i)->setManualControl();
+        }
+    }else{
+
+    }
+}
+
+void MainWindow::on_m_5_lanes_clicked()
+{
+
+}
+
+void MainWindow::on_m_3_lanes_clicked()
+{
+
+}
+
+SimulationScene *MainWindow::scene() const
+{
+    return m_scene;
 }

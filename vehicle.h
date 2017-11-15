@@ -60,7 +60,6 @@ public:
     bool is_enter_the_junction();
     void stop_advance();
     region getRegion() const;
-    bool ifAllowed() const;
     Direction getDir() const;
     void setDir(const Direction &dir);
     void turnOnSightSeeing();
@@ -68,6 +67,7 @@ public:
 public slots:
     void advance(int phase) Q_DECL_OVERRIDE ;
 private:
+    bool ifAllowed() const;
     Vehicle *getCollding();
     bool hasInfront();
     qreal m_angle;

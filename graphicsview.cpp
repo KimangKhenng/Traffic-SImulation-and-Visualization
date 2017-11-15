@@ -12,6 +12,7 @@ void GraphicsView::wheelEvent(QWheelEvent *event)
 {
     //this->setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
     // Scale the view / do the zoom
+//    GraphicsView::wheelEvent(event);
     double scaleFactor = 1.15;
     int level_of_zoom = 3;
     if( m_max <120*level_of_zoom&&event->delta()>0){
@@ -39,8 +40,9 @@ void GraphicsView::Initializer()
     fitInView(scene()->sceneRect(),Qt::KeepAspectRatio);
 }
 
-/*void GraphicsView::mousePressEvent(QMouseEvent *event)
-{
-    //qDebug()<<event->pos();
-}*/
+//void GraphicsView::mousePressEvent(QMouseEvent *event)
+//{
+//    QGraphicsView::mousePressEvent(event);
+//    qDebug()<<"Hello";
+//}
 

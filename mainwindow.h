@@ -5,6 +5,7 @@
 #include <QtCore>
 #include <QtWidgets>
 #include <QGraphicsSvgItem>
+#include "commonenum.h"
 #include "vehicle.h"
 #include "road.h"
 #include "simulationscene.h"
@@ -29,8 +30,13 @@ public:
     void set_duration_for_3_traffic(int red,int yellow,int green);
     void set_duration_for_4_traffic(int red,int yellow,int green);
     void set_up_random();
+    void turnOnSimulationState();
+    void turnOffSimulationState();
     void trunSimControlCheckOff();
+    GENMETHOD getCurrentMethod();
     ~MainWindow();
+    SimulationScene *scene() const;
+
 public slots:
     void check_state();
     void random_of_1();
@@ -57,6 +63,13 @@ private slots:
 
     void on_m_aboutus_button_clicked();
 
+
+    void on_m_manul_control_button_clicked(bool checked);
+
+    void on_m_5_lanes_clicked();
+
+    void on_m_3_lanes_clicked();
+
 private:
     Ui::MainWindow *ui;
     SimulationScene *m_scene;
@@ -70,6 +83,7 @@ private:
     SimulationControl *m_simulation_control_widget;
     DataWidget *m_data_widget;
     TrafficController *m_controller;
+    QList<TrafficLight *> *m_traffic_light;
 };
 
 #endif // MAINWINDOW_H

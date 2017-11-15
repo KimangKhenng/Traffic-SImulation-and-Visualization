@@ -6,7 +6,7 @@
 class LightWidgetLeft : public LightWidget
 {
 public:
-    LightWidgetLeft(const QColor &color,LightWidget *parent = 0);
+    LightWidgetLeft(const QColor &color,QGraphicsItem *parent = 0);
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 };
 

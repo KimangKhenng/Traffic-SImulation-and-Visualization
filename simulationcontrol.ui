@@ -216,7 +216,14 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="m_road_1"/>
+      <widget class="QLineEdit" name="m_road_1">
+       <property name="inputMask">
+        <string/>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QLabel" name="m_2_label">
@@ -226,7 +233,11 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="m_road_2"/>
+      <widget class="QLineEdit" name="m_road_2">
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QLabel" name="m_3_label">
@@ -236,7 +247,11 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="m_road_3"/>
+      <widget class="QLineEdit" name="m_road_3">
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QLabel" name="m_4_label">
@@ -246,7 +261,11 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="m_road_4"/>
+      <widget class="QLineEdit" name="m_road_4">
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

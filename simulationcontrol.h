@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "mainwindow.h"
 #include "vehicle.h"
+#include "generator.h"
 namespace Ui {
 class SimulationControl;
 }
@@ -24,8 +25,10 @@ private slots:
     void on_m_random_birth_clicked();
 
 private:
+    MainWindow *m_w;
     Ui::SimulationControl *ui;
     QList<QTimer> m_timer;
+    Generator *m_generator;
 };
 
 #endif // SIMULATIONCONTROL_H

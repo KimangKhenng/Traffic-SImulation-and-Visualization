@@ -27,7 +27,8 @@ SOURCES += main.cpp\
     vehiclesgenerator.cpp \
     lightwidgetleft.cpp \
     trafficcontroller.cpp \
-    trafficdetector.cpp
+    trafficdetector.cpp \
+    generator.cpp
 
 HEADERS  += mainwindow.h \
     graphicsview.h \
@@ -43,7 +44,8 @@ HEADERS  += mainwindow.h \
     vehiclesgenerator.h \
     lightwidgetleft.h \
     trafficcontroller.h \
-    trafficdetector.h
+    trafficdetector.h \
+    generator.h
 
 FORMS    += mainwindow.ui \
     datawidget.ui \

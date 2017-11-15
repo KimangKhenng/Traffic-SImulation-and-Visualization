@@ -2,7 +2,6 @@
 #define LIGHTWIDGET_H
 #include <QtCore>
 #include <QtWidgets>
-
 #define SIZE 25
 
 class LightWidget :public QObject,/*public QGraphicsLayoutItem,*/ public QGraphicsItem
@@ -23,6 +22,11 @@ public:
     bool isOn() const;
     void setOn(bool on);
     void setColor(const QColor &color);
+protected:
+    virtual void mousePressEvent(QGraphicsSceneMouseEvent *event) Q_DECL_OVERRIDE;
+//    virtual void hoverEnterEvent(QGraphicsSceneHoverEvent *event) Q_DECL_OVERRIDE;
+//    virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent *event) Q_DECL_OVERRIDE;
+//    virtual void hoverMoveEvent(QGraphicsSceneHoverEvent *event) Q_DECL_OVERRIDE;
 public slots:
     void turnOff();
     void turnOn();

@@ -14,7 +14,7 @@ protected:
     // Control Mouse wheel to zoom
     virtual void wheelEvent(QWheelEvent *event);
     //virtual void resizeEvent(QResizeEvent *event);
-    //virtual void mousePressEvent(QMouseEvent *event);
+//    virtual void mousePressEvent(QMouseEvent *event);
 
 private:
     qreal m_min;

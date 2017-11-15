@@ -213,6 +213,11 @@ void Vehicle::advance(int phase)
 //        m_driving_state = false;
 //        stop_advance();
 //    }
+    if(this->is_in_stop_point()){
+        if(!ifAllowed()){
+            stop_advance();
+        }
+    }
     if(hasInfront()){
         stop_advance();
     }

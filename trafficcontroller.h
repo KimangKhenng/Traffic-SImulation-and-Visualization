@@ -19,7 +19,8 @@ public:
     void setDetector(QList<TrafficDetector *> *detector);
     QList<TrafficLight *> *getTraffic_light() const;
     void setTraffic_light(QList<TrafficLight *> *traffic_light);
-
+protected:
+    virtual void mousePressEvent(QGraphicsSceneMouseEvent *event) Q_DECL_OVERRIDE;
 private:
     QState *makeState(LightWidget *light, int duration);
     QState *first_phase();

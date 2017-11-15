@@ -1,5 +1,5 @@
 #include "lightwidget.h"
-
+#include "trafficlight.h"
 QRectF LightWidget::boundingRect() const
 {
     return QRectF(0,0,SIZE,SIZE);
@@ -7,18 +7,23 @@ QRectF LightWidget::boundingRect() const
 
 LightWidget::LightWidget(const QColor &color, QGraphicsItem *parent):QGraphicsItem(parent),m_color(color),m_on(false)
 {
-
+    setTransformOriginPoint(SIZE/2,SIZE/2);
 }
 
 void LightWidget::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(option);
     Q_UNUSED(widget);
-    if (!m_on)
-        return;
+    painter->setPen(Qt::NoPen);
     painter->setRenderHint(QPainter::Antialiasing);
     painter->setBrush(m_color);
     painter->drawEllipse(0, 0, this->boundingRect().width(), this->boundingRect().height());
+    if (!m_on){
+        setOpacity(0.3);
+    }else{
+        setOpacity(1.0);
+    }
+
 }
 
 //void LightWidget::setGeometry(const QRectF &rect)
@@ -63,6 +68,38 @@ void LightWidget::setColor(const QColor &color)
 {
     m_color = color;
 }
+
+void LightWidget::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+    //QGraphicsItem::mousePressEvent(event);
+    if(!m_on){
+        this->turnOn();
+        if(dynamic_cast<TrafficLight *>(this->parentItem())){
+            QList<LightWidget *> *widget = (dynamic_cast<TrafficLight *>(this->parentItem()))->getLight();
+            for(int i = 0 ; i < widget->size() ; i++){
+                if(widget->at(i) != this){
+                    widget->at(i)->turnOff();
+                }
+            }
+        }
+    }else{
+        this->turnOff();
+    }
+}
+//void LightWidget::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
+//{
+//    setCursor(QCursor(Qt::PointingHandCursor));
+//}
+
+//void LightWidget::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
+//{
+//    setCursor(QCursor(Qt::ArrowCursor));
+//}
+
+//void LightWidget::hoverMoveEvent(QGraphicsSceneHoverEvent *event)
+//{
+//    setCursor(QCursor(Qt::PointingHandCursor));
+//}
 
 void LightWidget::turnOff()
 {

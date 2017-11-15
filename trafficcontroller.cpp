@@ -3,25 +3,25 @@
 TrafficController::TrafficController(QGraphicsItemGroup *parent):QGraphicsItemGroup(parent)
 {
     m_state = new QStateMachine();
-    m_traffic_light = new QList<TrafficLight *>();
-    for(int i = 0 ; i < 4 ; ++i){
-        m_traffic_light->append(new TrafficLight(static_cast<region>(i)));
-    }
-    //Arrange Traffic Light
-    //TrafficLight 1
-    m_traffic_light->at(0)->setPos(400,380);
-    this->addToGroup(m_traffic_light->at(0));
-    //TrafficLight 2
-    m_traffic_light->at(1)->setRotation(90);
-    m_traffic_light->at(1)->setPos(260,380);
-    this->addToGroup(m_traffic_light->at(1));
-    //TrafficLight 3
-    m_traffic_light->at(2)->setPos(160,220);
-    this->addToGroup(m_traffic_light->at(2));
-    //TrafficLight 4
-    m_traffic_light->at(3)->setRotation(90);
-    m_traffic_light->at(3)->setPos(420,140);
-    this->addToGroup(m_traffic_light->at(3));
+//    m_traffic_light = new QList<TrafficLight *>();
+//    for(int i = 0 ; i < 4 ; ++i){
+//        m_traffic_light->append(new TrafficLight(static_cast<region>(i)));
+//    }
+//    //Arrange Traffic Light
+//    //TrafficLight 1
+//    m_traffic_light->at(0)->setPos(400,380);
+//    this->addToGroup(m_traffic_light->at(0));
+//    //TrafficLight 2
+//    m_traffic_light->at(1)->setRotation(90);
+//    m_traffic_light->at(1)->setPos(260,380);
+//    this->addToGroup(m_traffic_light->at(1));
+//    //TrafficLight 3
+//    m_traffic_light->at(2)->setPos(160,220);
+//    this->addToGroup(m_traffic_light->at(2));
+//    //TrafficLight 4
+//    m_traffic_light->at(3)->setRotation(90);
+//    m_traffic_light->at(3)->setPos(420,140);
+//    this->addToGroup(m_traffic_light->at(3));
     // ArrageDetector
     m_detector = new QList<TrafficDetector *>();
     for(int i = 0 ; i < 12 ; ++i){
@@ -140,6 +140,12 @@ QList<TrafficLight *> *TrafficController::getTraffic_light() const
 void TrafficController::setTraffic_light(QList<TrafficLight *> *traffic_light)
 {
     m_traffic_light = traffic_light;
+}
+
+void TrafficController::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+    //qDebug()<<"Hello";
+    QGraphicsItem::mousePressEvent(event);
 }
 
 QList<TrafficDetector *> *TrafficController::getDetector() const
