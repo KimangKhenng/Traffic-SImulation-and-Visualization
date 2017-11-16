@@ -6,10 +6,6 @@
 #include "commonenum.h"
 #include "vehiclesgenerator.h"
 #include "simulationscene.h"
-#define MAX_S_N 5
-#define MAX_N_S 5
-#define MAX_E_W 5
-#define MAX_W_E 5
 
 class Generator : public QObject
 {
@@ -19,8 +15,12 @@ public:
     Generator();
     void setMethod(GENMETHOD x);
     void startGenerator();
+    void startAutoGeneraion();
     void setTimer(int x,int y,int c,int z);
     void setScene(SimulationScene *scene);
+    void turnOn();
+    void turnOff();
+    void setMode(const VEHICLEMETHOD &mode);
 public slots:
     void makeNorthSouth();
     void makeSouthNorth();
@@ -38,6 +38,8 @@ private:
     int m_time_W_E;
     int m_time_E_W;
     GENMETHOD m_method;
+    VEHICLEMETHOD m_mode;
+    bool m_running_state;
 };
 
 #endif // GENERATOR_H

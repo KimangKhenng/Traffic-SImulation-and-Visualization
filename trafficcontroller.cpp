@@ -3,25 +3,6 @@
 TrafficController::TrafficController(QGraphicsItemGroup *parent):QGraphicsItemGroup(parent)
 {
     m_state = new QStateMachine();
-//    m_traffic_light = new QList<TrafficLight *>();
-//    for(int i = 0 ; i < 4 ; ++i){
-//        m_traffic_light->append(new TrafficLight(static_cast<region>(i)));
-//    }
-//    //Arrange Traffic Light
-//    //TrafficLight 1
-//    m_traffic_light->at(0)->setPos(400,380);
-//    this->addToGroup(m_traffic_light->at(0));
-//    //TrafficLight 2
-//    m_traffic_light->at(1)->setRotation(90);
-//    m_traffic_light->at(1)->setPos(260,380);
-//    this->addToGroup(m_traffic_light->at(1));
-//    //TrafficLight 3
-//    m_traffic_light->at(2)->setPos(160,220);
-//    this->addToGroup(m_traffic_light->at(2));
-//    //TrafficLight 4
-//    m_traffic_light->at(3)->setRotation(90);
-//    m_traffic_light->at(3)->setPos(420,140);
-//    this->addToGroup(m_traffic_light->at(3));
     // ArrageDetector
     m_detector = new QList<TrafficDetector *>();
     for(int i = 0 ; i < 12 ; ++i){
@@ -71,10 +52,6 @@ TrafficController::TrafficController(QGraphicsItemGroup *parent):QGraphicsItemGr
     m_detector->at(10)->setPos(p2);
     m_detector->at(11)->setPos(p3);
     group4->moveBy(-49,-213);
-
-
-
-
 }
 TrafficLight *TrafficController::getTrafficLight(region r)
 {
@@ -132,6 +109,26 @@ QState *TrafficController::makeState(LightWidget *light, int duration)
     return lightState;
 }
 
+QState *TrafficController::first_phase()
+{
+
+}
+
+QState *TrafficController::second_phase()
+{
+
+}
+
+QState *TrafficController::third_phase()
+{
+
+}
+
+QState *TrafficController::fourth_phase()
+{
+
+}
+
 QList<TrafficLight *> *TrafficController::getTraffic_light() const
 {
     return m_traffic_light;
@@ -140,6 +137,15 @@ QList<TrafficLight *> *TrafficController::getTraffic_light() const
 void TrafficController::setTraffic_light(QList<TrafficLight *> *traffic_light)
 {
     m_traffic_light = traffic_light;
+}
+
+QList<QElapsedTimer *> *TrafficController::getTimer()
+{
+    QList<QElapsedTimer *> *time = new QList<QElapsedTimer *>();
+    for(int i = 0 ; i < m_detector->size() ; i++){
+        time->append(m_detector->at(i)->getTimer());
+    }
+    return time;
 }
 
 void TrafficController::mousePressEvent(QGraphicsSceneMouseEvent *event)
@@ -151,6 +157,34 @@ void TrafficController::mousePressEvent(QGraphicsSceneMouseEvent *event)
 QList<TrafficDetector *> *TrafficController::getDetector() const
 {
     return m_detector;
+}
+
+QList<TrafficDetector *> *TrafficController::getDetectorByRegion(region x) const
+{
+    QList<TrafficDetector *> *d = new QList<TrafficDetector *>();
+    switch (x) {
+        case region::REGION_S_N :
+            for(int i = 0 ; i < 3 ; ++i){
+                d->append(m_detector->at(i));
+            }
+            return d;
+        case region::REGION_W_E :
+            for(int i = 3 ; i < 6 ; ++i){
+                d->append(m_detector->at(i));
+            }
+            return d;
+        case region::REGION_N_S :
+            for(int i = 6 ; i < 9 ; ++i){
+                d->append(m_detector->at(i));
+            }
+            return d;
+        case region::REGION_E_W :
+            for(int i = 9 ; i < 12 ; ++i){
+                d->append(m_detector->at(i));
+            }
+            return d;
+    }
+    return nullptr;
 }
 
 void TrafficController::setDetector(QList<TrafficDetector *> *detector)

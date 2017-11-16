@@ -4,6 +4,7 @@
 #include "trafficlight.h"
 #include "lightwidget.h"
 #include "trafficdetector.h"
+#include "commonenum.h"
 #include <QtCore>
 #include <QtWidgets>
 class TrafficController : public QGraphicsItemGroup
@@ -16,9 +17,11 @@ public:
     void turnOffDetector();
     void turnOnDetector();
     QList<TrafficDetector *> *getDetector() const;
+    QList<TrafficDetector *> *getDetectorByRegion(region x) const;
     void setDetector(QList<TrafficDetector *> *detector);
     QList<TrafficLight *> *getTraffic_light() const;
     void setTraffic_light(QList<TrafficLight *> *traffic_light);
+    QList<QElapsedTimer *> *getTimer();
 protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event) Q_DECL_OVERRIDE;
 private:

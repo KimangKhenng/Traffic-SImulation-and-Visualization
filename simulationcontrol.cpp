@@ -23,8 +23,11 @@ SimulationControl::SimulationControl(QWidget *parent) :
         m_w = dynamic_cast<MainWindow *>(this->parentWidget());
         //qDebug()<<"Hello";
     }
-    m_generator->setMethod(m_w->getCurrentMethod());
     m_generator->setScene(m_w->scene());
+    m_generator->setMethod(m_w->getCurrentMethod());
+    m_generator->setMode(m_w->getCurrentVehicleMethod());
+    setWindowTitle(QApplication::translate("toplevel", "Simulation Control"));
+    setWindowFlags(Qt::Window);
 }
 
 SimulationControl::~SimulationControl()
@@ -69,7 +72,11 @@ void SimulationControl::on_m_auto_traffic_clicked()
 
 void SimulationControl::on_m_random_birth_clicked()
 {
-    if(dynamic_cast<MainWindow *>(this->parentWidget())){
-        (dynamic_cast<MainWindow *>(this->parentWidget()))->set_up_random();
-    }
+    m_generator->startAutoGeneraion();
+    m_w->turnOnSimulationState();
+}
+
+Generator *SimulationControl::generator() const
+{
+    return m_generator;
 }

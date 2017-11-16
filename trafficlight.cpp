@@ -15,12 +15,12 @@ void TrafficLight::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
     painter->drawRect(this->boundingRect());
 }
 
-TrafficLight::TrafficLight(region re, QGraphicsItem *parent):QGraphicsItem(parent),m_region(re)
+TrafficLight::TrafficLight(region re, QGraphicsItem *parent):QGraphicsItem(parent),m_region(re),m_mode(TRAFFICMODE::NO_SIGNAL)
 {
 
 }
 
-TrafficLight::TrafficLight(QGraphicsItem *parent):QGraphicsItem (parent)
+TrafficLight::TrafficLight(QGraphicsItem *parent):QGraphicsItem (parent),m_mode(TRAFFICMODE::NO_SIGNAL)
 {
 
 }
@@ -106,12 +106,22 @@ void TrafficLight::setRegion(const region &region)
     m_region = region;
 }
 
-void TrafficLight::mousePressEvent(QGraphicsSceneMouseEvent *event)
+TRAFFICMODE TrafficLight::getMode() const
 {
-    qDebug()<<getRegion();
-    qDebug()<<"Position "<<this->mapToScene(event->pos());
-
+    return m_mode;
 }
+
+void TrafficLight::setMode(const TRAFFICMODE &mode)
+{
+    m_mode = mode;
+}
+
+//void TrafficLight::mousePressEvent(QGraphicsSceneMouseEvent *event)
+//{
+//    qDebug()<<getRegion();
+//    qDebug()<<"Position "<<this->mapToScene(event->pos());
+
+//}
 
 //void TrafficLight::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
 //{

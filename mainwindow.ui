@@ -474,6 +474,16 @@ border-radius:5px;
              </widget>
             </item>
             <item>
+             <widget class="QCheckBox" name="m_no_traffic">
+              <property name="focusPolicy">
+               <enum>Qt::StrongFocus</enum>
+              </property>
+              <property name="text">
+               <string>Traffic Signal</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QPushButton" name="m_drop_in">
               <property name="text">
                <string>DropIn</string>
@@ -485,6 +495,9 @@ border-radius:5px;
               <property name="text">
                <string>3 Lanes</string>
               </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
              </widget>
             </item>
             <item>
@@ -493,7 +506,36 @@ border-radius:5px;
                <string>5 lanes</string>
               </property>
               <property name="checked">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="m_no_turn">
+              <property name="text">
+               <string>No turn</string>
+              </property>
+              <property name="checked">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="m_go_though">
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(230, 126, 34);</string>
+              </property>
+              <property name="text">
+               <string>Go Through</string>
+              </property>
+              <property name="checkable">
                <bool>true</bool>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+              <property name="autoExclusive">
+               <bool>false</bool>
               </property>
              </widget>
             </item>
@@ -519,7 +561,7 @@ border-radius:5px;
                <string notr="true">background-color: rgb(255, 0, 0);</string>
               </property>
               <property name="text">
-               <string>Data</string>
+               <string>Data Visualizetion</string>
               </property>
              </widget>
             </item>

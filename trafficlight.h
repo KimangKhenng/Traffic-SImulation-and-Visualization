@@ -25,11 +25,14 @@ public:
     LightWidget *getMainYellow() const;
     LightWidget *getLeftGreen() const;
 //protected:
-    virtual void mousePressEvent(QGraphicsSceneMouseEvent *event) Q_DECL_OVERRIDE;
+//    virtual void mousePressEvent(QGraphicsSceneMouseEvent *event) Q_DECL_OVERRIDE;
 //    virtual void hoverEnterEvent(QGraphicsSceneHoverEvent *event) Q_DECL_OVERRIDE;
     QList<LightWidget *> *getLight() const;
 
     void setRegion(const region &region);
+
+    TRAFFICMODE getMode() const;
+    void setMode(const TRAFFICMODE &mode);
 
 private:
     LightWidget *m_main_light_green;
@@ -38,6 +41,7 @@ private:
     LightWidget *m_left_light;
     QList<LightWidget *> *m_light;
     region m_region;
+    TRAFFICMODE m_mode;
 };
 
 #endif // TRAFFICLIGHT_H

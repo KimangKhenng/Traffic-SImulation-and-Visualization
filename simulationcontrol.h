@@ -17,6 +17,8 @@ public:
     explicit SimulationControl(QWidget *parent = 0);
     ~SimulationControl();
 
+    Generator *generator() const;
+
 private slots:
     void on_m_setup_button_clicked();
     void on_m_setup_birth_rate_button_clicked();

@@ -11,15 +11,15 @@ MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent),ui(new Ui::MainWind
         ui->stackedWidget->setCurrentIndex(0);
         m_machine_state = new QTimer();
         this->connect (m_machine_state,SIGNAL(timeout()),this,SLOT(check_state()));
-        QObject::connect(m_machine_state,SIGNAL(timeout()),m_scene,SLOT(advance()));
+        //QObject::connect(m_machine_state,SIGNAL(timeout()),m_scene,SLOT(advance()));
         m_machine_state->start(10);
         srand(time(NULL));
 }
 
-void MainWindow::resizeEvent(QResizeEvent *event)
-{
-    qDebug()<<event->size();
-}
+//void MainWindow::resizeEvent(QResizeEvent *event)
+//{
+//    //qDebug()<<event->size();
+//}
 
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
@@ -65,25 +65,6 @@ void MainWindow::set_duration_for_4_traffic(int red, int yellow, int green)
     //m_traffic_widget_list->at (3)->set_up ();
     //m_traffic_widget_list->at (3)->start ();
 }
-
-void MainWindow::set_up_random()
-{
-    m_simulate_state = true;
-    QTimer *t1 = new QTimer();
-    connect(t1,SIGNAL(timeout()),this,SLOT(random_of_1()));
-    t1->start (2000);
-    QTimer *t2 = new QTimer();
-    connect(t2,SIGNAL(timeout()),this,SLOT(random_of_2()));
-    t2->start (3000);
-    QTimer *t3 = new QTimer();
-    connect(t3,SIGNAL(timeout()),this,SLOT(random_of_3()));
-    t3->start (3500);
-    QTimer *t4 = new QTimer();
-    connect(t4,SIGNAL(timeout()),this,SLOT(random_of_4()));
-    t4->start (2500);
-
-}
-
 void MainWindow::turnOnSimulationState()
 {
     m_simulate_state = true;
@@ -107,7 +88,18 @@ GENMETHOD MainWindow::getCurrentMethod()
     if(ui->m_5_lanes->isChecked()){
         return GENMETHOD::GEN_5;
     }
-    return GEN_5;
+    if(ui->m_no_turn->isChecked()){
+        return GENMETHOD::NO_TURN;
+    }
+    return GENMETHOD::NO_TURN;
+}
+
+VEHICLEMETHOD MainWindow::getCurrentVehicleMethod()
+{
+    if(ui->m_go_though->isChecked()){
+        return VEHICLEMETHOD::GO_THROUGH;
+    }
+    return VEHICLEMETHOD::SIGHTSEEING;
 }
 
 MainWindow::~MainWindow()
@@ -124,18 +116,25 @@ void MainWindow::check_state()
     ////////////////
     QList<QGraphicsItem *> items = m_scene->items();
     QList<Vehicle *> car;
+    QList<TrafficDetector *> detector;
     for(int i = 0 ; i < items.size() ; ++i){
         Vehicle *v = dynamic_cast<Vehicle *>(items.at(i));
+        TrafficDetector *d = dynamic_cast<TrafficDetector *>(items.at(i));
         if(v){
             car.append(v);
+        }
+        if(d){
+            detector.append(d);
         }
     }
     //qDebug()<<car.size();
     for(int i = 0 ; i<car.size() ; ++i){
         if(m_simulate_state){
-            car.at(i)->setActionOn();
+            //car.at(i)->setActionOn();
+            car.at(i)->turnOnEngine();
         }else{
-            car.at(i)->setActionOff();
+            //car.at(i)->setActionOff();
+            car.at(i)->turnOffEngine();
         }
         if(this->m_sightseeing){
             car.at(i)->turnOnSightSeeing();
@@ -147,90 +146,14 @@ void MainWindow::check_state()
             delete car.at(i);
         }
     }
-}
-
-
-void MainWindow::random_of_1()
-{
-    switch (rand()%4){
-    case 0:
-        m_scene->addItem(VehiclesGenerator::getRightTurningVehicle(REGION_E_W));
-        break;
-    case 1:
-        m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_E_W,1));
-        break;
-    case 2:
-        m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_E_W,2));
-        break;
-    case 3:
-        m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_E_W,3));
-        break;
-    case 4:
-        m_scene->addItem(VehiclesGenerator::getLeftTurningVehicle(REGION_E_W));
-        break;
-    }
-}
-
-void MainWindow::random_of_2()
-{
-    switch (rand()%4){
-    case 0:
-        m_scene->addItem(VehiclesGenerator::getRightTurningVehicle(REGION_N_S));
-        break;
-    case 1:
-        m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_N_S,1));
-        break;
-    case 2:
-        m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_N_S,2));
-        break;
-    case 3:
-        m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_N_S,3));
-        break;
-    case 4:
-        m_scene->addItem(VehiclesGenerator::getLeftTurningVehicle(REGION_N_S));
-        break;
-    }
-}
-
-void MainWindow::random_of_3()
-{
-    switch (rand()%4){
-    case 0:
-        m_scene->addItem(VehiclesGenerator::getRightTurningVehicle(REGION_W_E));
-        break;
-    case 1:
-        m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_W_E,1));
-        break;
-    case 2:
-        m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_W_E,2));
-        break;
-    case 3:
-        m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_W_E,3));
-        break;
-    case 4:
-        m_scene->addItem(VehiclesGenerator::getLeftTurningVehicle(REGION_W_E));
-        break;
-    }
-}
-
-void MainWindow::random_of_4()
-{
-    switch (rand()%4){
-    case 0:
-        m_scene->addItem(VehiclesGenerator::getRightTurningVehicle(REGION_S_N));
-        break;
-    case 1:
-        m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_S_N,1));
-        break;
-    case 2:
-        m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_S_N,2));
-        break;
-    case 3:
-        m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_S_N,3));
-        break;
-    case 4:
-        m_scene->addItem(VehiclesGenerator::getLeftTurningVehicle(REGION_S_N));
-        break;
+    for(int i = 0 ; i < detector.size() ; ++i){
+        if(m_simulate_state){
+            //car.at(i)->setActionOn();
+            detector.at(i)->startEngine();
+        }else{
+            //car.at(i)->setActionOff();
+            detector.at(i)->stopEngine();
+        }
     }
 }
 void MainWindow::on_actionExit_triggered()
@@ -278,7 +201,6 @@ void MainWindow::on_stop_clicked()
 
 void MainWindow::set_up()
 {
-
     //Add Road and Background to scene
     QGraphicsPixmapItem *m_picture = new QGraphicsPixmapItem(QPixmap(":/image/Image/road-image.png").scaled (600,600));
     QGraphicsSvgItem *m_terrain = new QGraphicsSvgItem(":/image/Image/terrain.svg");
@@ -323,15 +245,15 @@ void MainWindow::set_up()
     m_traffic_light->at(1)->setPos(260,380);
     m_traffic_light->at(1)->setRegion(region::REGION_W_E);
     //TrafficLight 3
-    m_traffic_light->at(2)->setPos(160,220);
+    m_traffic_light->at(2)->setPos(250,240);
+    m_traffic_light->at(2)->setRotation(180);
     m_traffic_light->at(2)->setRegion(region::REGION_N_S);
+//    m_traffic_light->at(2)->setTransform(QTransform::fromScale(1, -1));
     //TrafficLight 4
-    m_traffic_light->at(3)->setRotation(90);
-    m_traffic_light->at(3)->setPos(420,140);
+    m_traffic_light->at(3)->setPos(410,230);
+    m_traffic_light->at(3)->setRotation(270);
     m_traffic_light->at(3)->setRegion(region::REGION_E_W);
-    for(int i = 0 ; i < m_traffic_light->size() ; ++i){
-        m_scene->addItem(m_traffic_light->at(i));
-    }
+    //m_traffic_light->at(3)->setTransform(QTransform::fromScale(-1, 1));
     for(int i = 0 ; i < m_traffic_light->size() ; ++i){
         for(int j = 0 ; j < m_traffic_light->at(i)->getLight()->size() ; j++){
             m_traffic_light->at(i)->getLight()->at(j)->setScale(0.8);
@@ -353,6 +275,7 @@ void MainWindow::set_up()
     //AddSecen
     ui->graphicsView->setScene(m_scene);
 //    ui->graphicsView->Initializer();
+    m_simulation_control_widget = new SimulationControl(this);
 }
 
 void MainWindow::set_up_demo()
@@ -389,7 +312,21 @@ void MainWindow::on_m_sightseeing_button_clicked(bool checked)
 
 void MainWindow::on_m_data_widget_clicked(bool checked)
 {
-
+    if(checked){
+        if(!m_data_widget){
+            //qDebug()<<"Hello";
+            m_data_widget = new DataWidget(this);
+//            m_data_widget->setDetector(m_controller->getDetector());
+            m_data_widget->setController(m_controller);
+            m_data_widget->setEtimer(m_controller->getTimer());
+            m_data_widget->show();
+        }else{
+            //qDebug()<<"Hi";
+            m_data_widget->show();
+        }
+    }else{
+        m_data_widget->hide();
+    }
 }
 
 void MainWindow::on_m_control_button_clicked(bool checked)
@@ -398,8 +335,6 @@ void MainWindow::on_m_control_button_clicked(bool checked)
         if(!m_simulation_control_widget){
             //qDebug()<<"Hello";
             m_simulation_control_widget = new SimulationControl(this);
-            m_simulation_control_widget->setWindowTitle(QApplication::translate("toplevel", "Simulation Control"));
-            m_simulation_control_widget->setWindowFlags(Qt::Window);
             m_simulation_control_widget->show();
         }else{
             //qDebug()<<"Hi";
@@ -429,15 +364,56 @@ void MainWindow::on_m_manul_control_button_clicked(bool checked)
 
 void MainWindow::on_m_5_lanes_clicked()
 {
-
+    m_simulation_control_widget->generator()->setMethod(GENMETHOD::GEN_5);
 }
 
 void MainWindow::on_m_3_lanes_clicked()
 {
-
+    m_simulation_control_widget->generator()->setMethod(GENMETHOD::GEN_3);
 }
 
 SimulationScene *MainWindow::scene() const
 {
     return m_scene;
+}
+
+void MainWindow::on_m_no_traffic_clicked(bool checked)
+{
+    if(checked){
+        for(int i = 0 ; i < m_traffic_light->size() ; ++i){
+            m_traffic_light->at(i)->setMode(TRAFFICMODE::HAS_SIGNAL);
+            m_scene->addItem(m_traffic_light->at(i));
+        }
+    }else{
+        for(int i = 0 ; i < m_traffic_light->size() ; ++i){
+            m_traffic_light->at(i)->setMode(TRAFFICMODE::NO_SIGNAL);
+            m_scene->removeItem(m_traffic_light->at(i));
+        }
+    }
+}
+
+bool MainWindow::getSimulate_state() const
+{
+    return m_simulate_state;
+}
+
+TrafficController *MainWindow::getController() const
+{
+    return m_controller;
+}
+
+void MainWindow::on_m_no_turn_clicked()
+{
+    m_simulation_control_widget->generator()->setMethod(GENMETHOD::NO_TURN);
+}
+
+
+void MainWindow::on_m_go_though_clicked(bool checked)
+{
+    if(checked){
+        m_simulation_control_widget->generator()->setMode(VEHICLEMETHOD::GO_THROUGH);
+    }else{
+        m_simulation_control_widget->generator()->setMode(VEHICLEMETHOD::SIGHTSEEING);
+    }
+
 }

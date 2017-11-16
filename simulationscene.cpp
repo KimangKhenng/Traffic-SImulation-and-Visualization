@@ -11,7 +11,7 @@ SimulationScene::SimulationScene()
     /////////////////
     ///
     /// Set background brush for scene
-    setBackgroundBrush (Qt::Dense5Pattern);
+    setBackgroundBrush (Qt::white);
 }
 
 int SimulationScene::getNumber(region x)
@@ -31,9 +31,3 @@ int SimulationScene::getNumber(region x)
     }
     return size;
 }
-
-//void SimulationScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
-//{
-//    QGraphicsScene::mousePressEvent(mouseEvent);
-//    qDebug()<<"Hi";
-//}

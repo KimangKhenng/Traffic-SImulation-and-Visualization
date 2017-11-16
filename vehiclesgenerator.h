@@ -5,7 +5,7 @@
 #include <QtCore>
 #include <QtWidgets>
 #include "road.h"
-#include "trafficlight.h"
+#include "commonenum.h"
 ///////////////
 /// \brief The VehiclesGenerator class
 /// FactoryClass For Vehicle Class
@@ -13,9 +13,9 @@
 class VehiclesGenerator
 {
 public:
-    static Vehicle *getLeftTurningVehicle(region approach);
-    static Vehicle *getThroughVehicle(region approach,int lane);
-    static Vehicle *getRightTurningVehicle(region approach);
+    static Vehicle *getLeftTurningVehicle(region approach,VEHICLEMETHOD x);
+    static Vehicle *getThroughVehicle(region approach,int lane,VEHICLEMETHOD x);
+    static Vehicle *getRightTurningVehicle(region approach,VEHICLEMETHOD x);
 };
 
 #endif // VEHICLESGENERATOR_H

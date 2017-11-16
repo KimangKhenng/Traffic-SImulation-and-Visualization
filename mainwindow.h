@@ -17,13 +17,14 @@ namespace Ui {
 class MainWindow;
 }
 class SimulationControl;
+class DataWidget;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
     explicit MainWindow(QWidget *parent = 0);
-    virtual void resizeEvent(QResizeEvent *event);
+//    virtual void resizeEvent(QResizeEvent *event);
     virtual void keyPressEvent (QKeyEvent *event);
     void set_duration_for_1_traffic(int red,int yellow,int green);
     void set_duration_for_2_traffic(int red,int yellow,int green);
@@ -34,15 +35,14 @@ public:
     void turnOffSimulationState();
     void trunSimControlCheckOff();
     GENMETHOD getCurrentMethod();
+    VEHICLEMETHOD getCurrentVehicleMethod();
     ~MainWindow();
     SimulationScene *scene() const;
+    TrafficController *getController() const;
+    bool getSimulate_state() const;
 
 public slots:
     void check_state();
-    void random_of_1();
-    void random_of_2();
-    void random_of_3();
-    void random_of_4();
 private slots:
     void on_actionExit_triggered();
     void on_play_clicked();
@@ -58,17 +58,15 @@ private slots:
     void on_m_detector_button_clicked(bool checked);
     void on_m_sightseeing_button_clicked(bool checked);
     void on_m_data_widget_clicked(bool checked);
-
     void on_m_control_button_clicked(bool checked);
-
     void on_m_aboutus_button_clicked();
-
-
     void on_m_manul_control_button_clicked(bool checked);
-
     void on_m_5_lanes_clicked();
-
     void on_m_3_lanes_clicked();
+    void on_m_no_traffic_clicked(bool checked);
+    void on_m_no_turn_clicked();
+
+    void on_m_go_though_clicked(bool checked);
 
 private:
     Ui::MainWindow *ui;

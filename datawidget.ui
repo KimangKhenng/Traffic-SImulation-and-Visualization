@@ -6,12 +6,24 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>1000</width>
+    <height>350</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QTabWidget{
+background-color: rgb(44, 62, 80);
+}
+QRadioButton{
+font: 12pt &quot;Segoe UI Light&quot;;
+color: rgb(255, 255, 255);
+background-color: rgb(44, 62, 80);
+border-radius:5px;
+}
+</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
@@ -30,24 +42,177 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="QTabWidget" name="m_graph">
+    <widget class="QRadioButton" name="m_show_hide">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Active</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTabWidget" name="m_data_widget">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="baseSize">
+      <size>
+       <width>800</width>
+       <height>450</height>
+      </size>
+     </property>
      <property name="currentIndex">
       <number>0</number>
      </property>
-     <widget class="QWidget" name="m_space_time">
+     <widget class="QWidget" name="tab_4">
       <attribute name="title">
-       <string>Space Time</string>
+       <string>Numbers</string>
       </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QFrame" name="frame_2">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QCustomPlot" name="m_number_widget_1" native="true"/>
+          </item>
+          <item>
+           <widget class="QCustomPlot" name="m_number_widget_2" native="true"/>
+          </item>
+          <item>
+           <widget class="QCustomPlot" name="m_number_widget_3" native="true"/>
+          </item>
+          <item>
+           <widget class="QCustomPlot" name="m_number_widget_4" native="true"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
      </widget>
      <widget class="QWidget" name="tab_2">
       <attribute name="title">
-       <string>Graphics</string>
+       <string>Flow</string>
       </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QFrame" name="frame_3">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QCustomPlot" name="m_flow_widget_1" native="true"/>
+          </item>
+          <item>
+           <widget class="QCustomPlot" name="m_flow_widget_2" native="true"/>
+          </item>
+          <item>
+           <widget class="QCustomPlot" name="m_flow_widget_3" native="true"/>
+          </item>
+          <item>
+           <widget class="QCustomPlot" name="m_flow_widget_4" native="true"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>Density</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <widget class="QFrame" name="frame_4">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <widget class="QCustomPlot" name="m_density_widget_1" native="true"/>
+          </item>
+          <item>
+           <widget class="QCustomPlot" name="m_density_widget_2" native="true"/>
+          </item>
+          <item>
+           <widget class="QCustomPlot" name="m_density_widget_3" native="true"/>
+          </item>
+          <item>
+           <widget class="QCustomPlot" name="m_density_widget_4" native="true"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_3">
+      <attribute name="title">
+       <string>Headway</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_6">
+       <item>
+        <widget class="QFrame" name="frame_5">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <item>
+           <widget class="QCustomPlot" name="m_headway_widget_1" native="true"/>
+          </item>
+          <item>
+           <widget class="QCustomPlot" name="m_headway_widget_2" native="true"/>
+          </item>
+          <item>
+           <widget class="QCustomPlot" name="m_headway_widget_3" native="true"/>
+          </item>
+          <item>
+           <widget class="QCustomPlot" name="m_headway_widget_4" native="true"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QCustomPlot</class>
+   <extends>QWidget</extends>
+   <header>qcustomplot.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

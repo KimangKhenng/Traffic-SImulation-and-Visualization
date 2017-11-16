@@ -11,9 +11,9 @@ void TrafficDetector::paint(QPainter *painter,
     Q_UNUSED(option);
     Q_UNUSED(widget);
     if(m_is_active){
-        painter->setPen(Qt::green);
+        painter->setPen(QColor("#2ecc71"));
     }else{
-        painter->setPen(Qt::red);
+        painter->setPen(QColor("#e74c3c"));
     }
     painter->drawRect(boundingRect());
     painter->setOpacity(0.5);
@@ -25,6 +25,8 @@ TrafficDetector::TrafficDetector(float length, QGraphicsItem *parent):QGraphicsI
     setTransformOriginPoint(QPointF(15/2,static_cast<qreal>(m_detector_length)/2));
     m_timer = new QElapsedTimer;
     m_timer->start();
+    m_counter = new QTimer();
+    this->connect(m_counter,SIGNAL(timeout()),this,SLOT(forward()));
 }
 
 TrafficDetector::~TrafficDetector()
@@ -55,6 +57,34 @@ void TrafficDetector::advance(int phase)
 //    qDebug()<<"Hello";
     update(boundingRect());
 }
+
+void TrafficDetector::forward()
+{
+    if(this->getNumbersOfVehicles() > 0){
+        m_is_active = true;
+    }else{
+        m_timer->restart();
+        //qDebug()<<"Hello";
+        m_is_active = false;
+    }
+//    //qDebug()<<"Size "<<collding_vehicles.size();
+//    for(int i = 0 ; i < collding_vehicles.size() ; ++i){
+//        Vehicle *collding = dynamic_cast<Vehicle *>(collding_vehicles.at(i));
+//        if(collding){
+//            m_is_active = true;
+//        }else{
+//            m_timer->restart();
+//            //qDebug()<<"Hello";
+//            m_is_active = false;
+//        }
+//    }
+    update(boundingRect());
+}
+
+QElapsedTimer *TrafficDetector::getTimer() const
+{
+    return m_timer;
+}
 float TrafficDetector::getFlow() const
 {
     if(m_is_active){
@@ -73,25 +103,34 @@ bool TrafficDetector::isContainedVehicles()
 
 int TrafficDetector::getNumbersOfVehicles() const
 {
-    if(m_is_active){
-        QList<QGraphicsItem *> collding_vehicles = this->collidingItems();
-        int j = 0;
-        for(int i = 0 ; i < collding_vehicles.size() ; ++i){
-            Vehicle *collding = dynamic_cast<Vehicle *>(collding_vehicles.at(i));
-            if(collding){
-                j++;
-            }
+//    if(m_is_active){
+//        QList<QGraphicsItem *> collding_vehicles = this->collidingItems();
+//        int j = 0;
+//        for(int i = 0 ; i < collding_vehicles.size() ; ++i){
+//            Vehicle *collding = dynamic_cast<Vehicle *>(collding_vehicles.at(i));
+//            if(collding){
+//                j++;
+//            }
+//        }
+//        return j;
+//    }else{
+//        return 0;
+//    }
+    QList<QGraphicsItem *> collding_vehicles = this->collidingItems();
+    int j = 0;
+    for(int i = 0 ; i < collding_vehicles.size() ; ++i){
+        Vehicle *collding = dynamic_cast<Vehicle *>(collding_vehicles.at(i));
+        if(collding){
+            j++;
         }
-        return j;
-    }else{
-        return 0;
     }
+    return j;
 
 }
 
 float TrafficDetector::getDensity() const
 {
-    return getNumbersOfVehicles()/(m_detector_length);
+    return getNumbersOfVehicles()/(m_detector_length/m_detector_length);
 }
 
 float TrafficDetector::getHeadWay() const
@@ -112,4 +151,16 @@ void TrafficDetector::turnOffDisplay()
 void TrafficDetector::turnOnDisplay()
 {
     setOpacity(1.0);
+}
+
+void TrafficDetector::startEngine()
+{
+    if(m_counter->isActive())
+        return;
+    m_counter->start(10);
+}
+
+void TrafficDetector::stopEngine()
+{
+    m_counter->stop();
 }

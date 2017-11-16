@@ -64,8 +64,13 @@ public:
     void setDir(const Direction &dir);
     void turnOnSightSeeing();
     void turnOffSightSeeing();
+    void turnOnEngine();
+    void turnOffEngine();
+    bool isContainedSignal() const;
+    void setMode(const VEHICLEMETHOD &mode);
 public slots:
-    void advance(int phase) Q_DECL_OVERRIDE ;
+    void advance(int phase) Q_DECL_OVERRIDE;
+    void forward();
 private:
     bool ifAllowed() const;
     Vehicle *getCollding();
@@ -82,6 +87,8 @@ private:
     QGraphicsRectItem *m_sightseeing;
     Direction m_dir;
     region m_region;
+    QTimer *m_internal_timer;
+    VEHICLEMETHOD m_mode;
 };
 
 #endif // VEHICLE_H
