@@ -44,8 +44,7 @@ void Vehicle::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
 {
     painter->setPen(Qt::NoPen);
     painter->setBrush(m_color);
-    painter->drawRoundRect(boundingRect(),100,10);
-    //painter->drawRect(boundingRect());
+    painter->drawRect(boundingRect());
     Q_UNUSED(option);
     Q_UNUSED(widget);
 }
@@ -258,12 +257,14 @@ void Vehicle::forward()
         if(isContainedSignal()){
             if(!ifAllowed()){
                 stop_advance();
+                return;
             }
         }
     }
     if(m_mode == VEHICLEMETHOD::SIGHTSEEING){
         if(hasInfront()){
             stop_advance();
+            return;
         }
     }
     QLineF line(pos(),m_destination);
@@ -279,6 +280,7 @@ void Vehicle::forward()
     double dy = m_speed*qSin(qDegreesToRadians(theta));
     double dx = m_speed*qCos(qDegreesToRadians(theta));
     setPos(x()+dx,y()+dy);
+//    setPos(x()+m_speed*qSin(qDegreesToRadians(rotation())),y()+m_speed*qCos(qDegreesToRadians(rotation())));
 }
 Vehicle *Vehicle::getCollding()
 {
@@ -336,7 +338,7 @@ void Vehicle::turnOnEngine()
     if(m_internal_timer->isActive()){
         return;
     }
-    m_internal_timer->start(10);
+    m_internal_timer->start(TIME_UNIT);
     m_on_action_state = true;
 }
 

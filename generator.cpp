@@ -38,6 +38,14 @@ void Generator::startGenerator()
 
 }
 
+void Generator::stopGenerator()
+{
+    this->disconnect(m_timer.at(0),SIGNAL(timeout()),this,SLOT(makeEastWest()));
+    this->disconnect(m_timer.at(1),SIGNAL(timeout()),this,SLOT(makeNorthSouth()));
+    this->disconnect(m_timer.at(2),SIGNAL(timeout()),this,SLOT(makeSouthNorth()));
+    this->disconnect(m_timer.at(3),SIGNAL(timeout()),this,SLOT(makeWestEast()));
+}
+
 void Generator::startAutoGeneraion()
 {
     int x = 2000;

@@ -15,6 +15,7 @@ public:
     Generator();
     void setMethod(GENMETHOD x);
     void startGenerator();
+    void stopGenerator();
     void startAutoGeneraion();
     void setTimer(int x,int y,int c,int z);
     void setScene(SimulationScene *scene);

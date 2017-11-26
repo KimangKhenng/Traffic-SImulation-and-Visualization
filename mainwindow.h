@@ -26,10 +26,6 @@ public:
     explicit MainWindow(QWidget *parent = 0);
 //    virtual void resizeEvent(QResizeEvent *event);
     virtual void keyPressEvent (QKeyEvent *event);
-    void set_duration_for_1_traffic(int red,int yellow,int green);
-    void set_duration_for_2_traffic(int red,int yellow,int green);
-    void set_duration_for_3_traffic(int red,int yellow,int green);
-    void set_duration_for_4_traffic(int red,int yellow,int green);
     void set_up_random();
     void turnOnSimulationState();
     void turnOffSimulationState();
@@ -65,10 +61,10 @@ private slots:
     void on_m_3_lanes_clicked();
     void on_m_no_traffic_clicked(bool checked);
     void on_m_no_turn_clicked();
-
     void on_m_go_though_clicked(bool checked);
 
 private:
+    void changeVehicleMode(const VEHICLEMETHOD &mode);
     Ui::MainWindow *ui;
     SimulationScene *m_scene;
     QGraphicsSvgItem *m_path;

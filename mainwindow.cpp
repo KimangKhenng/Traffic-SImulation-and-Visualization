@@ -12,15 +12,9 @@ MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent),ui(new Ui::MainWind
         m_machine_state = new QTimer();
         this->connect (m_machine_state,SIGNAL(timeout()),this,SLOT(check_state()));
         //QObject::connect(m_machine_state,SIGNAL(timeout()),m_scene,SLOT(advance()));
-        m_machine_state->start(10);
+        m_machine_state->start(TIME_UNIT);
         srand(time(NULL));
 }
-
-//void MainWindow::resizeEvent(QResizeEvent *event)
-//{
-//    //qDebug()<<event->size();
-//}
-
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     if(event->key () == Qt::Key_Space){
@@ -30,40 +24,6 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
             on_play_clicked ();
         }
     }
-    //qDebug()<<m_traffic_widget_list->at (0)->get_current_state ()->objectName ();
-}
-
-//QList<Traffic_Light_widget *> *MainWindow::get_traffic_list()
-//{
-//    return m_traffic_widget_list;
-//}
-
-void MainWindow::set_duration_for_1_traffic(int red, int yellow, int green)
-{
-//    m_traffic_widget_list->at (0)->set_duration (red,yellow,green);
-    //m_traffic_widget_list->at (0)->set_up ();
-    //m_traffic_widget_list->at (0)->start ();
-}
-
-void MainWindow::set_duration_for_2_traffic(int red, int yellow, int green)
-{
-//    m_traffic_widget_list->at (1)->set_duration (red,yellow,green);
-    //m_traffic_widget_list->at (1)->set_up ();
-    //m_traffic_widget_list->at (1)->start ();
-}
-
-void MainWindow::set_duration_for_3_traffic(int red, int yellow, int green)
-{
-//    m_traffic_widget_list->at (2)->set_duration (red,yellow,green);
-    //m_traffic_widget_list->at (2)->set_up ();
-    //m_traffic_widget_list->at (2)->start ();
-}
-
-void MainWindow::set_duration_for_4_traffic(int red, int yellow, int green)
-{
-//    m_traffic_widget_list->at (3)->set_duration (red,yellow,green);
-    //m_traffic_widget_list->at (3)->set_up ();
-    //m_traffic_widget_list->at (3)->start ();
 }
 void MainWindow::turnOnSimulationState()
 {
@@ -187,6 +147,7 @@ void MainWindow::on_reset_clicked()
 {
 //    m_car_list_1->clear ();
     m_scene->clear();
+    m_simulation_control_widget->generator()->stopGenerator();
 }
 
 void MainWindow::on_pause_clicked()
@@ -415,5 +376,10 @@ void MainWindow::on_m_go_though_clicked(bool checked)
     }else{
         m_simulation_control_widget->generator()->setMode(VEHICLEMETHOD::SIGHTSEEING);
     }
+
+}
+
+void MainWindow::changeVehicleMode(const VEHICLEMETHOD &mode)
+{
 
 }
