@@ -72,6 +72,7 @@ void LightWidget::setColor(const QColor &color)
 void LightWidget::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     //QGraphicsItem::mousePressEvent(event);
+    Q_UNUSED(event);
     if(!m_on){
         this->turnOn();
         if(dynamic_cast<TrafficLight *>(this->parentItem())){

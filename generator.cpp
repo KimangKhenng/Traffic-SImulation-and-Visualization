@@ -1,6 +1,6 @@
 #include "generator.h"
 
-Generator::Generator(SimulationScene *scene):m_scene(scene),m_running_state(false),m_mode(VEHICLEMETHOD::GO_THROUGH)
+Generator::Generator(SimulationScene *scene):m_scene(scene),m_mode(VEHICLEMETHOD::GO_THROUGH),m_running_state(false)
 {
     for(int i = 0 ; i < 4 ; ++i){
         m_timer.append( new QTimer());
@@ -10,7 +10,7 @@ Generator::Generator(SimulationScene *scene):m_scene(scene),m_running_state(fals
 
 Generator::Generator():m_number_N_S(0),m_number_S_N(0),
     m_number_W_E(0),m_number_E_W(0),m_time_N_S(0),
-    m_time_S_N(0),m_time_W_E(0),m_time_E_W(0),m_running_state(false),m_mode(VEHICLEMETHOD::GO_THROUGH)
+    m_time_S_N(0),m_time_W_E(0),m_time_E_W(0),m_mode(VEHICLEMETHOD::GO_THROUGH),m_running_state(false)
 {
     for(int i = 0 ; i < 4 ; ++i){
         m_timer.append( new QTimer());

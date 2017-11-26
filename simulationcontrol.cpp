@@ -4,8 +4,8 @@
 #include "mainwindow.h"
 #include <QDebug>
 SimulationControl::SimulationControl(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::SimulationControl),m_w(nullptr)
+    QWidget(parent),m_w(nullptr),
+    ui(new Ui::SimulationControl)
 
 {
     ui->setupUi(this);

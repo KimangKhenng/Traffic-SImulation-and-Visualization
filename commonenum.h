@@ -14,7 +14,7 @@
     #define MAX_E_W 10
 #endif
 //////////////
-#ifdef MAX_W_E
+#ifndef MAX_W_E
     #define MAX_W_E 10
 #endif
 ///////////////
