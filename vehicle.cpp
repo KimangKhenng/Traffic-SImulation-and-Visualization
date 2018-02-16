@@ -17,8 +17,9 @@ Vehicle::Vehicle(QGraphicsItem *parent):QGraphicsItem(parent),m_angle(0),m_speed
     m_internal_timer = new QTimer;
     m_sightseeing = new QGraphicsRectItem(QRectF(30,5,GAPACCAPANCE,10),this);
     m_sightseeing->setOpacity(0);
-    setTransformOriginPoint(10,5);
-    setFlag(QGraphicsItem::ItemIsMovable);
+    this->setTransformOriginPoint(10,5);
+    this->setFlag(QGraphicsItem::ItemIsMovable);
+    this->setCacheMode(QGraphicsItem::ItemCoordinateCache);
     this->connect(m_internal_timer,SIGNAL(timeout()),this,SLOT(forward()));
 }
 
@@ -42,11 +43,11 @@ QPainterPath Vehicle::shape() const
 
 void Vehicle::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+    Q_UNUSED(option);
+    Q_UNUSED(widget);
     painter->setPen(Qt::NoPen);
     painter->setBrush(m_color);
     painter->drawRect(boundingRect());
-    Q_UNUSED(option);
-    Q_UNUSED(widget);
 }
 
 void Vehicle::rotate_to_point(QPointF point)

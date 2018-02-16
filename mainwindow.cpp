@@ -3,7 +3,7 @@
 #include <QtWidgets>
 #include <time.h>
 MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent),ui(new Ui::MainWindow),m_road(nullptr),m_simulate_state(false)
-  ,m_sightseeing(false),m_simulation_control_widget(nullptr),m_data_widget(nullptr)
+  ,m_sightseeing(false),m_data_widget(nullptr)
 {
         ui->setupUi(this);
         setWindowTitle ("Intersection Road Simulation and Visulization");
@@ -33,11 +33,6 @@ void MainWindow::turnOnSimulationState()
 void MainWindow::turnOffSimulationState()
 {
     m_simulate_state = false;
-}
-
-void MainWindow::trunSimControlCheckOff()
-{
-    ui->m_control_button->setCheckState(Qt::CheckState::Unchecked);
 }
 
 GENMETHOD MainWindow::getCurrentMethod()
@@ -147,7 +142,7 @@ void MainWindow::on_reset_clicked()
 {
 //    m_car_list_1->clear ();
     m_scene->clear();
-    m_simulation_control_widget->generator()->stopGenerator();
+    ui->m_simulation_control_widget->generator()->stopGenerator();
 }
 
 void MainWindow::on_pause_clicked()
@@ -222,7 +217,7 @@ void MainWindow::set_up()
     }
     //Add Control Widget
 //    m_control_sim = new QGraphicsProxyWidget();
-//    m_control_sim->setWidget (m_simulation_control_widget);
+//    m_control_sim->setWidget (ui->m_simulation_control_widget);
     //m_control_sim->setFlags (QGraphicsItem::ItemIsMovable);
     //m_control_sim->setFlags (QGraphicsItem::ItemIsFocusable);
     //m_control_sim->setFlags (QGraphicsItem::ItemIsPanel);
@@ -235,8 +230,10 @@ void MainWindow::set_up()
 //    m_data_control->setPos (500,400);
     //AddSecen
     ui->graphicsView->setScene(m_scene);
+    ui->graphicsView->setViewport(new QGLWidget(QGLFormat(QGL::SampleBuffers)));
 //    ui->graphicsView->Initializer();
-    m_simulation_control_widget = new SimulationControl(this);
+    //ui->m_simulation_control_widget = new SimulationControl(this);
+    ui->m_simulation_control_widget->initialize(this);
 }
 
 void MainWindow::set_up_demo()
@@ -271,40 +268,9 @@ void MainWindow::on_m_sightseeing_button_clicked(bool checked)
     }
 }
 
-void MainWindow::on_m_data_widget_clicked(bool checked)
-{
-    if(checked){
-        if(!m_data_widget){
-            //qDebug()<<"Hello";
-            m_data_widget = new DataWidget(this);
-//            m_data_widget->setDetector(m_controller->getDetector());
-            m_data_widget->setController(m_controller);
-            m_data_widget->setEtimer(m_controller->getTimer());
-            m_data_widget->show();
-        }else{
-            //qDebug()<<"Hi";
-            m_data_widget->show();
-        }
-    }else{
-        m_data_widget->hide();
-    }
-}
 
-void MainWindow::on_m_control_button_clicked(bool checked)
-{
-    if(checked){
-        if(!m_simulation_control_widget){
-            //qDebug()<<"Hello";
-            m_simulation_control_widget = new SimulationControl(this);
-            m_simulation_control_widget->show();
-        }else{
-            //qDebug()<<"Hi";
-            m_simulation_control_widget->show();
-        }
-    }else{
-        m_simulation_control_widget->hide();
-    }
-}
+
+
 
 void MainWindow::on_m_aboutus_button_clicked()
 {
@@ -325,12 +291,12 @@ void MainWindow::on_m_manul_control_button_clicked(bool checked)
 
 void MainWindow::on_m_5_lanes_clicked()
 {
-    m_simulation_control_widget->generator()->setMethod(GENMETHOD::GEN_5);
+    ui->m_simulation_control_widget->generator()->setMethod(GENMETHOD::GEN_5);
 }
 
 void MainWindow::on_m_3_lanes_clicked()
 {
-    m_simulation_control_widget->generator()->setMethod(GENMETHOD::GEN_3);
+    ui->m_simulation_control_widget->generator()->setMethod(GENMETHOD::GEN_3);
 }
 
 SimulationScene *MainWindow::scene() const
@@ -365,21 +331,36 @@ TrafficController *MainWindow::getController() const
 
 void MainWindow::on_m_no_turn_clicked()
 {
-    m_simulation_control_widget->generator()->setMethod(GENMETHOD::NO_TURN);
+    ui->m_simulation_control_widget->generator()->setMethod(GENMETHOD::NO_TURN);
 }
 
 
 void MainWindow::on_m_go_though_clicked(bool checked)
 {
     if(checked){
-        m_simulation_control_widget->generator()->setMode(VEHICLEMETHOD::GO_THROUGH);
+        ui->m_simulation_control_widget->generator()->setMode(VEHICLEMETHOD::GO_THROUGH);
     }else{
-        m_simulation_control_widget->generator()->setMode(VEHICLEMETHOD::SIGHTSEEING);
+        ui->m_simulation_control_widget->generator()->setMode(VEHICLEMETHOD::SIGHTSEEING);
     }
 
 }
 
-void MainWindow::changeVehicleMode(const VEHICLEMETHOD &mode)
-{
 
+void MainWindow::on_actionData_Visualization_toggled(bool arg1)
+{
+    if(arg1){
+        if(!m_data_widget){
+            //qDebug()<<"Hello";
+            m_data_widget = new DataWidget(this);
+//            m_data_widget->setDetector(m_controller->getDetector());
+            m_data_widget->setController(m_controller);
+            m_data_widget->setEtimer(m_controller->getTimer());
+            m_data_widget->show();
+        }else{
+            //qDebug()<<"Hi";
+            m_data_widget->show();
+        }
+    }else{
+        m_data_widget->hide();
+    }
 }

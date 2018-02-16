@@ -111,22 +111,22 @@ QState *TrafficController::makeState(LightWidget *light, int duration)
 
 QState *TrafficController::first_phase()
 {
-
+    return nullptr;
 }
 
 QState *TrafficController::second_phase()
 {
-
+    return nullptr;
 }
 
 QState *TrafficController::third_phase()
 {
-
+    return nullptr;
 }
 
 QState *TrafficController::fourth_phase()
 {
-
+    return nullptr;
 }
 
 QList<TrafficLight *> *TrafficController::getTraffic_light() const

@@ -5,6 +5,8 @@
 #include <QtCore>
 #include <QtWidgets>
 #include <QGraphicsSvgItem>
+#include <QGLWidget>
+#include <thread>
 #include "commonenum.h"
 #include "vehicle.h"
 #include "road.h"
@@ -13,6 +15,7 @@
 #include "simulationcontrol.h"
 #include "vehiclesgenerator.h"
 #include "trafficcontroller.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -53,8 +56,6 @@ private slots:
     void on_m_road_check_button_toggled(bool checked);
     void on_m_detector_button_clicked(bool checked);
     void on_m_sightseeing_button_clicked(bool checked);
-    void on_m_data_widget_clicked(bool checked);
-    void on_m_control_button_clicked(bool checked);
     void on_m_aboutus_button_clicked();
     void on_m_manul_control_button_clicked(bool checked);
     void on_m_5_lanes_clicked();
@@ -62,7 +63,7 @@ private slots:
     void on_m_no_traffic_clicked(bool checked);
     void on_m_no_turn_clicked();
     void on_m_go_though_clicked(bool checked);
-
+    void on_actionData_Visualization_toggled(bool arg1);
 private:
     void changeVehicleMode(const VEHICLEMETHOD &mode);
     Ui::MainWindow *ui;
@@ -74,7 +75,6 @@ private:
     bool m_sightseeing;
     QTimer *m_machine_state;
     QSplashScreen *m_loading_screen;
-    SimulationControl *m_simulation_control_widget;
     DataWidget *m_data_widget;
     TrafficController *m_controller;
     QList<TrafficLight *> *m_traffic_light;

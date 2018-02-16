@@ -16,7 +16,7 @@ class SimulationControl : public QWidget
 public:
     explicit SimulationControl(QWidget *parent = 0);
     ~SimulationControl();
-
+    void initialize(MainWindow *widget);
     Generator *generator() const;
 
 private slots:

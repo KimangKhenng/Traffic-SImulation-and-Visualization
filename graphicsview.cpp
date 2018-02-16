@@ -14,7 +14,7 @@ void GraphicsView::wheelEvent(QWheelEvent *event)
     // Scale the view / do the zoom
 //    GraphicsView::wheelEvent(event);
     double scaleFactor = 1.15;
-    int level_of_zoom = 3;
+    int level_of_zoom = 5;
     if( m_max <120*level_of_zoom&&event->delta()>0){
         m_min -= 120;
         m_max += event->delta();

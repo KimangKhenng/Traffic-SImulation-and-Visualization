@@ -10,7 +10,7 @@ SimulationControl::SimulationControl(QWidget *parent) :
 {
 
     ui->setupUi(this);
-    setWindowFlags(0x00000000);
+    setWindowFlags(Qt::Widget);
     //this->setFixedSize (300,200);
     this->setWindowTitle ("Simulation Controller");
     ui->m_green->setValidator(new QIntValidator(0, 10000, ui->m_green));

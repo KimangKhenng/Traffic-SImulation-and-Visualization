@@ -331,6 +331,24 @@ border-radius:5px;
           <property name="spacing">
            <number>0</number>
           </property>
+          <item row="1" column="1">
+           <widget class="GraphicsView" name="graphicsView">
+            <property name="mouseTracking">
+             <bool>true</bool>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::ClickFocus</enum>
+            </property>
+            <property name="sceneRect">
+             <rectf>
+              <x>0.000000000000000</x>
+              <y>0.000000000000000</y>
+              <width>0.000000000000000</width>
+              <height>0.000000000000000</height>
+             </rectf>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="0" colspan="2">
            <layout class="QHBoxLayout" name="control_panel">
             <property name="spacing">
@@ -410,24 +428,6 @@ border-radius:5px;
             </item>
            </layout>
           </item>
-          <item row="1" column="1">
-           <widget class="GraphicsView" name="graphicsView">
-            <property name="mouseTracking">
-             <bool>true</bool>
-            </property>
-            <property name="focusPolicy">
-             <enum>Qt::ClickFocus</enum>
-            </property>
-            <property name="sceneRect">
-             <rectf>
-              <x>0.000000000000000</x>
-              <y>0.000000000000000</y>
-              <width>0.000000000000000</width>
-              <height>0.000000000000000</height>
-             </rectf>
-            </property>
-           </widget>
-          </item>
           <item row="1" column="0">
            <layout class="QVBoxLayout" name="tool_panel">
             <property name="spacing">
@@ -496,7 +496,7 @@ border-radius:5px;
                <string>3 Lanes</string>
               </property>
               <property name="checked">
-               <bool>true</bool>
+               <bool>false</bool>
               </property>
              </widget>
             </item>
@@ -540,6 +540,40 @@ border-radius:5px;
              </widget>
             </item>
             <item>
+             <widget class="SimulationControl" name="m_simulation_control_widget" native="true">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>298</width>
+                <height>175</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>298</width>
+                <height>175</height>
+               </size>
+              </property>
+              <property name="baseSize">
+               <size>
+                <width>100</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLabel{
+	
+	color: rgb(255, 255, 255);
+}</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <spacer name="verticalSpacer">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
@@ -554,26 +588,6 @@ border-radius:5px;
                </size>
               </property>
              </spacer>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="m_data_widget">
-              <property name="styleSheet">
-               <string notr="true">background-color: rgb(255, 0, 0);</string>
-              </property>
-              <property name="text">
-               <string>Data Visualizetion</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="m_control_button">
-              <property name="styleSheet">
-               <string notr="true">background-color: rgb(255, 0, 0);</string>
-              </property>
-              <property name="text">
-               <string>SimControl</string>
-              </property>
-             </widget>
             </item>
            </layout>
           </item>
@@ -729,6 +743,7 @@ QLabel{
     <property name="title">
      <string>Tool</string>
     </property>
+    <addaction name="actionData_Visualization"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -770,6 +785,14 @@ QLabel{
     <string>Exit</string>
    </property>
   </action>
+  <action name="actionData_Visualization">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Data Visualization</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -777,6 +800,12 @@ QLabel{
    <class>GraphicsView</class>
    <extends>QGraphicsView</extends>
    <header>graphicsview.h</header>
+  </customwidget>
+  <customwidget>
+   <class>SimulationControl</class>
+   <extends>QWidget</extends>
+   <header>simulationcontrol.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>
