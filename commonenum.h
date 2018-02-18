@@ -19,7 +19,7 @@
 #endif
 ///////////////
 #ifndef TIME_UNIT
-    #define TIME_UNIT 0.0166 // refresh rate 1/60HZ
+    #define TIME_UNIT 1/60 // refresh rate 60HZ
 #endif
 ////////////////
 

@@ -13,20 +13,21 @@ static const double Pi = 3.14159265358979323846264338327950288419717;
 
 Vehicle::Vehicle(QGraphicsItem *parent):QGraphicsItem(parent),m_angle(0),m_speed(0),m_color(qrand()%256,qrand()%256,qrand()%256)
   ,m_point_index(0),m_on_action_state(false),m_step_count(0),m_driving_state(false),m_mode(VEHICLEMETHOD::SIGHTSEEING)
+  ,m_Is_deletable(false)
 {
-    m_internal_timer = new QTimer;
+    //m_internal_timer = new QTimer;
     m_sightseeing = new QGraphicsRectItem(QRectF(30,5,GAPACCAPANCE,10),this);
     m_sightseeing->setOpacity(0);
     this->setTransformOriginPoint(10,5);
     this->setFlag(QGraphicsItem::ItemIsMovable);
     this->setCacheMode(QGraphicsItem::ItemCoordinateCache);
-    this->connect(m_internal_timer,SIGNAL(timeout()),this,SLOT(forward()));
+    //this->connect(m_internal_timer,SIGNAL(timeout()),this,SLOT(forward()));
 }
 
 Vehicle::~Vehicle()
 {
     delete m_sightseeing;
-    delete m_internal_timer;
+    //delete m_internal_timer;
 }
 
 QRectF Vehicle::boundingRect() const
@@ -166,73 +167,26 @@ void Vehicle::advance(int phase)
     }else{
         return;
     }
-//    }
-    //qDebug()<<"Distance =" <<distance_to_other_vehicle (m_next);
-    //qDebug()<<"Size of list" << m_car_list->size ();
-    //qDebug()<<"Current Position"<<pos();
-//    if(distance_to_other_vehicle (m_next) <= 50 && distance_to_other_vehicle (m_next) != -1){
-//        decelerate ();
-//    }
-//    if(distance_to_other_vehicle (m_next) >= 100 && distance_to_other_vehicle (m_next) != -1){
-//        accerlerate ();
-//    }
-//    if(is_no_car_infront ()){
-//        accerlerate ();
-//    }
-    //With Traffic
-//    if(m_traffic_widget->get_current_state () == m_traffic_widget->get_red () || m_traffic_widget->get_current_state () == m_traffic_widget->get_red_yellow ()){
-//        if(is_in_stop_point ()){
-//            m_driving_state = false;
-//            stop_advance ();
-//            }
-//        if(distance_to_other_vehicle (getCollding()) <= 25 && distance_to_other_vehicle (getCollding()) != -1){
-//            m_driving_state = false;
-//            stop_advance ();
-//            }
-//        }
-//     if(m_traffic_widget->get_current_state () == m_traffic_widget->get_green () || m_traffic_widget->get_current_state () == m_traffic_widget->get_green_yellow ()){
-//         if(distance_to_other_vehicle (getCollding()) <= 25 && distance_to_other_vehicle (getCollding()) != -1){
-//             m_driving_state = false;
-//             stop_advance ();
-//             }
-//         if(distance_to_other_vehicle (getCollding()) > 25 &&  m_driving_state == false ){
-//            m_driving_state = true;
-//            accerlerate ();
-//            }
-//    }
-     // No Traffic
-//     if(distance_to_other_vehicle (m_next) <= 25 && distance_to_other_vehicle (m_next) != -1){
-//         m_driving_state = false;
-//         stop_advance ();
-//         }
-//     if(distance_to_other_vehicle (m_next) <= 25 && distance_to_other_vehicle (m_next) != -1){
-//         m_driving_state = false;
-//         stop_advance ();
-//         }
-//     if(distance_to_other_vehicle (m_next) > 25 &&  m_driving_state == false ){
-//        m_driving_state = true;
-//        accerlerate ();
-//        }
-    //No traffic
-//    if(!ifAllowed()){
-//        m_driving_state = false;
-//        stop_advance();
-//    }
     if(this->is_in_stop_point()){
-        if(!ifAllowed()){
-            stop_advance();
+        if(isContainedSignal()){
+            if(!ifAllowed()){
+                stop_advance();
+                return;
+            }
         }
     }
     if(m_mode == VEHICLEMETHOD::SIGHTSEEING){
         if(hasInfront()){
             stop_advance();
+            return;
         }
     }
     QLineF line(pos(),m_destination);
-    //qDebug()<<line.length ();
-    if(int(line.length()) <= 1){
+    //qDebug()<<"Length"<<line.length();
+    if(int(line.length()) <= 1.0){
         m_point_index++;
         if(m_point_index >= m_path_to_follow.size()){
+            m_Is_deletable = true;
             return;
         }
         m_destination = m_path_to_follow[m_point_index];
@@ -242,9 +196,6 @@ void Vehicle::advance(int phase)
     double dy = m_speed*qSin(qDegreesToRadians(theta));
     double dx = m_speed*qCos(qDegreesToRadians(theta));
     setPos(x()+dx,y()+dy);
-    //qDebug()<<"Speed of"<<m_car_list->indexOf (this)<<" "<<m_speed;
-    //qDebug()<<m_order_in_list;
-    //qDebug()<<"Current Index"<<m_path_to_follow[m_point_index];
 }
 
 void Vehicle::forward()
@@ -269,11 +220,12 @@ void Vehicle::forward()
         }
     }
     QLineF line(pos(),m_destination);
-    if(int(line.length()) <= 1){
-        m_point_index++;
+    //qDebug()<<"Length"<<line.length();
+    if(int(line.length()) <= 1.0){
         if(m_point_index >= m_path_to_follow.size()){
             return;
         }
+        m_point_index++;
         m_destination = m_path_to_follow[m_point_index];
         rotate_to_point(m_destination);
     }
@@ -281,7 +233,11 @@ void Vehicle::forward()
     double dy = m_speed*qSin(qDegreesToRadians(theta));
     double dx = m_speed*qCos(qDegreesToRadians(theta));
     setPos(x()+dx,y()+dy);
+
 //    setPos(x()+m_speed*qSin(qDegreesToRadians(rotation())),y()+m_speed*qCos(qDegreesToRadians(rotation())));
+
+    //qDebug()<<"Point Size"<<m_path_to_follow.size();
+    //qDebug()<<"Point Index"<<m_point_index;
 }
 Vehicle *Vehicle::getCollding()
 {
@@ -314,6 +270,11 @@ void Vehicle::setMode(const VEHICLEMETHOD &mode)
     m_mode = mode;
 }
 
+bool Vehicle::isDeletable() const
+{
+    return m_Is_deletable;
+}
+
 Direction Vehicle::getDir() const
 {
     return m_dir;
@@ -334,19 +295,19 @@ void Vehicle::turnOffSightSeeing()
     m_sightseeing->setOpacity(0.0);
 }
 
-void Vehicle::turnOnEngine()
-{
-    if(m_internal_timer->isActive()){
-        return;
-    }
-    m_internal_timer->start(TIME_UNIT);
-    m_on_action_state = true;
-}
+//void Vehicle::turnOnEngine()
+//{
+//    if(m_internal_timer->isActive()){
+//        return;
+//    }
+//    m_internal_timer->start(TIME_UNIT);
+//    m_on_action_state = true;
+//}
 
-void Vehicle::turnOffEngine()
-{
-    m_internal_timer->stop();
-}
+//void Vehicle::turnOffEngine()
+//{
+//    m_internal_timer->stop();
+//}
 
 bool Vehicle::isContainedSignal() const
 {

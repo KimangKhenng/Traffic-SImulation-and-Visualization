@@ -3,7 +3,7 @@
 
 GraphicsView::GraphicsView(QWidget *parent):QGraphicsView(parent)
 {
-    setRenderHint(QPainter::Antialiasing);
+    setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     setCacheMode(QGraphicsView::CacheBackground);
     //setDragMode(QGraphicsView::ScrollHandDrag);
 }

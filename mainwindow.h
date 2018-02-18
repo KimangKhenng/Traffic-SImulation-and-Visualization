@@ -6,7 +6,6 @@
 #include <QtWidgets>
 #include <QGraphicsSvgItem>
 #include <QGLWidget>
-#include <thread>
 #include "commonenum.h"
 #include "vehicle.h"
 #include "road.h"
@@ -30,9 +29,9 @@ public:
 //    virtual void resizeEvent(QResizeEvent *event);
     virtual void keyPressEvent (QKeyEvent *event);
     void set_up_random();
+    void set_up();
     void turnOnSimulationState();
     void turnOffSimulationState();
-    void trunSimControlCheckOff();
     GENMETHOD getCurrentMethod();
     VEHICLEMETHOD getCurrentVehicleMethod();
     ~MainWindow();
@@ -51,7 +50,6 @@ private slots:
     void on_reset_clicked();
     void on_pause_clicked();
     void on_stop_clicked();
-    void set_up();
     void set_up_demo(); 
     void on_m_road_check_button_toggled(bool checked);
     void on_m_detector_button_clicked(bool checked);
@@ -64,6 +62,10 @@ private slots:
     void on_m_no_turn_clicked();
     void on_m_go_though_clicked(bool checked);
     void on_actionData_Visualization_toggled(bool arg1);
+    void on_m_drop_in_clicked();
+
+    void on_actionPNG_triggered();
+
 private:
     void changeVehicleMode(const VEHICLEMETHOD &mode);
     Ui::MainWindow *ui;

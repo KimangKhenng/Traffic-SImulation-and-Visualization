@@ -7,13 +7,14 @@ MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent),ui(new Ui::MainWind
 {
         ui->setupUi(this);
         setWindowTitle ("Intersection Road Simulation and Visulization");
+        setWindowIcon(QIcon(":/icon/Image/Logo-AI.png"));
         set_up ();
         ui->stackedWidget->setCurrentIndex(0);
         m_machine_state = new QTimer();
         this->connect (m_machine_state,SIGNAL(timeout()),this,SLOT(check_state()));
-        //QObject::connect(m_machine_state,SIGNAL(timeout()),m_scene,SLOT(advance()));
+        QObject::connect(m_machine_state,SIGNAL(timeout()),m_scene,SLOT(advance()));
         m_machine_state->start(TIME_UNIT);
-        srand(time(NULL));
+        qsrand(static_cast<uint>(QTime(0,0,0).secsTo(QTime::currentTime())));
 }
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
@@ -69,47 +70,48 @@ void MainWindow::check_state()
     /// \brief items
     ///Getting Item in Scene and Cast to Vehicles
     ////////////////
-    QList<QGraphicsItem *> items = m_scene->items();
-    QList<Vehicle *> car;
-    QList<TrafficDetector *> detector;
-    for(int i = 0 ; i < items.size() ; ++i){
-        Vehicle *v = dynamic_cast<Vehicle *>(items.at(i));
-        TrafficDetector *d = dynamic_cast<TrafficDetector *>(items.at(i));
-        if(v){
-            car.append(v);
-        }
-        if(d){
-            detector.append(d);
-        }
-    }
+    //QList<QGraphicsItem *> items = m_scene->items();
+    QList<Vehicle *> car = m_scene->getVehicle();
+    QList<TrafficDetector *> detector = m_scene->getDetector();
+//    for(int i = 0 ; i < items.size() ; ++i){
+//        Vehicle *v = dynamic_cast<Vehicle *>(items.at(i));
+//        TrafficDetector *d = dynamic_cast<TrafficDetector *>(items.at(i));
+//        if(v){
+//            car.append(v);
+//        }
+//        if(d){
+//            detector.append(d);
+//        }
+//    }
     //qDebug()<<car.size();
     for(int i = 0 ; i<car.size() ; ++i){
         if(m_simulate_state){
-            //car.at(i)->setActionOn();
-            car.at(i)->turnOnEngine();
+            car.at(i)->setActionOn();
+            //car.at(i)->turnOnEngine();
         }else{
-            //car.at(i)->setActionOff();
-            car.at(i)->turnOffEngine();
+            car.at(i)->setActionOff();
+            //car.at(i)->turnOffEngine();
         }
         if(this->m_sightseeing){
             car.at(i)->turnOnSightSeeing();
         }else{
             car.at(i)->turnOffSightSeeing();
         }
-        if(car.at(i)->get_current_index() >= 99){
+        if(car.at(i)->isDeletable()){
             //m_scene->removeItem(car.at(i));
             delete car.at(i);
         }
     }
-    for(int i = 0 ; i < detector.size() ; ++i){
-        if(m_simulate_state){
-            //car.at(i)->setActionOn();
-            detector.at(i)->startEngine();
-        }else{
-            //car.at(i)->setActionOff();
-            detector.at(i)->stopEngine();
-        }
-    }
+//    for(int i = 0 ; i < detector.size() ; ++i){
+//        if(m_simulate_state){
+//            //car.at(i)->setActionOn();
+//            //detector.at(i)->startEngine();
+//        }else{
+//            //car.at(i)->setActionOff();
+//            //detector.at(i)->stopEngine();
+//        }
+//    }
+    //qDebug()<<"Number"<<m_scene->getVehicle().length();
 }
 void MainWindow::on_actionExit_triggered()
 {
@@ -141,8 +143,11 @@ void MainWindow::on_exit_clicked()
 void MainWindow::on_reset_clicked()
 {
 //    m_car_list_1->clear ();
-    m_scene->clear();
     ui->m_simulation_control_widget->generator()->stopGenerator();
+    this->turnOffSimulationState();
+    for(int i = 0 ; i < m_scene->getVehicle().length() ; i++){
+        delete m_scene->getVehicle().at(i);
+    }
 }
 
 void MainWindow::on_pause_clicked()
@@ -174,10 +179,10 @@ void MainWindow::set_up()
     m_scene->addItem (m_picture);
     m_scene->addItem (m_terrain);
     m_scene->addItem (m_path);
-    m_scene->addText ("1",QFont("Century",18))->setPos (450,180);
-    m_scene->addText ("2",QFont("Century",18))->setPos (150,180);
-    m_scene->addText ("3",QFont("Century",18))->setPos (180,380);
-    m_scene->addText ("4",QFont("Century",18))->setPos (400,420);
+    //m_scene->addText ("1",QFont("Century",18))->setPos (450,180);
+    //m_scene->addText ("2",QFont("Century",18))->setPos (150,180);
+    //m_scene->addText ("3",QFont("Century",18))->setPos (180,380);
+    //m_scene->addText ("4",QFont("Century",18))->setPos (400,420);
     //Add path for vehicle
     m_scene->setSceneRect(0,0,800,600);
     //Add traffic
@@ -230,7 +235,9 @@ void MainWindow::set_up()
 //    m_data_control->setPos (500,400);
     //AddSecen
     ui->graphicsView->setScene(m_scene);
+    ui->graphicsView->setResizeAnchor(QGraphicsView::AnchorViewCenter);
     ui->graphicsView->setViewport(new QGLWidget(QGLFormat(QGL::SampleBuffers)));
+    ui->graphicsView->setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
 //    ui->graphicsView->Initializer();
     //ui->m_simulation_control_widget = new SimulationControl(this);
     ui->m_simulation_control_widget->initialize(this);
@@ -363,4 +370,29 @@ void MainWindow::on_actionData_Visualization_toggled(bool arg1)
     }else{
         m_data_widget->hide();
     }
+}
+
+void MainWindow::on_m_drop_in_clicked()
+{
+//    m_scene->addItem(VehiclesGenerator::getRightTurningVehicle(region::REGION_E_W,VEHICLEMETHOD::SIGHTSEEING));
+//    m_scene->getVehicle().at(0)->turnOnEngine();
+//    this->turnOnSimulationState();
+}
+
+void MainWindow::on_actionPNG_triggered()
+{
+    QString fileName = QFileDialog::getSaveFileName(this,
+           tr("Export PNG file"), "",
+           tr("Portable Network Graphics (*.png);;All Files (*)"));
+    if (fileName.isEmpty())
+            return;
+        else {
+            QPixmap pixmap = QWidget::grab(ui->graphicsView->viewport()->rect());
+            QPainter printer(&pixmap);
+            printer.setRenderHint(QPainter::Antialiasing);
+            ui->graphicsView->render(&printer,pixmap.rect(),ui->graphicsView->viewport()->rect(),Qt::KeepAspectRatio);
+            printer.end();
+            pixmap.save(fileName);
+        }
+
 }

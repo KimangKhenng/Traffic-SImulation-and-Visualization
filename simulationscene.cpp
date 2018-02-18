@@ -31,3 +31,27 @@ int SimulationScene::getNumber(region x)
     }
     return size;
 }
+
+QList<Vehicle *> SimulationScene::getVehicle()
+{
+    QList<QGraphicsItem *> v = this->items();
+    QList<Vehicle *> p;
+    for(int i = 0 ; i < v.size() ; ++i){
+        if(dynamic_cast<Vehicle *>(v.at(i))){
+            p.append(dynamic_cast<Vehicle *>(v.at(i)));
+        }
+    }
+    return p;
+}
+
+QList<TrafficDetector *> SimulationScene::getDetector()
+{
+    QList<QGraphicsItem *> v = this->items();
+    QList<TrafficDetector *> d;
+    for(int i = 0 ; i < v.size() ; ++i){
+        if(dynamic_cast<TrafficDetector *>(v.at(i))){
+            d.append(dynamic_cast<TrafficDetector *>(v.at(i)));
+        }
+    }
+    return d;
+}

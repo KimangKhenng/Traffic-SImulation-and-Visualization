@@ -9,4 +9,7 @@
         <file>Image/road-path.svg</file>
         <file>Image/Loading.png</file>
     </qresource>
+    <qresource prefix="/icon">
+        <file>Image/Logo-AI.png</file>
+    </qresource>
 </RCC>

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>898</width>
-    <height>656</height>
+    <height>663</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -137,6 +137,47 @@ QPushButton:hover{
             <property name="rightMargin">
              <number>5</number>
             </property>
+            <item>
+             <spacer name="verticalSpacer_4">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Expanding</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>200</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QFrame" name="icon">
+              <property name="minimumSize">
+               <size>
+                <width>160</width>
+                <height>160</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>160</width>
+                <height>160</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">image: url(:/icon/Image/Logo-AI.png);</string>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Raised</enum>
+              </property>
+             </widget>
+            </item>
             <item>
              <spacer name="verticalSpacer_2">
               <property name="orientation">
@@ -367,9 +408,12 @@ border-radius:5px;
              <number>5</number>
             </property>
             <item>
-             <spacer name="horizontalSpacer">
+             <spacer name="horizontalSpacer_2">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Minimum</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -380,12 +424,9 @@ border-radius:5px;
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="reset">
+             <widget class="QPushButton" name="pause">
               <property name="text">
-               <string>reset</string>
-              </property>
-              <property name="flat">
-               <bool>false</bool>
+               <string>Pause</string>
               </property>
              </widget>
             </item>
@@ -406,18 +447,34 @@ border-radius:5px;
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pause">
-              <property name="text">
-               <string>Pause</string>
-              </property>
-             </widget>
-            </item>
-            <item>
              <widget class="QPushButton" name="stop">
               <property name="text">
                <string>Stop</string>
               </property>
              </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="reset">
+              <property name="text">
+               <string>reset</string>
+              </property>
+              <property name="flat">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
             </item>
             <item>
              <widget class="QPushButton" name="back">
@@ -658,8 +715,8 @@ QLabel{
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>65</width>
-             <height>28</height>
+             <width>100</width>
+             <height>30</height>
             </rect>
            </property>
            <property name="styleSheet">
@@ -727,11 +784,17 @@ QLabel{
     <property name="title">
      <string>File</string>
     </property>
+    <widget class="QMenu" name="menuExport">
+     <property name="title">
+      <string>Export</string>
+     </property>
+     <addaction name="actionPNG"/>
+    </widget>
     <addaction name="actionNew"/>
     <addaction name="actionOpen"/>
     <addaction name="actionClose"/>
     <addaction name="actionSave"/>
-    <addaction name="actionSave_As"/>
+    <addaction name="menuExport"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
@@ -775,11 +838,6 @@ QLabel{
     <string>Save</string>
    </property>
   </action>
-  <action name="actionSave_As">
-   <property name="text">
-    <string>Save As</string>
-   </property>
-  </action>
   <action name="actionExit">
    <property name="text">
     <string>Exit</string>
@@ -791,6 +849,11 @@ QLabel{
    </property>
    <property name="text">
     <string>Data Visualization</string>
+   </property>
+  </action>
+  <action name="actionPNG">
+   <property name="text">
+    <string>PNG</string>
    </property>
   </action>
  </widget>

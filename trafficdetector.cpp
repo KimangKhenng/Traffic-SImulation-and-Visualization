@@ -25,8 +25,8 @@ TrafficDetector::TrafficDetector(float length, QGraphicsItem *parent):QGraphicsI
     setTransformOriginPoint(QPointF(15/2,static_cast<qreal>(m_detector_length)/2));
     m_timer = new QElapsedTimer;
     m_timer->start();
-    m_counter = new QTimer();
-    this->connect(m_counter,SIGNAL(timeout()),this,SLOT(forward()));
+    //m_counter = new QTimer();
+    //this->connect(m_counter,SIGNAL(timeout()),this,SLOT(forward()));
 }
 
 TrafficDetector::~TrafficDetector()
@@ -36,19 +36,26 @@ TrafficDetector::~TrafficDetector()
 
 void TrafficDetector::advance(int phase)
 {
-    Q_UNUSED(phase)
-    QList<QGraphicsItem *> collding_vehicles = this->collidingItems();
-    //qDebug()<<"Size "<<collding_vehicles.size();
-    for(int i = 0 ; i < collding_vehicles.size() ; ++i){
-        Vehicle *collding = dynamic_cast<Vehicle *>(collding_vehicles.at(i));
-        if(collding){
-            m_is_active = true;
-        }else{
-            m_timer->restart();
-            //qDebug()<<"Hello";
-            m_is_active = false;
-        }
+    Q_UNUSED(phase);
+    if(this->getNumbersOfVehicles() > 0){
+        m_is_active = true;
+    }else{
+        m_timer->restart();
+        //qDebug()<<"Hello";
+        m_is_active = false;
     }
+//    QList<QGraphicsItem *> collding_vehicles = this->collidingItems();
+//    //qDebug()<<"Size "<<collding_vehicles.size();
+//    for(int i = 0 ; i < collding_vehicles.size() ; ++i){
+//        Vehicle *collding = dynamic_cast<Vehicle *>(collding_vehicles.at(i));
+//        if(collding){
+//            m_is_active = true;
+//        }else{
+//            m_timer->restart();
+//            //qDebug()<<"Hello";
+//            m_is_active = false;
+//        }
+//    }
 //    qDebug()<<m_is_active;
 //    qDebug()<<"Number "<<getNumbersOfVehicles();
 //    qDebug()<<"Flow "<<getFlow();
@@ -153,14 +160,14 @@ void TrafficDetector::turnOnDisplay()
     setOpacity(1.0);
 }
 
-void TrafficDetector::startEngine()
-{
-    if(m_counter->isActive())
-        return;
-    m_counter->start(10);
-}
+//void TrafficDetector::startEngine()
+//{
+//    if(m_counter->isActive())
+//        return;
+//    m_counter->start(10);
+//}
 
-void TrafficDetector::stopEngine()
-{
-    m_counter->stop();
-}
+//void TrafficDetector::stopEngine()
+//{
+//    m_counter->stop();
+//}

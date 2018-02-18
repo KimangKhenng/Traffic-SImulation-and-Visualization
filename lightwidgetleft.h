@@ -7,7 +7,7 @@ class LightWidgetLeft : public LightWidget
 {
 public:
     LightWidgetLeft(const QColor &color,QGraphicsItem *parent = 0);
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
 };
 
 #endif // LIGHTWIDGETLEFT_H

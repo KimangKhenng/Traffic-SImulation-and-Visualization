@@ -8,9 +8,9 @@ TrafficController::TrafficController(QGraphicsItemGroup *parent):QGraphicsItemGr
     for(int i = 0 ; i < 12 ; ++i){
         m_detector->append(new TrafficDetector(LENGTH));
     }
-    QPointF p1(364,365);
-    QPointF p2(364-15,365);
-    QPointF p3(364-30,365);
+    QPointF p1(364,380);
+    QPointF p2(364-15,380);
+    QPointF p3(364-30,380);
     // Detector 12,11,10
     QGraphicsItemGroup *group1 = new QGraphicsItemGroup();
     for(int i = 0 ; i < 3 ; ++i){
@@ -30,7 +30,7 @@ TrafficController::TrafficController(QGraphicsItemGroup *parent):QGraphicsItemGr
     m_detector->at(4)->setPos(p2);
     m_detector->at(5)->setPos(p3);
     group2->setRotation(90);
-    group2->moveBy(629,-30);
+    group2->moveBy(628,-30);
     // Detector 6,5,4
     QGraphicsItemGroup *group3 = new QGraphicsItemGroup();
     for(int i = 6 ; i < 9 ; ++i){
@@ -41,7 +41,7 @@ TrafficController::TrafficController(QGraphicsItemGroup *parent):QGraphicsItemGr
     m_detector->at(7)->setPos(p2);
     m_detector->at(8)->setPos(p3);
     group3->setRotation(90);
-    group3->moveBy(840,-80);
+    group3->moveBy(870,-80);
     // Detector 3,2,1
     QGraphicsItemGroup *group4 = new QGraphicsItemGroup();
     for(int i = 9 ; i < 12 ; ++i){
@@ -51,7 +51,7 @@ TrafficController::TrafficController(QGraphicsItemGroup *parent):QGraphicsItemGr
     m_detector->at(9)->setPos(p1);
     m_detector->at(10)->setPos(p2);
     m_detector->at(11)->setPos(p3);
-    group4->moveBy(-49,-213);
+    group4->moveBy(-49,-243);
 }
 TrafficLight *TrafficController::getTrafficLight(region r)
 {

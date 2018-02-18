@@ -26,8 +26,8 @@ public:
     float getHeadWay() const;
     void turnOffDisplay();
     void turnOnDisplay();
-    void startEngine();
-    void stopEngine();
+    //void startEngine();
+    //void stopEngine();
     QElapsedTimer *getTimer() const;
 public slots:
     void advance(int phase) Q_DECL_OVERRIDE;
@@ -39,7 +39,7 @@ private:
     float m_density;
     float m_saturation_flow_rate;
     QElapsedTimer *m_timer;
-    QTimer *m_counter;
+    //QTimer *m_counter;
     bool m_is_active;
     QVector<float> m_flow_data;
     QVector<int> m_number_data;

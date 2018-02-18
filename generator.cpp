@@ -5,7 +5,7 @@ Generator::Generator(SimulationScene *scene):m_scene(scene),m_mode(VEHICLEMETHOD
     for(int i = 0 ; i < 4 ; ++i){
         m_timer.append( new QTimer());
     }
-    qsrand(QTime(0,0,0).secsTo(QTime::currentTime()));
+    //qsrand(static_cast<uint>(QTime(0,0,0).secsTo(QTime::currentTime())));
 }
 
 Generator::Generator():m_number_N_S(0),m_number_S_N(0),
@@ -15,7 +15,7 @@ Generator::Generator():m_number_N_S(0),m_number_S_N(0),
     for(int i = 0 ; i < 4 ; ++i){
         m_timer.append( new QTimer());
     }
-    qsrand(QTime(0,0,0).secsTo(QTime::currentTime()));
+    //qsrand(static_cast<uint>(QTime(0,0,0).secsTo(QTime::currentTime())));
 }
 
 void Generator::setMethod(GENMETHOD x)
