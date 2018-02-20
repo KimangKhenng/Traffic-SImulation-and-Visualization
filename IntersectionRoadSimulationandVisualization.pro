@@ -6,7 +6,10 @@
 
 QT       += core gui svg widgets printsupport sql opengl
 CONFIG   += console
-LIBS     +=  -lfreeglut -lopengl32 -lglu32
+win32{
+LIBS +=  -lfreeglut -lopengl32 -lglu32
+}
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = IntersectionRoadSimulationandVisualization
