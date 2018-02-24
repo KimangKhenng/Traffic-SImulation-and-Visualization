@@ -15,6 +15,12 @@ MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent),ui(new Ui::MainWind
         QObject::connect(m_machine_state,SIGNAL(timeout()),m_scene,SLOT(advance()));
         m_machine_state->start(TIME_UNIT);
         qsrand(static_cast<uint>(QTime(0,0,0).secsTo(QTime::currentTime())));
+        ui->m_visualize_frame->hide();
+        ui->m_visualzie_widget->setController(m_controller);
+        ui->m_visualzie_widget->setEtimer(m_controller->getTimer());
+        ui->m_visualzie_widget->setMainWindows(this);
+        ui->m_visualzie_widget->initialize();
+        qDebug()<<"Passed";
 }
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
@@ -143,11 +149,13 @@ void MainWindow::on_exit_clicked()
 void MainWindow::on_reset_clicked()
 {
 //    m_car_list_1->clear ();
-    ui->m_simulation_control_widget->generator()->stopGenerator();
-    this->turnOffSimulationState();
-    for(int i = 0 ; i < m_scene->getVehicle().length() ; i++){
-        delete m_scene->getVehicle().at(i);
-    }
+//    ui->m_simulation_control_widget->generator()->stopGenerator();
+//    this->turnOffSimulationState();
+//    for(int i = 0 ; i < m_scene->getVehicle().length() ; i++){
+//        delete m_scene->getVehicle().at(i);
+//    }
+    ui->tool_panel->setEnabled(false);
+    ui->tool_panel->update();
 }
 
 void MainWindow::on_pause_clicked()
@@ -395,4 +403,26 @@ void MainWindow::on_actionPNG_triggered()
             pixmap.save(fileName);
         }
 
+}
+
+
+
+
+
+void MainWindow::on_m_tool_panel_check_box_clicked(bool checked)
+{
+    if(checked){
+        ui->m_tool_panel_frame->show();
+    }else{
+        ui->m_tool_panel_frame->hide();
+    }
+}
+
+void MainWindow::on_m_visualize_panel_check_box_clicked(bool checked)
+{
+    if(checked){
+        ui->m_visualize_frame->show();
+    }else{
+        ui->m_visualize_frame->hide();
+    }
 }

@@ -318,10 +318,11 @@ border-radius:5px;
 }
  QPushButton:pressed {
  background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #dadbde, stop: 1 #f6f7fa);
+border-radius:1px;
   }
 QPushButton:hover{
 background-color: rgb(19, 57, 83);
-font: italic 10pt &quot;Century Gothic&quot;;
+border-radius:10px;
 }
 QPushButton#play{
 background-color: rgb(46, 204, 113);
@@ -390,7 +391,7 @@ border-radius:5px;
             </property>
            </widget>
           </item>
-          <item row="0" column="0" colspan="2">
+          <item row="0" column="0" colspan="3">
            <layout class="QHBoxLayout" name="control_panel">
             <property name="spacing">
              <number>20</number>
@@ -426,7 +427,11 @@ border-radius:5px;
             <item>
              <widget class="QPushButton" name="pause">
               <property name="text">
-               <string>Pause</string>
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="resource.qrc">
+                <normaloff>:/icon/Image/pause-icon.png</normaloff>:/icon/Image/pause-icon.png</iconset>
               </property>
              </widget>
             </item>
@@ -442,24 +447,61 @@ border-radius:5px;
                </font>
               </property>
               <property name="text">
-               <string>Simulate</string>
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="resource.qrc">
+                <normaloff>:/icon/Image/play-icon.png</normaloff>:/icon/Image/play-icon.png</iconset>
               </property>
              </widget>
             </item>
             <item>
              <widget class="QPushButton" name="stop">
               <property name="text">
-               <string>Stop</string>
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="resource.qrc">
+                <normaloff>:/icon/Image/stop-icon.png</normaloff>:/icon/Image/stop-icon.png</iconset>
               </property>
              </widget>
             </item>
             <item>
              <widget class="QPushButton" name="reset">
               <property name="text">
-               <string>reset</string>
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="resource.qrc">
+                <normaloff>:/icon/Image/reset-icon.png</normaloff>:/icon/Image/reset-icon.png</iconset>
               </property>
               <property name="flat">
                <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="m_tool_panel_check_box">
+              <property name="text">
+               <string>Tool</string>
+              </property>
+              <property name="icon">
+               <iconset resource="resource.qrc">
+                <normaloff>:/icon/Image/tool-icon.png</normaloff>:/icon/Image/tool-icon.png</iconset>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="m_visualize_panel_check_box">
+              <property name="text">
+               <string>Visualize</string>
+              </property>
+              <property name="icon">
+               <iconset resource="resource.qrc">
+                <normaloff>:/icon/Image/visualize-icon.png</normaloff>:/icon/Image/visualize-icon.png</iconset>
               </property>
              </widget>
             </item>
@@ -485,168 +527,256 @@ border-radius:5px;
             </item>
            </layout>
           </item>
+          <item row="1" column="2">
+           <widget class="QFrame" name="m_visualize_frame">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>300</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_9">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="VisualizePanel" name="m_visualzie_widget" native="true">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
           <item row="1" column="0">
-           <layout class="QVBoxLayout" name="tool_panel">
-            <property name="spacing">
-             <number>20</number>
+           <widget class="QFrame" name="m_tool_panel_frame">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
             </property>
-            <property name="sizeConstraint">
-             <enum>QLayout::SetDefaultConstraint</enum>
+            <property name="minimumSize">
+             <size>
+              <width>50</width>
+              <height>0</height>
+             </size>
             </property>
-            <property name="leftMargin">
-             <number>10</number>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
             </property>
-            <property name="rightMargin">
-             <number>10</number>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
             </property>
-            <item>
-             <widget class="QCheckBox" name="m_road_check_button">
-              <property name="text">
-               <string>Road</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="m_sightseeing_button">
-              <property name="text">
-               <string>Sightseeing</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="m_detector_button">
-              <property name="text">
-               <string>Detector</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="m_manul_control_button">
-              <property name="focusPolicy">
-               <enum>Qt::StrongFocus</enum>
-              </property>
-              <property name="text">
-               <string>Traffic Control</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="m_no_traffic">
-              <property name="focusPolicy">
-               <enum>Qt::StrongFocus</enum>
-              </property>
-              <property name="text">
-               <string>Traffic Signal</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="m_drop_in">
-              <property name="text">
-               <string>DropIn</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QRadioButton" name="m_3_lanes">
-              <property name="text">
-               <string>3 Lanes</string>
-              </property>
-              <property name="checked">
-               <bool>false</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QRadioButton" name="m_5_lanes">
-              <property name="text">
-               <string>5 lanes</string>
-              </property>
-              <property name="checked">
-               <bool>false</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QRadioButton" name="m_no_turn">
-              <property name="text">
-               <string>No turn</string>
-              </property>
-              <property name="checked">
-               <bool>false</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QRadioButton" name="m_go_though">
-              <property name="styleSheet">
-               <string notr="true">background-color: rgb(230, 126, 34);</string>
-              </property>
-              <property name="text">
-               <string>Go Through</string>
-              </property>
-              <property name="checkable">
-               <bool>true</bool>
-              </property>
-              <property name="checked">
-               <bool>true</bool>
-              </property>
-              <property name="autoExclusive">
-               <bool>false</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="SimulationControl" name="m_simulation_control_widget" native="true">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>298</width>
-                <height>175</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>298</width>
-                <height>175</height>
-               </size>
-              </property>
-              <property name="baseSize">
-               <size>
-                <width>100</width>
-                <height>20</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QLabel{
+            <layout class="QVBoxLayout" name="verticalLayout_10">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <layout class="QVBoxLayout" name="tool_panel">
+               <property name="spacing">
+                <number>20</number>
+               </property>
+               <property name="sizeConstraint">
+                <enum>QLayout::SetDefaultConstraint</enum>
+               </property>
+               <property name="leftMargin">
+                <number>10</number>
+               </property>
+               <property name="rightMargin">
+                <number>10</number>
+               </property>
+               <item>
+                <widget class="QCheckBox" name="m_road_check_button">
+                 <property name="text">
+                  <string>Road</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="m_sightseeing_button">
+                 <property name="text">
+                  <string>Sightseeing</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="m_detector_button">
+                 <property name="text">
+                  <string>Detector</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="m_manul_control_button">
+                 <property name="focusPolicy">
+                  <enum>Qt::StrongFocus</enum>
+                 </property>
+                 <property name="text">
+                  <string>Traffic Control</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="m_no_traffic">
+                 <property name="focusPolicy">
+                  <enum>Qt::StrongFocus</enum>
+                 </property>
+                 <property name="text">
+                  <string>Traffic Signal</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="m_drop_in">
+                 <property name="text">
+                  <string>DropIn</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QRadioButton" name="m_3_lanes">
+                 <property name="text">
+                  <string>3 Lanes</string>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QRadioButton" name="m_5_lanes">
+                 <property name="text">
+                  <string>5 lanes</string>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QRadioButton" name="m_no_turn">
+                 <property name="text">
+                  <string>No turn</string>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QRadioButton" name="m_go_though">
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(230, 126, 34);</string>
+                 </property>
+                 <property name="text">
+                  <string>Go Through</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                 <property name="autoExclusive">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="SimulationControl" name="m_simulation_control_widget" native="true">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>298</width>
+                   <height>175</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>298</width>
+                   <height>175</height>
+                  </size>
+                 </property>
+                 <property name="baseSize">
+                  <size>
+                   <width>100</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QLabel{
 	
 	color: rgb(255, 255, 255);
 }</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer name="verticalSpacer">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeType">
-               <enum>QSizePolicy::Expanding</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>40</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="verticalSpacer">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeType">
+                  <enum>QSizePolicy::Expanding</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
           </item>
          </layout>
         </item>
@@ -715,8 +845,8 @@ QLabel{
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>100</width>
-             <height>30</height>
+             <width>65</width>
+             <height>28</height>
             </rect>
            </property>
            <property name="styleSheet">
@@ -870,7 +1000,15 @@ QLabel{
    <header>simulationcontrol.h</header>
    <container>1</container>
   </customwidget>
+  <customwidget>
+   <class>VisualizePanel</class>
+   <extends>QWidget</extends>
+   <header>visualizepanel.h</header>
+   <container>1</container>
+  </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
  <connections/>
 </ui>

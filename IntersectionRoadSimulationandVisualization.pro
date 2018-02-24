@@ -31,7 +31,9 @@ SOURCES += main.cpp\
     lightwidgetleft.cpp \
     trafficcontroller.cpp \
     trafficdetector.cpp \
-    generator.cpp
+    generator.cpp \
+    toolpanel.cpp \
+    visualizepanel.cpp
 
 HEADERS  += mainwindow.h \
     graphicsview.h \
@@ -48,11 +50,15 @@ HEADERS  += mainwindow.h \
     lightwidgetleft.h \
     trafficcontroller.h \
     trafficdetector.h \
-    generator.h
+    generator.h \
+    toolpanel.h \
+    visualizepanel.h
 
 FORMS    += mainwindow.ui \
     datawidget.ui \
-    simulationcontrol.ui
+    simulationcontrol.ui \
+    toolpanel.ui \
+    visualizepanel.ui
 
 RESOURCES += \
     resource.qrc

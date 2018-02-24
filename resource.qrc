@@ -11,5 +11,12 @@
     </qresource>
     <qresource prefix="/icon">
         <file>Image/Logo-AI.png</file>
+        <file>Image/icon-more.png</file>
+        <file>Image/tool-icon.png</file>
+        <file>Image/play-icon.png</file>
+        <file>Image/reset-icon.png</file>
+        <file>Image/stop-icon.png</file>
+        <file>Image/pause-icon.png</file>
+        <file>Image/visualize-icon.png</file>
     </qresource>
 </RCC>
