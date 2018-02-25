@@ -52,20 +52,20 @@ VisualizePanel::VisualizePanel(QWidget *parent) :QWidget(parent),ui(new Ui::Visu
     //qDebug()<<"Hello";
 }
 
-void VisualizePanel::initialize()
-{
-    m_timer = new QList<QTimer *>();
-    for(int i = 0 ; i < 4 ; ++i){
-        m_timer->append(new QTimer());
-    }
-    this->connect(m_timer->at(0),SIGNAL(timeout()),this,SLOT(update_1()));
-    this->connect(m_timer->at(1),SIGNAL(timeout()),this,SLOT(update_2()));
-    this->connect(m_timer->at(2),SIGNAL(timeout()),this,SLOT(update_3()));
-    this->connect(m_timer->at(3),SIGNAL(timeout()),this,SLOT(update_4()));
-    for(int i = 0 ; i < 4 ; ++i){
-        m_timer->at(i)->start(10);
-    }
-}
+//void VisualizePanel::initialize()
+//{
+//    m_timer = new QList<QTimer *>();
+//    for(int i = 0 ; i < 4 ; ++i){
+//        m_timer->append(new QTimer());
+//    }
+//    this->connect(m_timer->at(0),SIGNAL(timeout()),this,SLOT(update_1()));
+//    this->connect(m_timer->at(1),SIGNAL(timeout()),this,SLOT(update_2()));
+//    this->connect(m_timer->at(2),SIGNAL(timeout()),this,SLOT(update_3()));
+//    this->connect(m_timer->at(3),SIGNAL(timeout()),this,SLOT(update_4()));
+//    for(int i = 0 ; i < 4 ; ++i){
+//        m_timer->at(i)->start(10);
+//    }
+//}
 
 
 
@@ -462,6 +462,14 @@ void VisualizePanel::update_4()
         return;
     }
     update_HEAD();
+}
+
+void VisualizePanel::update_all()
+{
+    update_1();
+    update_2();
+    update_3();
+    update_4();
 }
 void VisualizePanel::update_FLOW()
 {

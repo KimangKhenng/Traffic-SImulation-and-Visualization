@@ -26,12 +26,13 @@ public:
     float getHeadWay() const;
     void turnOffDisplay();
     void turnOnDisplay();
-    //void startEngine();
-    //void stopEngine();
+    void startEngine();
+    void stopEngine();
     QElapsedTimer *getTimer() const;
+    bool getIs_active() const;
 public slots:
     void advance(int phase) Q_DECL_OVERRIDE;
-    void forward();
+    //void forward();
 private:
     float m_detector_length;
     float m_flow;

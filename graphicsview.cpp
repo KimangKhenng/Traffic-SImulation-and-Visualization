@@ -14,16 +14,16 @@ void GraphicsView::wheelEvent(QWheelEvent *event)
     // Scale the view / do the zoom
 //    GraphicsView::wheelEvent(event);
     double scaleFactor = 1.15;
-    int level_of_zoom = 5;
-    if( m_max <120*level_of_zoom&&event->delta()>0){
-        m_min -= 120;
-        m_max += event->delta();
+    //int level_of_zoom = 5;
+    if( /*m_max <120*level_of_zoom&&*/event->delta()>0){
+        //m_min -= 120;
+        //m_max += event->delta();
         //setSceneRect(0,0,size().height()*scaleFactor,size().width()*scaleFactor);
         this->scale(scaleFactor, scaleFactor);
     }
-    if( m_min < 120*level_of_zoom&&event->delta()<0){
-        m_max -= 120;
-        m_min -= event->delta();
+    if(/* m_min < 120*level_of_zoom&&*/event->delta()<0){
+        //m_max -= 120;
+        //m_min -= event->delta();
         //setSceneRect(0,0,size().height()/scaleFactor,size().width()/scaleFactor);
         this->scale(1.0 / scaleFactor, 1.0 / scaleFactor);
     }

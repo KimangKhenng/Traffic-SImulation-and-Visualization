@@ -64,14 +64,14 @@ public:
     void setDir(const Direction &dir);
     void turnOnSightSeeing();
     void turnOffSightSeeing();
-    //void turnOnEngine();
-    //void turnOffEngine();
+    void turnOnEngine();
+    void turnOffEngine();
     bool isContainedSignal() const;
     void setMode(const VEHICLEMETHOD &mode);
     bool isDeletable() const;
 public slots:
     void advance(int phase) Q_DECL_OVERRIDE;
-    void forward();
+    //void forward();
 private:
     bool ifAllowed() const;
     Vehicle *getCollding();

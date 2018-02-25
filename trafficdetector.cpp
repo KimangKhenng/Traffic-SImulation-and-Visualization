@@ -26,7 +26,7 @@ TrafficDetector::TrafficDetector(float length, QGraphicsItem *parent):QGraphicsI
     m_timer = new QElapsedTimer;
     m_timer->start();
     //m_counter = new QTimer();
-    //this->connect(m_counter,SIGNAL(timeout()),this,SLOT(forward()));
+
 }
 
 TrafficDetector::~TrafficDetector()
@@ -65,27 +65,32 @@ void TrafficDetector::advance(int phase)
     update(boundingRect());
 }
 
-void TrafficDetector::forward()
-{
-    if(this->getNumbersOfVehicles() > 0){
-        m_is_active = true;
-    }else{
-        m_timer->restart();
-        //qDebug()<<"Hello";
-        m_is_active = false;
-    }
-//    //qDebug()<<"Size "<<collding_vehicles.size();
-//    for(int i = 0 ; i < collding_vehicles.size() ; ++i){
-//        Vehicle *collding = dynamic_cast<Vehicle *>(collding_vehicles.at(i));
-//        if(collding){
-//            m_is_active = true;
-//        }else{
-//            m_timer->restart();
-//            //qDebug()<<"Hello";
-//            m_is_active = false;
-//        }
+//void TrafficDetector::forward()
+//{
+//    if(this->getNumbersOfVehicles() > 0){
+//        m_is_active = true;
+//    }else{
+//        m_timer->restart();
+//        //qDebug()<<"Hello";
+//        m_is_active = false;
 //    }
-    update(boundingRect());
+////    //qDebug()<<"Size "<<collding_vehicles.size();
+////    for(int i = 0 ; i < collding_vehicles.size() ; ++i){
+////        Vehicle *collding = dynamic_cast<Vehicle *>(collding_vehicles.at(i));
+////        if(collding){
+////            m_is_active = true;
+////        }else{
+////            m_timer->restart();
+////            //qDebug()<<"Hello";
+////            m_is_active = false;
+////        }
+////    }
+//    update(boundingRect());
+//}
+
+bool TrafficDetector::getIs_active() const
+{
+    return m_is_active;
 }
 
 QElapsedTimer *TrafficDetector::getTimer() const
@@ -162,12 +167,18 @@ void TrafficDetector::turnOnDisplay()
 
 //void TrafficDetector::startEngine()
 //{
-//    if(m_counter->isActive())
+//    if(m_counter->isActive()){
 //        return;
-//    m_counter->start(10);
+//    }else{
+//        this->connect(m_counter,SIGNAL(timeout()),this,SLOT(forward()));
+//        m_counter->start(TIME_UNIT);
+//    }
+//    m_is_active = true;
 //}
 
 //void TrafficDetector::stopEngine()
 //{
-//    m_counter->stop();
+//    this->disconnect(m_counter,SIGNAL(timeout()),this,SLOT(forward()));
+//    this->m_counter->stop();
+//    m_is_active = false;
 //}

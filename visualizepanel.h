@@ -26,16 +26,21 @@ class VisualizePanel : public QWidget
 
 public:
     explicit VisualizePanel(QWidget *parent = 0);
-    void initialize();
+    //void initialize();
     void setEtimer(QList<QElapsedTimer *> *etimer);
     void setController(TrafficController *controller);
     void setMainWindows(MainWindow *w);
-    ~VisualizePanel();
-private slots:
     void update_1();
     void update_2();
     void update_3();
     void update_4();
+    void update_all();
+    ~VisualizePanel();
+//private slots:
+//    void update_1();
+//    void update_2();
+//    void update_3();
+//    void update_4();
 private:
     void setUpNumberWidget();
     void setUpFlowWidget();

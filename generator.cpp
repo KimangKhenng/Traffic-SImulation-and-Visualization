@@ -48,10 +48,10 @@ void Generator::stopGenerator()
 
 void Generator::startAutoGeneraion()
 {
-    int x = 2000;
-    int y = 3000;
-    int z = 3500;
-    int v = 2900;
+    int x = 3000;
+    int y = 4000;
+    int z = 4500;
+    int v = 3900;
     setTimer(x,y,z,v);
     QTimer *t1 = new QTimer();
     this->connect(t1,SIGNAL(timeout()),this,SLOT(makeEastWest()));

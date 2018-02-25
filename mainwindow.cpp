@@ -19,8 +19,8 @@ MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent),ui(new Ui::MainWind
         ui->m_visualzie_widget->setController(m_controller);
         ui->m_visualzie_widget->setEtimer(m_controller->getTimer());
         ui->m_visualzie_widget->setMainWindows(this);
-        ui->m_visualzie_widget->initialize();
-        qDebug()<<"Passed";
+        //ui->m_visualzie_widget->initialize();
+        //qDebug()<<"Passed";
 }
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
@@ -90,31 +90,32 @@ void MainWindow::check_state()
 //        }
 //    }
     //qDebug()<<car.size();
-    for(int i = 0 ; i<car.size() ; ++i){
+    for(int i = 0; i<car.size() ; ++i){
         if(m_simulate_state){
             car.at(i)->setActionOn();
             //car.at(i)->turnOnEngine();
+            if(this->m_sightseeing){
+                car.at(i)->turnOnSightSeeing();
+            }else{
+                car.at(i)->turnOffSightSeeing();
+            }
+            if(car.at(i)->isDeletable()){
+                //m_scene->removeItem(car.at(i));
+                delete car.at(i);
+            }
         }else{
             car.at(i)->setActionOff();
             //car.at(i)->turnOffEngine();
         }
-        if(this->m_sightseeing){
-            car.at(i)->turnOnSightSeeing();
-        }else{
-            car.at(i)->turnOffSightSeeing();
-        }
-        if(car.at(i)->isDeletable()){
-            //m_scene->removeItem(car.at(i));
-            delete car.at(i);
-        }
     }
+    ui->m_visualzie_widget->update_all();
 //    for(int i = 0 ; i < detector.size() ; ++i){
 //        if(m_simulate_state){
 //            //car.at(i)->setActionOn();
-//            //detector.at(i)->startEngine();
+//            detector.at(i)->startEngine();
 //        }else{
 //            //car.at(i)->setActionOff();
-//            //detector.at(i)->stopEngine();
+//            detector.at(i)->stopEngine();
 //        }
 //    }
     //qDebug()<<"Number"<<m_scene->getVehicle().length();
