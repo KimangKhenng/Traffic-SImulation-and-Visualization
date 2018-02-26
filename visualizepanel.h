@@ -30,10 +30,6 @@ public:
     void setEtimer(QList<QElapsedTimer *> *etimer);
     void setController(TrafficController *controller);
     void setMainWindows(MainWindow *w);
-    void update_1();
-    void update_2();
-    void update_3();
-    void update_4();
     void update_all();
     ~VisualizePanel();
 //private slots:
@@ -42,6 +38,10 @@ public:
 //    void update_3();
 //    void update_4();
 private:
+    void update_1();
+    void update_2();
+    void update_3();
+    void update_4();
     void setUpNumberWidget();
     void setUpFlowWidget();
     void setUpDensityWidget();

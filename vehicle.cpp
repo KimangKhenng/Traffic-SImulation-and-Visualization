@@ -11,7 +11,7 @@
 static const double Pi = 3.14159265358979323846264338327950288419717;
 //static double TwoPi = 2.0*Pi;
 
-Vehicle::Vehicle(QGraphicsItem *parent):QGraphicsItem(parent),m_angle(0),m_speed(0),m_color(qrand()%256,qrand()%256,qrand()%256)
+Vehicle::Vehicle(QGraphicsItem *parent):QGraphicsPixmapItem(parent),m_angle(0),m_speed(0)/*,m_color(qrand()%256,qrand()%256,qrand()%256)*/
   ,m_point_index(0),m_on_action_state(false),m_step_count(0),m_driving_state(false),m_mode(VEHICLEMETHOD::SIGHTSEEING)
   ,m_Is_deletable(false)
 {
@@ -20,7 +20,11 @@ Vehicle::Vehicle(QGraphicsItem *parent):QGraphicsItem(parent),m_angle(0),m_speed
     m_sightseeing->setOpacity(0);
     this->setTransformOriginPoint(10,5);
     this->setFlag(QGraphicsItem::ItemIsMovable);
-    this->setCacheMode(QGraphicsItem::ItemCoordinateCache);
+    //this->setCacheMode(QGraphicsItem::ItemCoordinateCache);
+    this->setOffset(10,5);
+    this->setPixmap(generateImage().scaled(25,13,Qt::KeepAspectRatio,
+                                           Qt::TransformationMode::SmoothTransformation));
+
 }
 
 Vehicle::~Vehicle()
@@ -41,14 +45,14 @@ QPainterPath Vehicle::shape() const
     return path;
 }
 
-void Vehicle::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
-{
-    Q_UNUSED(option);
-    Q_UNUSED(widget);
-    painter->setPen(Qt::NoPen);
-    painter->setBrush(m_color);
-    painter->drawRect(boundingRect());
-}
+//void Vehicle::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+//{
+//    Q_UNUSED(option);
+//    Q_UNUSED(widget);
+//    painter->setPen(Qt::NoPen);
+//    painter->setBrush(m_color);
+//    painter->drawRect(boundingRect());
+//}
 
 void Vehicle::rotate_to_point(QPointF point)
 {
@@ -273,6 +277,25 @@ void Vehicle::setMode(const VEHICLEMETHOD &mode)
 bool Vehicle::isDeletable() const
 {
     return m_Is_deletable;
+}
+
+QPixmap Vehicle::generateImage() const
+{
+    switch (qrand()%6) {
+    case 0:
+        return QPixmap(":/cars/Image/Cars/Asset 1.png");
+    case 1:
+        return QPixmap(":/cars/Image/Cars/Asset 2.png");
+    case 2:
+        return QPixmap(":/cars/Image/Cars/Asset 3.png");
+    case 3:
+        return QPixmap(":/cars/Image/Cars/Asset 4.png");
+    case 4:
+        return QPixmap(":/cars/Image/Cars/Asset 7.png");
+    case 5:
+        return QPixmap(":/cars/Image/Cars/Asset 8.png");
+    }
+    return QPixmap(0,0);
 }
 
 Direction Vehicle::getDir() const

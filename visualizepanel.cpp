@@ -478,6 +478,7 @@ void VisualizePanel::update_FLOW()
     static double lastPointKey = 0;
     if(key - lastPointKey > 0.1){
         for(int i = 0 ; i < m_flow_widget.size() ; ++i){
+            m_flow_widget.at(i)->graph(0)->removeFromLegend();
             m_flow_widget.at(i)->graph(0)->addData(key,getFlow(i));
         }
         lastPointKey = key;
@@ -495,6 +496,7 @@ void VisualizePanel::update_NUM()
     static double lastPointKey = 0;
     if(key - lastPointKey > 1){
         for(int i = 0 ; i < m_number_widget.size() ; ++i){
+            m_number_widget.at(i)->graph(0)->removeFromLegend();
             m_number_widget.at(i)->graph(0)->addData(key,getNumber(i));
         }
         lastPointKey = key;
@@ -512,6 +514,7 @@ void VisualizePanel::update_DEN()
     static double lastPointKey = 0;
     if(key - lastPointKey > 0.1){
         for(int i = 0 ; i < m_density_widget.size() ; ++i){
+            m_density_widget.at(i)->graph(0)->removeFromLegend();
             m_density_widget.at(i)->graph(0)->addData(key,getDensity(i));
         }
         lastPointKey = key;
@@ -529,6 +532,7 @@ void VisualizePanel::update_HEAD()
     static double lastPointKey = 0;
     if(key - lastPointKey > 0.1){
         for(int i = 0 ; i < m_headway_widget.size() ; ++i){
+            m_headway_widget.at(i)->graph(0)->removeFromLegend();
             m_headway_widget.at(i)->graph(0)->addData(key,getHeadWay(i));
         }
         lastPointKey = key;

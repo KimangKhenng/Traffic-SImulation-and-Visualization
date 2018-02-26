@@ -19,4 +19,12 @@
         <file>Image/pause-icon.png</file>
         <file>Image/visualize-icon.png</file>
     </qresource>
+    <qresource prefix="/cars">
+        <file>Image/Cars/Asset 1.png</file>
+        <file>Image/Cars/Asset 2.png</file>
+        <file>Image/Cars/Asset 3.png</file>
+        <file>Image/Cars/Asset 4.png</file>
+        <file>Image/Cars/Asset 7.png</file>
+        <file>Image/Cars/Asset 8.png</file>
+    </qresource>
 </RCC>

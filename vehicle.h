@@ -4,7 +4,7 @@
 
 #include <QtWidgets>
 #include "commonenum.h"
-class Vehicle: public QObject,public QGraphicsItem
+class Vehicle: public QObject,public QGraphicsPixmapItem
 {
     Q_OBJECT
     Q_INTERFACES(QGraphicsItem)
@@ -14,7 +14,7 @@ public:
     // @Overloading Function
     QRectF boundingRect() const Q_DECL_OVERRIDE;
     QPainterPath shape() const Q_DECL_OVERRIDE;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
+    //void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
     // Overloading Funcion
     //////////////////////
     /// \brief rotate_to_point
@@ -69,6 +69,7 @@ public:
     bool isContainedSignal() const;
     void setMode(const VEHICLEMETHOD &mode);
     bool isDeletable() const;
+    QPixmap generateImage() const;
 public slots:
     void advance(int phase) Q_DECL_OVERRIDE;
     //void forward();
@@ -78,7 +79,7 @@ private:
     bool hasInfront();
     qreal m_angle;
     qreal m_speed;
-    QColor m_color;
+//    QColor m_color;
     QList<QPointF> m_path_to_follow;
     QPointF m_destination;
     int m_point_index;

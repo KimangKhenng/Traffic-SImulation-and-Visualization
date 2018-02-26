@@ -12,9 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent),ui(new Ui::MainWind
         ui->stackedWidget->setCurrentIndex(0);
         m_machine_state = new QTimer();
         this->connect (m_machine_state,SIGNAL(timeout()),this,SLOT(check_state()));
-        QObject::connect(m_machine_state,SIGNAL(timeout()),m_scene,SLOT(advance()));
+        //QObject::connect(m_machine_state,SIGNAL(timeout()),m_scene,SLOT(advance()));
         m_machine_state->start(TIME_UNIT);
-        qsrand(static_cast<uint>(QTime(0,0,0).secsTo(QTime::currentTime())));
         ui->m_visualize_frame->hide();
         ui->m_visualzie_widget->setController(m_controller);
         ui->m_visualzie_widget->setEtimer(m_controller->getTimer());
@@ -77,8 +76,30 @@ void MainWindow::check_state()
     ///Getting Item in Scene and Cast to Vehicles
     ////////////////
     //QList<QGraphicsItem *> items = m_scene->items();
-    QList<Vehicle *> car = m_scene->getVehicle();
-    QList<TrafficDetector *> detector = m_scene->getDetector();
+    if(m_simulate_state){
+        m_scene->advance();
+        QList<Vehicle *> car = m_scene->getVehicle();
+        QList<TrafficDetector *> detector = m_scene->getDetector();
+        for(int i = 0; i<car.size() ; ++i){
+            car.at(i)->setActionOn();
+            //car.at(i)->turnOnEngine();
+            if(this->m_sightseeing){
+                car.at(i)->turnOnSightSeeing();
+            }else{
+                car.at(i)->turnOffSightSeeing();
+            }
+            if(car.at(i)->isDeletable()){
+                //m_scene->removeItem(car.at(i));
+                m_scene->removeItem(car.at(i));
+                delete car.at(i);
+            }
+        }
+        m_controller->startTrafficLightAll();
+        ui->m_visualzie_widget->update_all();
+    }else{
+        m_scene->trunOffAllCar();
+    }
+
 //    for(int i = 0 ; i < items.size() ; ++i){
 //        Vehicle *v = dynamic_cast<Vehicle *>(items.at(i));
 //        TrafficDetector *d = dynamic_cast<TrafficDetector *>(items.at(i));
@@ -90,25 +111,10 @@ void MainWindow::check_state()
 //        }
 //    }
     //qDebug()<<car.size();
-    for(int i = 0; i<car.size() ; ++i){
-        if(m_simulate_state){
-            car.at(i)->setActionOn();
-            //car.at(i)->turnOnEngine();
-            if(this->m_sightseeing){
-                car.at(i)->turnOnSightSeeing();
-            }else{
-                car.at(i)->turnOffSightSeeing();
-            }
-            if(car.at(i)->isDeletable()){
-                //m_scene->removeItem(car.at(i));
-                delete car.at(i);
-            }
-        }else{
-            car.at(i)->setActionOff();
-            //car.at(i)->turnOffEngine();
-        }
-    }
-    ui->m_visualzie_widget->update_all();
+    //WorkerThread *thread = new WorkerThread(ui->m_visualzie_widget,this);
+    //connect(thread, &WorkerThread::finished, thread, &QObject::deleteLater);
+    //thread->start();
+
 //    for(int i = 0 ; i < detector.size() ; ++i){
 //        if(m_simulate_state){
 //            //car.at(i)->setActionOn();
@@ -172,20 +178,21 @@ void MainWindow::on_stop_clicked()
 void MainWindow::set_up()
 {
     //Add Road and Background to scene
-    QGraphicsPixmapItem *m_picture = new QGraphicsPixmapItem(QPixmap(":/image/Image/road-image.png").scaled (600,600));
+    //QGraphicsPixmapItem *m_picture = new QGraphicsPixmapItem(QPixmap(":/image/Image/road-image.png")/*.scaled (600,600)*/);
     QGraphicsSvgItem *m_terrain = new QGraphicsSvgItem(":/image/Image/terrain.svg");
     m_path = new QGraphicsSvgItem(":/image/Image/road-path.svg");
-    m_terrain->moveBy (-60,0);
-    m_picture->moveBy(30,0);
+    //m_terrain->moveBy (-60,0);
+    //m_picture->moveBy(30,0);
     m_path->moveBy (15,-15);
     m_path->setScale (0.7);
     m_path->setZValue (-1);
     m_path->setOpacity(0);
-    m_picture->setZValue (-2);
+    //m_picture->setZValue (-2);
     m_terrain->setZValue (-3);
+    m_terrain->moveBy(-70,5);
     m_scene = new SimulationScene();
     m_road = new road();
-    m_scene->addItem (m_picture);
+    //m_scene->addItem (m_picture);
     m_scene->addItem (m_terrain);
     m_scene->addItem (m_path);
     //m_scene->addText ("1",QFont("Century",18))->setPos (450,180);
@@ -200,35 +207,35 @@ void MainWindow::set_up()
         m_controller->getDetector()->at(i)->setOpacity(0);
     }
     m_scene->addItem(m_controller);
-    m_traffic_light = new QList<TrafficLight *>();
-    for(int i = 0 ; i < 4 ; ++i){
-        m_traffic_light->append(new TrafficLight());
-        m_traffic_light->at(i)->setUpFacilities();
-    }
-    m_controller->setTraffic_light(m_traffic_light);
-    //Arrange Traffic Light
-    //TrafficLight 1
-    m_traffic_light->at(0)->setPos(400,380);
-    m_traffic_light->at(0)->setRegion(region::REGION_S_N);
-    //TrafficLight 2
-    m_traffic_light->at(1)->setRotation(90);
-    m_traffic_light->at(1)->setPos(260,380);
-    m_traffic_light->at(1)->setRegion(region::REGION_W_E);
-    //TrafficLight 3
-    m_traffic_light->at(2)->setPos(250,240);
-    m_traffic_light->at(2)->setRotation(180);
-    m_traffic_light->at(2)->setRegion(region::REGION_N_S);
+//    m_traffic_light = new QList<TrafficLight *>();
+//    for(int i = 0 ; i < 4 ; ++i){
+//        m_traffic_light->append(new TrafficLight());
+//        m_traffic_light->at(i)->setUpFacilities();
+//    }
+//    m_controller->setTraffic_light(m_traffic_light);
+//    //Arrange Traffic Light
+//    //TrafficLight 1
+//    m_traffic_light->at(0)->setPos(400,380);
+//    m_traffic_light->at(0)->setRegion(region::REGION_S_N);
+//    //TrafficLight 2
+//    m_traffic_light->at(1)->setRotation(90);
+//    m_traffic_light->at(1)->setPos(260,380);
+//    m_traffic_light->at(1)->setRegion(region::REGION_W_E);
+//    //TrafficLight 3
+//    m_traffic_light->at(2)->setPos(250,240);
+//    m_traffic_light->at(2)->setRotation(180);
+//    m_traffic_light->at(2)->setRegion(region::REGION_N_S);
 //    m_traffic_light->at(2)->setTransform(QTransform::fromScale(1, -1));
-    //TrafficLight 4
-    m_traffic_light->at(3)->setPos(410,230);
-    m_traffic_light->at(3)->setRotation(270);
-    m_traffic_light->at(3)->setRegion(region::REGION_E_W);
-    //m_traffic_light->at(3)->setTransform(QTransform::fromScale(-1, 1));
-    for(int i = 0 ; i < m_traffic_light->size() ; ++i){
-        for(int j = 0 ; j < m_traffic_light->at(i)->getLight()->size() ; j++){
-            m_traffic_light->at(i)->getLight()->at(j)->setScale(0.8);
-        }
-    }
+//    //TrafficLight 4
+//    m_traffic_light->at(3)->setPos(410,230);
+//    m_traffic_light->at(3)->setRotation(270);
+//    m_traffic_light->at(3)->setRegion(region::REGION_E_W);
+//    //m_traffic_light->at(3)->setTransform(QTransform::fromScale(-1, 1));
+//    for(int i = 0 ; i < m_traffic_light->size() ; ++i){
+//        for(int j = 0 ; j < m_traffic_light->at(i)->getLight()->size() ; j++){
+//            m_traffic_light->at(i)->getLight()->at(j)->setScale(0.8);
+//        }
+//    }
     //Add Control Widget
 //    m_control_sim = new QGraphicsProxyWidget();
 //    m_control_sim->setWidget (ui->m_simulation_control_widget);
@@ -296,13 +303,13 @@ void MainWindow::on_m_aboutus_button_clicked()
 
 void MainWindow::on_m_manul_control_button_clicked(bool checked)
 {
-    if(checked){
-        for(int i = 0 ; i < m_traffic_light->size() ; ++i){
-            m_traffic_light->at(i)->setManualControl();
-        }
-    }else{
+//    if(checked){
+//        for(int i = 0 ; i < m_traffic_light->size() ; ++i){
+//            m_traffic_light->at(i)->setManualControl();
+//        }
+//    }else{
 
-    }
+//    }
 }
 
 void MainWindow::on_m_5_lanes_clicked()
@@ -323,14 +330,14 @@ SimulationScene *MainWindow::scene() const
 void MainWindow::on_m_no_traffic_clicked(bool checked)
 {
     if(checked){
-        for(int i = 0 ; i < m_traffic_light->size() ; ++i){
-            m_traffic_light->at(i)->setMode(TRAFFICMODE::HAS_SIGNAL);
-            m_scene->addItem(m_traffic_light->at(i));
+        for(int i = 0 ; i < m_controller->getTraffic_light()->size() ; ++i){
+            m_controller->getTraffic_light()->at(i)->setMode(TRAFFICMODE::HAS_SIGNAL);
+            m_scene->addItem(m_controller->getTraffic_light()->at(i));
         }
     }else{
-        for(int i = 0 ; i < m_traffic_light->size() ; ++i){
-            m_traffic_light->at(i)->setMode(TRAFFICMODE::NO_SIGNAL);
-            m_scene->removeItem(m_traffic_light->at(i));
+        for(int i = 0 ; i < m_controller->getTraffic_light()->size() ; ++i){
+            m_controller->getTraffic_light()->at(i)->setMode(TRAFFICMODE::NO_SIGNAL);
+            m_scene->removeItem(m_controller->getTraffic_light()->at(i));
         }
     }
 }

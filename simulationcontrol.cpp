@@ -81,6 +81,7 @@ void SimulationControl::on_m_random_birth_clicked()
 {
     m_generator->startAutoGeneraion();
     m_w->turnOnSimulationState();
+    m_w->getController()->setLightDuration(5000,3000,500);
 }
 
 Generator *SimulationControl::generator() const

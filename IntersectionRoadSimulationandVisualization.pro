@@ -32,8 +32,8 @@ SOURCES += main.cpp\
     trafficcontroller.cpp \
     trafficdetector.cpp \
     generator.cpp \
-    toolpanel.cpp \
-    visualizepanel.cpp
+    visualizepanel.cpp \
+    workerthread.cpp
 
 HEADERS  += mainwindow.h \
     graphicsview.h \
@@ -51,13 +51,12 @@ HEADERS  += mainwindow.h \
     trafficcontroller.h \
     trafficdetector.h \
     generator.h \
-    toolpanel.h \
-    visualizepanel.h
+    visualizepanel.h \
+    workerthread.h
 
 FORMS    += mainwindow.ui \
     datawidget.ui \
     simulationcontrol.ui \
-    toolpanel.ui \
     visualizepanel.ui
 
 RESOURCES += \

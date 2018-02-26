@@ -2,7 +2,7 @@
 
 TrafficController::TrafficController(QGraphicsItemGroup *parent):QGraphicsItemGroup(parent)
 {
-    m_state = new QStateMachine();
+    //m_state = new QStateMachine();
     // ArrageDetector
     m_detector = new QList<TrafficDetector *>();
     for(int i = 0 ; i < 12 ; ++i){
@@ -52,6 +52,39 @@ TrafficController::TrafficController(QGraphicsItemGroup *parent):QGraphicsItemGr
     m_detector->at(10)->setPos(p2);
     m_detector->at(11)->setPos(p3);
     group4->moveBy(-49,-243);
+    //Create Traffic Light
+    m_traffic_light = new QList<TrafficLight *>();
+    for(int i = 0 ; i < 4 ; ++i){
+        m_traffic_light->append(new TrafficLight());
+        m_traffic_light->at(i)->setUpFacilities();
+    }
+    //Arrange Traffic Light
+    //TrafficLight 1
+    m_traffic_light->at(0)->setPos(400,380);
+    m_traffic_light->at(0)->setRegion(region::REGION_S_N);
+    //m_traffic_light->at(0)->setInitialState(STATE_MACHINE::Green_Going_Left);
+    //TrafficLight 2
+    m_traffic_light->at(1)->setRotation(90);
+    m_traffic_light->at(1)->setPos(260,380);
+    m_traffic_light->at(1)->setRegion(region::REGION_W_E);
+    //m_traffic_light->at(1)->setInitialState(STATE_MACHINE::Red_Going_Yellow);
+    //TrafficLight 3
+    m_traffic_light->at(2)->setPos(250,240);
+    m_traffic_light->at(2)->setRotation(180);
+    m_traffic_light->at(2)->setRegion(region::REGION_N_S);
+    //m_traffic_light->at(2)->setInitialState(STATE_MACHINE::Green_Going_Left);
+//    m_traffic_light->at(2)->setTransform(QTransform::fromScale(1, -1));
+    //TrafficLight 4
+    m_traffic_light->at(3)->setPos(410,230);
+    m_traffic_light->at(3)->setRotation(270);
+    m_traffic_light->at(3)->setRegion(region::REGION_E_W);
+    //m_traffic_light->at(3)->setInitialState(STATE_MACHINE::Red_Going_Yellow);
+    //m_traffic_light->at(3)->setTransform(QTransform::fromScale(-1, 1));
+    for(int i = 0 ; i < m_traffic_light->size() ; ++i){
+        for(int j = 0 ; j < m_traffic_light->at(i)->getLight()->size() ; j++){
+            m_traffic_light->at(i)->getLight()->at(j)->setScale(0.8);
+        }
+    }
 }
 TrafficLight *TrafficController::getTrafficLight(region r)
 {
@@ -63,21 +96,21 @@ TrafficLight *TrafficController::getTrafficLight(region r)
     return nullptr;
 }
 
-void TrafficController::turnTrafficOn()
-{
-    if(!m_state){
-        return;
-    }
-    m_state->start();
-}
+//void TrafficController::turnTrafficOn()
+//{
+//    if(!m_state){
+//        return;
+//    }
+//    m_state->start();
+//}
 
-void TrafficController::turnTrafficOff()
-{
-    if(!m_state){
-        return;
-    }
-    m_state->stop();
-}
+//void TrafficController::turnTrafficOff()
+//{
+//    if(!m_state){
+//        return;
+//    }
+//    m_state->stop();
+//}
 
 void TrafficController::turnOffDetector()
 {
@@ -93,40 +126,29 @@ void TrafficController::turnOnDetector()
     }
 }
 
-QState *TrafficController::makeState(LightWidget *light, int duration)
+void TrafficController::startTrafficLightAll()
 {
-    QState *lightState = new QState();
-    QTimer *timer = new QTimer(lightState);
-    timer->setInterval(duration);
-    timer->setSingleShot(true);
-    QState *timing = new QState(lightState);
-    QObject::connect(timing,SIGNAL(entered()),light,SLOT(turnOn()));
-    QObject::connect(timing,SIGNAL(entered()),timer,SLOT(start()));
-    QObject::connect(timing,SIGNAL(exit()),light,SLOT(turnOff()));
-    QFinalState *done = new QFinalState(lightState);
-    timing->addTransition(timer,SIGNAL(timeout()),done);
-    lightState->setInitialState(timing);
-    return lightState;
+    for(int i = 0 ; i < m_traffic_light->size() ; ++i){
+        m_traffic_light->at(i)->startTrafficLight();
+    }
 }
 
-QState *TrafficController::first_phase()
+void TrafficController::stopTrafficLightAll()
 {
-    return nullptr;
+    for(int i = 0 ; i < m_traffic_light->size() ; ++i){
+        m_traffic_light->at(i)->stopTrafficLight();
+    }
 }
 
-QState *TrafficController::second_phase()
+void TrafficController::setLightDuration(const int &green, const int &left, const int &yellow)
 {
-    return nullptr;
-}
-
-QState *TrafficController::third_phase()
-{
-    return nullptr;
-}
-
-QState *TrafficController::fourth_phase()
-{
-    return nullptr;
+    for(int i = 0 ; i < m_traffic_light->size() ; ++i){
+        m_traffic_light->at(i)->setDuration(left,yellow,green);
+    }
+    m_traffic_light->at(0)->setInitialState(STATE_MACHINE::Green_Going_Left);
+    m_traffic_light->at(1)->setInitialState(STATE_MACHINE::Red_Going_Yellow);
+    m_traffic_light->at(2)->setInitialState(STATE_MACHINE::Green_Going_Left);
+    m_traffic_light->at(3)->setInitialState(STATE_MACHINE::Red_Going_Yellow);
 }
 
 QList<TrafficLight *> *TrafficController::getTraffic_light() const

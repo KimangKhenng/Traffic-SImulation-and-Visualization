@@ -7,8 +7,10 @@
 #include <QtCore>
 #include <QtWidgets>
 
-class TrafficLight : public QGraphicsItem
+class TrafficLight :public QObject, public QGraphicsItem
 {
+    Q_OBJECT
+    Q_INTERFACES(QGraphicsItem)
 public:
     //@Override
     QRectF boundingRect() const Q_DECL_OVERRIDE;
@@ -20,6 +22,10 @@ public:
     bool checkDir(Direction dir);
     void setManualControl();
     void setUpFacilities();
+    void setDuration(const int &left,const int &yellow,const int &green);
+    void setInitialState(const STATE_MACHINE& state);
+    void startTrafficLight();
+    void stopTrafficLight();
     LightWidget *getMainGreen() const;
     LightWidget *getMainRed() const;
     LightWidget *getMainYellow() const;
@@ -35,6 +41,11 @@ public:
     void setMode(const TRAFFICMODE &mode);
 
 private:
+    QState *makeState(LightWidget *light, int duration,QState *parent = 0);
+    int m_red_duration;
+    int m_left_duration;
+    int m_main_green_duration;
+    int m_yellow_duration;
     LightWidget *m_main_light_green;
     LightWidget *m_main_light_red;
     LightWidget *m_main_light_yellow;
@@ -42,6 +53,12 @@ private:
     QList<LightWidget *> *m_light;
     region m_region;
     TRAFFICMODE m_mode;
+    QState *m_MainGreen_Going_Left;
+    QState *m_Left_Going_Yellow;
+    QState *m_Yellow_Going_Red;
+    QState *m_Red_Going_Yellow;
+    QState *m_Yellow_Going_Green;
+    QStateMachine *m_state_machine;
 };
 
 #endif // TRAFFICLIGHT_H

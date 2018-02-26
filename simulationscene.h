@@ -13,6 +13,7 @@ public:
     int getNumber(region x);
     QList<Vehicle *> getVehicle();
     QList<TrafficDetector *> getDetector();
+    void trunOffAllCar();
 //protected:
 //    virtual void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent);
 };

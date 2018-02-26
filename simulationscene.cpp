@@ -55,3 +55,10 @@ QList<TrafficDetector *> SimulationScene::getDetector()
     }
     return d;
 }
+
+void SimulationScene::trunOffAllCar()
+{
+    for(int i = 0 ; i < this->getVehicle().size() ; ++i){
+        this->getVehicle().at(i)->setActionOff();
+    }
+}

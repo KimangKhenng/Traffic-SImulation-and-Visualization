@@ -14,7 +14,7 @@
 #include "simulationcontrol.h"
 #include "vehiclesgenerator.h"
 #include "trafficcontroller.h"
-
+#include "workerthread.h"
 namespace Ui {
 class MainWindow;
 }
