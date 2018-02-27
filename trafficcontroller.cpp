@@ -130,6 +130,7 @@ void TrafficController::startTrafficLightAll()
 {
     for(int i = 0 ; i < m_traffic_light->size() ; ++i){
         m_traffic_light->at(i)->startTrafficLight();
+        m_traffic_light->at(i)->setMode(TRAFFICMODE::HAS_SIGNAL);
     }
 }
 
@@ -137,6 +138,7 @@ void TrafficController::stopTrafficLightAll()
 {
     for(int i = 0 ; i < m_traffic_light->size() ; ++i){
         m_traffic_light->at(i)->stopTrafficLight();
+        m_traffic_light->at(i)->setMode(TRAFFICMODE::NO_SIGNAL);
     }
 }
 

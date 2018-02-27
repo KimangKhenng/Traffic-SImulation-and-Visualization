@@ -98,6 +98,7 @@ void MainWindow::check_state()
         ui->m_visualzie_widget->update_all();
     }else{
         m_scene->trunOffAllCar();
+        ui->m_simulation_control_widget->generator()->stopGenerator();
     }
 
 //    for(int i = 0 ; i < items.size() ; ++i){
@@ -367,27 +368,6 @@ void MainWindow::on_m_go_though_clicked(bool checked)
     }
 
 }
-
-
-void MainWindow::on_actionData_Visualization_toggled(bool arg1)
-{
-    if(arg1){
-        if(!m_data_widget){
-            //qDebug()<<"Hello";
-            m_data_widget = new DataWidget(this);
-//            m_data_widget->setDetector(m_controller->getDetector());
-            m_data_widget->setController(m_controller);
-            m_data_widget->setEtimer(m_controller->getTimer());
-            m_data_widget->show();
-        }else{
-            //qDebug()<<"Hi";
-            m_data_widget->show();
-        }
-    }else{
-        m_data_widget->hide();
-    }
-}
-
 void MainWindow::on_m_drop_in_clicked()
 {
 //    m_scene->addItem(VehiclesGenerator::getRightTurningVehicle(region::REGION_E_W,VEHICLEMETHOD::SIGHTSEEING));

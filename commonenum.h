@@ -3,19 +3,19 @@
 
 ////////////////
 #ifndef MAX_S_N
-    #define MAX_S_N 10
+    #define MAX_S_N 20
 #endif
 ////////////////
 #ifndef MAX_N_S
-    #define MAX_N_S 10
+    #define MAX_N_S 20
 #endif
 ///////////////
 #ifndef MAX_E_W
-    #define MAX_E_W 10
+    #define MAX_E_W 20
 #endif
 //////////////
 #ifndef MAX_W_E
-    #define MAX_W_E 10
+    #define MAX_W_E 20
 #endif
 ///////////////
 #ifndef TIME_UNIT

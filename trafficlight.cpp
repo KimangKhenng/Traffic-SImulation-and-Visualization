@@ -20,8 +20,8 @@ TrafficLight::TrafficLight(region re, QGraphicsItem *parent):QGraphicsItem(paren
 {
 }
 
-TrafficLight::TrafficLight(QGraphicsItem *parent):QGraphicsItem (parent),m_mode(TRAFFICMODE::NO_SIGNAL)
-    ,m_red_duration(0),m_left_duration(0),m_main_green_duration(0),m_yellow_duration(0),m_state_machine(new QStateMachine(this))
+TrafficLight::TrafficLight(QGraphicsItem *parent):QGraphicsItem (parent)
+    ,m_red_duration(0),m_left_duration(0),m_main_green_duration(0),m_yellow_duration(0),m_mode(TRAFFICMODE::NO_SIGNAL),m_state_machine(new QStateMachine(this))
 {
 
 }

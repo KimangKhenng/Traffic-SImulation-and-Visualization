@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>898</width>
-    <height>663</height>
+    <height>665</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -936,7 +936,6 @@ QLabel{
     <property name="title">
      <string>Tool</string>
     </property>
-    <addaction name="actionData_Visualization"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -971,14 +970,6 @@ QLabel{
   <action name="actionExit">
    <property name="text">
     <string>Exit</string>
-   </property>
-  </action>
-  <action name="actionData_Visualization">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Data Visualization</string>
    </property>
   </action>
   <action name="actionPNG">

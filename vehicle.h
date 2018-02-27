@@ -3,7 +3,9 @@
 #define GAPACCAPANCE 10
 
 #include <QtWidgets>
+#include <qmath.h>
 #include "commonenum.h"
+#include "trafficlight.h"
 class Vehicle: public QObject,public QGraphicsPixmapItem
 {
     Q_OBJECT
@@ -49,16 +51,11 @@ public:
     bool is_in_stop_point();
     void setActionOn();
     void setActionOff();
-    void reset_speed();
-    void decelerate();
-    void accerlerate();
     QList<QPointF> get_path();
     bool Isinthejunction();
     QPointF get_position() const;
     int get_current_index() const;
     QPointF get_initial_path() const;
-    bool is_enter_the_junction();
-    void stop_advance();
     region getRegion() const;
     Direction getDir() const;
     void setDir(const Direction &dir);
@@ -69,14 +66,19 @@ public:
     bool isContainedSignal() const;
     void setMode(const VEHICLEMETHOD &mode);
     bool isDeletable() const;
-    QPixmap generateImage() const;
 public slots:
     void advance(int phase) Q_DECL_OVERRIDE;
     //void forward();
 private:
+    QPixmap generateImage() const;
     bool ifAllowed() const;
     Vehicle *getCollding();
     bool hasInfront();
+    void reset_speed();
+    void decelerate();
+    void accerlerate();
+    bool is_enter_the_junction() const;
+    void stop_advance();
     qreal m_angle;
     qreal m_speed;
 //    QColor m_color;

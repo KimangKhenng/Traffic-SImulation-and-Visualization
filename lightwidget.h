@@ -2,6 +2,7 @@
 #define LIGHTWIDGET_H
 #include <QtCore>
 #include <QtWidgets>
+
 #define SIZE 25
 
 class LightWidget :public QObject,/*public QGraphicsLayoutItem,*/ public QGraphicsItem

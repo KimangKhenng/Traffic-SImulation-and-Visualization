@@ -1,14 +1,6 @@
 #include "vehicle.h"
-#include <math.h>
-#include <QPainter>
-#include <QDebug>
-#include <QtWidgets>
-#include "road.h"
-#include <qmath.h>
-#include <exception>
-#include "mainwindow.h"
 //Declear static Macro variable
-static const double Pi = 3.14159265358979323846264338327950288419717;
+//static const double Pi = 3.14159265358979323846264338327950288419717;
 //static double TwoPi = 2.0*Pi;
 
 Vehicle::Vehicle(QGraphicsItem *parent):QGraphicsPixmapItem(parent),m_angle(0),m_speed(0)/*,m_color(qrand()%256,qrand()%256,qrand()%256)*/
@@ -29,6 +21,7 @@ Vehicle::Vehicle(QGraphicsItem *parent):QGraphicsPixmapItem(parent),m_angle(0),m
 
 Vehicle::~Vehicle()
 {
+    //qDebug()<<"Delete "<<this->objectName();
     delete m_sightseeing;
     //delete m_internal_timer;
 }
@@ -281,7 +274,7 @@ bool Vehicle::isDeletable() const
 
 QPixmap Vehicle::generateImage() const
 {
-    switch (qrand()%6) {
+    switch (qrand()%18) {
     case 0:
         return QPixmap(":/cars/Image/Cars/Asset 1.png");
     case 1:
@@ -291,9 +284,33 @@ QPixmap Vehicle::generateImage() const
     case 3:
         return QPixmap(":/cars/Image/Cars/Asset 4.png");
     case 4:
-        return QPixmap(":/cars/Image/Cars/Asset 7.png");
+        return QPixmap(":/cars/Image/Cars/Asset 5.png");
     case 5:
+        return QPixmap(":/cars/Image/Cars/Asset 6.png");
+    case 6:
+        return QPixmap(":/cars/Image/Cars/Asset 7.png");
+    case 7:
         return QPixmap(":/cars/Image/Cars/Asset 8.png");
+    case 8:
+        return QPixmap(":/cars/Image/Cars/Asset 9.png");
+    case 9:
+        return QPixmap(":/cars/Image/Cars/Asset 10.png");
+    case 10:
+        return QPixmap(":/cars/Image/Cars/Asset 11.png");
+    case 11:
+        return QPixmap(":/cars/Image/Cars/Asset 12.png");
+    case 12:
+        return QPixmap(":/cars/Image/Cars/Asset 13.png");
+    case 13:
+        return QPixmap(":/cars/Image/Cars/Asset 14.png");
+    case 14:
+        return QPixmap(":/cars/Image/Cars/Asset 15.png");
+    case 15:
+        return QPixmap(":/cars/Image/Cars/Asset 16.png");
+    case 16:
+        return QPixmap(":/cars/Image/Cars/Asset 17.png");
+    case 17:
+        return QPixmap(":/cars/Image/Cars/Asset 18.png");
     }
     return QPixmap(0,0);
 }

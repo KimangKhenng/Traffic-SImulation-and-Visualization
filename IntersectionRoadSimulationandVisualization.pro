@@ -6,6 +6,7 @@
 
 QT       += core gui svg widgets printsupport sql opengl
 CONFIG   += console
+DEFINES  += QCUSTOMPLOT_USE_OPENGL
 win32{
 LIBS +=  -lfreeglut -lopengl32 -lglu32
 }
@@ -22,7 +23,6 @@ SOURCES += main.cpp\
     vehicle.cpp \
     road.cpp \
     simulationscene.cpp \
-    datawidget.cpp \
     simulationcontrol.cpp \
     trafficlight.cpp \
     lightwidget.cpp \
@@ -40,7 +40,6 @@ HEADERS  += mainwindow.h \
     vehicle.h \
     road.h \
     simulationscene.h \
-    datawidget.h \
     simulationcontrol.h \
     trafficlight.h \
     lightwidget.h \
@@ -55,7 +54,6 @@ HEADERS  += mainwindow.h \
     workerthread.h
 
 FORMS    += mainwindow.ui \
-    datawidget.ui \
     simulationcontrol.ui \
     visualizepanel.ui
 

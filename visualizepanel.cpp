@@ -151,6 +151,7 @@ void VisualizePanel::setUpNumberWidget()
         m_number_widget.at(i)->rescaleAxes();
 //        m_number_widget.at(i)->yAxis->setRange(0,20);
         m_number_widget.at(i)->xAxis->setRange(0,20);
+        m_number_widget.at(i)->graph(0)->layer()->setMode(QCPLayer::lmBuffered);
         connect(m_number_widget.at(i)->xAxis, SIGNAL(rangeChanged(QCPRange)), m_number_widget.at(i)->xAxis2, SLOT(setRange(QCPRange)));
         connect(m_number_widget.at(i)->yAxis, SIGNAL(rangeChanged(QCPRange)), m_number_widget.at(i)->yAxis2, SLOT(setRange(QCPRange)));
     }
@@ -172,6 +173,7 @@ void VisualizePanel::setUpFlowWidget()
         m_flow_widget.at(i)->axisRect()->setupFullAxesBox();
         m_flow_widget.at(i)->yAxis->setRange(0, 5);
         m_flow_widget.at(i)->xAxis->setRange(0, 20);
+        m_flow_widget.at(i)->graph(0)->layer()->setMode(QCPLayer::lmBuffered);
         // make left and bottom axes transfer their ranges to right and top axes:
         connect(m_flow_widget.at(i)->xAxis, SIGNAL(rangeChanged(QCPRange)), m_flow_widget.at(i)->xAxis2, SLOT(setRange(QCPRange)));
         connect(m_flow_widget.at(i)->yAxis, SIGNAL(rangeChanged(QCPRange)), m_flow_widget.at(i)->yAxis2, SLOT(setRange(QCPRange)));
@@ -194,6 +196,7 @@ void VisualizePanel::setUpDensityWidget()
         m_density_widget.at(i)->axisRect()->setupFullAxesBox();
         m_density_widget.at(i)->yAxis->setRange(0, 5);
         m_density_widget.at(i)->xAxis->setRange(0, 20);
+        m_density_widget.at(i)->graph(0)->layer()->setMode(QCPLayer::lmBuffered);
         // make left and bottom axes transfer their ranges to right and top axes:
         connect(m_density_widget.at(i)->xAxis, SIGNAL(rangeChanged(QCPRange)), m_density_widget.at(i)->xAxis2, SLOT(setRange(QCPRange)));
         connect(m_density_widget.at(i)->yAxis, SIGNAL(rangeChanged(QCPRange)), m_density_widget.at(i)->yAxis2, SLOT(setRange(QCPRange)));
@@ -216,6 +219,7 @@ void VisualizePanel::setUpHeadwayWidget()
         m_headway_widget.at(i)->axisRect()->setupFullAxesBox();
         m_headway_widget.at(i)->yAxis->setRange(0, 5);
         m_headway_widget.at(i)->xAxis->setRange(0, 20);
+        m_headway_widget.at(i)->graph(0)->layer()->setMode(QCPLayer::lmBuffered);
         // make left and bottom axes transfer their ranges to right and top axes:
         connect(m_headway_widget.at(i)->xAxis, SIGNAL(rangeChanged(QCPRange)), m_headway_widget.at(i)->xAxis2, SLOT(setRange(QCPRange)));
         connect(m_headway_widget.at(i)->yAxis, SIGNAL(rangeChanged(QCPRange)), m_headway_widget.at(i)->yAxis2, SLOT(setRange(QCPRange)));
@@ -478,7 +482,8 @@ void VisualizePanel::update_FLOW()
     static double lastPointKey = 0;
     if(key - lastPointKey > 0.1){
         for(int i = 0 ; i < m_flow_widget.size() ; ++i){
-            m_flow_widget.at(i)->graph(0)->removeFromLegend();
+            m_flow_widget.at(i)->graph(0)->data().clear();
+            m_flow_widget.at(i)->graph(0)->data().data()->removeBefore(key-20.0);
             m_flow_widget.at(i)->graph(0)->addData(key,getFlow(i));
         }
         lastPointKey = key;
@@ -496,7 +501,8 @@ void VisualizePanel::update_NUM()
     static double lastPointKey = 0;
     if(key - lastPointKey > 1){
         for(int i = 0 ; i < m_number_widget.size() ; ++i){
-            m_number_widget.at(i)->graph(0)->removeFromLegend();
+            m_number_widget.at(i)->graph(0)->data().clear();
+            m_number_widget.at(i)->graph(0)->data().data()->removeBefore(key-20.0);
             m_number_widget.at(i)->graph(0)->addData(key,getNumber(i));
         }
         lastPointKey = key;
@@ -514,7 +520,8 @@ void VisualizePanel::update_DEN()
     static double lastPointKey = 0;
     if(key - lastPointKey > 0.1){
         for(int i = 0 ; i < m_density_widget.size() ; ++i){
-            m_density_widget.at(i)->graph(0)->removeFromLegend();
+            m_density_widget.at(i)->graph(0)->data().clear();
+            m_density_widget.at(i)->graph(0)->data().data()->removeBefore(key-20.0);
             m_density_widget.at(i)->graph(0)->addData(key,getDensity(i));
         }
         lastPointKey = key;
@@ -532,7 +539,8 @@ void VisualizePanel::update_HEAD()
     static double lastPointKey = 0;
     if(key - lastPointKey > 0.1){
         for(int i = 0 ; i < m_headway_widget.size() ; ++i){
-            m_headway_widget.at(i)->graph(0)->removeFromLegend();
+            m_headway_widget.at(i)->graph(0)->data().clear();
+            m_headway_widget.at(i)->graph(0)->data().data()->removeBefore(key-20.0);
             m_headway_widget.at(i)->graph(0)->addData(key,getHeadWay(i));
         }
         lastPointKey = key;

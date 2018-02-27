@@ -14,7 +14,7 @@ SimulationControl::SimulationControl(QWidget *parent) :
     //this->setFixedSize (300,200);
     this->setWindowTitle ("Simulation Controller");
     ui->m_green->setValidator(new QIntValidator(0, 10000, ui->m_green));
-    ui->m_red->setValidator(new QIntValidator(0, 10000, ui->m_red));
+    //ui->m_red->setValidator(new QIntValidator(0, 10000, ui->m_red));
     ui->m_yellow->setValidator(new QIntValidator(0, 1000, ui->m_yellow));
     ui->m_road_1->setValidator(new QIntValidator(0, 100, ui->m_road_1));
     ui->m_road_2->setValidator(new QIntValidator(0, 100, ui->m_road_2));
@@ -69,12 +69,12 @@ void SimulationControl::on_m_setup_birth_rate_button_clicked()
 
 void SimulationControl::on_m_stop_clicked()
 {
-
+    m_w->getController()->stopTrafficLightAll();
 }
 
 void SimulationControl::on_m_auto_traffic_clicked()
 {
-
+    m_w->getController()->setLightDuration(5000,3000,500);
 }
 
 void SimulationControl::on_m_random_birth_clicked()

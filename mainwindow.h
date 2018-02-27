@@ -10,7 +10,6 @@
 #include "vehicle.h"
 #include "road.h"
 #include "simulationscene.h"
-#include "datawidget.h"
 #include "simulationcontrol.h"
 #include "vehiclesgenerator.h"
 #include "trafficcontroller.h"
@@ -61,7 +60,6 @@ private slots:
     void on_m_no_traffic_clicked(bool checked);
     void on_m_no_turn_clicked();
     void on_m_go_though_clicked(bool checked);
-    void on_actionData_Visualization_toggled(bool arg1);
     void on_m_drop_in_clicked();
     void on_actionPNG_triggered();   
     void on_m_tool_panel_check_box_clicked(bool checked);

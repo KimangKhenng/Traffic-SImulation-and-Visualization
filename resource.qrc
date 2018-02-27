@@ -3,7 +3,6 @@
         <file>Image/Grass.jpg</file>
         <file>Image/background.png</file>
         <file>Image/templat.png</file>
-        <file>Image/road-image.png</file>
         <file>Image/terrain.svg</file>
         <file>Image/path-image.png</file>
         <file>Image/road-path.svg</file>
@@ -26,5 +25,17 @@
         <file>Image/Cars/Asset 4.png</file>
         <file>Image/Cars/Asset 7.png</file>
         <file>Image/Cars/Asset 8.png</file>
+        <file>Image/Cars/Asset 5.png</file>
+        <file>Image/Cars/Asset 6.png</file>
+        <file>Image/Cars/Asset 9.png</file>
+        <file>Image/Cars/Asset 10.png</file>
+        <file>Image/Cars/Asset 11.png</file>
+        <file>Image/Cars/Asset 12.png</file>
+        <file>Image/Cars/Asset 13.png</file>
+        <file>Image/Cars/Asset 14.png</file>
+        <file>Image/Cars/Asset 15.png</file>
+        <file>Image/Cars/Asset 16.png</file>
+        <file>Image/Cars/Asset 17.png</file>
+        <file>Image/Cars/Asset 18.png</file>
     </qresource>
 </RCC>
