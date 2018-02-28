@@ -82,6 +82,16 @@ void SimulationControl::on_m_random_birth_clicked()
     m_generator->startAutoGeneraion();
     m_w->turnOnSimulationState();
     m_w->getController()->setLightDuration(5000,3000,500);
+    // Ui Stuff
+    m_w->getUi()->m_3_lanes->setChecked(true);
+    m_w->getUi()->m_simulation_control_widget->generator()->setMethod(GENMETHOD::GEN_3);
+    m_w->getUi()->m_go_though->setChecked(false);
+    m_w->getUi()->m_simulation_control_widget->generator()->setMode(VEHICLEMETHOD::SIGHTSEEING);
+    m_w->getUi()->m_no_traffic->setChecked(true);
+    m_w->getUi()->m_visualize_panel_check_box->setChecked(true);
+    m_w->showTraffic(true);
+    m_w->getUi()->m_visualize_frame->show();
+
 }
 
 Generator *SimulationControl::generator() const

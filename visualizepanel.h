@@ -82,8 +82,8 @@ private:
     QList<QVector<double>> m_flow;
     QList<QVector<double>> m_density;
     QList<QVector<double>> m_headway;
-    QList<QTimer *> *m_timer;
-    QList<QElapsedTimer *> *m_etimer;
+//    QList<QTimer *> *m_timer;
+//    QList<QElapsedTimer *> *m_etimer;
 };
 
 #endif // VISUALIZEPANEL_H

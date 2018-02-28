@@ -480,10 +480,19 @@ void VisualizePanel::update_FLOW()
     static QTime time(QTime::currentTime());
     double key = time.elapsed()/1000.0; // time elapsed since start of demo, in seconds
     static double lastPointKey = 0;
+    if(key >= 100.0){
+        for(int i = 0 ; i < 4 ; ++i){
+            m_flow_widget.at(i)->graph(0)->data().clear();
+            m_flow_widget.at(i)->graph(0)->data().data()->clear();
+        }
+        time.restart();
+        key = 0;
+        lastPointKey = 0;
+    }
     if(key - lastPointKey > 0.1){
         for(int i = 0 ; i < m_flow_widget.size() ; ++i){
-            m_flow_widget.at(i)->graph(0)->data().clear();
-            m_flow_widget.at(i)->graph(0)->data().data()->removeBefore(key-20.0);
+            //m_flow_widget.at(i)->graph(0)->data().data()->clear();
+            //m_flow_widget.at(i)->graph(0)->data().data()->removeBefore(key-20.0);
             m_flow_widget.at(i)->graph(0)->addData(key,getFlow(i));
         }
         lastPointKey = key;
@@ -499,10 +508,19 @@ void VisualizePanel::update_NUM()
     static QTime time(QTime::currentTime());
     double key = time.elapsed()/1000.0; // time elapsed since start of demo, in seconds
     static double lastPointKey = 0;
+    if(key >= 100.0){
+        for(int i = 0 ; i < 4 ; ++i){
+            m_number_widget.at(i)->graph(0)->data().clear();
+            m_number_widget.at(i)->graph(0)->data().data()->clear();
+        }
+        time.restart();
+        key = 0;
+        lastPointKey = 0;
+    }
     if(key - lastPointKey > 1){
         for(int i = 0 ; i < m_number_widget.size() ; ++i){
-            m_number_widget.at(i)->graph(0)->data().clear();
-            m_number_widget.at(i)->graph(0)->data().data()->removeBefore(key-20.0);
+            //m_number_widget.at(i)->graph(0)->data().data()->clear();
+            //m_number_widget.at(i)->graph(0)->data().data()->removeBefore(key-20.0);
             m_number_widget.at(i)->graph(0)->addData(key,getNumber(i));
         }
         lastPointKey = key;
@@ -518,10 +536,19 @@ void VisualizePanel::update_DEN()
     static QTime time(QTime::currentTime());
     double key = time.elapsed()/1000.0; // time elapsed since start of demo, in seconds
     static double lastPointKey = 0;
+    if(key >= 100.0){
+        for(int i = 0 ; i < 4 ; ++i){
+            m_density_widget.at(i)->graph(0)->data().clear();
+            m_density_widget.at(i)->graph(0)->data().data()->clear();
+        }
+        time.restart();
+        key = 0;
+        lastPointKey = 0;
+    }
     if(key - lastPointKey > 0.1){
         for(int i = 0 ; i < m_density_widget.size() ; ++i){
-            m_density_widget.at(i)->graph(0)->data().clear();
-            m_density_widget.at(i)->graph(0)->data().data()->removeBefore(key-20.0);
+            //m_density_widget.at(i)->graph(0)->data().data()->clear();
+            //m_density_widget.at(i)->graph(0)->data().data()->removeBefore(key-20.0);
             m_density_widget.at(i)->graph(0)->addData(key,getDensity(i));
         }
         lastPointKey = key;
@@ -537,10 +564,19 @@ void VisualizePanel::update_HEAD()
     static QTime time(QTime::currentTime());
     double key = time.elapsed()/1000.0; // time elapsed since start of demo, in seconds
     static double lastPointKey = 0;
+    if(key >= 100.0){
+        for(int i = 0 ; i < 4 ; ++i){
+            m_headway_widget.at(i)->graph(0)->data().clear();
+            m_headway_widget.at(i)->graph(0)->data().data()->clear();
+        }
+        time.restart();
+        key = 0;
+        lastPointKey = 0;
+    }
     if(key - lastPointKey > 0.1){
         for(int i = 0 ; i < m_headway_widget.size() ; ++i){
-            m_headway_widget.at(i)->graph(0)->data().clear();
-            m_headway_widget.at(i)->graph(0)->data().data()->removeBefore(key-20.0);
+            //m_headway_widget.at(i)->graph(0)->data().data()->clear();
+            //m_headway_widget.at(i)->graph(0)->data().data()->removeBefore(key-20.0);
             m_headway_widget.at(i)->graph(0)->addData(key,getHeadWay(i));
         }
         lastPointKey = key;
@@ -561,7 +597,7 @@ void VisualizePanel::setMainWindows(MainWindow *w)
     m_w = w;
 }
 
-void VisualizePanel::setEtimer(QList<QElapsedTimer *> *etimer)
-{
-    m_etimer = etimer;
-}
+//void VisualizePanel::setEtimer(QList<QElapsedTimer *> *etimer)
+//{
+//    m_etimer = etimer;
+//}

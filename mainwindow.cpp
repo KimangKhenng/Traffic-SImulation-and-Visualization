@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent),ui(new Ui::MainWind
         m_machine_state->start(TIME_UNIT);
         ui->m_visualize_frame->hide();
         ui->m_visualzie_widget->setController(m_controller);
-        ui->m_visualzie_widget->setEtimer(m_controller->getTimer());
+        //ui->m_visualzie_widget->setEtimer(m_controller->getTimer());
         ui->m_visualzie_widget->setMainWindows(this);
         //ui->m_visualzie_widget->initialize();
         //qDebug()<<"Passed";
@@ -330,6 +330,21 @@ SimulationScene *MainWindow::scene() const
 
 void MainWindow::on_m_no_traffic_clicked(bool checked)
 {
+    showTraffic(checked);
+}
+
+bool MainWindow::getSimulate_state() const
+{
+    return m_simulate_state;
+}
+
+Ui::MainWindow *MainWindow::getUi() const
+{
+    return ui;
+}
+
+void MainWindow::showTraffic(bool checked)
+{
     if(checked){
         for(int i = 0 ; i < m_controller->getTraffic_light()->size() ; ++i){
             m_controller->getTraffic_light()->at(i)->setMode(TRAFFICMODE::HAS_SIGNAL);
@@ -341,11 +356,6 @@ void MainWindow::on_m_no_traffic_clicked(bool checked)
             m_scene->removeItem(m_controller->getTraffic_light()->at(i));
         }
     }
-}
-
-bool MainWindow::getSimulate_state() const
-{
-    return m_simulate_state;
 }
 
 TrafficController *MainWindow::getController() const

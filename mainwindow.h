@@ -37,7 +37,8 @@ public:
     SimulationScene *scene() const;
     TrafficController *getController() const;
     bool getSimulate_state() const;
-
+    Ui::MainWindow *getUi() const;
+    void showTraffic(bool checked);
 public slots:
     void check_state();
 private slots:
@@ -63,7 +64,6 @@ private slots:
     void on_m_drop_in_clicked();
     void on_actionPNG_triggered();   
     void on_m_tool_panel_check_box_clicked(bool checked);
-
     void on_m_visualize_panel_check_box_clicked(bool checked);
 
 private:

@@ -11,7 +11,7 @@ SimulationScene::SimulationScene()
     /////////////////
     ///
     /// Set background brush for scene
-    setBackgroundBrush (Qt::white);
+    setBackgroundBrush (Qt::gray);
 }
 
 int SimulationScene::getNumber(region x)

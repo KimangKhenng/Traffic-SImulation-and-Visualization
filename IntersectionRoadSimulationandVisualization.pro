@@ -5,8 +5,8 @@
 #-------------------------------------------------
 
 QT       += core gui svg widgets printsupport sql opengl
-CONFIG   += console
-DEFINES  += QCUSTOMPLOT_USE_OPENGL
+#CONFIG   += console
+#DEFINES  += QCUSTOMPLOT_USE_OPENGL
 win32{
 LIBS +=  -lfreeglut -lopengl32 -lglu32
 }
