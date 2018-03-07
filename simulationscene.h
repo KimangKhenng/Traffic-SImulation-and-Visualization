@@ -14,6 +14,7 @@ public:
     QList<Vehicle *> getVehicle();
     QList<TrafficDetector *> getDetector();
     void trunOffAllCar();
+    void setGoThrought(bool x);
 //protected:
 //    virtual void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent);
 };

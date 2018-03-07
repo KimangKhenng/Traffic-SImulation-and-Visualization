@@ -106,52 +106,71 @@ VisualizePanel::~VisualizePanel()
 
 void VisualizePanel::setUpNumberWidget()
 {
-    for(int i = 0 ; i < m_number_widget.size() ; ++i){
-        m_number_widget.at(i)->addGraph();
-    //    graph1->setData(x1, y1);
-        //m_number_widget.at(i)->graph(0)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(Qt::black, 1.5), QBrush(Qt::white), 9));
-        m_number_widget.at(i)->graph(0)->setPen(QPen(QColor(120, 120, 120), 2));
-        // move bars above graphs and grid below bars:
-        m_number_widget.at(i)->addLayer("abovemain", m_number_widget.at(i)->layer("main"), QCustomPlot::limAbove);
-        m_number_widget.at(i)->addLayer("belowmain", m_number_widget.at(i)->layer("main"), QCustomPlot::limBelow);
-        m_number_widget.at(i)->graph(0)->setLayer("abovemain");
-        m_number_widget.at(i)->xAxis->grid()->setLayer("belowmain");
-        m_number_widget.at(i)->yAxis->grid()->setLayer("belowmain");
-        // set some pens, brushes and backgrounds:
-        m_number_widget.at(i)->xAxis->setBasePen(QPen(Qt::white, 1));
-        m_number_widget.at(i)->yAxis->setBasePen(QPen(Qt::white, 1));
-        m_number_widget.at(i)->xAxis->setTickPen(QPen(Qt::white, 1));
-        m_number_widget.at(i)->yAxis->setTickPen(QPen(Qt::white, 1));
-        m_number_widget.at(i)->xAxis->setSubTickPen(QPen(Qt::white, 1));
-        m_number_widget.at(i)->yAxis->setSubTickPen(QPen(Qt::white, 1));
-        m_number_widget.at(i)->xAxis->setTickLabelColor(Qt::white);
-        m_number_widget.at(i)->yAxis->setTickLabelColor(Qt::white);
-        m_number_widget.at(i)->xAxis->grid()->setPen(QPen(QColor(140, 140, 140), 1, Qt::DotLine));
-        m_number_widget.at(i)->yAxis->grid()->setPen(QPen(QColor(140, 140, 140), 1, Qt::DotLine));
-        m_number_widget.at(i)->xAxis->grid()->setSubGridPen(QPen(QColor(80, 80, 80), 1, Qt::DotLine));
-        m_number_widget.at(i)->yAxis->grid()->setSubGridPen(QPen(QColor(80, 80, 80), 1, Qt::DotLine));
-        m_number_widget.at(i)->xAxis->grid()->setSubGridVisible(true);
-        m_number_widget.at(i)->yAxis->grid()->setSubGridVisible(true);
-        m_number_widget.at(i)->xAxis->grid()->setZeroLinePen(Qt::NoPen);
-        m_number_widget.at(i)->yAxis->grid()->setZeroLinePen(Qt::NoPen);
-        m_number_widget.at(i)->xAxis->setUpperEnding(QCPLineEnding::esSpikeArrow);
-        m_number_widget.at(i)->yAxis->setUpperEnding(QCPLineEnding::esSpikeArrow);
-        QLinearGradient plotGradient;
-        plotGradient.setStart(0, 0);
-        plotGradient.setFinalStop(0, 350);
-        plotGradient.setColorAt(0, QColor(80, 80, 80));
-        plotGradient.setColorAt(1, QColor(50, 50, 50));
-        m_number_widget.at(i)->setBackground(plotGradient);
-        QLinearGradient axisRectGradient;
-        axisRectGradient.setStart(0, 0);
-        axisRectGradient.setFinalStop(0, 350);
-        axisRectGradient.setColorAt(0, QColor(80, 80, 80));
-        axisRectGradient.setColorAt(1, QColor(30, 30, 30));
-        m_number_widget.at(i)->axisRect()->setBackground(axisRectGradient);
-        m_number_widget.at(i)->rescaleAxes();
+//    for(int i = 0 ; i < m_number_widget.size() ; ++i){
+//        m_number_widget.at(i)->addGraph();
+//    //    graph1->setData(x1, y1);
+//        //m_number_widget.at(i)->graph(0)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCircle, QPen(Qt::black, 1.5), QBrush(Qt::white), 9));
+//        m_number_widget.at(i)->graph(0)->setPen(QPen(QColor(120, 120, 120), 2));
+//        // move bars above graphs and grid below bars:
+//        m_number_widget.at(i)->addLayer("abovemain", m_number_widget.at(i)->layer("main"), QCustomPlot::limAbove);
+//        m_number_widget.at(i)->addLayer("belowmain", m_number_widget.at(i)->layer("main"), QCustomPlot::limBelow);
+//        m_number_widget.at(i)->graph(0)->setLayer("abovemain");
+//        m_number_widget.at(i)->xAxis->grid()->setLayer("belowmain");
+//        m_number_widget.at(i)->yAxis->grid()->setLayer("belowmain");
+//        // set some pens, brushes and backgrounds:
+//        m_number_widget.at(i)->xAxis->setBasePen(QPen(Qt::white, 1));
+//        m_number_widget.at(i)->yAxis->setBasePen(QPen(Qt::white, 1));
+//        m_number_widget.at(i)->xAxis->setTickPen(QPen(Qt::white, 1));
+//        m_number_widget.at(i)->yAxis->setTickPen(QPen(Qt::white, 1));
+//        m_number_widget.at(i)->xAxis->setSubTickPen(QPen(Qt::white, 1));
+//        m_number_widget.at(i)->yAxis->setSubTickPen(QPen(Qt::white, 1));
+//        m_number_widget.at(i)->xAxis->setTickLabelColor(Qt::white);
+//        m_number_widget.at(i)->yAxis->setTickLabelColor(Qt::white);
+//        m_number_widget.at(i)->xAxis->grid()->setPen(QPen(QColor(140, 140, 140), 1, Qt::DotLine));
+//        m_number_widget.at(i)->yAxis->grid()->setPen(QPen(QColor(140, 140, 140), 1, Qt::DotLine));
+//        m_number_widget.at(i)->xAxis->grid()->setSubGridPen(QPen(QColor(80, 80, 80), 1, Qt::DotLine));
+//        m_number_widget.at(i)->yAxis->grid()->setSubGridPen(QPen(QColor(80, 80, 80), 1, Qt::DotLine));
+//        m_number_widget.at(i)->xAxis->grid()->setSubGridVisible(true);
+//        m_number_widget.at(i)->yAxis->grid()->setSubGridVisible(true);
+//        m_number_widget.at(i)->xAxis->grid()->setZeroLinePen(Qt::NoPen);
+//        m_number_widget.at(i)->yAxis->grid()->setZeroLinePen(Qt::NoPen);
+//        m_number_widget.at(i)->xAxis->setUpperEnding(QCPLineEnding::esSpikeArrow);
+//        m_number_widget.at(i)->yAxis->setUpperEnding(QCPLineEnding::esSpikeArrow);
+//        QLinearGradient plotGradient;
+//        plotGradient.setStart(0, 0);
+//        plotGradient.setFinalStop(0, 350);
+//        plotGradient.setColorAt(0, QColor(80, 80, 80));
+//        plotGradient.setColorAt(1, QColor(50, 50, 50));
+//        m_number_widget.at(i)->setBackground(plotGradient);
+//        QLinearGradient axisRectGradient;
+//        axisRectGradient.setStart(0, 0);
+//        axisRectGradient.setFinalStop(0, 350);
+//        axisRectGradient.setColorAt(0, QColor(80, 80, 80));
+//        axisRectGradient.setColorAt(1, QColor(30, 30, 30));
+//        m_number_widget.at(i)->axisRect()->setBackground(axisRectGradient);
+//        m_number_widget.at(i)->rescaleAxes();
 //        m_number_widget.at(i)->yAxis->setRange(0,20);
-        m_number_widget.at(i)->xAxis->setRange(0,20);
-        m_number_widget.at(i)->graph(0)->layer()->setMode(QCPLayer::lmBuffered);
+//        m_number_widget.at(i)->xAxis->setRange(0,20);
+//        m_number_widget.at(i)->graph(0)->layer()->setMode(QCPLayer::lmBuffered);
+//        connect(m_number_widget.at(i)->xAxis, SIGNAL(rangeChanged(QCPRange)), m_number_widget.at(i)->xAxis2, SLOT(setRange(QCPRange)));
+//        connect(m_number_widget.at(i)->yAxis, SIGNAL(rangeChanged(QCPRange)), m_number_widget.at(i)->yAxis2, SLOT(setRange(QCPRange)));
+//    }
+//    m_number_widget.at(0)->yAxis->setRange(0,MAX_E_W);
+//    m_number_widget.at(1)->yAxis->setRange(0,MAX_N_S);
+//    m_number_widget.at(2)->yAxis->setRange(0,MAX_W_E);
+//    m_number_widget.at(3)->yAxis->setRange(0,MAX_S_N);
+    for(int i = 0 ; i < m_number_widget.size() ; ++i){
+        m_number_widget.at(i)->addGraph(); // blue line
+        m_number_widget.at(i)->graph(0)->setPen(QPen(QColor(40, 110, 255)));
+
+        QSharedPointer<QCPAxisTickerTime> timeTicker(new QCPAxisTickerTime);
+        timeTicker->setTimeFormat("%s");
+        m_number_widget.at(i)->xAxis->setTicker(timeTicker);
+        m_number_widget.at(i)->axisRect()->setupFullAxesBox();
+        m_number_widget.at(i)->yAxis->setRange(0, 5);
+        m_number_widget.at(i)->xAxis->setRange(0, 20);
+        //m_number_widget.at(i)->graph(0)->layer()->setMode(QCPLayer::lmBuffered);
+        // make left and bottom axes transfer their ranges to right and top axes:
         connect(m_number_widget.at(i)->xAxis, SIGNAL(rangeChanged(QCPRange)), m_number_widget.at(i)->xAxis2, SLOT(setRange(QCPRange)));
         connect(m_number_widget.at(i)->yAxis, SIGNAL(rangeChanged(QCPRange)), m_number_widget.at(i)->yAxis2, SLOT(setRange(QCPRange)));
     }
@@ -159,6 +178,7 @@ void VisualizePanel::setUpNumberWidget()
     m_number_widget.at(1)->yAxis->setRange(0,MAX_N_S);
     m_number_widget.at(2)->yAxis->setRange(0,MAX_W_E);
     m_number_widget.at(3)->yAxis->setRange(0,MAX_S_N);
+
 }
 
 void VisualizePanel::setUpFlowWidget()
@@ -173,7 +193,7 @@ void VisualizePanel::setUpFlowWidget()
         m_flow_widget.at(i)->axisRect()->setupFullAxesBox();
         m_flow_widget.at(i)->yAxis->setRange(0, 5);
         m_flow_widget.at(i)->xAxis->setRange(0, 20);
-        m_flow_widget.at(i)->graph(0)->layer()->setMode(QCPLayer::lmBuffered);
+        //m_flow_widget.at(i)->graph(0)->layer()->setMode(QCPLayer::lmBuffered);
         // make left and bottom axes transfer their ranges to right and top axes:
         connect(m_flow_widget.at(i)->xAxis, SIGNAL(rangeChanged(QCPRange)), m_flow_widget.at(i)->xAxis2, SLOT(setRange(QCPRange)));
         connect(m_flow_widget.at(i)->yAxis, SIGNAL(rangeChanged(QCPRange)), m_flow_widget.at(i)->yAxis2, SLOT(setRange(QCPRange)));
@@ -196,7 +216,7 @@ void VisualizePanel::setUpDensityWidget()
         m_density_widget.at(i)->axisRect()->setupFullAxesBox();
         m_density_widget.at(i)->yAxis->setRange(0, 5);
         m_density_widget.at(i)->xAxis->setRange(0, 20);
-        m_density_widget.at(i)->graph(0)->layer()->setMode(QCPLayer::lmBuffered);
+        //m_density_widget.at(i)->graph(0)->layer()->setMode(QCPLayer::lmBuffered);
         // make left and bottom axes transfer their ranges to right and top axes:
         connect(m_density_widget.at(i)->xAxis, SIGNAL(rangeChanged(QCPRange)), m_density_widget.at(i)->xAxis2, SLOT(setRange(QCPRange)));
         connect(m_density_widget.at(i)->yAxis, SIGNAL(rangeChanged(QCPRange)), m_density_widget.at(i)->yAxis2, SLOT(setRange(QCPRange)));
@@ -219,7 +239,7 @@ void VisualizePanel::setUpHeadwayWidget()
         m_headway_widget.at(i)->axisRect()->setupFullAxesBox();
         m_headway_widget.at(i)->yAxis->setRange(0, 5);
         m_headway_widget.at(i)->xAxis->setRange(0, 20);
-        m_headway_widget.at(i)->graph(0)->layer()->setMode(QCPLayer::lmBuffered);
+        //m_headway_widget.at(i)->graph(0)->layer()->setMode(QCPLayer::lmBuffered);
         // make left and bottom axes transfer their ranges to right and top axes:
         connect(m_headway_widget.at(i)->xAxis, SIGNAL(rangeChanged(QCPRange)), m_headway_widget.at(i)->xAxis2, SLOT(setRange(QCPRange)));
         connect(m_headway_widget.at(i)->yAxis, SIGNAL(rangeChanged(QCPRange)), m_headway_widget.at(i)->yAxis2, SLOT(setRange(QCPRange)));
@@ -480,15 +500,21 @@ void VisualizePanel::update_FLOW()
     static QTime time(QTime::currentTime());
     double key = time.elapsed()/1000.0; // time elapsed since start of demo, in seconds
     static double lastPointKey = 0;
-    if(key >= 100.0){
-        for(int i = 0 ; i < 4 ; ++i){
-            m_flow_widget.at(i)->graph(0)->data().clear();
-            m_flow_widget.at(i)->graph(0)->data().data()->clear();
-        }
-        time.restart();
-        key = 0;
-        lastPointKey = 0;
-    }
+//    if(key >= RESET_RANGED){
+//        for(int i = 0 ; i < 4 ; ++i){
+////            m_flow_widget.at(i)->graph(0)->data().clear();
+////            m_flow_widget.at(i)->graph(0)->data().data()->clear();
+//            m_flow_widget.at(i)->clearGraphs();
+////            m_flow_widget.at(i)->clearItems();
+////            m_flow_widget.at(i)->clearPlottables();
+//            m_flow_widget.at(i)->addGraph();
+//            m_flow_widget.at(i)->graph(0)->setPen(QPen(QColor(40, 110, 255)));
+//            //m_flow_widget.at(i)->graph(0)->layer()->setMode(QCPLayer::lmBuffered);
+//        }
+//        time.restart();
+//        key = 0;
+//        lastPointKey = 0;
+//    }
     if(key - lastPointKey > 0.1){
         for(int i = 0 ; i < m_flow_widget.size() ; ++i){
             //m_flow_widget.at(i)->graph(0)->data().data()->clear();
@@ -508,15 +534,19 @@ void VisualizePanel::update_NUM()
     static QTime time(QTime::currentTime());
     double key = time.elapsed()/1000.0; // time elapsed since start of demo, in seconds
     static double lastPointKey = 0;
-    if(key >= 100.0){
-        for(int i = 0 ; i < 4 ; ++i){
-            m_number_widget.at(i)->graph(0)->data().clear();
-            m_number_widget.at(i)->graph(0)->data().data()->clear();
-        }
-        time.restart();
-        key = 0;
-        lastPointKey = 0;
-    }
+//    if(key >= RESET_RANGED){
+//        for(int i = 0 ; i < 4 ; ++i){
+////            m_number_widget.at(i)->graph(0)->data().clear();
+////            m_number_widget.at(i)->graph(0)->data().data()->clear();
+//            m_number_widget.at(i)->clearGraphs();
+//            m_number_widget.at(i)->addGraph();
+//            m_number_widget.at(i)->graph(0)->setPen(QPen(QColor(40, 110, 255)));
+//            //m_number_widget.at(i)->graph(0)->layer()->setMode(QCPLayer::lmBuffered);
+//        }
+//        time.restart();
+//        key = 0;
+//        lastPointKey = 0;
+//    }
     if(key - lastPointKey > 1){
         for(int i = 0 ; i < m_number_widget.size() ; ++i){
             //m_number_widget.at(i)->graph(0)->data().data()->clear();
@@ -536,15 +566,19 @@ void VisualizePanel::update_DEN()
     static QTime time(QTime::currentTime());
     double key = time.elapsed()/1000.0; // time elapsed since start of demo, in seconds
     static double lastPointKey = 0;
-    if(key >= 100.0){
-        for(int i = 0 ; i < 4 ; ++i){
-            m_density_widget.at(i)->graph(0)->data().clear();
-            m_density_widget.at(i)->graph(0)->data().data()->clear();
-        }
-        time.restart();
-        key = 0;
-        lastPointKey = 0;
-    }
+//    if(key >= RESET_RANGED){
+//        for(int i = 0 ; i < 4 ; ++i){
+////            m_density_widget.at(i)->graph(0)->data().clear();
+////            m_density_widget.at(i)->graph(0)->data().data()->clear();
+//           m_density_widget.at(i)->clearGraphs();
+//           m_density_widget.at(i)->addGraph();
+//           m_density_widget.at(i)->graph(0)->setPen(QPen(QColor(40, 110, 255)));
+//           //m_density_widget.at(i)->graph(0)->layer()->setMode(QCPLayer::lmBuffered);
+//        }
+//        time.restart();
+//        key = 0;
+//        lastPointKey = 0;
+//    }
     if(key - lastPointKey > 0.1){
         for(int i = 0 ; i < m_density_widget.size() ; ++i){
             //m_density_widget.at(i)->graph(0)->data().data()->clear();
@@ -564,15 +598,19 @@ void VisualizePanel::update_HEAD()
     static QTime time(QTime::currentTime());
     double key = time.elapsed()/1000.0; // time elapsed since start of demo, in seconds
     static double lastPointKey = 0;
-    if(key >= 100.0){
-        for(int i = 0 ; i < 4 ; ++i){
-            m_headway_widget.at(i)->graph(0)->data().clear();
-            m_headway_widget.at(i)->graph(0)->data().data()->clear();
-        }
-        time.restart();
-        key = 0;
-        lastPointKey = 0;
-    }
+//    if(key >= RESET_RANGED){
+//        for(int i = 0 ; i < 4 ; ++i){
+////            m_headway_widget.at(i)->graph(0)->data().clear();
+////            m_headway_widget.at(i)->graph(0)->data().data()->clear();
+//            m_headway_widget.at(i)->clearGraphs();
+//            m_headway_widget.at(i)->addGraph();
+//            m_headway_widget.at(i)->graph(0)->setPen(QPen(QColor(40, 110, 255)));
+//            //m_headway_widget.at(i)->graph(0)->layer()->setMode(QCPLayer::lmBuffered);
+//        }
+//        time.restart();
+//        key = 0;
+//        lastPointKey = 0;
+//    }
     if(key - lastPointKey > 0.1){
         for(int i = 0 ; i < m_headway_widget.size() ; ++i){
             //m_headway_widget.at(i)->graph(0)->data().data()->clear();

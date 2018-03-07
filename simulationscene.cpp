@@ -62,3 +62,16 @@ void SimulationScene::trunOffAllCar()
         this->getVehicle().at(i)->setActionOff();
     }
 }
+
+void SimulationScene::setGoThrought(bool x)
+{
+    if(x){
+        for(int i = 0 ; i < getVehicle().size() ; ++i){
+            getVehicle().at(i)->setMode(VEHICLEMETHOD::GO_THROUGH);
+        }
+    }else{
+        for(int i = 0 ; i < getVehicle().size() ; ++i){
+            getVehicle().at(i)->setMode(VEHICLEMETHOD::SIGHTSEEING);
+        }
+    }
+}

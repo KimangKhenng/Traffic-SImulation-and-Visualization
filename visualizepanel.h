@@ -15,7 +15,7 @@
 #define Y_DEN_MAX 20;
 #define X_HEAD_MAX 20;
 #define Y_HEAD_MAX 20;
-
+#define RESET_RANGED 20
 namespace Ui {
 class VisualizePanel;
 }

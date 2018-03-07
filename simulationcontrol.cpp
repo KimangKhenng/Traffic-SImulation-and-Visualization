@@ -88,9 +88,9 @@ void SimulationControl::on_m_random_birth_clicked()
     m_w->getUi()->m_go_though->setChecked(false);
     m_w->getUi()->m_simulation_control_widget->generator()->setMode(VEHICLEMETHOD::SIGHTSEEING);
     m_w->getUi()->m_no_traffic->setChecked(true);
-    m_w->getUi()->m_visualize_panel_check_box->setChecked(true);
+    //m_w->getUi()->m_visualize_panel_check_box->setChecked(true);
     m_w->showTraffic(true);
-    m_w->getUi()->m_visualize_frame->show();
+    //m_w->getUi()->m_visualize_frame->show();
 
 }
 

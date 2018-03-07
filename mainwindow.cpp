@@ -3,7 +3,7 @@
 #include <QtWidgets>
 #include <time.h>
 MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent),ui(new Ui::MainWindow),m_road(nullptr),m_simulate_state(false)
-  ,m_sightseeing(false),m_data_widget(nullptr)
+  ,m_sightseeing(false),m_visualize_state(false),m_data_widget(nullptr)
 {
         ui->setupUi(this);
         setWindowTitle ("Intersection Road Simulation and Visulization");
@@ -95,7 +95,9 @@ void MainWindow::check_state()
             }
         }
         m_controller->startTrafficLightAll();
-        ui->m_visualzie_widget->update_all();
+    if(m_visualize_state){
+       ui->m_visualzie_widget->update_all();
+    }
     }else{
         m_scene->trunOffAllCar();
         ui->m_simulation_control_widget->generator()->stopGenerator();
@@ -373,8 +375,10 @@ void MainWindow::on_m_go_though_clicked(bool checked)
 {
     if(checked){
         ui->m_simulation_control_widget->generator()->setMode(VEHICLEMETHOD::GO_THROUGH);
+        m_scene->setGoThrought(true);
     }else{
         ui->m_simulation_control_widget->generator()->setMode(VEHICLEMETHOD::SIGHTSEEING);
+        m_scene->setGoThrought(false);
     }
 
 }
@@ -420,7 +424,9 @@ void MainWindow::on_m_visualize_panel_check_box_clicked(bool checked)
 {
     if(checked){
         ui->m_visualize_frame->show();
+        m_visualize_state = true;
     }else{
         ui->m_visualize_frame->hide();
+        m_visualize_state = false;
     }
 }

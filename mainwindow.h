@@ -75,6 +75,7 @@ private:
     bool m_simulate_state;
     bool m_traffic_state;
     bool m_sightseeing;
+    bool m_visualize_state;
     QTimer *m_machine_state;
     QSplashScreen *m_loading_screen;
     DataWidget *m_data_widget;
