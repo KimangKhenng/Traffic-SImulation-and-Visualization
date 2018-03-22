@@ -250,7 +250,7 @@ void VisualizePanel::setUpHeadwayWidget()
     m_headway_widget.at(3)->yAxis->setRange(0,MAX_S_N);
 }
 
-int VisualizePanel::getNumber(int x)
+int VisualizePanel::getNumber(const int &x) const
 {
     switch (x) {
         case 0 :
@@ -265,7 +265,7 @@ int VisualizePanel::getNumber(int x)
     return 0;
 }
 
-int VisualizePanel::getNumberNS()
+int VisualizePanel::getNumberNS() const
 {
     int num = 0;
     for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_N_S)->size() ; ++i){
@@ -274,7 +274,7 @@ int VisualizePanel::getNumberNS()
     return num;
 }
 
-int VisualizePanel::getNumberSN()
+int VisualizePanel::getNumberSN() const
 {
     int num = 0;
     for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_S_N)->size() ; ++i){
@@ -283,7 +283,7 @@ int VisualizePanel::getNumberSN()
     return num;
 }
 
-int VisualizePanel::getNumberWE()
+int VisualizePanel::getNumberWE() const
 {
     int num = 0;
     for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_W_E)->size() ; ++i){
@@ -292,7 +292,7 @@ int VisualizePanel::getNumberWE()
     return num;
 }
 
-int VisualizePanel::getNumberEW()
+int VisualizePanel::getNumberEW() const
 {
     int num = 0;
     for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_E_W)->size() ; ++i){
@@ -301,7 +301,7 @@ int VisualizePanel::getNumberEW()
     return num;
 }
 
-double VisualizePanel::getFlow(int x)
+double VisualizePanel::getFlow(const int &x) const
 {
     switch (x) {
         case 0 :
@@ -316,7 +316,7 @@ double VisualizePanel::getFlow(int x)
     return 0;
 }
 
-double VisualizePanel::getFlowNS()
+double VisualizePanel::getFlowNS() const
 {
     double flow = 0.0;
     for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_N_S)->size() ; ++i){
@@ -325,7 +325,7 @@ double VisualizePanel::getFlowNS()
     return flow;
 }
 
-double VisualizePanel::getFlowSN()
+double VisualizePanel::getFlowSN() const
 {
     double flow = 0.0;
     for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_S_N)->size() ; ++i){
@@ -334,7 +334,7 @@ double VisualizePanel::getFlowSN()
     return flow;
 }
 
-double VisualizePanel::getFlowWE()
+double VisualizePanel::getFlowWE() const
 {
     double flow = 0.0;
     for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_W_E)->size() ; ++i){
@@ -343,7 +343,7 @@ double VisualizePanel::getFlowWE()
     return flow;
 }
 
-double VisualizePanel::getFlowEW()
+double VisualizePanel::getFlowEW() const
 {
     double flow = 0.0;
     for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_E_W)->size() ; ++i){
@@ -352,7 +352,7 @@ double VisualizePanel::getFlowEW()
     return flow;
 }
 
-double VisualizePanel::getDensity(int x)
+double VisualizePanel::getDensity(const int &x) const
 {
     switch (x) {
         case 0 :
@@ -367,7 +367,7 @@ double VisualizePanel::getDensity(int x)
     return 0;
 }
 
-double VisualizePanel::getDensityNS()
+double VisualizePanel::getDensityNS() const
 {
     double den = 0.0;
     for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_N_S)->size() ; ++i){
@@ -376,7 +376,7 @@ double VisualizePanel::getDensityNS()
     return den;
 }
 
-double VisualizePanel::getDensitySN()
+double VisualizePanel::getDensitySN() const
 {
     double den = 0.0;
     for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_S_N)->size() ; ++i){
@@ -385,7 +385,7 @@ double VisualizePanel::getDensitySN()
     return den;
 }
 
-double VisualizePanel::getDensityWE()
+double VisualizePanel::getDensityWE() const
 {
     double den = 0.0;
     for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_W_E)->size() ; ++i){
@@ -394,7 +394,7 @@ double VisualizePanel::getDensityWE()
     return den;
 }
 
-double VisualizePanel::getDensityEW()
+double VisualizePanel::getDensityEW() const
 {
     double den = 0.0;
     for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_E_W)->size() ; ++i){
@@ -403,7 +403,7 @@ double VisualizePanel::getDensityEW()
     return den;
 }
 
-double VisualizePanel::getHeadWay(int x)
+double VisualizePanel::getHeadWay(const int &x) const
 {
     switch (x) {
         case 0 :
@@ -418,7 +418,7 @@ double VisualizePanel::getHeadWay(int x)
     return 0;
 }
 
-double VisualizePanel::getHeadWayNS()
+double VisualizePanel::getHeadWayNS() const
 {
     double head = 0.0;
     for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_N_S)->size() ; ++i){
@@ -427,7 +427,7 @@ double VisualizePanel::getHeadWayNS()
     return head;
 }
 
-double VisualizePanel::getHeadWaySN()
+double VisualizePanel::getHeadWaySN() const
 {
     double head = 0.0;
     for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_S_N)->size() ; ++i){
@@ -436,7 +436,7 @@ double VisualizePanel::getHeadWaySN()
     return head;
 }
 
-double VisualizePanel::getHeadWayWE()
+double VisualizePanel::getHeadWayWE() const
 {
     double head = 0.0;
     for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_W_E)->size() ; ++i){
@@ -445,7 +445,7 @@ double VisualizePanel::getHeadWayWE()
     return head;
 }
 
-double VisualizePanel::getHeadWayEW()
+double VisualizePanel::getHeadWayEW() const
 {
     double head = 0.0;
     for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_E_W)->size() ; ++i){

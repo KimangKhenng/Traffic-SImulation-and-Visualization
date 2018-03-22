@@ -18,7 +18,7 @@ namespace Ui {
 class MainWindow;
 }
 class SimulationControl;
-class DataWidget;
+//class DataWidget;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -31,14 +31,14 @@ public:
     void set_up();
     void turnOnSimulationState();
     void turnOffSimulationState();
-    GENMETHOD getCurrentMethod();
-    VEHICLEMETHOD getCurrentVehicleMethod();
-    ~MainWindow();
+    GENMETHOD getCurrentMethod() const;
+    VEHICLEMETHOD getCurrentVehicleMethod() const;
     SimulationScene *scene() const;
     TrafficController *getController() const;
     bool getSimulate_state() const;
     Ui::MainWindow *getUi() const;
     void showTraffic(bool checked);
+    ~MainWindow();
 public slots:
     void check_state();
 private slots:
@@ -66,21 +66,22 @@ private slots:
     void on_m_tool_panel_check_box_clicked(bool checked);
     void on_m_visualize_panel_check_box_clicked(bool checked);
 
+    void on_m_back_button_clicked();
+
 private:
     void changeVehicleMode(const VEHICLEMETHOD &mode);
     Ui::MainWindow *ui;
     SimulationScene *m_scene;
     QGraphicsSvgItem *m_path;
-    road *m_road;
     bool m_simulate_state;
     bool m_traffic_state;
     bool m_sightseeing;
     bool m_visualize_state;
     QTimer *m_machine_state;
-    QSplashScreen *m_loading_screen;
-    DataWidget *m_data_widget;
+    //QSplashScreen *m_loading_screen;
+    //DataWidget *m_data_widget;
     TrafficController *m_controller;
-    QList<TrafficLight *> *m_traffic_light;
+    //QList<TrafficLight *> *m_traffic_light;
 };
 
 #endif // MAINWINDOW_H

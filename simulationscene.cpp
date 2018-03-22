@@ -32,7 +32,7 @@ int SimulationScene::getNumber(region x)
     return size;
 }
 
-QList<Vehicle *> SimulationScene::getVehicle()
+QList<Vehicle *> SimulationScene::getVehicle() const
 {
     QList<QGraphicsItem *> v = this->items();
     QList<Vehicle *> p;
@@ -44,7 +44,7 @@ QList<Vehicle *> SimulationScene::getVehicle()
     return p;
 }
 
-QList<TrafficDetector *> SimulationScene::getDetector()
+QList<TrafficDetector *> SimulationScene::getDetector() const
 {
     QList<QGraphicsItem *> v = this->items();
     QList<TrafficDetector *> d;

@@ -18,7 +18,7 @@ public:
     TrafficDetector(float length, QGraphicsItem *parent = 0);
     ~TrafficDetector();
     float getFlow() const;
-    bool isContainedVehicles();
+    bool isContainedVehicles() const;
     int getNumbersOfVehicles() const;
     float getDensity() const;
     float getSaturationFlowRate() const;
@@ -26,10 +26,10 @@ public:
     float getHeadWay() const;
     void turnOffDisplay();
     void turnOnDisplay();
-    void startEngine();
-    void stopEngine();
+//    void startEngine();
+//    void stopEngine();
     QElapsedTimer *getTimer() const;
-    bool getIs_active() const;
+//    bool getIs_active() const;
 public slots:
     void advance(int phase) Q_DECL_OVERRIDE;
     //void forward();
@@ -42,10 +42,10 @@ private:
     QElapsedTimer *m_timer;
     //QTimer *m_counter;
     bool m_is_active;
-    QVector<float> m_flow_data;
-    QVector<int> m_number_data;
-    QVector<float> m_density_data;
-    QVector<float> m_headway_data;
+//    QVector<float> m_flow_data;
+//    QVector<int> m_number_data;
+//    QVector<float> m_density_data;
+//    QVector<float> m_headway_data;
 
 };
 

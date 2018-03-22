@@ -2,8 +2,8 @@
 #include "ui_mainwindow.h"
 #include <QtWidgets>
 #include <time.h>
-MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent),ui(new Ui::MainWindow),m_road(nullptr),m_simulate_state(false)
-  ,m_sightseeing(false),m_visualize_state(false),m_data_widget(nullptr)
+MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent),ui(new Ui::MainWindow),m_simulate_state(false)
+  ,m_sightseeing(false),m_visualize_state(false)
 {
         ui->setupUi(this);
         setWindowTitle ("Intersection Road Simulation and Visulization");
@@ -41,7 +41,7 @@ void MainWindow::turnOffSimulationState()
     m_simulate_state = false;
 }
 
-GENMETHOD MainWindow::getCurrentMethod()
+GENMETHOD MainWindow::getCurrentMethod() const
 {
     if(ui->m_3_lanes->isChecked()){
         return GENMETHOD::GEN_3;
@@ -55,7 +55,7 @@ GENMETHOD MainWindow::getCurrentMethod()
     return GENMETHOD::NO_TURN;
 }
 
-VEHICLEMETHOD MainWindow::getCurrentVehicleMethod()
+VEHICLEMETHOD MainWindow::getCurrentVehicleMethod() const
 {
     if(ui->m_go_though->isChecked()){
         return VEHICLEMETHOD::GO_THROUGH;
@@ -194,7 +194,6 @@ void MainWindow::set_up()
     m_terrain->setZValue (-3);
     m_terrain->moveBy(-70,5);
     m_scene = new SimulationScene();
-    m_road = new road();
     //m_scene->addItem (m_picture);
     m_scene->addItem (m_terrain);
     m_scene->addItem (m_path);
@@ -429,4 +428,9 @@ void MainWindow::on_m_visualize_panel_check_box_clicked(bool checked)
         ui->m_visualize_frame->hide();
         m_visualize_state = false;
     }
+}
+
+void MainWindow::on_m_back_button_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
 }

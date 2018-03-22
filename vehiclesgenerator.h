@@ -2,8 +2,6 @@
 #define VEHICLESGENERATOR_H
 
 #include "vehicle.h"
-#include <QtCore>
-#include <QtWidgets>
 #include "road.h"
 #include "commonenum.h"
 ///////////////

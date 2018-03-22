@@ -11,8 +11,8 @@ class SimulationScene: public QGraphicsScene
 public:
     SimulationScene();
     int getNumber(region x);
-    QList<Vehicle *> getVehicle();
-    QList<TrafficDetector *> getDetector();
+    QList<Vehicle *> getVehicle() const;
+    QList<TrafficDetector *> getDetector() const;
     void trunOffAllCar();
     void setGoThrought(bool x);
 //protected:

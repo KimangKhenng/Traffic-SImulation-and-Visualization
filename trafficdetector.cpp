@@ -88,10 +88,10 @@ void TrafficDetector::advance(int phase)
 //    update(boundingRect());
 //}
 
-bool TrafficDetector::getIs_active() const
-{
-    return m_is_active;
-}
+//bool TrafficDetector::getIs_active() const
+//{
+//    return m_is_active;
+//}
 
 QElapsedTimer *TrafficDetector::getTimer() const
 {
@@ -107,9 +107,8 @@ float TrafficDetector::getFlow() const
     }
 }
 
-bool TrafficDetector::isContainedVehicles()
+bool TrafficDetector::isContainedVehicles() const
 {
-    isActive();
     return m_is_active;
 }
 
