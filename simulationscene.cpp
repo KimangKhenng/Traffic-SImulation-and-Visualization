@@ -14,7 +14,7 @@ SimulationScene::SimulationScene()
     setBackgroundBrush (Qt::gray);
 }
 
-int SimulationScene::getNumber(region x)
+int SimulationScene::getNumber(const region &x) const
 {
     int size = 0;
     QList<QGraphicsItem *> v = this->items();
@@ -32,7 +32,7 @@ int SimulationScene::getNumber(region x)
     return size;
 }
 
-QList<Vehicle *> SimulationScene::getVehicle()
+QList<Vehicle *> SimulationScene::getVehicle() const
 {
     QList<QGraphicsItem *> v = this->items();
     QList<Vehicle *> p;
@@ -44,7 +44,7 @@ QList<Vehicle *> SimulationScene::getVehicle()
     return p;
 }
 
-QList<TrafficDetector *> SimulationScene::getDetector()
+QList<TrafficDetector *> SimulationScene::getDetector() const
 {
     QList<QGraphicsItem *> v = this->items();
     QList<TrafficDetector *> d;
@@ -54,6 +54,19 @@ QList<TrafficDetector *> SimulationScene::getDetector()
         }
     }
     return d;
+}
+
+QList<TrafficLight *> SimulationScene::getTrafficLight(const region &r) const
+{
+    QList<TrafficLight *> light_list;
+    for(int i = 0 ; i < this->items().length() ; ++i){
+        if(dynamic_cast<TrafficLight *>(this->items().at(i))){
+            if(dynamic_cast<TrafficLight *>(this->items().at(i))->getRegion() == r){
+                light_list.append(dynamic_cast<TrafficLight *>(this->items().at(i)));
+            }
+        }
+    }
+    return light_list;
 }
 
 void SimulationScene::trunOffAllCar()

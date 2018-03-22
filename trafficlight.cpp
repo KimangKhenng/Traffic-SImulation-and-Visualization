@@ -38,7 +38,8 @@ bool TrafficLight::checkDir(Direction dir)
         //qDebug()<<"Hello";
         return getLeftGreen()->isOn();
     case Direction::RIGHT_TURNING :
-        return getMainGreen()->isOn();
+//        return getMainGreen()->isOn();
+        return true;
     case Direction::THROUGH :
         return getMainGreen()->isOn();
     }
