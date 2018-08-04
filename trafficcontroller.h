@@ -5,12 +5,11 @@
 #include "lightwidget.h"
 #include "trafficdetector.h"
 #include "commonenum.h"
-#include <QtCore>
-#include <QtWidgets>
+
 class TrafficController : public QGraphicsItemGroup
 {
 public:
-    TrafficController(QGraphicsItemGroup *parent = 0);
+    TrafficController(QGraphicsItemGroup *parent = nullptr);
     TrafficLight *getTrafficLight(region r);
     //void turnTrafficOn();
     //void turnTrafficOff();

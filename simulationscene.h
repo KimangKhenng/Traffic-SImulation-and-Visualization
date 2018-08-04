@@ -1,15 +1,16 @@
 #ifndef SIMULATIONSCENE_H
 #define SIMULATIONSCENE_H
-#include <QtCore>
-#include <QtWidgets>
+
+#include <QGraphicsScene>
 #include "commonenum.h"
 #include "vehicle.h"
 #include "trafficdetector.h"
+
 class SimulationScene: public QGraphicsScene
 {
 
 public:
-    SimulationScene();
+    SimulationScene(QGraphicsScene *parent = nullptr);
     int getNumber(const region &x) const;
     QList<Vehicle *> getVehicle() const;
     QList<TrafficLight *> getTrafficLight(const region &r) const;

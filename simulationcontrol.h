@@ -1,10 +1,10 @@
 #ifndef SIMULATIONCONTROL_H
 #define SIMULATIONCONTROL_H
 
-#include <QWidget>
 #include "mainwindow.h"
 #include "vehicle.h"
 #include "generator.h"
+
 namespace Ui {
 class SimulationControl;
 }
@@ -14,9 +14,9 @@ class SimulationControl : public QWidget
     Q_OBJECT
 
 public:
-    explicit SimulationControl(QWidget *parent = 0);
+    explicit SimulationControl(QWidget *parent = nullptr);
     ~SimulationControl();
-    void initialize(MainWindow *widget);
+    void initialize(QWidget *widget);
     Generator *generator() const;
 
 private slots:

@@ -1,8 +1,7 @@
 #ifndef VISUALIZEPANEL_H
 #define VISUALIZEPANEL_H
 
-#include <QWidget>
-#include <QtCore>
+
 #include "mainwindow.h"
 #include "qcustomplot.h"
 #include "trafficcontroller.h"
@@ -16,6 +15,7 @@
 #define X_HEAD_MAX 20;
 #define Y_HEAD_MAX 20;
 #define RESET_RANGED 20
+
 namespace Ui {
 class VisualizePanel;
 }

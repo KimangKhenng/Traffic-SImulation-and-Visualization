@@ -3,9 +3,9 @@
 
 #define LENGTH 80
 
-#include <QtCore>
-#include <QtWidgets>
+#include <QElapsedTimer>
 #include "vehicle.h"
+
 class TrafficDetector : public QObject,public QGraphicsItem
 {
     Q_OBJECT
@@ -15,8 +15,8 @@ public:
     QRectF boundingRect() const Q_DECL_OVERRIDE;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
     //Override
-    TrafficDetector(float length, QGraphicsItem *parent = 0);
-    ~TrafficDetector();
+    TrafficDetector(float length, QGraphicsItem *parent = nullptr);
+    ~TrafficDetector() override;
     float getFlow() const;
     bool isContainedVehicles() const;
     int getNumbersOfVehicles() const;

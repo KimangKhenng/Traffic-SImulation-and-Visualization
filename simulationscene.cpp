@@ -1,6 +1,6 @@
 #include "simulationscene.h"
 
-SimulationScene::SimulationScene()
+SimulationScene::SimulationScene(QGraphicsScene *parent):QGraphicsScene (parent)
 {
     /////////////////
     ///

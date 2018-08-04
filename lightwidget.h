@@ -1,7 +1,11 @@
 #ifndef LIGHTWIDGET_H
 #define LIGHTWIDGET_H
-#include <QtCore>
-#include <QtWidgets>
+
+#include <QObject>
+#include <QColor>
+#include <QPainter>
+#include <QGraphicsItem>
+#include <QStyleOptionGraphicsItem>
 
 #define SIZE 25
 
@@ -12,7 +16,7 @@ class LightWidget :public QObject,/*public QGraphicsLayoutItem,*/ public QGraphi
 //    Q_INTERFACES(QGraphicsLayoutItem)
     Q_PROPERTY(bool on READ isOn WRITE setOn)
 public:
-    LightWidget(const QColor &color,QGraphicsItem *parent = 0);
+    LightWidget(const QColor &color,QGraphicsItem *parent = nullptr);
     // Virtual Function Area (Must be implemented)
     QRectF boundingRect() const Q_DECL_OVERRIDE;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;

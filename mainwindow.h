@@ -2,18 +2,16 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QtCore>
-#include <QtWidgets>
 #include <QGraphicsSvgItem>
 #include <QGLWidget>
 #include "commonenum.h"
 #include "vehicle.h"
 #include "road.h"
 #include "simulationscene.h"
-#include "simulationcontrol.h"
 #include "vehiclesgenerator.h"
 #include "trafficcontroller.h"
 #include "workerthread.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -24,7 +22,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(QWidget *parent = nullptr);
 //    virtual void resizeEvent(QResizeEvent *event);
     virtual void keyPressEvent (QKeyEvent *event);
     void set_up_random();
@@ -38,6 +36,11 @@ public:
     bool getSimulate_state() const;
     Ui::MainWindow *getUi() const;
     void showTraffic(bool checked);
+    void set3LaneCheck(const bool& b);
+    void setGenMethod(const GENMETHOD& gen);
+    void setGoThroguht(const bool& b);
+    void setSimMode(const VEHICLEMETHOD& m);
+    void setTrafficState(const bool& b);
     ~MainWindow();
 public slots:
     void check_state();
@@ -65,7 +68,6 @@ private slots:
     void on_actionPNG_triggered();   
     void on_m_tool_panel_check_box_clicked(bool checked);
     void on_m_visualize_panel_check_box_clicked(bool checked);
-
     void on_m_back_button_clicked();
 
 private:

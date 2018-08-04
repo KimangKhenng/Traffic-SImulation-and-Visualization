@@ -2,7 +2,9 @@
 #define VEHICLE_H
 #define GAPACCAPANCE 10
 
-#include <QtWidgets>
+#include <QGraphicsPixmapItem>
+#include <QGraphicsScene>
+#include <QObject>
 #include <qmath.h>
 #include "commonenum.h"
 #include "trafficlight.h"
@@ -11,8 +13,17 @@ class Vehicle: public QObject,public QGraphicsPixmapItem
     Q_OBJECT
     Q_INTERFACES(QGraphicsItem)
 public:
-    Vehicle(QGraphicsItem *parent = 0);
-    ~Vehicle();
+    explicit Vehicle(QGraphicsItem *parent = nullptr);
+    ////////
+    /// \brief Vehicle
+    /// Prevent Copying
+    Vehicle(const Vehicle&) = delete;
+    ///////
+    /// \brief operator =
+    /// \return Address of Vehicle
+    /// Prevent using operator =
+    Vehicle& operator = (const Vehicle&) = delete;
+    ~Vehicle() override;
     // @Overloading Function
     QRectF boundingRect() const Q_DECL_OVERRIDE;
     QPainterPath shape() const Q_DECL_OVERRIDE;
@@ -66,6 +77,8 @@ public:
     bool isContainedSignal() const;
     void setMode(const VEHICLEMETHOD &mode);
     bool isDeletable() const;
+    //Reimplement Event
+    void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) override;
 public slots:
     void advance(int phase) Q_DECL_OVERRIDE;
     //void forward();
@@ -75,7 +88,7 @@ private:
     Vehicle *getCollding();
     bool hasInfront();
     void reset_speed();
-    void decelerate();
+    void decelerate(QPointF rhs);
     void accerlerate();
     bool is_enter_the_junction() const;
     void stop_advance();

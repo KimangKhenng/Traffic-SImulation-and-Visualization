@@ -17,6 +17,7 @@ Vehicle::Vehicle(QGraphicsItem *parent):QGraphicsPixmapItem(parent),m_angle(0),m
     this->setPixmap(generateImage().scaled(25,13,Qt::KeepAspectRatio,
                                            Qt::TransformationMode::SmoothTransformation));
 
+
 }
 
 Vehicle::~Vehicle()
@@ -108,12 +109,9 @@ void Vehicle::reset_speed()
     m_speed = 0;
 }
 
-void Vehicle::decelerate()
+void Vehicle::decelerate(QPointF rhs)
 {
-    m_speed -= 0.025;
-    if(m_speed < 0){
-        m_speed += 0.025;
-    }
+
 }
 
 void Vehicle::accerlerate()
@@ -159,10 +157,10 @@ void Vehicle::advance(int phase)
 {
     Q_UNUSED(phase)
     if(m_on_action_state){
-        accerlerate ();
         if(this->is_in_stop_point()){
             if(isContainedSignal()){
                 if(!ifAllowed()){
+                    //decelerate();
                     stop_advance();
                     return;
                 }
@@ -170,10 +168,12 @@ void Vehicle::advance(int phase)
         }
         if(m_mode == VEHICLEMETHOD::SIGHTSEEING){
             if(hasInfront()){
+                //decelerate();
                 stop_advance();
                 return;
             }
         }
+        accerlerate ();
         QLineF line(pos(),m_destination);
         //qDebug()<<"Length"<<line.length();
         if(int(line.length()) <= 1.0){
@@ -231,7 +231,7 @@ void Vehicle::advance(int phase)
 //        return;
 //    }
 
-////    setPos(x()+m_speed*qSin(qDegreesToRadians(rotation())),y()+m_speed*qCos(qDegreesToRadians(rotation())));
+//    setPos(x()+m_speed*qSin(qDegreesToRadians(rotation())),y()+m_speed*qCos(qDegreesToRadians(rotation())));
 
 //    //qDebug()<<"Point Size"<<m_path_to_follow.size();
 //    //qDebug()<<"Point Index"<<m_point_index;
@@ -270,6 +270,11 @@ void Vehicle::setMode(const VEHICLEMETHOD &mode)
 bool Vehicle::isDeletable() const
 {
     return m_Is_deletable;
+}
+
+void Vehicle::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
+{
+    qDebug()<<"Car's Position: "<<this->pos();
 }
 
 QPixmap Vehicle::generateImage() const

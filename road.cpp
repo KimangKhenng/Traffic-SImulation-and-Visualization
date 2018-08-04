@@ -1,6 +1,5 @@
 #include "road.h"
-#include <QtCore>
-#include <QtWidgets>
+
 
 QPainterPath road::get_1_1()
 {

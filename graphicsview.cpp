@@ -27,6 +27,29 @@ void GraphicsView::wheelEvent(QWheelEvent *event)
         this->scale(1.0 / scaleFactor, 1.0 / scaleFactor);
     }
 }
+
+void GraphicsView::mouseMoveEvent(QMouseEvent *event)
+{
+    QGraphicsView::mouseMoveEvent(event);
+    qDebug()<<"Actual Position "<<event->pos()<<"Scene Pos "<<event->screenPos();
+    if(event->buttons() == Qt::RightButton){
+        this->setCursor(Qt::SizeAllCursor);
+
+    }
+    if(event->buttons() == Qt::LeftButton){
+        if(dynamic_cast<Vehicle*>(this->scene()->itemAt(this->mapToScene(event->pos()),this->transform()))){
+            this->setCursor(Qt::OpenHandCursor);
+            qDebug()<<event->pos();
+        }
+    }
+}
+
+void GraphicsView::mouseReleaseEvent(QMouseEvent *event)
+{
+    QGraphicsView::mouseReleaseEvent(event);
+    this->setCursor(Qt::ArrowCursor);
+
+}
 /*void GraphicsView::resizeEvent(QResizeEvent *event)
 {
     setSceneRect(event->size().width()/2,event->size().height()/2,event->size().width(),event->size().height());

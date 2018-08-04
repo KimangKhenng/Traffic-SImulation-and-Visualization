@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QtWidgets>
-#include <time.h>
+
 MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent),ui(new Ui::MainWindow),m_simulate_state(false)
   ,m_sightseeing(false),m_visualize_state(false)
 {
@@ -183,7 +182,11 @@ void MainWindow::set_up()
     //Add Road and Background to scene
     //QGraphicsPixmapItem *m_picture = new QGraphicsPixmapItem(QPixmap(":/image/Image/road-image.png")/*.scaled (600,600)*/);
     QGraphicsSvgItem *m_terrain = new QGraphicsSvgItem(":/image/Image/terrain.svg");
+    m_terrain->setFlag(QGraphicsItem::ItemIsMovable,false);
+    m_terrain->setFlag(QGraphicsItem::ItemIsSelectable,false);
     m_path = new QGraphicsSvgItem(":/image/Image/road-path.svg");
+    m_path->setFlag(QGraphicsItem::ItemIsMovable,false);
+    m_path->setFlag(QGraphicsItem::ItemIsSelectable,false);
     //m_terrain->moveBy (-60,0);
     //m_picture->moveBy(30,0);
     m_path->moveBy (15,-15);
@@ -357,6 +360,31 @@ void MainWindow::showTraffic(bool checked)
             m_scene->removeItem(m_controller->getTraffic_light()->at(i));
         }
     }
+}
+
+void MainWindow::set3LaneCheck(const bool &b)
+{
+    ui->m_3_lanes->setChecked(b);
+}
+
+void MainWindow::setGenMethod(const GENMETHOD &gen)
+{
+    ui->m_simulation_control_widget->generator()->setMethod(gen);
+}
+
+void MainWindow::setGoThroguht(const bool &b)
+{
+    ui->m_go_though->setChecked(b);
+}
+
+void MainWindow::setSimMode(const VEHICLEMETHOD &m)
+{
+    ui->m_simulation_control_widget->generator()->setMode(m);
+}
+
+void MainWindow::setTrafficState(const bool &b)
+{
+    ui->m_no_traffic->setChecked(b);
 }
 
 TrafficController *MainWindow::getController() const

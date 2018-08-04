@@ -1,8 +1,7 @@
 #ifndef GENERATOR_H
 #define GENERATOR_H
 
-#include <QtWidgets>
-#include <QtCore>
+
 #include "commonenum.h"
 #include "vehiclesgenerator.h"
 #include "simulationscene.h"

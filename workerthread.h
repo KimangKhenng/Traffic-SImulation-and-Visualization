@@ -1,7 +1,7 @@
 #ifndef WORKERTHREAD_H
 #define WORKERTHREAD_H
-#include <QtCore>
-#include "visualizepanel.h"
+#include <QThread>
+
 class WorkerThread : public QThread
 {
     Q_OBJECT

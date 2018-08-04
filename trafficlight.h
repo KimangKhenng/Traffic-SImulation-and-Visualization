@@ -1,23 +1,27 @@
 #ifndef TRAFFICLIGHT_H
 #define TRAFFICLIGHT_H
 
+#include <QState>
+#include <QStateMachine>
+#include <QFinalState>
 #include "lightwidget.h"
 #include "lightwidgetleft.h"
 #include "commonenum.h"
-#include <QtCore>
-#include <QtWidgets>
+
 
 class TrafficLight :public QObject, public QGraphicsItem
 {
     Q_OBJECT
     Q_INTERFACES(QGraphicsItem)
 public:
+    //Override
+    TrafficLight(region re,QGraphicsItem *parent = nullptr);
+    TrafficLight(QGraphicsItem *parent = nullptr);
+    ~TrafficLight() override;
     //@Override
     QRectF boundingRect() const Q_DECL_OVERRIDE;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
-    //Override
-    TrafficLight(region re,QGraphicsItem *parent = 0);
-    TrafficLight(QGraphicsItem *parent = 0);
+
     region getRegion();
     bool checkDir(Direction dir);
     void setManualControl();
@@ -41,7 +45,7 @@ public:
     void setMode(const TRAFFICMODE &mode);
 
 private:
-    QState *makeState(LightWidget *light, int duration,QState *parent = 0);
+    QState *makeState(LightWidget *light, int duration,QState *parent = nullptr);
     int m_red_duration;
     int m_left_duration;
     int m_main_green_duration;

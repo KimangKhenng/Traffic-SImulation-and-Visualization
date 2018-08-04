@@ -26,6 +26,11 @@ TrafficLight::TrafficLight(QGraphicsItem *parent):QGraphicsItem (parent)
 
 }
 
+TrafficLight::~TrafficLight()
+{
+
+}
+
 region TrafficLight::getRegion()
 {
     return m_region;

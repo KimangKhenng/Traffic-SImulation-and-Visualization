@@ -1,8 +1,8 @@
 #ifndef ROAD_H
 #define ROAD_H
 
-#include <QtCore>
-#include <QtWidgets>
+#include <QPainterPath>
+#include <QTransform>
 #include "trafficlight.h"
 #include "commonenum.h"
 class road

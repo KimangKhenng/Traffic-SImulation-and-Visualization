@@ -1,6 +1,7 @@
 #ifndef COMMONENUM_H
 #define COMMONENUM_H
-
+#include <QDebug>
+#include <QTimer>
 ////////////////
 #ifndef MAX_S_N
     #define MAX_S_N 20
@@ -22,7 +23,7 @@
     #define TIME_UNIT 1/60 // refresh rate 60HZ
 #endif
 ////////////////
-
+/// \brief The Direction enum
 enum Direction{LEFT_TURNING,THROUGH,RIGHT_TURNING};
 enum region{REGION_E_W,REGION_N_S,REGION_W_E,REGION_S_N};
 enum GENMETHOD{GEN_3,GEN_5,NO_TURN};
