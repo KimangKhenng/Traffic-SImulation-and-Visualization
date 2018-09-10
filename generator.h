@@ -12,11 +12,11 @@ class Generator : public QObject
 public:
     Generator(SimulationScene *scene);
     Generator();
-    void setMethod(GENMETHOD x);
+    void setMethod(const GENMETHOD& x);
     void startGenerator();
     void stopGenerator();
     void startAutoGeneraion();
-    void setTimer(int x,int y,int c,int z);
+    void setTimer(const int& x,const int& y,const int& c,const int& z);
     void setScene(SimulationScene *scene);
     void turnOn();
     void turnOff();

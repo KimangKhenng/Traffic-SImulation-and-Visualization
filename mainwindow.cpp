@@ -342,11 +342,6 @@ bool MainWindow::getSimulate_state() const
     return m_simulate_state;
 }
 
-Ui::MainWindow *MainWindow::getUi() const
-{
-    return ui;
-}
-
 void MainWindow::showTraffic(bool checked)
 {
     if(checked){

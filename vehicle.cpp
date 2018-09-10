@@ -1,14 +1,16 @@
 #include "vehicle.h"
+#include "simulationscene.h"
+
 //Declear static Macro variable
 //static const double Pi = 3.14159265358979323846264338327950288419717;
 //static double TwoPi = 2.0*Pi;
 
-Vehicle::Vehicle(QGraphicsItem *parent):QGraphicsPixmapItem(parent),m_angle(0),m_speed(0)/*,m_color(qrand()%256,qrand()%256,qrand()%256)*/
+Vehicle::Vehicle(QGraphicsItem *parent):QGraphicsPixmapItem(parent),m_angle(0),m_speed(0),m_acceleration(0.01)/*,m_color(qrand()%256,qrand()%256,qrand()%256)*/
   ,m_point_index(0),m_on_action_state(false),m_step_count(0),m_driving_state(false),m_mode(VEHICLEMETHOD::SIGHTSEEING)
-  ,m_Is_deletable(false)
+  ,m_Is_deletable(false),m_leader(nullptr)
 {
     //m_internal_timer = new QTimer;
-    m_sightseeing = new QGraphicsRectItem(QRectF(30,5,GAPACCAPANCE,10),this);
+    m_sightseeing = new QGraphicsRectItem(QRectF(30,5,50,10),this);
     m_sightseeing->setOpacity(0);
     this->setTransformOriginPoint(10,5);
     this->setFlag(QGraphicsItem::ItemIsMovable);
@@ -114,12 +116,19 @@ void Vehicle::decelerate(QPointF rhs)
 
 }
 
-void Vehicle::accerlerate()
+void Vehicle::accelerate()
 {
-    m_speed += 0.01;
+    m_speed += m_acceleration;
 }
 
-QList<QPointF> Vehicle::get_path()
+void Vehicle::accelerate(Vehicle *leader)
+{
+    m_acceleration = 23*(leader->getSpeed()-this->getSpeed())/distanceToOtherVehicle(leader);
+    qDebug()<<"Acc: "<<m_acceleration;
+    m_speed += m_acceleration;
+}
+
+QList<QPointF> Vehicle::get_path() const
 {
     return m_path_to_follow;
 }
@@ -152,6 +161,12 @@ void Vehicle::stop_advance()
     m_speed = 0;
 }
 
+qreal Vehicle::getSpeed() const
+{
+    return m_speed;
+}
+
+
 
 void Vehicle::advance(int phase)
 {
@@ -169,11 +184,16 @@ void Vehicle::advance(int phase)
         if(m_mode == VEHICLEMETHOD::SIGHTSEEING){
             if(hasInfront()){
                 //decelerate();
-                stop_advance();
+                accelerate(m_leader);
                 return;
+            }else{
+                accelerate();
             }
+        }else{
+            m_acceleration = 0.01;
+            accelerate();
         }
-        accerlerate ();
+
         QLineF line(pos(),m_destination);
         //qDebug()<<"Length"<<line.length();
         if(int(line.length()) <= 1.0){
@@ -189,6 +209,7 @@ void Vehicle::advance(int phase)
         double dy = m_speed*qSin(qDegreesToRadians(theta));
         double dx = m_speed*qCos(qDegreesToRadians(theta));
         setPos(x()+dx,y()+dy);
+
     }else{
         return;
     }
@@ -249,6 +270,35 @@ Vehicle *Vehicle::getCollding()
     return nullptr;
 }
 
+Vehicle *Vehicle::nextVehicle()
+{
+    Vehicle *next = nullptr;
+    QList<QGraphicsItem *> list_of_collding_vehicle = m_sightseeing->collidingItems();
+    for(int i = 0 ; i < list_of_collding_vehicle.size() ; ++i){
+        next = dynamic_cast<Vehicle *>(list_of_collding_vehicle.at(i));
+        if(next&&(next !=this)){
+            return next;
+        }
+    }
+    return this;
+
+}
+
+SimulationScene *Vehicle::myScene() const
+{
+    SimulationScene* scene = dynamic_cast<SimulationScene*>(this->scene());
+    if(scene){
+        return scene;
+    }
+    return nullptr;
+}
+
+double Vehicle::distanceToOtherVehicle(Vehicle *v) const
+{
+    return sqrt((v->x() - this->x())*(v->x() - this->x()) + (v->y() - this->y())*(v->y() - this->y()) );
+}
+
+
 bool Vehicle::hasInfront()
 {
     Vehicle *next = nullptr;
@@ -256,9 +306,12 @@ bool Vehicle::hasInfront()
     for(int i = 0 ; i < list_of_collding_vehicle.size() ; ++i){
         next = dynamic_cast<Vehicle *>(list_of_collding_vehicle.at(i));
         if(next&&(next !=this)){
+            m_leader = next;
+            //qDebug()<<"True";
             return true;
         }
     }
+    m_acceleration = 0.01;
     return false;
 }
 
@@ -275,6 +328,11 @@ bool Vehicle::isDeletable() const
 void Vehicle::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
 {
     qDebug()<<"Car's Position: "<<this->pos();
+}
+
+float Vehicle::acceleration() const
+{
+
 }
 
 QPixmap Vehicle::generateImage() const

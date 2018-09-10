@@ -1,6 +1,8 @@
 #include "visualizepanel.h"
 #include "ui_visualizepanel.h"
 
+
+
 VisualizePanel::VisualizePanel(QWidget *parent) :QWidget(parent),ui(new Ui::VisualizePanel)
 {
     ui->setupUi(this);

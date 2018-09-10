@@ -1,7 +1,7 @@
 #ifndef VISUALIZEPANEL_H
 #define VISUALIZEPANEL_H
 
-
+#include <QThread>
 #include "mainwindow.h"
 #include "qcustomplot.h"
 #include "trafficcontroller.h"
@@ -20,18 +20,19 @@ namespace Ui {
 class VisualizePanel;
 }
 class MainWindow;
+
 class VisualizePanel : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit VisualizePanel(QWidget *parent = 0);
+    explicit VisualizePanel(QWidget *parent = nullptr);
     //void initialize();
     void setEtimer(QList<QElapsedTimer *> *etimer);
     void setController(TrafficController *controller);
     void setMainWindows(MainWindow *w);
     void update_all();
-    ~VisualizePanel();
+    ~VisualizePanel() override;
 //private slots:
 //    void update_1();
 //    void update_2();
@@ -84,6 +85,7 @@ private:
     QList<QVector<double>> m_headway;
 //    QList<QTimer *> *m_timer;
 //    QList<QElapsedTimer *> *m_etimer;
+
 };
 
 #endif // VISUALIZEPANEL_H

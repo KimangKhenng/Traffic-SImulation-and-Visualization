@@ -18,7 +18,7 @@ Generator::Generator():m_number_N_S(0),m_number_S_N(0),
     //qsrand(static_cast<uint>(QTime(0,0,0).secsTo(QTime::currentTime())));
 }
 
-void Generator::setMethod(GENMETHOD x)
+void Generator::setMethod(const GENMETHOD& x)
 {
     m_method = x;
 }
@@ -67,7 +67,7 @@ void Generator::startAutoGeneraion()
     t4->start (v);
 }
 
-void Generator::setTimer(int x, int y, int c, int z)
+void Generator::setTimer(const int& x,const int& y,const int& c,const int& z)
 {
     m_time_N_S = x;
     m_time_S_N = y;

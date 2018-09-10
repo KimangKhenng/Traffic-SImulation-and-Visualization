@@ -2,12 +2,13 @@
 #define VEHICLE_H
 #define GAPACCAPANCE 10
 
+
+#include "trafficlight.h"
 #include <QGraphicsPixmapItem>
-#include <QGraphicsScene>
 #include <QObject>
 #include <qmath.h>
-#include "commonenum.h"
-#include "trafficlight.h"
+
+class SimulationScene;
 class Vehicle: public QObject,public QGraphicsPixmapItem
 {
     Q_OBJECT
@@ -62,7 +63,7 @@ public:
     bool is_in_stop_point();
     void setActionOn();
     void setActionOff();
-    QList<QPointF> get_path();
+    QList<QPointF> get_path() const;
     bool Isinthejunction();
     QPointF get_position() const;
     int get_current_index() const;
@@ -79,21 +80,33 @@ public:
     bool isDeletable() const;
     //Reimplement Event
     void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) override;
+    float acceleration() const;
+    qreal getSpeed() const;
+
 public slots:
     void advance(int phase) Q_DECL_OVERRIDE;
     //void forward();
 private:
     QPixmap generateImage() const;
-    bool ifAllowed() const;
     Vehicle *getCollding();
+    Vehicle *nextVehicle();
+    SimulationScene *myScene() const;
+
+    double distanceToOtherVehicle(Vehicle* v) const;
+
+    bool ifAllowed() const;
     bool hasInfront();
+    bool is_enter_the_junction() const;
+
     void reset_speed();
     void decelerate(QPointF rhs);
-    void accerlerate();
-    bool is_enter_the_junction() const;
+    void accelerate();
+    void accelerate(Vehicle* leader);
     void stop_advance();
+
     qreal m_angle;
     qreal m_speed;
+    qreal m_acceleration;
 //    QColor m_color;
     QList<QPointF> m_path_to_follow;
     QPointF m_destination;
@@ -107,6 +120,7 @@ private:
     //QTimer *m_internal_timer;
     VEHICLEMETHOD m_mode;
     bool m_Is_deletable;
+    Vehicle* m_leader;
 };
 
 #endif // VEHICLE_H

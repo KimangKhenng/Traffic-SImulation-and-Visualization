@@ -281,7 +281,7 @@ QPainterPath road::draw_4_5()
     return m_path;
 }
 
-QPainterPath road::getLeft(region approach)
+QPainterPath road::getLeft(const region& approach)
 {
     switch (approach) {
     case region::REGION_W_E:
@@ -296,7 +296,7 @@ QPainterPath road::getLeft(region approach)
     return QPainterPath(QPointF(0,0));
 }
 
-QPainterPath road::getThrough(region approach, int lane)
+QPainterPath road::getThrough(const region &approach, const int& lane)
 {
     switch (approach) {
     case region::REGION_W_E :
@@ -339,7 +339,7 @@ QPainterPath road::getThrough(region approach, int lane)
     return QPainterPath(QPointF(0,0));
 }
 
-QPainterPath road::getRight(region approach)
+QPainterPath road::getRight(const region& approach)
 {
     switch (approach) {
     case region::REGION_W_E:

@@ -34,7 +34,6 @@ public:
     SimulationScene *scene() const;
     TrafficController *getController() const;
     bool getSimulate_state() const;
-    Ui::MainWindow *getUi() const;
     void showTraffic(bool checked);
     void set3LaneCheck(const bool& b);
     void setGenMethod(const GENMETHOD& gen);

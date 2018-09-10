@@ -11,9 +11,9 @@
 class VehiclesGenerator
 {
 public:
-    static Vehicle *getLeftTurningVehicle(region approach,VEHICLEMETHOD x);
-    static Vehicle *getThroughVehicle(region approach,int lane,VEHICLEMETHOD x);
-    static Vehicle *getRightTurningVehicle(region approach,VEHICLEMETHOD x);
+    static Vehicle *getLeftTurningVehicle(const region& approach,const VEHICLEMETHOD& x);
+    static Vehicle *getThroughVehicle(const region& approach,const int& lane,const VEHICLEMETHOD& x);
+    static Vehicle *getRightTurningVehicle(const region& approach,const VEHICLEMETHOD& x);
 };
 
 #endif // VEHICLESGENERATOR_H

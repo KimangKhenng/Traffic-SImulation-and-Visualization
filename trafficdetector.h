@@ -4,6 +4,8 @@
 #define LENGTH 80
 
 #include <QElapsedTimer>
+#include <QGraphicsItem>
+#include <QPainter>
 #include "vehicle.h"
 
 class TrafficDetector : public QObject,public QGraphicsItem

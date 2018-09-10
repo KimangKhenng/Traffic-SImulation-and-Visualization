@@ -13,9 +13,9 @@ public:
     /// \param approach = region for vehicle to appear
     /// \return Path for vehicle
     /// function to return path for vehicle
-    static QPainterPath getLeft(region approach);
-    static QPainterPath getThrough(region approach,int lane);
-    static QPainterPath getRight(region approach);
+    static QPainterPath getLeft(const region& approach);
+    static QPainterPath getThrough(const region& approach,const int& lane);
+    static QPainterPath getRight(const region& approach);
 protected:
     static QPainterPath get_1_1();
     static QPainterPath get_1_2();

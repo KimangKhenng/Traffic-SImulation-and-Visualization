@@ -1,6 +1,6 @@
 #include "vehiclesgenerator.h"
 
-Vehicle *VehiclesGenerator::getLeftTurningVehicle(region approach, VEHICLEMETHOD x)
+Vehicle *VehiclesGenerator::getLeftTurningVehicle(const region &approach, const VEHICLEMETHOD &x)
 {
     Vehicle *p = new Vehicle();
     p->extract_coordinate(road::getLeft(approach));
@@ -15,7 +15,7 @@ Vehicle *VehiclesGenerator::getLeftTurningVehicle(region approach, VEHICLEMETHOD
 
 }
 
-Vehicle *VehiclesGenerator::getThroughVehicle(region approach, int lane, VEHICLEMETHOD x)
+Vehicle *VehiclesGenerator::getThroughVehicle(const region &approach, const int &lane, const VEHICLEMETHOD &x)
 {
     Vehicle *p = new Vehicle();
     p->extract_coordinate(road::getThrough(approach,lane));
@@ -29,7 +29,7 @@ Vehicle *VehiclesGenerator::getThroughVehicle(region approach, int lane, VEHICLE
     return p;
 }
 
-Vehicle *VehiclesGenerator::getRightTurningVehicle(region approach, VEHICLEMETHOD x)
+Vehicle *VehiclesGenerator::getRightTurningVehicle(const region &approach, const VEHICLEMETHOD &x)
 {
     Vehicle *p = new Vehicle();
     p->extract_coordinate(road::getRight(approach));

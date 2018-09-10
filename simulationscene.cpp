@@ -14,9 +14,9 @@ SimulationScene::SimulationScene(QGraphicsScene *parent):QGraphicsScene (parent)
     setBackgroundBrush (Qt::gray);
 }
 
-int SimulationScene::getNumber(const region &x) const
+uint SimulationScene::getNumber(const region &x) const
 {
-    int size = 0;
+    uint size = 0;
     QList<QGraphicsItem *> v = this->items();
     QList<Vehicle *> p;
     for(int i = 0 ; i < v.size() ; ++i){
@@ -38,6 +38,18 @@ QList<Vehicle *> SimulationScene::getVehicle() const
     QList<Vehicle *> p;
     for(int i = 0 ; i < v.size() ; ++i){
         if(dynamic_cast<Vehicle *>(v.at(i))){
+            p.append(dynamic_cast<Vehicle *>(v.at(i)));
+        }
+    }
+    return p;
+}
+
+QList<Vehicle *> SimulationScene::getVehicle(const region &r) const
+{
+    QList<QGraphicsItem *> v = this->items();
+    QList<Vehicle *> p;
+    for(int i = 0 ; i < v.size() ; ++i){
+        if(dynamic_cast<Vehicle *>(v.at(i))->getRegion() == r){
             p.append(dynamic_cast<Vehicle *>(v.at(i)));
         }
     }
