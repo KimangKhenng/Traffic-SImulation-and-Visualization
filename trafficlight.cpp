@@ -156,7 +156,7 @@ void TrafficLight::startTrafficLight()
         //qDebug()<<"Case 2";
         return;
     }else{
-        //qDebug()<<"Case 3";
+        qDebug()<<"Case 3";
         m_state_machine->start();
     }
 }
@@ -170,7 +170,7 @@ void TrafficLight::stopTrafficLight()
         //qDebug()<<"Case 2";
         return;
     }else{
-        //qDebug()<<"Case 3";
+        qDebug()<<"Case 3";
         m_state_machine->stop();
     }
 }

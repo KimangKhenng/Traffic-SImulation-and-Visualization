@@ -44,6 +44,11 @@ void SimulationControl::initialize(QWidget *widget)
     }
 }
 
+void SimulationControl::stopGenerating()
+{
+    m_generator->stopGenerator();
+}
+
 void SimulationControl::on_m_setup_button_clicked()
 {
 
@@ -80,6 +85,7 @@ void SimulationControl::on_m_random_birth_clicked()
     m_generator->startAutoGeneraion();
     m_w->turnOnSimulationState();
     m_w->getController()->setLightDuration(5000,3000,500);
+    m_w->getController()->startTrafficLightAll();
     // Ui Stuff
     m_w->set3LaneCheck(true);
     m_w->setGenMethod(GENMETHOD::GEN_3);
@@ -97,7 +103,18 @@ void SimulationControl::on_m_random_birth_clicked()
 
 }
 
+
+void SimulationControl::on_m_setup_birth_rate_button_3_clicked()
+{
+
+}
+
 Generator *SimulationControl::generator() const
 {
     return m_generator;
+}
+
+void SimulationControl::setMethod(const GENMETHOD &m)
+{
+    m_generator->setMethod(m);
 }

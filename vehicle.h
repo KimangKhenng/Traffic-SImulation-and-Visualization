@@ -25,7 +25,7 @@ public:
     /// Prevent using operator =
     Vehicle& operator = (const Vehicle&) = delete;
     ~Vehicle() override;
-    // @Overloading Function
+    //// Overloading Function
     QRectF boundingRect() const Q_DECL_OVERRIDE;
     QPainterPath shape() const Q_DECL_OVERRIDE;
     //void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
@@ -59,6 +59,8 @@ public:
     /// \param r
     /// set Which region vehicle belong to
     void setRegion(region r);
+    /// ////////////
+
     bool is_on_action();
     bool is_in_stop_point();
     void setActionOn();

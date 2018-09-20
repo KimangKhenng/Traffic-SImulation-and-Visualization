@@ -17,7 +17,9 @@ public:
     explicit SimulationControl(QWidget *parent = nullptr);
     ~SimulationControl();
     void initialize(QWidget *widget);
+    void stopGenerating();
     Generator *generator() const;
+    void setMethod(const GENMETHOD& m);
 
 private slots:
     void on_m_setup_button_clicked();
@@ -25,6 +27,8 @@ private slots:
     void on_m_stop_clicked();
     void on_m_auto_traffic_clicked();
     void on_m_random_birth_clicked();
+
+    void on_m_setup_birth_rate_button_3_clicked();
 
 private:
     MainWindow *m_w;

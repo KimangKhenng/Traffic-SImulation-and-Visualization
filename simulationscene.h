@@ -14,9 +14,11 @@ public:
     QList<Vehicle *> getVehicle() const;
     QList<Vehicle *> getVehicle(const region &r) const;
     QList<TrafficLight *> getTrafficLight(const region &r) const;
+    QList<TrafficLight *> getTrafficLight() const;
     QList<TrafficDetector *> getDetector() const;
     void trunOffAllCar();
     void setGoThrought(bool x);
+    void resetScene();
 //protected:
 //    virtual void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent);
 };

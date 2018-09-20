@@ -69,6 +69,8 @@ private slots:
     void on_m_visualize_panel_check_box_clicked(bool checked);
     void on_m_back_button_clicked();
 
+    void on_m_only_turn_clicked();
+
 private:
     void changeVehicleMode(const VEHICLEMETHOD &mode);
     Ui::MainWindow *ui;

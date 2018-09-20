@@ -48,23 +48,8 @@ void Generator::stopGenerator()
 
 void Generator::startAutoGeneraion()
 {
-    int x = 3000;
-    int y = 4000;
-    int z = 4500;
-    int v = 3900;
-    setTimer(x,y,z,v);
-    QTimer *t1 = new QTimer();
-    this->connect(t1,SIGNAL(timeout()),this,SLOT(makeEastWest()));
-    t1->start (x);
-    QTimer *t2 = new QTimer();
-    this->connect(t2,SIGNAL(timeout()),this,SLOT(makeNorthSouth()));
-    t2->start (y);
-    QTimer *t3 = new QTimer();
-    this->connect(t3,SIGNAL(timeout()),this,SLOT(makeSouthNorth()));
-    t3->start (z);
-    QTimer *t4 = new QTimer();
-    this->connect(t4,SIGNAL(timeout()),this,SLOT(makeWestEast()));
-    t4->start (v);
+    setTimer(3000,4000,4500,3900);
+    startGenerator();
 }
 
 void Generator::setTimer(const int& x,const int& y,const int& c,const int& z)
@@ -138,6 +123,16 @@ void Generator::makeNorthSouth()
                     break;
             }
             break;
+    case ONLY_TURN:
+        switch (qrand()%2) {
+            case 0:
+                m_scene->addItem(VehiclesGenerator::getLeftTurningVehicle(REGION_N_S,m_mode));
+                break;
+            case 1:
+                m_scene->addItem(VehiclesGenerator::getRightTurningVehicle(REGION_N_S,m_mode));
+                break;
+        }
+        break;
     }
 }
 
@@ -201,6 +196,16 @@ void Generator::makeSouthNorth()
                 case 2:
                     m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_S_N,3,m_mode));
                     //m_number_N_S++;
+                    break;
+            }
+            break;
+        case ONLY_TURN:
+            switch (qrand()%2) {
+                case 0:
+                    m_scene->addItem(VehiclesGenerator::getLeftTurningVehicle(REGION_S_N,m_mode));
+                    break;
+                case 1:
+                    m_scene->addItem(VehiclesGenerator::getRightTurningVehicle(REGION_S_N,m_mode));
                     break;
             }
             break;
@@ -270,6 +275,17 @@ void Generator::makeWestEast()
                 break;
         }
         break;
+    case ONLY_TURN:
+        switch (qrand()%2) {
+            case 0:
+                m_scene->addItem(VehiclesGenerator::getLeftTurningVehicle(REGION_W_E,m_mode));
+                break;
+            case 1:
+                m_scene->addItem(VehiclesGenerator::getRightTurningVehicle(REGION_W_E,m_mode));
+                break;
+        }
+        break;
+
     }
 }
 
@@ -336,7 +352,16 @@ void Generator::makeEastWest()
                 break;
         }
         break;
-
+    case ONLY_TURN:
+        switch (qrand()%2) {
+            case 0:
+                m_scene->addItem(VehiclesGenerator::getLeftTurningVehicle(REGION_E_W,m_mode));
+                break;
+            case 1:
+                m_scene->addItem(VehiclesGenerator::getRightTurningVehicle(REGION_E_W,m_mode));
+                break;
+        }
+        break;
     }
 }
 

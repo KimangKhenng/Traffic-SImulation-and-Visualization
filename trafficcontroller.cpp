@@ -142,6 +142,14 @@ void TrafficController::stopTrafficLightAll()
     }
 }
 
+void TrafficController::manualControl()
+{
+    for(int i = 0 ; i < m_traffic_light->size() ; ++i){
+        m_traffic_light->at(i)->stopTrafficLight();
+        m_traffic_light->at(i)->setMode(TRAFFICMODE::HAS_SIGNAL);
+    }
+}
+
 void TrafficController::setLightDuration(const int &green, const int &left, const int &yellow)
 {
     for(int i = 0 ; i < m_traffic_light->size() ; ++i){

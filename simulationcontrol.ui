@@ -2,12 +2,15 @@
 <ui version="4.0">
  <class>SimulationControl</class>
  <widget class="QWidget" name="SimulationControl">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>298</width>
-    <height>175</height>
+    <width>341</width>
+    <height>300</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -18,8 +21,8 @@
   </property>
   <property name="maximumSize">
    <size>
-    <width>298</width>
-    <height>175</height>
+    <width>341</width>
+    <height>300</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -322,6 +325,13 @@
       <widget class="QPushButton" name="m_setup_birth_rate_button">
        <property name="text">
         <string>SetUp</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="m_setup_birth_rate_button_3">
+       <property name="text">
+        <string>All Dir</string>
        </property>
       </widget>
      </item>

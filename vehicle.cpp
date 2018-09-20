@@ -10,7 +10,7 @@ Vehicle::Vehicle(QGraphicsItem *parent):QGraphicsPixmapItem(parent),m_angle(0),m
   ,m_Is_deletable(false),m_leader(nullptr)
 {
     //m_internal_timer = new QTimer;
-    m_sightseeing = new QGraphicsRectItem(QRectF(30,5,50,10),this);
+    m_sightseeing = new QGraphicsRectItem(QRectF(30,5,GAPACCAPANCE * 4,10),this);
     m_sightseeing->setOpacity(0);
     this->setTransformOriginPoint(10,5);
     this->setFlag(QGraphicsItem::ItemIsMovable);
@@ -18,8 +18,6 @@ Vehicle::Vehicle(QGraphicsItem *parent):QGraphicsPixmapItem(parent),m_angle(0),m
     this->setOffset(10,5);
     this->setPixmap(generateImage().scaled(25,13,Qt::KeepAspectRatio,
                                            Qt::TransformationMode::SmoothTransformation));
-
-
 }
 
 Vehicle::~Vehicle()
@@ -123,8 +121,8 @@ void Vehicle::accelerate()
 
 void Vehicle::accelerate(Vehicle *leader)
 {
-    m_acceleration = 23*(leader->getSpeed()-this->getSpeed())/distanceToOtherVehicle(leader);
-    qDebug()<<"Acc: "<<m_acceleration;
+    m_acceleration = 3*(leader->getSpeed()-this->getSpeed())/distanceToOtherVehicle(leader);
+    //qDebug()<<"Acc: "<<m_acceleration;
     m_speed += m_acceleration;
 }
 
@@ -184,12 +182,18 @@ void Vehicle::advance(int phase)
         if(m_mode == VEHICLEMETHOD::SIGHTSEEING){
             if(hasInfront()){
                 //decelerate();
+
+                if(distanceToOtherVehicle(m_leader) < 27.0){
+                    qDebug()<<"Hello";
+                    stop_advance();
+                }
                 accelerate(m_leader);
-                return;
+
             }else{
                 accelerate();
             }
         }else{
+            m_leader = nullptr;
             m_acceleration = 0.01;
             accelerate();
         }
@@ -307,11 +311,13 @@ bool Vehicle::hasInfront()
         next = dynamic_cast<Vehicle *>(list_of_collding_vehicle.at(i));
         if(next&&(next !=this)){
             m_leader = next;
+            this->m_sightseeing->setPen(QPen(QColor(Qt::red)));
             //qDebug()<<"True";
             return true;
         }
     }
-    m_acceleration = 0.01;
+    this->m_sightseeing->setPen(QPen(QColor(Qt::black)));
+    //m_acceleration = 0.01;
     return false;
 }
 
@@ -418,14 +424,15 @@ void Vehicle::turnOffSightSeeing()
 
 bool Vehicle::isContainedSignal() const
 {
-    QList<QGraphicsItem *> item = scene()->items();
-    QList<TrafficLight *> light_list;
-    for(int i = 0 ; i < item.size() ; ++i){
-        TrafficLight *light = dynamic_cast<TrafficLight *>(item.at(i));
-        if(light){
-            light_list.append(light);
-        }
-    }
+
+//    QList<QGraphicsItem *> item = scene()->items();
+    QList<TrafficLight *> light_list = myScene()->getTrafficLight();
+//    for(int i = 0 ; i < item.size() ; ++i){
+//        TrafficLight *light = dynamic_cast<TrafficLight *>(item.at(i));
+//        if(light){
+//            light_list.append(light);
+//        }
+//    }
     for(int i = 0 ; i < light_list.size() ; ++i){
         if(light_list.at(i)->getMode() == TRAFFICMODE::HAS_SIGNAL){
             return true;
@@ -441,14 +448,14 @@ region Vehicle::getRegion() const
 
 bool Vehicle::ifAllowed() const
 {
-    QList<QGraphicsItem *> item = scene()->items();
-    QList<TrafficLight *> light_list;
-    for(int i = 0 ; i < item.size() ; ++i){
-        TrafficLight *light = dynamic_cast<TrafficLight *>(item.at(i));
-        if(light){
-            light_list.append(light);
-        }
-    }
+    //QList<QGraphicsItem *> item = scene()->items();
+    QList<TrafficLight *> light_list = myScene()->getTrafficLight();
+//    for(int i = 0 ; i < item.size() ; ++i){
+//        TrafficLight *light = dynamic_cast<TrafficLight *>(item.at(i));
+//        if(light){
+//            light_list.append(light);
+//        }
+//    }
     for(int i = 0 ; i < light_list.size() ; ++i){
         if(light_list.at(i)->getRegion() == this->getRegion()){
             return light_list.at(i)->checkDir(this->getDir());

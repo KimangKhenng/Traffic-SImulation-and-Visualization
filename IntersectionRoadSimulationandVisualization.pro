@@ -6,7 +6,6 @@
 
 QT       += core gui svg widgets printsupport sql opengl
 CONFIG   += console
-DEFINES  += QCUSTOMPLOT_USE_OPENGL
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 

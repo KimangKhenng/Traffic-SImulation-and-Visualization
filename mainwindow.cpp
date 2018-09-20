@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent),ui(new Ui::MainWind
         set_up ();
         ui->stackedWidget->setCurrentIndex(0);
         m_machine_state = new QTimer();
-        this->connect (m_machine_state,SIGNAL(timeout()),this,SLOT(check_state()));
+        this->connect(m_machine_state,SIGNAL(timeout()),this,SLOT(check_state()));
         //QObject::connect(m_machine_state,SIGNAL(timeout()),m_scene,SLOT(advance()));
         m_machine_state->start(TIME_UNIT);
         ui->m_visualize_frame->hide();
@@ -93,7 +93,7 @@ void MainWindow::check_state()
                 delete car.at(i);
             }
         }
-        m_controller->startTrafficLightAll();
+        //m_controller->startTrafficLightAll();
     if(m_visualize_state){
        ui->m_visualzie_widget->update_all();
     }
@@ -163,8 +163,15 @@ void MainWindow::on_reset_clicked()
 //    for(int i = 0 ; i < m_scene->getVehicle().length() ; i++){
 //        delete m_scene->getVehicle().at(i);
 //    }
+    ui->m_simulation_control_widget->stopGenerating();
     ui->tool_panel->setEnabled(false);
     ui->tool_panel->update();
+
+    m_simulate_state = false;
+    m_visualize_state = false;
+    m_controller->stopTrafficLightAll();
+    m_scene->resetScene();
+
 }
 
 void MainWindow::on_pause_clicked()
@@ -308,23 +315,25 @@ void MainWindow::on_m_aboutus_button_clicked()
 
 void MainWindow::on_m_manul_control_button_clicked(bool checked)
 {
-//    if(checked){
-//        for(int i = 0 ; i < m_traffic_light->size() ; ++i){
-//            m_traffic_light->at(i)->setManualControl();
-//        }
-//    }else{
-
-//    }
+    if(checked){
+        for(int i = 0 ; i < m_controller->getTraffic_light()->size() ; i++){
+            m_controller->manualControl();
+        }
+    }else{
+        for(int i = 0 ; i < m_controller->getTraffic_light()->size() ; i++){
+            m_controller->startTrafficLightAll();
+        }
+    }
 }
 
 void MainWindow::on_m_5_lanes_clicked()
 {
-    ui->m_simulation_control_widget->generator()->setMethod(GENMETHOD::GEN_5);
+    ui->m_simulation_control_widget->setMethod(GENMETHOD::GEN_5);
 }
 
 void MainWindow::on_m_3_lanes_clicked()
 {
-    ui->m_simulation_control_widget->generator()->setMethod(GENMETHOD::GEN_3);
+    ui->m_simulation_control_widget->setMethod(GENMETHOD::GEN_3);
 }
 
 SimulationScene *MainWindow::scene() const
@@ -456,4 +465,9 @@ void MainWindow::on_m_visualize_panel_check_box_clicked(bool checked)
 void MainWindow::on_m_back_button_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_m_only_turn_clicked()
+{
+    ui->m_simulation_control_widget->generator()->setMethod(GENMETHOD::ONLY_TURN);
 }

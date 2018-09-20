@@ -41,6 +41,7 @@ QList<Vehicle *> SimulationScene::getVehicle() const
             p.append(dynamic_cast<Vehicle *>(v.at(i)));
         }
     }
+    qDebug()<<p.size();
     return p;
 }
 
@@ -81,6 +82,18 @@ QList<TrafficLight *> SimulationScene::getTrafficLight(const region &r) const
     return light_list;
 }
 
+QList<TrafficLight *> SimulationScene::getTrafficLight() const
+{
+    QList<TrafficLight *> light_list;
+    for(int i = 0 ; i < this->items().size() ; ++i){
+        TrafficLight *light = dynamic_cast<TrafficLight *>(this->items().at(i));
+        if(light){
+            light_list.append(light);
+        }
+    }
+    return light_list;
+}
+
 void SimulationScene::trunOffAllCar()
 {
     for(int i = 0 ; i < this->getVehicle().size() ; ++i){
@@ -98,5 +111,16 @@ void SimulationScene::setGoThrought(bool x)
         for(int i = 0 ; i < getVehicle().size() ; ++i){
             getVehicle().at(i)->setMode(VEHICLEMETHOD::SIGHTSEEING);
         }
+    }
+}
+
+void SimulationScene::resetScene()
+{
+    for(int i = 0 ; i < this->getVehicle().size() ; i++){
+       this->removeItem(this->getVehicle().at(i));
+       //delete this->getVehicle().at(i);
+    }
+    for(int i = 0 ; i < this->getTrafficLight().size() ; i++){
+        this->removeItem(this->getTrafficLight().at(i));
     }
 }

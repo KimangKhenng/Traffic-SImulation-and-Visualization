@@ -26,7 +26,7 @@
 /// \brief The Direction enum
 enum Direction{LEFT_TURNING,THROUGH,RIGHT_TURNING};
 enum region{REGION_E_W,REGION_N_S,REGION_W_E,REGION_S_N};
-enum GENMETHOD{GEN_3,GEN_5,NO_TURN};
+enum GENMETHOD{GEN_3,GEN_5,NO_TURN,ONLY_TURN};
 enum TRAFFICMODE{NO_SIGNAL,HAS_SIGNAL};
 enum VEHICLEMETHOD{SIGHTSEEING,GO_THROUGH};
 enum STATE_MACHINE{Green_Going_Left,Left_Going_Yellow,Yellow_Going_Red,Red_Going_Yellow,Yellow_Going_Green};

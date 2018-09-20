@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>898</width>
-    <height>665</height>
+    <height>745</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -705,6 +705,16 @@ border-radius:5px;
                 </widget>
                </item>
                <item>
+                <widget class="QRadioButton" name="m_only_turn">
+                 <property name="text">
+                  <string>Only Turn</string>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QRadioButton" name="m_go_though">
                  <property name="styleSheet">
                   <string notr="true">background-color: rgb(230, 126, 34);</string>
@@ -734,13 +744,13 @@ border-radius:5px;
                  <property name="minimumSize">
                   <size>
                    <width>298</width>
-                   <height>175</height>
+                   <height>100</height>
                   </size>
                  </property>
                  <property name="maximumSize">
                   <size>
                    <width>298</width>
-                   <height>175</height>
+                   <height>300</height>
                   </size>
                  </property>
                  <property name="baseSize">
@@ -962,7 +972,7 @@ background-color: rgb(52, 73, 94);
      <x>0</x>
      <y>0</y>
      <width>898</width>
-     <height>23</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
