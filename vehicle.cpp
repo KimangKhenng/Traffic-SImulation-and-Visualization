@@ -10,7 +10,10 @@ Vehicle::Vehicle(QGraphicsItem *parent):QGraphicsPixmapItem(parent),m_angle(0),m
   ,m_Is_deletable(false),m_leader(nullptr)
 {
     //m_internal_timer = new QTimer;
-    m_sightseeing = new QGraphicsRectItem(QRectF(30,5,GAPACCAPANCE * 4,10),this);
+    m_sightseeing = new VehicleSight(QRectF(30,5,GAPACCAPANCE * 4,10),this);
+    m_sightseeing_small = new VehicleSight(QRectF(30,5,GAPACCAPANCE,10),this);
+    m_sightseeing_small->setPen(QPen(QColor(Qt::red)));
+    m_sightseeing_small->setOpacity(0);
     m_sightseeing->setOpacity(0);
     this->setTransformOriginPoint(10,5);
     this->setFlag(QGraphicsItem::ItemIsMovable);
@@ -116,7 +119,7 @@ void Vehicle::decelerate(QPointF rhs)
 
 void Vehicle::accelerate()
 {
-    m_speed += m_acceleration;
+    m_speed += 0.01;
 }
 
 void Vehicle::accelerate(Vehicle *leader)
@@ -182,14 +185,15 @@ void Vehicle::advance(int phase)
         if(m_mode == VEHICLEMETHOD::SIGHTSEEING){
             if(hasInfront()){
                 //decelerate();
-
-                if(distanceToOtherVehicle(m_leader) < 27.0){
-                    qDebug()<<"Hello";
+                if(isAboutToCrash()){
                     stop_advance();
                 }
                 accelerate(m_leader);
-
+//                if(distanceToOtherVehicle(m_leader) <= 27.0){
+//                    stop_advance();
+//                }
             }else{
+                m_leader = nullptr;
                 accelerate();
             }
         }else{
@@ -297,7 +301,7 @@ SimulationScene *Vehicle::myScene() const
     return nullptr;
 }
 
-double Vehicle::distanceToOtherVehicle(Vehicle *v) const
+double Vehicle::distanceToOtherVehicle(QGraphicsItem *v) const
 {
     return sqrt((v->x() - this->x())*(v->x() - this->x()) + (v->y() - this->y())*(v->y() - this->y()) );
 }
@@ -305,12 +309,13 @@ double Vehicle::distanceToOtherVehicle(Vehicle *v) const
 
 bool Vehicle::hasInfront()
 {
-    Vehicle *next = nullptr;
+    //VehicleSight *next = nullptr;
+    Vehicle* leader = nullptr;
     QList<QGraphicsItem *> list_of_collding_vehicle = m_sightseeing->collidingItems();
     for(int i = 0 ; i < list_of_collding_vehicle.size() ; ++i){
-        next = dynamic_cast<Vehicle *>(list_of_collding_vehicle.at(i));
-        if(next&&(next !=this)){
-            m_leader = next;
+        leader = dynamic_cast<Vehicle *>(list_of_collding_vehicle.at(i));
+        if(leader&&(leader !=this)){
+            m_leader = leader;
             this->m_sightseeing->setPen(QPen(QColor(Qt::red)));
             //qDebug()<<"True";
             return true;
@@ -318,6 +323,23 @@ bool Vehicle::hasInfront()
     }
     this->m_sightseeing->setPen(QPen(QColor(Qt::black)));
     //m_acceleration = 0.01;
+    return false;
+}
+
+bool Vehicle::isAboutToCrash() const
+{
+    Vehicle* leader = nullptr;
+    QList<QGraphicsItem *> list_of_collding_vehicle = m_sightseeing_small->collidingItems();
+    for(int i = 0 ; i < list_of_collding_vehicle.size() ; ++i){
+        leader = dynamic_cast<Vehicle *>(list_of_collding_vehicle.at(i));
+        if(leader&&(leader !=this)){
+            this->m_sightseeing_small->setPen(QPen(QColor(Qt::red)));
+            //qDebug()<<"True";
+            m_sightseeing_small->setOpacity(1);
+            return true;
+        }
+    }
+    m_sightseeing_small->setOpacity(0);
     return false;
 }
 
@@ -381,7 +403,6 @@ QPixmap Vehicle::generateImage() const
     case 17:
         return QPixmap(":/cars/Image/Cars/Asset 18.png");
     }
-    return QPixmap(0,0);
 }
 
 Direction Vehicle::getDir() const

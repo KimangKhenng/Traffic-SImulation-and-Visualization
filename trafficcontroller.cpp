@@ -41,7 +41,7 @@ TrafficController::TrafficController(QGraphicsItemGroup *parent):QGraphicsItemGr
     m_detector->at(7)->setPos(p2);
     m_detector->at(8)->setPos(p3);
     group3->setRotation(90);
-    group3->moveBy(870,-80);
+    group3->moveBy(870,-75.5);
     // Detector 3,2,1
     QGraphicsItemGroup *group4 = new QGraphicsItemGroup();
     for(int i = 9 ; i < 12 ; ++i){

@@ -63,10 +63,10 @@ void SimulationControl::on_m_setup_birth_rate_button_clicked()
                           );
     m_generator->startGenerator();
     m_w->turnOnSimulationState();
-    ui->m_road_1->setText("0");
-    ui->m_road_2->setText("0");
-    ui->m_road_3->setText("0");
-    ui->m_road_4->setText("0");
+//    ui->m_road_1->setText("0");
+//    ui->m_road_2->setText("0");
+//    ui->m_road_3->setText("0");
+//    ui->m_road_4->setText("0");
 
 }
 

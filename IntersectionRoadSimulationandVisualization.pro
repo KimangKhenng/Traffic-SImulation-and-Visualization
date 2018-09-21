@@ -29,7 +29,8 @@ SOURCES += main.cpp\
     trafficdetector.cpp \
     generator.cpp \
     visualizepanel.cpp \
-    workerthread.cpp
+    workerthread.cpp \
+    vehiclesight.cpp
 
 HEADERS  += mainwindow.h \
     graphicsview.h \
@@ -47,7 +48,8 @@ HEADERS  += mainwindow.h \
     trafficdetector.h \
     generator.h \
     visualizepanel.h \
-    workerthread.h
+    workerthread.h \
+    vehiclesight.h
 
 FORMS    += mainwindow.ui \
     simulationcontrol.ui \

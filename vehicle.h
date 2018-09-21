@@ -4,6 +4,7 @@
 
 
 #include "trafficlight.h"
+#include "vehiclesight.h"
 #include <QGraphicsPixmapItem>
 #include <QObject>
 #include <qmath.h>
@@ -14,7 +15,7 @@ class Vehicle: public QObject,public QGraphicsPixmapItem
     Q_OBJECT
     Q_INTERFACES(QGraphicsItem)
 public:
-    explicit Vehicle(QGraphicsItem *parent = nullptr);
+    Vehicle(QGraphicsItem *parent = nullptr);
     ////////
     /// \brief Vehicle
     /// Prevent Copying
@@ -94,16 +95,16 @@ private:
     Vehicle *nextVehicle();
     SimulationScene *myScene() const;
 
-    double distanceToOtherVehicle(Vehicle* v) const;
+    double distanceToOtherVehicle(QGraphicsItem *v) const;
 
     bool ifAllowed() const;
     bool hasInfront();
     bool is_enter_the_junction() const;
-
+    bool isAboutToCrash() const;
     void reset_speed();
     void decelerate(QPointF rhs);
     void accelerate();
-    void accelerate(Vehicle* leader);
+    void accelerate(Vehicle *leader);
     void stop_advance();
 
     qreal m_angle;
@@ -116,7 +117,8 @@ private:
     bool m_on_action_state;
     int m_step_count;
     bool m_driving_state;
-    QGraphicsRectItem *m_sightseeing;
+    VehicleSight *m_sightseeing;
+    VehicleSight *m_sightseeing_small;
     Direction m_dir;
     region m_region;
     //QTimer *m_internal_timer;

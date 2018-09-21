@@ -41,7 +41,7 @@ QList<Vehicle *> SimulationScene::getVehicle() const
             p.append(dynamic_cast<Vehicle *>(v.at(i)));
         }
     }
-    qDebug()<<p.size();
+    //qDebug()<<p.size();
     return p;
 }
 
