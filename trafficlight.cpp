@@ -43,8 +43,8 @@ bool TrafficLight::checkDir(Direction dir)
         //qDebug()<<"Hello";
         return getLeftGreen()->isOn();
     case Direction::RIGHT_TURNING :
-//        return getMainGreen()->isOn();
-        return true;
+        return getMainGreen()->isOn();
+//        return true;
     case Direction::THROUGH :
         return getMainGreen()->isOn();
     }
@@ -84,9 +84,9 @@ void TrafficLight::setUpFacilities()
     setFlag(QGraphicsItem::ItemIsMovable);
 }
 
-void TrafficLight::setDuration(const int &left, const int &yellow, const int &green)
+void TrafficLight::setDuration(const int &left, const int &yellow, const int &green, const int &red)
 {
-    m_red_duration = left + green;
+    m_red_duration = red;
     m_left_duration = left;
     m_yellow_duration = yellow;
     m_main_green_duration = green;

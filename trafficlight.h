@@ -26,7 +26,7 @@ public:
     bool checkDir(Direction dir);
     void setManualControl();
     void setUpFacilities();
-    void setDuration(const int &left,const int &yellow,const int &green);
+    void setDuration(const int &left,const int &yellow,const int &green,const int &red);
     void setInitialState(const STATE_MACHINE& state);
     void startTrafficLight();
     void stopTrafficLight();

@@ -48,7 +48,7 @@ void Generator::stopGenerator()
 
 void Generator::startAutoGeneraion()
 {
-    setTimer(3000,4000,4500,3900);
+    setTimer(2500,2000,2600,3000);
     startGenerator();
 }
 

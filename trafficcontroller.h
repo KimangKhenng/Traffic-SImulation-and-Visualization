@@ -18,7 +18,7 @@ public:
     void startTrafficLightAll();
     void stopTrafficLightAll();
     void manualControl();
-    void setLightDuration(const int& green,const int& left, const int& yellow);
+    void setLightDuration(const int& green,const int& left, const int& yellow,const int& red);
     QList<TrafficDetector *> *getDetector() const;
     QList<TrafficDetector *> *getDetectorByRegion(region x) const;
     void setDetector(QList<TrafficDetector *> *detector);

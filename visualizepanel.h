@@ -2,6 +2,9 @@
 #define VISUALIZEPANEL_H
 
 #include <QThread>
+#include <QFile>
+#include <QDir>
+#include <QString>
 #include "mainwindow.h"
 #include "qcustomplot.h"
 #include "trafficcontroller.h"
@@ -85,6 +88,11 @@ private:
     QList<QVector<double>> m_headway;
 //    QList<QTimer *> *m_timer;
 //    QList<QElapsedTimer *> *m_etimer;
+
+    QList<QFile*> m_queue_size;
+//    QTextStream numStream;
+//    QTextStream flowStream;
+//    QTextStream headwayStream;
 
 };
 

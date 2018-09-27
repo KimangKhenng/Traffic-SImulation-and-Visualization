@@ -335,11 +335,11 @@ bool Vehicle::isAboutToCrash() const
         if(leader&&(leader !=this)){
             this->m_sightseeing_small->setPen(QPen(QColor(Qt::red)));
             //qDebug()<<"True";
-            m_sightseeing_small->setOpacity(1);
+            //m_sightseeing_small->setOpacity(1);
             return true;
         }
     }
-    m_sightseeing_small->setOpacity(0);
+    //m_sightseeing_small->setOpacity(0);
     return false;
 }
 

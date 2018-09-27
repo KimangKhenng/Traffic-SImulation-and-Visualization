@@ -150,10 +150,10 @@ void TrafficController::manualControl()
     }
 }
 
-void TrafficController::setLightDuration(const int &green, const int &left, const int &yellow)
+void TrafficController::setLightDuration(const int &green, const int &left, const int &yellow, const int &red)
 {
     for(int i = 0 ; i < m_traffic_light->size() ; ++i){
-        m_traffic_light->at(i)->setDuration(left,yellow,green);
+        m_traffic_light->at(i)->setDuration(left,yellow,green,red);
     }
     m_traffic_light->at(0)->setInitialState(STATE_MACHINE::Green_Going_Left);
     m_traffic_light->at(1)->setInitialState(STATE_MACHINE::Red_Going_Yellow);

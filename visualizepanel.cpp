@@ -6,6 +6,24 @@
 VisualizePanel::VisualizePanel(QWidget *parent) :QWidget(parent),ui(new Ui::VisualizePanel)
 {
     ui->setupUi(this);
+    // Set up file for writing
+    // Number in queue vs time
+    for(int i = 0 ; i < 4 ; i++){
+        m_queue_size.append(new QFile("queue_" + QString::number(i) + ".txt"));
+    }
+    for(int i = 0 ; i < m_queue_size.size() ; i++){
+        if(!m_queue_size.at(i)->exists()){
+            qDebug()<<m_queue_size.at(i)->fileName() + " Error";
+        }
+        if(m_queue_size.at(i)->open(QIODevice::ReadOnly|QIODevice::Text|QIODevice::WriteOnly)){
+            QTextStream txtStream(m_queue_size.at(i));
+            txtStream<<"This file contain data for queue size vs simulation time.\n";
+            txtStream<<"This is queue size for approach " + QString::number(i) +"\n";
+            txtStream.flush();
+        }
+    }
+
+
     // setUp Timer
 //    m_timer = new QList<QTimer *>();
 //    for(int i = 0 ; i < 4 ; ++i){
@@ -554,6 +572,10 @@ void VisualizePanel::update_NUM()
             //m_number_widget.at(i)->graph(0)->data().data()->clear();
             //m_number_widget.at(i)->graph(0)->data().data()->removeBefore(key-20.0);
             m_number_widget.at(i)->graph(0)->addData(key,getNumber(i));
+            QTextStream txtStream(m_queue_size.at(i));
+            txtStream<<QString::number(key)<<"\t"<<QString::number(getNumber(i))<<"\n";
+            txtStream.flush();
+
         }
         lastPointKey = key;
     }

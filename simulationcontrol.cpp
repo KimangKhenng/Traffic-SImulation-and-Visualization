@@ -77,14 +77,14 @@ void SimulationControl::on_m_stop_clicked()
 
 void SimulationControl::on_m_auto_traffic_clicked()
 {
-    m_w->getController()->setLightDuration(5000,3000,500);
+    m_w->getController()->setLightDuration(5000,3000,500,6000);
 }
 
 void SimulationControl::on_m_random_birth_clicked()
 {
     m_generator->startAutoGeneraion();
     m_w->turnOnSimulationState();
-    m_w->getController()->setLightDuration(5000,3000,500);
+    m_w->getController()->setLightDuration(3000,2000,500,6000);
     m_w->getController()->startTrafficLightAll();
     // Ui Stuff
     m_w->set3LaneCheck(true);
