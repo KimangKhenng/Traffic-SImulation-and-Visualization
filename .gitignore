@@ -6,3 +6,19 @@ IntersectionRoadSimulationandVisualization\.pro
 simulationcontrol\.cpp\.autosave
 
 *.user
+
+\.vs/IntersectionRoadSimulationandVisualization/v15/
+
+ui_mainwindow\.h
+
+ui_simulationcontrol\.h
+
+ui_visualizepanel\.h
+
+queue_0\.txt
+
+queue_1\.txt
+
+queue_2\.txt
+
+queue_3\.txt

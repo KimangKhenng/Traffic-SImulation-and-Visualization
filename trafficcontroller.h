@@ -10,7 +10,7 @@ class TrafficController : public QGraphicsItemGroup
 {
 public:
     TrafficController(QGraphicsItemGroup *parent = nullptr);
-    TrafficLight *getTrafficLight(region r);
+    TrafficLight* getTrafficLight(region r);
     //void turnTrafficOn();
     //void turnTrafficOff();
     void turnOffDetector();
@@ -19,19 +19,19 @@ public:
     void stopTrafficLightAll();
     void manualControl();
     void setLightDuration(const int& green,const int& left, const int& yellow,const int& red);
-    QList<TrafficDetector *> *getDetector() const;
-    QList<TrafficDetector *> *getDetectorByRegion(region x) const;
-    void setDetector(QList<TrafficDetector *> *detector);
-    QList<TrafficLight *> *getTraffic_light() const;
-    void setTraffic_light(QList<TrafficLight *> *traffic_light);
+    QList<TrafficDetector *> getDetector();
+    QList<TrafficDetector *> getDetectorByRegion(region x) const;
+
+    QList<TrafficLight *> getTraffic_light();
+
     QList<QElapsedTimer *> *getTimer();
 protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event) Q_DECL_OVERRIDE;
 private:
     //QStateMachine *m_state;
-    QList<TrafficLight *> *m_traffic_light;
+    QList<TrafficLight *> m_traffic_light;
     QList<QState *> *m_state_list;
-    QList<TrafficDetector *> *m_detector;
+    QList<TrafficDetector *> m_detector;
 };
 
 #endif // TRAFFICCONTROLLER_H

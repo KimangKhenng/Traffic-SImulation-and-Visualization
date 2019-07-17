@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>898</width>
-    <height>745</height>
+    <width>1280</width>
+    <height>720</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -15,6 +15,12 @@
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1280</width>
+    <height>720</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -43,6 +49,12 @@ QWidget#main_windows{
      <horstretch>0</horstretch>
      <verstretch>0</verstretch>
     </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>1280</width>
+     <height>720</height>
+    </size>
    </property>
    <property name="styleSheet">
     <string notr="true"/>
@@ -78,7 +90,7 @@ QWidget#main_windows{
        <enum>QFrame::NoFrame</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="main_windows">
        <property name="sizePolicy">
@@ -971,8 +983,8 @@ background-color: rgb(52, 73, 94);
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>898</width>
-     <height>26</height>
+     <width>1280</width>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

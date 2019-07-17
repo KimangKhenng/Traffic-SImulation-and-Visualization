@@ -1,8 +1,12 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent),ui(new Ui::MainWindow),m_simulate_state(false)
-  ,m_sightseeing(false),m_visualize_state(false)
+MainWindow::MainWindow(QWidget *parent)
+    :QMainWindow(parent)
+    ,ui(new Ui::MainWindow)
+    ,m_simulate_state(false)
+    ,m_sightseeing(false)
+    ,m_visualize_state(false)
 {
         ui->setupUi(this);
         setWindowTitle ("Intersection Road Simulation and Visulization");
@@ -14,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent),ui(new Ui::MainWind
         //QObject::connect(m_machine_state,SIGNAL(timeout()),m_scene,SLOT(advance()));
         m_machine_state->start(TIME_UNIT);
         ui->m_visualize_frame->hide();
-        ui->m_visualzie_widget->setController(m_controller);
+        ui->m_visualzie_widget->setController(m_scene->getController());
         //ui->m_visualzie_widget->setEtimer(m_controller->getTimer());
         ui->m_visualzie_widget->setMainWindows(this);
         //ui->m_visualzie_widget->initialize();
@@ -76,9 +80,11 @@ void MainWindow::check_state()
     ////////////////
     //QList<QGraphicsItem *> items = m_scene->items();
     if(m_simulate_state){
+
         m_scene->advance();
+
         QList<Vehicle *> car = m_scene->getVehicle();
-        QList<TrafficDetector *> detector = m_scene->getDetector();
+        //QList<TrafficDetector *> detector = m_scene->getDetector();
         for(int i = 0; i<car.size() ; ++i){
             car.at(i)->setActionOn();
             //car.at(i)->turnOnEngine();
@@ -89,13 +95,17 @@ void MainWindow::check_state()
             }
             if(car.at(i)->isDeletable()){
                 //m_scene->removeItem(car.at(i));
-                m_scene->removeItem(car.at(i));
-                delete car.at(i);
+                m_scene->removeVehicle(car.at(i));
+//                m_scene->removeItem(car.at(i));
+//                delete car.at(i);
             }
         }
         //m_controller->startTrafficLightAll();
     if(m_visualize_state){
+       //double t1 = omp_get_wtime();
        ui->m_visualzie_widget->update_all();
+       //double t2 = omp_get_wtime();
+       //qDebug()<<"CTim"<<t2-t1;
     }
     }else{
         m_scene->trunOffAllCar();
@@ -128,6 +138,7 @@ void MainWindow::check_state()
 //    }
     //qDebug()<<"Number"<<m_scene->getVehicle().length();
 }
+
 void MainWindow::on_actionExit_triggered()
 {
     QApplication::quit();
@@ -169,7 +180,7 @@ void MainWindow::on_reset_clicked()
 
     m_simulate_state = false;
     m_visualize_state = false;
-    m_controller->stopTrafficLightAll();
+    m_scene->getController()->stopTrafficLightAll();
     m_scene->resetScene();
 
 }
@@ -213,12 +224,6 @@ void MainWindow::set_up()
     //m_scene->addText ("4",QFont("Century",18))->setPos (400,420);
     //Add path for vehicle
     m_scene->setSceneRect(0,0,800,600);
-    //Add traffic
-    m_controller = new TrafficController();
-    for(int i = 0 ; i < m_controller->getDetector()->size() ; ++i){
-        m_controller->getDetector()->at(i)->setOpacity(0);
-    }
-    m_scene->addItem(m_controller);
 //    m_traffic_light = new QList<TrafficLight *>();
 //    for(int i = 0 ; i < 4 ; ++i){
 //        m_traffic_light->append(new TrafficLight());
@@ -288,9 +293,9 @@ void MainWindow::on_m_road_check_button_toggled(bool checked)
 void MainWindow::on_m_detector_button_clicked(bool checked)
 {
     if(checked){
-        m_controller->turnOnDetector();
+        m_scene->getController()->turnOnDetector();
     }else{
-        m_controller->turnOffDetector();
+        m_scene->getController()->turnOffDetector();
     }
 }
 
@@ -316,13 +321,13 @@ void MainWindow::on_m_aboutus_button_clicked()
 void MainWindow::on_m_manul_control_button_clicked(bool checked)
 {
     if(checked){
-        for(int i = 0 ; i < m_controller->getTraffic_light()->size() ; i++){
-            m_controller->manualControl();
-        }
+
+        m_scene->getController()->manualControl();
+
     }else{
-        for(int i = 0 ; i < m_controller->getTraffic_light()->size() ; i++){
-            m_controller->startTrafficLightAll();
-        }
+
+        m_scene->getController()->startTrafficLightAll();
+
     }
 }
 
@@ -354,15 +359,9 @@ bool MainWindow::getSimulate_state() const
 void MainWindow::showTraffic(bool checked)
 {
     if(checked){
-        for(int i = 0 ; i < m_controller->getTraffic_light()->size() ; ++i){
-            m_controller->getTraffic_light()->at(i)->setMode(TRAFFICMODE::HAS_SIGNAL);
-            m_scene->addItem(m_controller->getTraffic_light()->at(i));
-        }
+        m_scene->showTrafficLight();
     }else{
-        for(int i = 0 ; i < m_controller->getTraffic_light()->size() ; ++i){
-            m_controller->getTraffic_light()->at(i)->setMode(TRAFFICMODE::NO_SIGNAL);
-            m_scene->removeItem(m_controller->getTraffic_light()->at(i));
-        }
+        m_scene->HideTrafficLight();
     }
 }
 
@@ -393,7 +392,7 @@ void MainWindow::setTrafficState(const bool &b)
 
 TrafficController *MainWindow::getController() const
 {
-    return m_controller;
+    return m_scene->getController();
 }
 
 void MainWindow::on_m_no_turn_clicked()

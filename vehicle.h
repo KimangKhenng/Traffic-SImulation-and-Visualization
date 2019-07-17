@@ -83,7 +83,6 @@ public:
     bool isDeletable() const;
     //Reimplement Event
     void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) override;
-    float acceleration() const;
     qreal getSpeed() const;
 
 public slots:

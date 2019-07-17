@@ -358,10 +358,6 @@ void Vehicle::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
     qDebug()<<"Car's Position: "<<this->pos();
 }
 
-float Vehicle::acceleration() const
-{
-
-}
 
 QPixmap Vehicle::generateImage() const
 {

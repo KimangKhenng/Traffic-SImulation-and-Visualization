@@ -1,7 +1,6 @@
 #ifndef VISUALIZEPANEL_H
 #define VISUALIZEPANEL_H
 
-#include <QThread>
 #include <QFile>
 #include <QDir>
 #include <QString>
@@ -35,6 +34,10 @@ public:
     void setController(TrafficController *controller);
     void setMainWindows(MainWindow *w);
     void update_all();
+    void update_1();
+    void update_2();
+    void update_3();
+    void update_4();
     ~VisualizePanel() override;
 //private slots:
 //    void update_1();
@@ -42,10 +45,7 @@ public:
 //    void update_3();
 //    void update_4();
 private:
-    void update_1();
-    void update_2();
-    void update_3();
-    void update_4();
+
     void setUpNumberWidget();
     void setUpFlowWidget();
     void setUpDensityWidget();

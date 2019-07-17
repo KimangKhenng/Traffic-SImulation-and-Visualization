@@ -4,8 +4,9 @@
 #
 #-------------------------------------------------
 
-QT       += core gui svg widgets printsupport sql opengl
+QT       += core gui svg widgets printsupport sql opengl concurrent
 CONFIG   += console
+LIBS     += -fopenmp
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 

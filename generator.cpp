@@ -70,15 +70,15 @@ void Generator::makeNorthSouth()
         case GEN_3:
             switch (qrand()%3){
             case 0:
-                m_scene->addItem(VehiclesGenerator::getRightTurningVehicle(REGION_N_S,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_N_S,m_mode));
                 //m_number_N_S++;
                 break;
             case 1:
-                m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_N_S,2,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_N_S,2,m_mode));
                 //m_number_N_S++;
                 break;
             case 2:
-                m_scene->addItem(VehiclesGenerator::getLeftTurningVehicle(REGION_N_S,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_N_S,m_mode));
                 //m_number_N_S++;
                 break;
         }
@@ -86,23 +86,23 @@ void Generator::makeNorthSouth()
         case GEN_5:
             switch (qrand()%5){
             case 0:
-                m_scene->addItem(VehiclesGenerator::getRightTurningVehicle(REGION_N_S,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_N_S,m_mode));
                 //m_number_N_S++;
                 break;
             case 1:
-                m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_N_S,1,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_N_S,1,m_mode));
                 //m_number_N_S++;
                 break;
             case 2:
-                m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_N_S,2,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_N_S,2,m_mode));
                 //m_number_N_S++;
                 break;
             case 3:
-                m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_N_S,3,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_N_S,3,m_mode));
                 //m_number_N_S++;
                 break;
             case 4:
-                m_scene->addItem(VehiclesGenerator::getLeftTurningVehicle(REGION_N_S,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_N_S,m_mode));
                 //m_number_N_S++;
                 break;
         }
@@ -110,15 +110,15 @@ void Generator::makeNorthSouth()
         case NO_TURN:
             switch (qrand()%3){
                 case 0:
-                    m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_N_S,1,m_mode));
+                    m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_N_S,1,m_mode));
                     //m_number_N_S++;
                     break;
                 case 1:
-                    m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_N_S,2,m_mode));
+                    m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_N_S,2,m_mode));
                     //m_number_N_S++;
                     break;
                 case 2:
-                    m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_N_S,3,m_mode));
+                    m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_N_S,3,m_mode));
                     //m_number_N_S++;
                     break;
             }
@@ -126,10 +126,10 @@ void Generator::makeNorthSouth()
     case ONLY_TURN:
         switch (qrand()%2) {
             case 0:
-                m_scene->addItem(VehiclesGenerator::getLeftTurningVehicle(REGION_N_S,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_N_S,m_mode));
                 break;
             case 1:
-                m_scene->addItem(VehiclesGenerator::getRightTurningVehicle(REGION_N_S,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_N_S,m_mode));
                 break;
         }
         break;
@@ -146,15 +146,15 @@ void Generator::makeSouthNorth()
         case GEN_3:
             switch (qrand()%3){
             case 0:
-                m_scene->addItem(VehiclesGenerator::getRightTurningVehicle(REGION_S_N,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_S_N,m_mode));
                 //m_number_S_N++;
                 break;
             case 1:
-                m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_S_N,2,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_S_N,2,m_mode));
                 //m_number_S_N++;
                 break;
             case 2:
-                m_scene->addItem(VehiclesGenerator::getLeftTurningVehicle(REGION_S_N,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_S_N,m_mode));
                 //m_number_S_N++;
                 break;
         }
@@ -162,23 +162,23 @@ void Generator::makeSouthNorth()
         case GEN_5:
             switch (qrand()%5){
             case 0:
-                m_scene->addItem(VehiclesGenerator::getRightTurningVehicle(REGION_S_N,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_S_N,m_mode));
                 //m_number_S_N++;
                 break;
             case 1:
-                m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_S_N,1,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_S_N,1,m_mode));
                 //m_number_S_N++;
                 break;
             case 2:
-                m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_S_N,2,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_S_N,2,m_mode));
                 //m_number_S_N++;
                 break;
             case 3:
-                m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_S_N,3,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_S_N,3,m_mode));
                 //m_number_S_N++;
                 break;
             case 4:
-                m_scene->addItem(VehiclesGenerator::getLeftTurningVehicle(REGION_S_N,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_S_N,m_mode));
                 //m_number_S_N++;
                 break;
             }
@@ -186,15 +186,15 @@ void Generator::makeSouthNorth()
         case NO_TURN:
             switch (qrand()%3){
                 case 0:
-                    m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_S_N,1,m_mode));
+                    m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_S_N,1,m_mode));
                     //m_number_N_S++;
                     break;
                 case 1:
-                    m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_S_N,2,m_mode));
+                    m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_S_N,2,m_mode));
                     //m_number_N_S++;
                     break;
                 case 2:
-                    m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_S_N,3,m_mode));
+                    m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_S_N,3,m_mode));
                     //m_number_N_S++;
                     break;
             }
@@ -202,10 +202,10 @@ void Generator::makeSouthNorth()
         case ONLY_TURN:
             switch (qrand()%2) {
                 case 0:
-                    m_scene->addItem(VehiclesGenerator::getLeftTurningVehicle(REGION_S_N,m_mode));
+                    m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_S_N,m_mode));
                     break;
                 case 1:
-                    m_scene->addItem(VehiclesGenerator::getRightTurningVehicle(REGION_S_N,m_mode));
+                    m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_S_N,m_mode));
                     break;
             }
             break;
@@ -222,15 +222,15 @@ void Generator::makeWestEast()
         case GEN_3:
             switch (qrand()%3){
             case 0:
-                m_scene->addItem(VehiclesGenerator::getRightTurningVehicle(REGION_W_E,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_W_E,m_mode));
                 //m_number_W_E++;
                 break;
             case 1:
-                m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_W_E,2,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_W_E,2,m_mode));
                //m_number_W_E++;
                 break;
             case 2:
-                m_scene->addItem(VehiclesGenerator::getLeftTurningVehicle(REGION_W_E,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_W_E,m_mode));
                 //m_number_W_E++;
                 break;
         }
@@ -238,23 +238,23 @@ void Generator::makeWestEast()
         case GEN_5:
             switch (qrand()%5){
             case 0:
-                m_scene->addItem(VehiclesGenerator::getRightTurningVehicle(REGION_W_E,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_W_E,m_mode));
                 //m_number_W_E++;
                 break;
             case 1:
-                m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_W_E,1,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_W_E,1,m_mode));
                 //m_number_W_E++;
                 break;
             case 2:
-                m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_W_E,2,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_W_E,2,m_mode));
                 //m_number_W_E++;
                 break;
             case 3:
-                m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_W_E,3,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_W_E,3,m_mode));
                 //m_number_W_E++;
                 break;
             case 4:
-                m_scene->addItem(VehiclesGenerator::getLeftTurningVehicle(REGION_W_E,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_W_E,m_mode));
                 //m_number_W_E++;
                 break;
         }
@@ -262,15 +262,15 @@ void Generator::makeWestEast()
     case NO_TURN:
         switch (qrand()%3){
             case 0:
-                m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_W_E,1,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_W_E,1,m_mode));
                 //m_number_N_S++;
                 break;
             case 1:
-                m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_W_E,2,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_W_E,2,m_mode));
                 //m_number_N_S++;
                 break;
             case 2:
-                m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_W_E,3,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_W_E,3,m_mode));
                 //m_number_N_S++;
                 break;
         }
@@ -278,10 +278,10 @@ void Generator::makeWestEast()
     case ONLY_TURN:
         switch (qrand()%2) {
             case 0:
-                m_scene->addItem(VehiclesGenerator::getLeftTurningVehicle(REGION_W_E,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_W_E,m_mode));
                 break;
             case 1:
-                m_scene->addItem(VehiclesGenerator::getRightTurningVehicle(REGION_W_E,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_W_E,m_mode));
                 break;
         }
         break;
@@ -299,15 +299,15 @@ void Generator::makeEastWest()
         case GEN_3:
             switch (qrand()%3){
             case 0:
-                m_scene->addItem(VehiclesGenerator::getRightTurningVehicle(REGION_E_W,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_E_W,m_mode));
                 //m_number_E_W++;
                 break;
             case 1:
-                m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_E_W,2,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_E_W,2,m_mode));
                 //m_number_E_W++;
                 break;
             case 2:
-                m_scene->addItem(VehiclesGenerator::getLeftTurningVehicle(REGION_E_W,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_E_W,m_mode));
                 //m_number_E_W++;
                 break;
         }
@@ -315,23 +315,23 @@ void Generator::makeEastWest()
         case GEN_5:
             switch (qrand()%5){
             case 0:
-                m_scene->addItem(VehiclesGenerator::getRightTurningVehicle(REGION_E_W,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_E_W,m_mode));
                 //m_number_E_W++;
                 break;
             case 1:
-                m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_E_W,1,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_E_W,1,m_mode));
                 //m_number_E_W++;
                 break;
             case 2:
-                m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_E_W,2,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_E_W,2,m_mode));
                 //m_number_E_W++;
                 break;
             case 3:
-                m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_E_W,3,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_E_W,3,m_mode));
                 //m_number_E_W++;
                 break;
             case 4:
-                m_scene->addItem(VehiclesGenerator::getLeftTurningVehicle(REGION_E_W,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_E_W,m_mode));
                 //m_number_E_W++;
                 break;
         }
@@ -339,15 +339,15 @@ void Generator::makeEastWest()
     case NO_TURN:
         switch (qrand()%3){
             case 0:
-                m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_E_W,1,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_E_W,1,m_mode));
                 //m_number_N_S++;
                 break;
             case 1:
-                m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_E_W,2,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_E_W,2,m_mode));
                 //m_number_N_S++;
                 break;
             case 2:
-                m_scene->addItem(VehiclesGenerator::getThroughVehicle(REGION_E_W,3,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_E_W,3,m_mode));
                 //m_number_N_S++;
                 break;
         }
@@ -355,10 +355,10 @@ void Generator::makeEastWest()
     case ONLY_TURN:
         switch (qrand()%2) {
             case 0:
-                m_scene->addItem(VehiclesGenerator::getLeftTurningVehicle(REGION_E_W,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_E_W,m_mode));
                 break;
             case 1:
-                m_scene->addItem(VehiclesGenerator::getRightTurningVehicle(REGION_E_W,m_mode));
+                m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_E_W,m_mode));
                 break;
         }
         break;

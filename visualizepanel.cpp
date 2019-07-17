@@ -288,8 +288,8 @@ int VisualizePanel::getNumber(const int &x) const
 int VisualizePanel::getNumberNS() const
 {
     int num = 0;
-    for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_N_S)->size() ; ++i){
-        num += m_controller->getDetectorByRegion(REGION_N_S)->at(i)->getNumbersOfVehicles();
+    for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_N_S).size() ; ++i){
+        num += m_controller->getDetectorByRegion(REGION_N_S).at(i)->getNumbersOfVehicles();
     }
     return num;
 }
@@ -297,8 +297,8 @@ int VisualizePanel::getNumberNS() const
 int VisualizePanel::getNumberSN() const
 {
     int num = 0;
-    for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_S_N)->size() ; ++i){
-        num += m_controller->getDetectorByRegion(REGION_S_N)->at(i)->getNumbersOfVehicles();
+    for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_S_N).size() ; ++i){
+        num += m_controller->getDetectorByRegion(REGION_S_N).at(i)->getNumbersOfVehicles();
     }
     return num;
 }
@@ -306,8 +306,8 @@ int VisualizePanel::getNumberSN() const
 int VisualizePanel::getNumberWE() const
 {
     int num = 0;
-    for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_W_E)->size() ; ++i){
-        num += m_controller->getDetectorByRegion(REGION_W_E)->at(i)->getNumbersOfVehicles();
+    for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_W_E).size() ; ++i){
+        num += m_controller->getDetectorByRegion(REGION_W_E).at(i)->getNumbersOfVehicles();
     }
     return num;
 }
@@ -315,8 +315,8 @@ int VisualizePanel::getNumberWE() const
 int VisualizePanel::getNumberEW() const
 {
     int num = 0;
-    for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_E_W)->size() ; ++i){
-        num += m_controller->getDetectorByRegion(REGION_E_W)->at(i)->getNumbersOfVehicles();
+    for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_E_W).size() ; ++i){
+        num += m_controller->getDetectorByRegion(REGION_E_W).at(i)->getNumbersOfVehicles();
     }
     return num;
 }
@@ -339,8 +339,8 @@ double VisualizePanel::getFlow(const int &x) const
 double VisualizePanel::getFlowNS() const
 {
     double flow = 0.0;
-    for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_N_S)->size() ; ++i){
-        flow += static_cast<double>(m_controller->getDetectorByRegion(REGION_N_S)->at(i)->getFlow());
+    for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_N_S).size() ; ++i){
+        flow += static_cast<double>(m_controller->getDetectorByRegion(REGION_N_S).at(i)->getFlow());
     }
     return flow;
 }
@@ -348,8 +348,8 @@ double VisualizePanel::getFlowNS() const
 double VisualizePanel::getFlowSN() const
 {
     double flow = 0.0;
-    for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_S_N)->size() ; ++i){
-        flow += static_cast<double>(m_controller->getDetectorByRegion(REGION_S_N)->at(i)->getFlow());
+    for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_S_N).size() ; ++i){
+        flow += static_cast<double>(m_controller->getDetectorByRegion(REGION_S_N).at(i)->getFlow());
     }
     return flow;
 }
@@ -357,8 +357,8 @@ double VisualizePanel::getFlowSN() const
 double VisualizePanel::getFlowWE() const
 {
     double flow = 0.0;
-    for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_W_E)->size() ; ++i){
-        flow += static_cast<double>(m_controller->getDetectorByRegion(REGION_W_E)->at(i)->getFlow());
+    for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_W_E).size() ; ++i){
+        flow += static_cast<double>(m_controller->getDetectorByRegion(REGION_W_E).at(i)->getFlow());
     }
     return flow;
 }
@@ -366,8 +366,8 @@ double VisualizePanel::getFlowWE() const
 double VisualizePanel::getFlowEW() const
 {
     double flow = 0.0;
-    for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_E_W)->size() ; ++i){
-        flow += static_cast<double>(m_controller->getDetectorByRegion(REGION_E_W)->at(i)->getFlow());
+    for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_E_W).size() ; ++i){
+        flow += static_cast<double>(m_controller->getDetectorByRegion(REGION_E_W).at(i)->getFlow());
     }
     return flow;
 }
@@ -390,8 +390,8 @@ double VisualizePanel::getDensity(const int &x) const
 double VisualizePanel::getDensityNS() const
 {
     double den = 0.0;
-    for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_N_S)->size() ; ++i){
-        den += static_cast<double>(m_controller->getDetectorByRegion(REGION_N_S)->at(i)->getDensity());
+    for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_N_S).size() ; ++i){
+        den += static_cast<double>(m_controller->getDetectorByRegion(REGION_N_S).at(i)->getDensity());
     }
     return den;
 }
@@ -399,8 +399,8 @@ double VisualizePanel::getDensityNS() const
 double VisualizePanel::getDensitySN() const
 {
     double den = 0.0;
-    for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_S_N)->size() ; ++i){
-        den += static_cast<double>(m_controller->getDetectorByRegion(REGION_S_N)->at(i)->getDensity());
+    for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_S_N).size() ; ++i){
+        den += static_cast<double>(m_controller->getDetectorByRegion(REGION_S_N).at(i)->getDensity());
     }
     return den;
 }
@@ -408,8 +408,8 @@ double VisualizePanel::getDensitySN() const
 double VisualizePanel::getDensityWE() const
 {
     double den = 0.0;
-    for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_W_E)->size() ; ++i){
-        den += static_cast<double>(m_controller->getDetectorByRegion(REGION_W_E)->at(i)->getDensity());
+    for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_W_E).size() ; ++i){
+        den += static_cast<double>(m_controller->getDetectorByRegion(REGION_W_E).at(i)->getDensity());
     }
     return den;
 }
@@ -417,8 +417,8 @@ double VisualizePanel::getDensityWE() const
 double VisualizePanel::getDensityEW() const
 {
     double den = 0.0;
-    for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_E_W)->size() ; ++i){
-        den += static_cast<double>(m_controller->getDetectorByRegion(REGION_E_W)->at(i)->getDensity());
+    for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_E_W).size() ; ++i){
+        den += static_cast<double>(m_controller->getDetectorByRegion(REGION_E_W).at(i)->getDensity());
     }
     return den;
 }
@@ -441,8 +441,8 @@ double VisualizePanel::getHeadWay(const int &x) const
 double VisualizePanel::getHeadWayNS() const
 {
     double head = 0.0;
-    for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_N_S)->size() ; ++i){
-        head += static_cast<double>(m_controller->getDetectorByRegion(REGION_N_S)->at(i)->getHeadWay());
+    for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_N_S).size() ; ++i){
+        head += static_cast<double>(m_controller->getDetectorByRegion(REGION_N_S).at(i)->getHeadWay());
     }
     return head;
 }
@@ -450,8 +450,8 @@ double VisualizePanel::getHeadWayNS() const
 double VisualizePanel::getHeadWaySN() const
 {
     double head = 0.0;
-    for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_S_N)->size() ; ++i){
-        head += static_cast<double>(m_controller->getDetectorByRegion(REGION_S_N)->at(i)->getHeadWay());
+    for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_S_N).size() ; ++i){
+        head += static_cast<double>(m_controller->getDetectorByRegion(REGION_S_N).at(i)->getHeadWay());
     }
     return head;
 }
@@ -459,8 +459,8 @@ double VisualizePanel::getHeadWaySN() const
 double VisualizePanel::getHeadWayWE() const
 {
     double head = 0.0;
-    for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_W_E)->size() ; ++i){
-        head += static_cast<double>(m_controller->getDetectorByRegion(REGION_W_E)->at(i)->getHeadWay());
+    for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_W_E).size() ; ++i){
+        head += static_cast<double>(m_controller->getDetectorByRegion(REGION_W_E).at(i)->getHeadWay());
     }
     return head;
 }
@@ -468,8 +468,8 @@ double VisualizePanel::getHeadWayWE() const
 double VisualizePanel::getHeadWayEW() const
 {
     double head = 0.0;
-    for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_E_W)->size() ; ++i){
-        head += static_cast<double>(m_controller->getDetectorByRegion(REGION_E_W)->at(i)->getHeadWay());
+    for(int i = 0 ; i < m_controller->getDetectorByRegion(REGION_E_W).size() ; ++i){
+        head += static_cast<double>(m_controller->getDetectorByRegion(REGION_E_W).at(i)->getHeadWay());
     }
     return head;
 }
