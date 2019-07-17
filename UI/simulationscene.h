@@ -2,9 +2,9 @@
 #define SIMULATIONSCENE_H
 
 #include <QGraphicsScene>
-#include "vehicle.h"
-#include "trafficdetector.h"
-#include "trafficcontroller.h"
+#include "Entities/Vehicle/vehicle.h"
+#include "Entities/trafficdetector.h"
+#include "Entities/trafficcontroller.h"
 class SimulationScene: public QGraphicsScene
 {
 

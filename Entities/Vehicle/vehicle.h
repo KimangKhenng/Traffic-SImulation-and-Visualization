@@ -3,7 +3,7 @@
 #define GAPACCAPANCE 10
 
 
-#include "trafficlight.h"
+#include "Entities/TrafficLight/trafficlight.h"
 #include "vehiclesight.h"
 #include <QGraphicsPixmapItem>
 #include <QObject>

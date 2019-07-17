@@ -1,8 +1,8 @@
 #ifndef TRAFFICCONTROLLER_H
 #define TRAFFICCONTROLLER_H
 
-#include "trafficlight.h"
-#include "lightwidget.h"
+#include "TrafficLight/trafficlight.h"
+#include "TrafficLight/lightwidget.h"
 #include "trafficdetector.h"
 #include "commonenum.h"
 

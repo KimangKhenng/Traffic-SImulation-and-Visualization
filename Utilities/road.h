@@ -3,7 +3,7 @@
 
 #include <QPainterPath>
 #include <QTransform>
-#include "trafficlight.h"
+#include "Entities/TrafficLight/trafficlight.h"
 #include "commonenum.h"
 class road
 {

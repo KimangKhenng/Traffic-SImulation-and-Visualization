@@ -6,12 +6,11 @@
 #include <QGraphicsSvgItem>
 #include <QGLWidget>
 #include "commonenum.h"
-#include "vehicle.h"
-#include "road.h"
+#include "Entities/Vehicle/vehicle.h"
+#include "Utilities/road.h"
 #include "simulationscene.h"
-#include "vehiclesgenerator.h"
-#include "trafficcontroller.h"
-#include "workerthread.h"
+#include "Utilities/vehiclesgenerator.h"
+#include "Entities/trafficcontroller.h"
 
 namespace Ui {
 class MainWindow;

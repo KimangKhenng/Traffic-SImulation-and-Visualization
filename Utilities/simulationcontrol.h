@@ -1,9 +1,9 @@
 #ifndef SIMULATIONCONTROL_H
 #define SIMULATIONCONTROL_H
 
-#include "mainwindow.h"
-#include "vehicle.h"
-#include "generator.h"
+#include "UI/mainwindow.h"
+#include "Entities/Vehicle/vehicle.h"
+#include "Utilities/generator.h"
 
 namespace Ui {
 class SimulationControl;

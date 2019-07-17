@@ -4,7 +4,7 @@
 
 #include "commonenum.h"
 #include "vehiclesgenerator.h"
-#include "simulationscene.h"
+#include "UI/simulationscene.h"
 
 class Generator : public QObject
 {

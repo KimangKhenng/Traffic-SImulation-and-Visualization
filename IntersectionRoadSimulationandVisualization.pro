@@ -14,47 +14,50 @@ TARGET = IntersectionRoadSimulationandVisualization
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        mainwindow.cpp \
-    graphicsview.cpp \
-    vehicle.cpp \
-    road.cpp \
-    simulationscene.cpp \
-    simulationcontrol.cpp \
-    trafficlight.cpp \
-    lightwidget.cpp \
-    qcustomplot.cpp \
-    vehiclesgenerator.cpp \
-    lightwidgetleft.cpp \
-    trafficcontroller.cpp \
-    trafficdetector.cpp \
-    generator.cpp \
-    visualizepanel.cpp \
-    workerthread.cpp \
-    vehiclesight.cpp
 
-HEADERS  += mainwindow.h \
-    graphicsview.h \
-    vehicle.h \
-    road.h \
-    simulationscene.h \
-    simulationcontrol.h \
-    trafficlight.h \
-    lightwidget.h \
-    qcustomplot.h \
-    commonenum.h \
-    vehiclesgenerator.h \
-    lightwidgetleft.h \
-    trafficcontroller.h \
-    trafficdetector.h \
-    generator.h \
-    visualizepanel.h \
-    workerthread.h \
-    vehiclesight.h
-
-FORMS    += mainwindow.ui \
-    simulationcontrol.ui \
-    visualizepanel.ui
 
 RESOURCES += \
     resource.qrc
+
+HEADERS += \
+    Entities/TrafficLight/lightwidget.h \
+    Entities/TrafficLight/lightwidgetleft.h \
+    Entities/TrafficLight/trafficlight.h \
+    Entities/Vehicle/vehicle.h \
+    Entities/Vehicle/vehiclesight.h \
+    Entities/trafficcontroller.h \
+    Entities/trafficdetector.h \
+    UI/graphicsview.h \
+    UI/mainwindow.h \
+    UI/simulationscene.h \
+    UI/visualizepanel.h \
+    Utilities/generator.h \
+    Utilities/qcustomplot.h \
+    Utilities/road.h \
+    Utilities/simulationcontrol.h \
+    Utilities/vehiclesgenerator.h \
+    commonenum.h
+
+SOURCES += \
+    Entities/TrafficLight/lightwidget.cpp \
+    Entities/TrafficLight/lightwidgetleft.cpp \
+    Entities/TrafficLight/trafficlight.cpp \
+    Entities/Vehicle/vehicle.cpp \
+    Entities/Vehicle/vehiclesight.cpp \
+    Entities/trafficcontroller.cpp \
+    Entities/trafficdetector.cpp \
+    UI/graphicsview.cpp \
+    UI/mainwindow.cpp \
+    UI/simulationscene.cpp \
+    UI/visualizepanel.cpp \
+    Utilities/generator.cpp \
+    Utilities/qcustomplot.cpp \
+    Utilities/road.cpp \
+    Utilities/simulationcontrol.cpp \
+    Utilities/vehiclesgenerator.cpp \
+    main.cpp
+
+FORMS += \
+    UI/mainwindow.ui \
+    UI/visualizepanel.ui \
+    Utilities/simulationcontrol.ui

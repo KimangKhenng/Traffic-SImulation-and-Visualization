@@ -1,8 +1,8 @@
 #ifndef VEHICLESGENERATOR_H
 #define VEHICLESGENERATOR_H
 
-#include "vehicle.h"
-#include "road.h"
+#include "Entities/Vehicle/vehicle.h"
+#include "Utilities/road.h"
 #include "commonenum.h"
 ///////////////
 /// \brief The VehiclesGenerator class

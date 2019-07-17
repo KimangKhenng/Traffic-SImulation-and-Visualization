@@ -38,4 +38,43 @@
         <file>Image/Cars/Asset 17.png</file>
         <file>Image/Cars/Asset 18.png</file>
     </qresource>
+    <qresource prefix="/">
+        <file>Entities/TrafficLight/lightwidget.cpp</file>
+        <file>Entities/TrafficLight/lightwidget.h</file>
+        <file>Entities/TrafficLight/lightwidgetleft.cpp</file>
+        <file>Entities/TrafficLight/lightwidgetleft.h</file>
+        <file>Entities/TrafficLight/trafficlight.cpp</file>
+        <file>Entities/TrafficLight/trafficlight.h</file>
+        <file>Entities/Vehicle/vehicle.cpp</file>
+        <file>Entities/Vehicle/vehicle.h</file>
+        <file>Entities/Vehicle/vehiclesight.cpp</file>
+        <file>Entities/Vehicle/vehiclesight.h</file>
+        <file>Entities/trafficcontroller.cpp</file>
+        <file>Entities/trafficcontroller.h</file>
+        <file>Entities/trafficdetector.cpp</file>
+        <file>Entities/trafficdetector.h</file>
+        <file>UI/graphicsview.cpp</file>
+        <file>UI/graphicsview.h</file>
+        <file>UI/mainwindow.cpp</file>
+        <file>UI/mainwindow.h</file>
+        <file>UI/mainwindow.ui</file>
+        <file>UI/simulationscene.cpp</file>
+        <file>UI/simulationscene.h</file>
+        <file>UI/visualizepanel.cpp</file>
+        <file>UI/visualizepanel.h</file>
+        <file>UI/visualizepanel.ui</file>
+        <file>Utilities/generator.cpp</file>
+        <file>Utilities/generator.h</file>
+        <file>Utilities/qcustomplot.cpp</file>
+        <file>Utilities/qcustomplot.h</file>
+        <file>Utilities/road.cpp</file>
+        <file>Utilities/road.h</file>
+        <file>Utilities/simulationcontrol.cpp</file>
+        <file>Utilities/simulationcontrol.h</file>
+        <file>Utilities/simulationcontrol.ui</file>
+        <file>Utilities/vehiclesgenerator.cpp</file>
+        <file>Utilities/vehiclesgenerator.h</file>
+        <file>commonenum.h</file>
+        <file>main.cpp</file>
+    </qresource>
 </RCC>

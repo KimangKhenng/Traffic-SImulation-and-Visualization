@@ -6,7 +6,7 @@
 #include <QElapsedTimer>
 #include <QGraphicsItem>
 #include <QPainter>
-#include "vehicle.h"
+#include "Vehicle/vehicle.h"
 
 class TrafficDetector : public QObject,public QGraphicsItem
 {

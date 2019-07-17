@@ -5,8 +5,8 @@
 #include <QDir>
 #include <QString>
 #include "mainwindow.h"
-#include "qcustomplot.h"
-#include "trafficcontroller.h"
+#include "Utilities/qcustomplot.h"
+#include "Entities/trafficcontroller.h"
 
 #define X_NUM_RANG 20;
 #define Y_NUM_RANG 20;

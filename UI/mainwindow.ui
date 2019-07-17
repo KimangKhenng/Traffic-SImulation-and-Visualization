@@ -90,7 +90,7 @@ QWidget#main_windows{
        <enum>QFrame::NoFrame</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="main_windows">
        <property name="sizePolicy">
@@ -442,7 +442,7 @@ border-radius:5px;
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="resource.qrc">
+               <iconset resource="../resource.qrc">
                 <normaloff>:/icon/Image/pause-icon.png</normaloff>:/icon/Image/pause-icon.png</iconset>
               </property>
              </widget>
@@ -462,7 +462,7 @@ border-radius:5px;
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="resource.qrc">
+               <iconset resource="../resource.qrc">
                 <normaloff>:/icon/Image/play-icon.png</normaloff>:/icon/Image/play-icon.png</iconset>
               </property>
              </widget>
@@ -473,7 +473,7 @@ border-radius:5px;
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="resource.qrc">
+               <iconset resource="../resource.qrc">
                 <normaloff>:/icon/Image/stop-icon.png</normaloff>:/icon/Image/stop-icon.png</iconset>
               </property>
              </widget>
@@ -484,7 +484,7 @@ border-radius:5px;
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="resource.qrc">
+               <iconset resource="../resource.qrc">
                 <normaloff>:/icon/Image/reset-icon.png</normaloff>:/icon/Image/reset-icon.png</iconset>
               </property>
               <property name="flat">
@@ -498,7 +498,7 @@ border-radius:5px;
                <string>Tool</string>
               </property>
               <property name="icon">
-               <iconset resource="resource.qrc">
+               <iconset resource="../resource.qrc">
                 <normaloff>:/icon/Image/tool-icon.png</normaloff>:/icon/Image/tool-icon.png</iconset>
               </property>
               <property name="checked">
@@ -512,7 +512,7 @@ border-radius:5px;
                <string>Visualize</string>
               </property>
               <property name="icon">
-               <iconset resource="resource.qrc">
+               <iconset resource="../resource.qrc">
                 <normaloff>:/icon/Image/visualize-icon.png</normaloff>:/icon/Image/visualize-icon.png</iconset>
               </property>
              </widget>
@@ -984,7 +984,7 @@ background-color: rgb(52, 73, 94);
      <x>0</x>
      <y>0</y>
      <width>1280</width>
-     <height>23</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -1058,25 +1058,25 @@ background-color: rgb(52, 73, 94);
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>GraphicsView</class>
-   <extends>QGraphicsView</extends>
-   <header>graphicsview.h</header>
-  </customwidget>
-  <customwidget>
    <class>SimulationControl</class>
    <extends>QWidget</extends>
-   <header>simulationcontrol.h</header>
+   <header location="global">simulationcontrol.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>VisualizePanel</class>
    <extends>QWidget</extends>
-   <header>visualizepanel.h</header>
+   <header location="global">visualizepanel.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>GraphicsView</class>
+   <extends>QGraphicsView</extends>
+   <header>graphicsview.h</header>
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="resource.qrc"/>
+  <include location="../resource.qrc"/>
  </resources>
  <connections/>
 </ui>
