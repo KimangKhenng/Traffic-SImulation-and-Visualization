@@ -7,6 +7,10 @@
         <file>Image/path-image.png</file>
         <file>Image/road-path.svg</file>
         <file>Image/Loading.png</file>
+        <file>Image/example-trefoil.gif</file>
+        <file>Image/kim_ang_ava_1.png</file>
+        <file>Image/kim_ang_ava_2.png</file>
+        <file>Image/T_chea_ava_1.jpg</file>
     </qresource>
     <qresource prefix="/icon">
         <file>Image/Logo-AI.png</file>
@@ -17,6 +21,21 @@
         <file>Image/stop-icon.png</file>
         <file>Image/pause-icon.png</file>
         <file>Image/visualize-icon.png</file>
+        <file>Image/icon/about_icon.png</file>
+        <file>Image/icon/exit_icon.png</file>
+        <file>Image/icon/help_icon.png</file>
+        <file>Image/icon/setting_icon.png</file>
+        <file>Image/icon/play_icon.png</file>
+        <file>Image/icon/back_icon.png</file>
+        <file>Image/icon/pause_icon.png</file>
+        <file>Image/icon/reset_icon.png</file>
+        <file>Image/icon/stop_icon.png</file>
+        <file>Image/icon/roc_logo.png</file>
+        <file>Image/icon/rupp_blue_logo.png</file>
+        <file>Image/icon/rupp_logo.png</file>
+        <file>Image/icon/tfd_logo.png</file>
+        <file>Image/icon/fe_logo.jpg</file>
+        <file>Image/icon/qt_logo.png</file>
     </qresource>
     <qresource prefix="/cars">
         <file>Image/Cars/Asset 1.png</file>

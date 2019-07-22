@@ -31,7 +31,7 @@ void GraphicsView::wheelEvent(QWheelEvent *event)
 void GraphicsView::mouseMoveEvent(QMouseEvent *event)
 {
     QGraphicsView::mouseMoveEvent(event);
-    qDebug()<<"Actual Position "<<event->pos()<<"Scene Pos "<<event->screenPos();
+    //qDebug()<<"Actual Position "<<event->pos()<<"Scene Pos "<<event->screenPos();
     if(event->buttons() == Qt::RightButton){
         this->setCursor(Qt::SizeAllCursor);
 
@@ -39,7 +39,7 @@ void GraphicsView::mouseMoveEvent(QMouseEvent *event)
     if(event->buttons() == Qt::LeftButton){
         if(dynamic_cast<Vehicle*>(this->scene()->itemAt(this->mapToScene(event->pos()),this->transform()))){
             this->setCursor(Qt::OpenHandCursor);
-            qDebug()<<event->pos();
+            //qDebug()<<event->pos();
         }
     }
 }

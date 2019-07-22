@@ -2,7 +2,7 @@
 
 LightWidgetLeft::LightWidgetLeft(const QColor &color, QGraphicsItem *parent):LightWidget(color,parent)
 {
-    setTransformOriginPoint(SIZE/2,SIZE/2);
+    setTransformOriginPoint(LightSize/2,LightSize/2);
 }
 
 void LightWidgetLeft::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
@@ -20,4 +20,5 @@ void LightWidgetLeft::paint(QPainter *painter, const QStyleOptionGraphicsItem *o
     }else{
         setOpacity(1.0);
     }
+    setScale(LightScale);
 }

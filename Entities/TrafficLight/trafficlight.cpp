@@ -2,7 +2,7 @@
 
 QRectF TrafficLight::boundingRect() const
 {
-    return QRectF(0,0,SIZE*4,SIZE);
+    return QRectF(0,0,WidgetDimension*4,WidgetDimension);
 }
 
 void TrafficLight::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
@@ -12,7 +12,8 @@ void TrafficLight::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
     painter->setPen(Qt::NoPen);
     painter->setRenderHint(QPainter::Antialiasing);
     painter->setBrush(QBrush(QColor("#2c3e50")));
-    painter->drawRect(this->boundingRect());
+    painter->drawRoundedRect(boundingRect(),8,8);
+    //painter->drawRect(this->boundingRect());
 }
 
 TrafficLight::TrafficLight(region re, QGraphicsItem *parent):QGraphicsItem(parent),
@@ -69,13 +70,13 @@ void TrafficLight::setUpFacilities()
     //this->addToGroup(m_left_light);
     m_main_light_green = new LightWidget(QColor("#2ecc71"),this);
     //this->addToGroup(m_main_light_green);
-    m_main_light_green->moveBy(SIZE,0);
+    m_main_light_green->moveBy(LightSize,0);
     m_main_light_yellow = new LightWidget(QColor("#f1c40f"),this);
     //this->addToGroup(m_main_light_yellow);
-    m_main_light_yellow->moveBy(SIZE*2,0);
+    m_main_light_yellow->moveBy(LightSize*2,0);
     m_main_light_red = new LightWidget(QColor("#e74c3c"),this);
     //this->addToGroup(m_main_light_red);
-    m_main_light_red->moveBy(SIZE*3,0);
+    m_main_light_red->moveBy(LightSize*3,0);
     m_light = new QList<LightWidget *>();
     m_light->append(m_left_light);
     m_light->append(m_main_light_green);

@@ -2,12 +2,13 @@
 #include "trafficlight.h"
 QRectF LightWidget::boundingRect() const
 {
-    return QRectF(0,0,SIZE,SIZE);
+    return QRectF(0,0,LightSize,LightSize);
 }
 
 LightWidget::LightWidget(const QColor &color, QGraphicsItem *parent):QGraphicsItem(parent),m_color(color),m_on(false)
 {
-    setTransformOriginPoint(SIZE/2,SIZE/2);
+    setTransformOriginPoint(LightSize/2,LightSize/2);
+
 }
 
 void LightWidget::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
@@ -23,6 +24,7 @@ void LightWidget::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
     }else{
         setOpacity(1.0);
     }
+    setScale(LightScale);
 
 }
 
@@ -61,7 +63,7 @@ void LightWidget::setOn(bool on)
     if (on == m_on)
         return;
     m_on = on;
-    update(0,0,SIZE,SIZE);
+    update(0,0,LightSize,LightSize);
 }
 
 void LightWidget::setColor(const QColor &color)

@@ -36,7 +36,10 @@ HEADERS += \
     Utilities/road.h \
     Utilities/simulationcontrol.h \
     Utilities/vehiclesgenerator.h \
-    commonenum.h
+    commonenum.h \
+    UI/simulationcontrolwidget.h \
+    UI/uimainwindow.h \
+    UI/aboutwidget.h
 
 SOURCES += \
     Entities/TrafficLight/lightwidget.cpp \
@@ -55,9 +58,15 @@ SOURCES += \
     Utilities/road.cpp \
     Utilities/simulationcontrol.cpp \
     Utilities/vehiclesgenerator.cpp \
-    main.cpp
+    main.cpp \
+    UI/simulationcontrolwidget.cpp \
+    UI/uimainwindow.cpp \
+    UI/aboutwidget.cpp
 
 FORMS += \
     UI/mainwindow.ui \
     UI/visualizepanel.ui \
-    Utilities/simulationcontrol.ui
+    Utilities/simulationcontrol.ui \
+    UI/simulationcontrolwidget.ui \
+    UI/uimainwindow.ui \
+    UI/aboutwidget.ui

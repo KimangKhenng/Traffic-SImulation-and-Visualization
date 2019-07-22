@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "UI/simulationcontrolwidget.h"
 
 MainWindow::MainWindow(QWidget *parent)
     :QMainWindow(parent)
@@ -23,6 +24,8 @@ MainWindow::MainWindow(QWidget *parent)
         ui->m_visualzie_widget->setMainWindows(this);
         //ui->m_visualzie_widget->initialize();
         //qDebug()<<"Passed";
+        SimulationControlWidget *control = new SimulationControlWidget;
+        control->show();
 }
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {

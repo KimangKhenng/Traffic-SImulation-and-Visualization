@@ -7,7 +7,11 @@
 #include <QGraphicsItem>
 #include <QStyleOptionGraphicsItem>
 
-#define SIZE 25
+
+
+const static float LightSize = 25;
+const static float WidgetDimension = 25;
+const static float LightScale = 0.6;
 
 class LightWidget :public QObject,/*public QGraphicsLayoutItem,*/ public QGraphicsItem
 {
