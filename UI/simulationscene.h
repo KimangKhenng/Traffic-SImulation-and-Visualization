@@ -2,6 +2,7 @@
 #define SIMULATIONSCENE_H
 
 #include <QGraphicsScene>
+#include <QGraphicsSvgItem>
 #include "Entities/Vehicle/vehicle.h"
 #include "Entities/trafficdetector.h"
 #include "Entities/trafficcontroller.h"
@@ -34,11 +35,13 @@ public:
     void resetScene();
     void showTrafficLight();
     void HideTrafficLight();
+    void showIntersectionPath(const bool &show);
     TrafficController *getController() const;
 
 private:
     QList<Vehicle* > m_Vehicles;
     TrafficController *m_Controller;
+    QGraphicsSvgItem *m_path;
 
 //protected:
 //    virtual void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent);

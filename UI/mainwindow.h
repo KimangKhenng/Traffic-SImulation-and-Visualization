@@ -75,7 +75,7 @@ private:
     void changeVehicleMode(const VEHICLEMETHOD &mode);
     Ui::MainWindow *ui;
     SimulationScene *m_scene;
-    QGraphicsSvgItem *m_path;
+
     bool m_simulate_state;
     bool m_traffic_state;
     bool m_sightseeing;

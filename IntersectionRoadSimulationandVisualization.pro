@@ -39,7 +39,8 @@ HEADERS += \
     commonenum.h \
     UI/simulationcontrolwidget.h \
     UI/uimainwindow.h \
-    UI/aboutwidget.h
+    UI/aboutwidget.h \
+    Utilities/roadintersectionsimulation.h
 
 SOURCES += \
     Entities/TrafficLight/lightwidget.cpp \
@@ -61,7 +62,8 @@ SOURCES += \
     main.cpp \
     UI/simulationcontrolwidget.cpp \
     UI/uimainwindow.cpp \
-    UI/aboutwidget.cpp
+    UI/aboutwidget.cpp \
+    Utilities/roadintersectionsimulation.cpp
 
 FORMS += \
     UI/mainwindow.ui \

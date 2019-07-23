@@ -200,27 +200,7 @@ void MainWindow::on_stop_clicked()
 
 void MainWindow::set_up()
 {
-    //Add Road and Background to scene
-    //QGraphicsPixmapItem *m_picture = new QGraphicsPixmapItem(QPixmap(":/image/Image/road-image.png")/*.scaled (600,600)*/);
-    QGraphicsSvgItem *m_terrain = new QGraphicsSvgItem(":/image/Image/terrain.svg");
-    m_terrain->setFlag(QGraphicsItem::ItemIsMovable,false);
-    m_terrain->setFlag(QGraphicsItem::ItemIsSelectable,false);
-    m_path = new QGraphicsSvgItem(":/image/Image/road-path.svg");
-    m_path->setFlag(QGraphicsItem::ItemIsMovable,false);
-    m_path->setFlag(QGraphicsItem::ItemIsSelectable,false);
-    //m_terrain->moveBy (-60,0);
-    //m_picture->moveBy(30,0);
-    m_path->moveBy (15,-15);
-    m_path->setScale (0.7);
-    m_path->setZValue (-1);
-    m_path->setOpacity(0);
-    //m_picture->setZValue (-2);
-    m_terrain->setZValue (-3);
-    m_terrain->moveBy(-70,5);
-    m_scene = new SimulationScene();
-    //m_scene->addItem (m_picture);
-    m_scene->addItem (m_terrain);
-    m_scene->addItem (m_path);
+
     //m_scene->addText ("1",QFont("Century",18))->setPos (450,180);
     //m_scene->addText ("2",QFont("Century",18))->setPos (150,180);
     //m_scene->addText ("3",QFont("Century",18))->setPos (180,380);
@@ -286,11 +266,7 @@ void MainWindow::set_up_demo()
 }
 void MainWindow::on_m_road_check_button_toggled(bool checked)
 {
-    if(checked){
-        m_path->setOpacity(1.0);
-    }else{
-        m_path->setOpacity(0.0);
-    }
+
 }
 
 void MainWindow::on_m_detector_button_clicked(bool checked)

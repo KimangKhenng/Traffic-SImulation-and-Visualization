@@ -2,6 +2,25 @@
 
 SimulationScene::SimulationScene(QGraphicsScene *parent):QGraphicsScene (parent)
 {
+    //Add Road and Background to scene
+    //QGraphicsPixmapItem *m_picture = new QGraphicsPixmapItem(QPixmap(":/image/Image/road-image.png")/*.scaled (600,600)*/);
+    QGraphicsSvgItem *m_terrain = new QGraphicsSvgItem(":/image/Image/terrain.svg");
+    m_terrain->setFlag(QGraphicsItem::ItemIsMovable,false);
+    m_terrain->setFlag(QGraphicsItem::ItemIsSelectable,false);
+    m_path = new QGraphicsSvgItem(":/image/Image/road-path.svg");
+    m_path->setFlag(QGraphicsItem::ItemIsMovable,false);
+    m_path->setFlag(QGraphicsItem::ItemIsSelectable,false);
+    //m_terrain->moveBy (-60,0);
+    //m_picture->moveBy(30,0);
+    m_path->moveBy (15,-15);
+    m_path->setScale (0.7);
+    m_path->setZValue (-1);
+    m_path->setOpacity(0);
+    //m_picture->setZValue (-2);
+    m_terrain->setZValue (-3);
+    m_terrain->moveBy(-70,5);
+    this->addItem (m_terrain);
+    this->addItem (m_path);
     /////////////////
     ///
     /// Set Index Method of How QGraphicsScene
@@ -124,6 +143,15 @@ void SimulationScene::HideTrafficLight()
     for(int i = 0 ; i < m_Controller->getTraffic_light().size() ; ++i){
         m_Controller->getTraffic_light().at(i)->setMode(TRAFFICMODE::NO_SIGNAL);
         this->removeItem(m_Controller->getTraffic_light().at(i));
+    }
+}
+
+void SimulationScene::showIntersectionPath(const bool &show)
+{
+    if(show){
+        m_path->setOpacity(100);
+    }else{
+        m_path->setOpacity(0);
     }
 }
 
