@@ -2,7 +2,6 @@
 #define GENERATOR_H
 
 
-#include "commonenum.h"
 #include "vehiclesgenerator.h"
 #include "UI/simulationscene.h"
 
@@ -16,7 +15,7 @@ public:
     void startGenerator();
     void stopGenerator();
     void startAutoGeneraion();
-    void setTimer(const int& x,const int& y,const int& c,const int& z);
+    void setTimer(const int& N_S,const int& S_N,const int& E_W,const int& W_E);
     void setScene(SimulationScene *scene);
     void turnOn();
     void turnOff();

@@ -3,11 +3,14 @@
 #include <QDesktopServices>
 #include <QUrl>
 
-UIMainWindow::UIMainWindow(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::UIMainWindow)
+UIMainWindow::UIMainWindow(QWidget *parent)
+    :QWidget(parent)
+    ,ui(new Ui::UIMainWindow)
 {
     ui->setupUi(this);
+    m_Simulation = new RoadIntersectionSimulation(ui->graphicsView);
+
+
 }
 
 UIMainWindow::~UIMainWindow()
@@ -58,4 +61,24 @@ void UIMainWindow::on_m_simulation_back_icon_clicked()
 void UIMainWindow::on_m_setting_back_icon_clicked()
 {
     ui->m_stacked_widget->setCurrentIndex(0);
+}
+
+void UIMainWindow::on_m_simulation_play_button_clicked()
+{
+    m_Simulation->startSimulation();
+}
+
+void UIMainWindow::on_m_simulation_pause_button_clicked()
+{
+
+}
+
+void UIMainWindow::on_m_simulation_restart_button_clicked()
+{
+
+}
+
+void UIMainWindow::on_m_simulation_stop_button_clicked()
+{
+
 }

@@ -1,19 +1,32 @@
 #ifndef ROADINTERSECTIONSIMULATION_H
 #define ROADINTERSECTIONSIMULATION_H
 
-#include "UI/simulationscene.h"
 #include "Utilities/generator.h"
 #include <QObject>
+#include <QGraphicsView>
 #include <QTimer>
-#include <omp.h>
+
+static const float TIME_STEP = 1/60;
+class Generator;
 class RoadIntersectionSimulation : public QObject
 {
     Q_OBJECT
 public:
-    RoadIntersectionSimulation();
+    RoadIntersectionSimulation(QGraphicsView *view);
     ~RoadIntersectionSimulation();
-    void startSimulation();
+    void startSimulation(const int &B_NS = 3500,
+                         const int &B_SN = 2000,
+                         const int &B_WE = 1900,
+                         const int &B_EW = 3000,
+                         const int &RED_LIGHT = 5000,
+                         const int &GREEN_LIGHT = 3500,
+                         const int &LEFT_GREEN_LIGHT = 1500,
+                         const int &YELLOW_LIGHT = 500,
+                         const GENMETHOD &METh = GENMETHOD::GEN_3,
+                         const VEHICLEMETHOD &MODE = VEHICLEMETHOD::SIGHTSEEING);
     void stopSimulation();
+    SimulationScene *Scene() const;
+
 public slots:
     void updateVehicle();
 private:

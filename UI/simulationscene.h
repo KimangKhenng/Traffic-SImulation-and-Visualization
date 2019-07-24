@@ -3,6 +3,7 @@
 
 #include <QGraphicsScene>
 #include <QGraphicsSvgItem>
+#include <omp.h>
 #include "Entities/Vehicle/vehicle.h"
 #include "Entities/trafficdetector.h"
 #include "Entities/trafficcontroller.h"
@@ -37,7 +38,7 @@ public:
     void HideTrafficLight();
     void showIntersectionPath(const bool &show);
     TrafficController *getController() const;
-
+    void updateScene(const VEHICLEMETHOD &seeing);
 private:
     QList<Vehicle* > m_Vehicles;
     TrafficController *m_Controller;

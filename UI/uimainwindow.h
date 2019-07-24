@@ -2,6 +2,7 @@
 #define UIMAINWINDOW_H
 
 #include <QWidget>
+#include "Utilities/roadintersectionsimulation.h"
 
 namespace Ui {
 class UIMainWindow;
@@ -34,8 +35,17 @@ private slots:
 
     void on_m_setting_back_icon_clicked();
 
+    void on_m_simulation_play_button_clicked();
+
+    void on_m_simulation_pause_button_clicked();
+
+    void on_m_simulation_restart_button_clicked();
+
+    void on_m_simulation_stop_button_clicked();
+
 private:
     Ui::UIMainWindow *ui;
+    RoadIntersectionSimulation *m_Simulation;
 };
 
 #endif // UIMAINWINDOW_H

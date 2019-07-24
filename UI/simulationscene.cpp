@@ -30,7 +30,7 @@ SimulationScene::SimulationScene(QGraphicsScene *parent):QGraphicsScene (parent)
     /////////////////
     ///
     /// Set background brush for scene
-    setBackgroundBrush (Qt::gray);
+    setBackgroundBrush (Qt::white);
     m_Controller = new TrafficController;
     this->addItem(m_Controller);
 
@@ -158,4 +158,28 @@ void SimulationScene::showIntersectionPath(const bool &show)
 TrafficController *SimulationScene::getController() const
 {
     return m_Controller;
+}
+
+void SimulationScene::updateScene(const VEHICLEMETHOD &seeing)
+{
+    omp_set_num_threads(4);
+
+    #pragma omp parallel private(m_Vehicles)
+    {
+
+        for(auto i = m_Vehicles.begin() ; i != m_Vehicles.end() ; ++i){
+            #pragma omp single nowait
+            {
+                (*i)->update(seeing);
+            }
+        }
+    }
+    #pragma omp parallel for
+    for(size_t i = 0 ; i < m_Vehicles.size() ; ++i ){
+        if(m_Vehicles.at(i)->isDeletable()){
+            removeVehicle(m_Vehicles.at(i));
+        }
+    }
+
+
 }

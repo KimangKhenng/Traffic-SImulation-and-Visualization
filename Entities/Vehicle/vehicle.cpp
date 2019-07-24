@@ -5,9 +5,18 @@
 //static const double Pi = 3.14159265358979323846264338327950288419717;
 //static double TwoPi = 2.0*Pi;
 
-Vehicle::Vehicle(QGraphicsItem *parent):QGraphicsPixmapItem(parent),m_angle(0),m_speed(0),m_acceleration(0.01)/*,m_color(qrand()%256,qrand()%256,qrand()%256)*/
-  ,m_point_index(0),m_on_action_state(false),m_step_count(0),m_driving_state(false),m_mode(VEHICLEMETHOD::SIGHTSEEING)
-  ,m_Is_deletable(false),m_leader(nullptr)
+Vehicle::Vehicle(QGraphicsItem *parent)
+    :QGraphicsPixmapItem(parent)
+    ,m_angle(0)
+    ,m_speed(0)
+    ,m_acceleration(ACCER)/*,m_color(qrand()%256,qrand()%256,qrand()%256)*/
+    ,m_point_index(0)
+    ,m_on_action_state(false)
+    ,m_step_count(0)
+    ,m_driving_state(false)
+    ,m_mode(VEHICLEMETHOD::SIGHTSEEING)
+    ,m_Is_deletable(false)
+    ,m_leader(nullptr)
 {
     //m_internal_timer = new QTimer;
     m_sightseeing = new VehicleSight(QRectF(30,5,GAPACCAPANCE * 4,10),this);
@@ -27,6 +36,7 @@ Vehicle::~Vehicle()
 {
     //qDebug()<<"Delete "<<this->objectName();
     delete m_sightseeing;
+    delete m_sightseeing_small;
     //delete m_internal_timer;
 }
 
@@ -119,7 +129,7 @@ void Vehicle::decelerate(QPointF rhs)
 
 void Vehicle::accelerate()
 {
-    m_speed += 0.01;
+    m_speed += ACCER;
 }
 
 void Vehicle::accelerate(Vehicle *leader)
@@ -198,7 +208,7 @@ void Vehicle::advance(int phase)
             }
         }else{
             m_leader = nullptr;
-            m_acceleration = 0.01;
+            m_acceleration = ACCER;
             accelerate();
         }
 
@@ -221,6 +231,48 @@ void Vehicle::advance(int phase)
     }else{
         return;
     }
+}
+
+void Vehicle::update(const VEHICLEMETHOD &mode)
+{
+    if(this->is_in_stop_point()){
+        if(this->isContainedSignal()){
+            if(!this->ifAllowed()){
+                stop_advance();
+                return;
+            }
+        }
+    }
+    if(mode == VEHICLEMETHOD::SIGHTSEEING){
+        if(hasInfront()){
+            if(isAboutToCrash()){
+                stop_advance();
+            }
+            accelerate(m_leader);
+        }else{
+            m_leader = nullptr;
+            accelerate();
+        }
+    }else{
+        m_leader = nullptr;
+        m_acceleration = ACCER;
+        accelerate();
+    }
+    QLineF line(pos(),m_destination);
+    //qDebug()<<"Length"<<line.length();
+    if(int(line.length()) <= 1.0){
+        m_point_index++;
+        if(m_point_index >= m_path_to_follow.size()){
+            m_Is_deletable = true;
+            return;
+        }
+        m_destination = m_path_to_follow[m_point_index];
+        rotate_to_point(m_destination);
+    }
+    double theta = rotation();
+    double dy = m_speed*qSin(qDegreesToRadians(theta));
+    double dx = m_speed*qCos(qDegreesToRadians(theta));
+    setPos(x()+dx,y()+dy);
 }
 
 //void Vehicle::forward()

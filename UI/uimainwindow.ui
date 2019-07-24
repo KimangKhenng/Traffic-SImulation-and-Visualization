@@ -614,8 +614,8 @@ background-color: rgb(52, 73, 94);
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>1280</width>
-            <height>660</height>
+            <width>100</width>
+            <height>30</height>
            </rect>
           </property>
           <property name="styleSheet">
@@ -1044,7 +1044,7 @@ background-color: rgb(52, 73, 94);
           </widget>
          </item>
          <item>
-          <widget class="QGraphicsView" name="graphicsView">
+          <widget class="GraphicsView" name="graphicsView">
            <property name="frameShape">
             <enum>QFrame::NoFrame</enum>
            </property>
@@ -1269,6 +1269,11 @@ background-color: rgb(52, 73, 94);
    <extends>QWidget</extends>
    <header>UI/aboutwidget.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>GraphicsView</class>
+   <extends>QGraphicsView</extends>
+   <header>UI/graphicsview.h</header>
   </customwidget>
  </customwidgets>
  <resources>

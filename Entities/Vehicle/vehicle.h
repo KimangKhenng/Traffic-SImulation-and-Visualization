@@ -9,6 +9,8 @@
 #include <QObject>
 #include <qmath.h>
 
+static const float ACCER = 0.01;
+
 class SimulationScene;
 class Vehicle: public QObject,public QGraphicsPixmapItem
 {
@@ -25,7 +27,7 @@ public:
     /// \return Address of Vehicle
     /// Prevent using operator =
     Vehicle& operator = (const Vehicle&) = delete;
-    ~Vehicle() override;
+    ~Vehicle();
     //// Overloading Function
     QRectF boundingRect() const Q_DECL_OVERRIDE;
     QPainterPath shape() const Q_DECL_OVERRIDE;
@@ -87,6 +89,7 @@ public:
 
 public slots:
     void advance(int phase) Q_DECL_OVERRIDE;
+    void update(const VEHICLEMETHOD& mode);
     //void forward();
 private:
     QPixmap generateImage() const;

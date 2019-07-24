@@ -52,12 +52,12 @@ void Generator::startAutoGeneraion()
     startGenerator();
 }
 
-void Generator::setTimer(const int& x,const int& y,const int& c,const int& z)
+void Generator::setTimer(const int& N_S,const int& S_N,const int& E_W,const int& W_E)
 {
-    m_time_N_S = x;
-    m_time_S_N = y;
-    m_time_E_W = c;
-    m_time_W_E = z;
+    m_time_N_S = N_S;
+    m_time_S_N = S_N;
+    m_time_E_W = E_W;
+    m_time_W_E = W_E;
 }
 
 void Generator::makeNorthSouth()
