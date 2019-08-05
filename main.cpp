@@ -12,8 +12,6 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     UIMainWindow ww;
-    SimulationControlWidget widget;
-    widget.show();
     ww.show();
 
     return a.exec();

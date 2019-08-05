@@ -3,7 +3,7 @@
 #include <QDebug>
 #include <QTimer>
 
-#define PARALLEL 1
+#define PARALLEL 0
 
 
 
