@@ -383,10 +383,10 @@ void MainWindow::on_m_go_though_clicked(bool checked)
 {
     if(checked){
         ui->m_simulation_control_widget->generator()->setMode(VEHICLEMETHOD::GO_THROUGH);
-        m_scene->setGoThrought(true);
+        m_scene->setGoThrough(true);
     }else{
         ui->m_simulation_control_widget->generator()->setMode(VEHICLEMETHOD::SIGHTSEEING);
-        m_scene->setGoThrought(false);
+        m_scene->setGoThrough(false);
     }
 
 }

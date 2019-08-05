@@ -194,6 +194,13 @@ QList<QElapsedTimer *> *TrafficController::getTimer()
     return time;
 }
 
+void TrafficController::updateDetectors()
+{
+    for(int i = 0 ; i < m_detector.size() ; ++i){
+        m_detector.at(i)->forward();
+    }
+}
+
 
 QList<TrafficDetector *> TrafficController::getDetector()
 {

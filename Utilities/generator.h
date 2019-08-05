@@ -20,6 +20,7 @@ public:
     void turnOn();
     void turnOff();
     void setMode(const VEHICLEMETHOD &mode);
+    void setVisionOn(const bool& vision);
 public slots:
     void makeNorthSouth();
     void makeSouthNorth();
@@ -39,6 +40,7 @@ private:
     GENMETHOD m_method;
     VEHICLEMETHOD m_mode;
     bool m_running_state;
+    bool m_VisionOn;
 };
 
 #endif // GENERATOR_H

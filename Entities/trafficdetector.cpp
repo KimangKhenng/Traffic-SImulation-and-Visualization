@@ -78,28 +78,34 @@ void TrafficDetector::advance(int phase)
 
 }
 
-//void TrafficDetector::forward()
-//{
-//    if(this->getNumbersOfVehicles() > 0){
-//        m_is_active = true;
-//    }else{
-//        m_timer->restart();
-//        //qDebug()<<"Hello";
-//        m_is_active = false;
+void TrafficDetector::forward()
+{
+    if(m_isOn){
+        if(this->getNumbersOfVehicles() > 0){
+            m_is_active = true;
+        }else{
+            m_timer->restart();
+            //qDebug()<<"Hello";
+            m_is_active = false;
+        }
+        update(boundingRect());
+    }else{
+        return;
+    }
+
+//    //qDebug()<<"Size "<<collding_vehicles.size();
+//    for(int i = 0 ; i < collding_vehicles.size() ; ++i){
+//        Vehicle *collding = dynamic_cast<Vehicle *>(collding_vehicles.at(i));
+//        if(collding){
+//            m_is_active = true;
+//        }else{
+//            m_timer->restart();
+//            //qDebug()<<"Hello";
+//            m_is_active = false;
+//        }
 //    }
-////    //qDebug()<<"Size "<<collding_vehicles.size();
-////    for(int i = 0 ; i < collding_vehicles.size() ; ++i){
-////        Vehicle *collding = dynamic_cast<Vehicle *>(collding_vehicles.at(i));
-////        if(collding){
-////            m_is_active = true;
-////        }else{
-////            m_timer->restart();
-////            //qDebug()<<"Hello";
-////            m_is_active = false;
-////        }
-////    }
-//    update(boundingRect());
-//}
+
+}
 
 //bool TrafficDetector::getIs_active() const
 //{

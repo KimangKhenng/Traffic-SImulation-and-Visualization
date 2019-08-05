@@ -31,7 +31,7 @@ public:
 
     void addLight(TrafficLight* light);
     void removeVehicle(Vehicle* ve);
-    void setGoThrought(bool x);
+    void setGoThrough(bool x);
     void resetScene();
     void showTrafficLight();
     void HideTrafficLight();

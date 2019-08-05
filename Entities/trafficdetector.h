@@ -36,7 +36,7 @@ public:
 //    bool getIs_active() const;
 public slots:
     void advance(int phase) Q_DECL_OVERRIDE;
-    //void forward();
+    void forward();
 private:
     float m_detector_length;
     float m_flow;

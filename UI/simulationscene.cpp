@@ -94,7 +94,7 @@ QList<TrafficLight *> SimulationScene::getTrafficLight() const
 }
 
 
-void SimulationScene::setGoThrought(bool x)
+void SimulationScene::setGoThrough(bool x)
 {
     if(x){
         for(int i = 0 ; i < getVehicle().size() ; ++i){
@@ -177,7 +177,6 @@ void SimulationScene::updateScene(const VEHICLEMETHOD &seeing)
 #if PARALLEL
 
     omp_set_num_threads(4);
-    advance();
     #pragma omp parallel private(m_Vehicles)
     {
 
@@ -196,9 +195,8 @@ void SimulationScene::updateScene(const VEHICLEMETHOD &seeing)
         }
     }
 #else
+    advance();
     for(size_t i = 0 ; i < m_Vehicles.size() ; ++i ){
-        m_Vehicles.at(i)->update(seeing);
-        advance();
         if(m_Vehicles.at(i)->isDeletable()){
             removeVehicle(m_Vehicles.at(i));
         }

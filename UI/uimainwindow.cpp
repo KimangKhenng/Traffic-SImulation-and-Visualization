@@ -144,5 +144,9 @@ void UIMainWindow::on_m_turn_only_button_clicked()
 
 void UIMainWindow::on_m_go_through_check_box_stateChanged(int arg1)
 {
-
+    if(arg1 == Qt::Checked){
+        m_Simulation->turnOnGoThrough();
+    }else if(arg1 == Qt::Unchecked){
+        m_Simulation->turnOffGoThrough();
+    }
 }

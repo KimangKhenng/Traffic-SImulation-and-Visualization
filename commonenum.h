@@ -3,7 +3,7 @@
 #include <QDebug>
 #include <QTimer>
 
-#define PARALLEL 1
+#define PARALLEL 0
 
 
 
@@ -29,7 +29,7 @@
 #endif
 ////////////////
 /// \brief The Direction enum
-enum SimulationState{STARTED,STOPPED,PAUSED};
+enum SimulationState{STARTED,STOPPED,PAUSED,UNINITIALIZED,INITIALIZED};
 enum Direction{LEFT_TURNING,THROUGH,RIGHT_TURNING};
 enum region{REGION_E_W,REGION_N_S,REGION_W_E,REGION_S_N};
 enum GENMETHOD{GEN_3,GEN_5,NO_TURN,ONLY_TURN};

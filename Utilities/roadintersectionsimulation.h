@@ -23,7 +23,19 @@ public:
                          const int &YELLOW_LIGHT = 500,
                          const GENMETHOD &METh = GENMETHOD::GEN_3,
                          const VEHICLEMETHOD &MODE = VEHICLEMETHOD::SIGHTSEEING);
+    void initialize(const int &B_NS ,
+                    const int &B_SN ,
+                    const int &B_WE ,
+                    const int &B_EW ,
+                    const int &RED_LIGHT,
+                    const int &GREEN_LIGHT,
+                    const int &LEFT_GREEN_LIGHT,
+                    const int &YELLOW_LIGHT = 500,
+                    const GENMETHOD &METh = GENMETHOD::GEN_3,
+                    const VEHICLEMETHOD &MODE = VEHICLEMETHOD::SIGHTSEEING);
     void stopSimulation();
+    void pauseSimulation();
+
     SimulationScene *Scene() const;
 
     SimulationState State() const;
@@ -36,10 +48,14 @@ public:
     void hideVehiclesVision();
     void showTraffic();
     void hideTraffic();
+    void turnOnGoThrough();
+    void turnOffGoThrough();
 
 public slots:
     void updateVehicle();
 private:
+    //Simulation Entities
+
     SimulationScene *m_Scene;
     Generator *m_Generator;
     SimulationState m_State;
@@ -48,6 +64,17 @@ private:
     bool m_VisualizationOn;
     QTimer *m_SimulationTimer;
 
+    // Simulation Variables
+    int m_BirthRateNorthSouth;
+    int m_BirthRateSouthNorth;
+    int m_BirthRateWestEast;
+    int m_BirthRateEastWest;
+    int m_RedLightDuration;
+    int m_GreenLightDuration;
+    int m_LeftGreenLightDuration;
+    int m_YellowLightDuration;
+    GENMETHOD m_GenerationMethod;
+    VEHICLEMETHOD m_VehicleMode;
 };
 
 #endif // ROADINTERSECTIONSIMULATION_H

@@ -1,6 +1,8 @@
 #include "vehiclesgenerator.h"
 
-Vehicle *VehiclesGenerator::getLeftTurningVehicle(const region &approach, const VEHICLEMETHOD &x)
+Vehicle *VehiclesGenerator::getLeftTurningVehicle(const region &approach
+                                                  , const VEHICLEMETHOD &x
+                                                  , const bool &vision)
 {
     Vehicle *p = new Vehicle();
     p->extract_coordinate(road::getLeft(approach));
@@ -9,13 +11,21 @@ Vehicle *VehiclesGenerator::getLeftTurningVehicle(const region &approach, const 
     p->initialize();
     p->setMode(x);
     p->setScale(0.8);
+    if(vision){
+        p->turnOnSightSeeing();
+    }else{
+        p->turnOffSightSeeing();
+    }
 //    p->get_timer()->start(10);
 //    p->set_on_action(true);
     return p;
 
 }
 
-Vehicle *VehiclesGenerator::getThroughVehicle(const region &approach, const int &lane, const VEHICLEMETHOD &x)
+Vehicle *VehiclesGenerator::getThroughVehicle(const region &approach
+                                              , const int &lane
+                                              , const VEHICLEMETHOD &x
+                                              , const bool& vision)
 {
     Vehicle *p = new Vehicle();
     p->extract_coordinate(road::getThrough(approach,lane));
@@ -24,12 +34,19 @@ Vehicle *VehiclesGenerator::getThroughVehicle(const region &approach, const int 
     p->initialize();
     p->setMode(x);
     p->setScale(0.8);
+    if(vision){
+        p->turnOnSightSeeing();
+    }else{
+        p->turnOffSightSeeing();
+    }
 //    p->get_timer()->start(10);
 //    p->set_on_action(true);
     return p;
 }
 
-Vehicle *VehiclesGenerator::getRightTurningVehicle(const region &approach, const VEHICLEMETHOD &x)
+Vehicle *VehiclesGenerator::getRightTurningVehicle(const region &approach
+                                                   , const VEHICLEMETHOD &x
+                                                   , const bool &vision)
 {
     Vehicle *p = new Vehicle();
     p->extract_coordinate(road::getRight(approach));
@@ -38,6 +55,11 @@ Vehicle *VehiclesGenerator::getRightTurningVehicle(const region &approach, const
     p->initialize();
     p->setMode(x);
     p->setScale(0.8);
+    if(vision){
+        p->turnOnSightSeeing();
+    }else{
+        p->turnOffSightSeeing();
+    }
 //    p->get_timer()->start(10);
 //    p->set_on_action(true);
     return p;

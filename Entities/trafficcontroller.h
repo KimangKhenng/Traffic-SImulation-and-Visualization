@@ -6,6 +6,7 @@
 #include "trafficdetector.h"
 #include "commonenum.h"
 
+
 class TrafficController : public QGraphicsItemGroup
 {
 public:
@@ -27,6 +28,7 @@ public:
     QList<TrafficLight *> getTraffic_light();
 
     QList<QElapsedTimer *> *getTimer();
+    void updateDetectors();
 
 private:
     //QStateMachine *m_state;
