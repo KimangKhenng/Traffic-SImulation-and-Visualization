@@ -4,7 +4,6 @@
 #include "Utilities/generator.h"
 #include <QObject>
 #include <QGraphicsView>
-#include <QTimer>
 
 static const float TIME_STEP = 1/60;
 class Generator;
@@ -27,12 +26,14 @@ public:
     void stopSimulation();
     SimulationScene *Scene() const;
 
+    SimulationState State() const;
+
 public slots:
     void updateVehicle();
 private:
     SimulationScene *m_Scene;
     Generator *m_Generator;
-    bool m_SimulationState;
+    SimulationState m_State;
     bool m_TrafficLightOn;
     bool m_VehicleSightSeeingOn;
     bool m_VisualizationOn;

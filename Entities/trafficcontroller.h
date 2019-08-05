@@ -25,8 +25,7 @@ public:
     QList<TrafficLight *> getTraffic_light();
 
     QList<QElapsedTimer *> *getTimer();
-protected:
-    virtual void mousePressEvent(QGraphicsSceneMouseEvent *event) Q_DECL_OVERRIDE;
+
 private:
     //QStateMachine *m_state;
     QList<TrafficLight *> m_traffic_light;

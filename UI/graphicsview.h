@@ -17,8 +17,8 @@ public:
 protected:
     // Control Mouse wheel to zoom
     void wheelEvent(QWheelEvent *event) override;
-    void mouseMoveEvent(QMouseEvent *event) override;
-    void mouseReleaseEvent(QMouseEvent *event) override;
+//    void mouseMoveEvent(QMouseEvent *event) override;
+//    void mouseReleaseEvent(QMouseEvent *event) override;
     //virtual void resizeEvent(QResizeEvent *event);
 
 

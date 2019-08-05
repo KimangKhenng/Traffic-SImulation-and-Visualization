@@ -2,7 +2,7 @@
 #include <QDebug>
 RoadIntersectionSimulation::RoadIntersectionSimulation(QGraphicsView *view)
     :m_Scene(new SimulationScene)
-    ,m_SimulationState(false)
+    ,m_State(STOPPED)
     ,m_TrafficLightOn(false)
     ,m_VehicleSightSeeingOn(false)
     ,m_VisualizationOn(false)
@@ -40,6 +40,7 @@ void RoadIntersectionSimulation::startSimulation(const int &B_NS,
     m_Scene->showTrafficLight();
     m_SimulationTimer->start(TIME_STEP);
     m_Generator->startGenerator();
+    m_State = SimulationState::STARTED;
 }
 
 void RoadIntersectionSimulation::stopSimulation()
@@ -47,11 +48,17 @@ void RoadIntersectionSimulation::stopSimulation()
     m_SimulationTimer->stop();
     m_Generator->stopGenerator();
     m_Scene->getController()->stopTrafficLightAll();
+    m_State = SimulationState::STOPPED;
 }
 
 void RoadIntersectionSimulation::updateVehicle()
 {
     m_Scene->updateScene(VEHICLEMETHOD::SIGHTSEEING);
+}
+
+SimulationState RoadIntersectionSimulation::State() const
+{
+    return m_State;
 }
 
 SimulationScene *RoadIntersectionSimulation::Scene() const

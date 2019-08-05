@@ -13,16 +13,24 @@ void TrafficLight::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
     painter->setRenderHint(QPainter::Antialiasing);
     painter->setBrush(QBrush(QColor("#2c3e50")));
     painter->drawRoundedRect(boundingRect(),8,8);
+    setAcceptHoverEvents(true);
     //painter->drawRect(this->boundingRect());
 }
 
-TrafficLight::TrafficLight(region re, QGraphicsItem *parent):QGraphicsItem(parent),
-    m_region(re)
+TrafficLight::TrafficLight(region re, QGraphicsItem *parent)
+    :QGraphicsItem(parent)
+    ,m_region(re)
 {
 }
 
-TrafficLight::TrafficLight(QGraphicsItem *parent):QGraphicsItem (parent)
-    ,m_red_duration(0),m_left_duration(0),m_main_green_duration(0),m_yellow_duration(0),m_mode(TRAFFICMODE::NO_SIGNAL),m_state_machine(new QStateMachine(this))
+TrafficLight::TrafficLight(QGraphicsItem *parent)
+    :QGraphicsItem (parent)
+    ,m_red_duration(0)
+    ,m_left_duration(0)
+    ,m_main_green_duration(0)
+    ,m_yellow_duration(0)
+    ,m_mode(TRAFFICMODE::NO_SIGNAL)
+    ,m_state_machine(new QStateMachine(this))
 {
 
 }
@@ -194,6 +202,21 @@ LightWidget *TrafficLight::getMainYellow() const
 LightWidget *TrafficLight::getLeftGreen() const
 {
     return m_left_light;
+}
+
+void TrafficLight::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
+{
+    setCursor(Qt::SizeAllCursor);
+}
+
+void TrafficLight::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
+{
+    setCursor(Qt::ArrowCursor);
+}
+
+void TrafficLight::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+    setCursor(Qt::SizeAllCursor);
 }
 
 QList<LightWidget *> *TrafficLight::getLight() const

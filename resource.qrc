@@ -10,6 +10,7 @@
         <file>Image/kim_ang_ava_1.png</file>
         <file>Image/kim_ang_ava_2.png</file>
         <file>Image/T_chea_ava_1.jpg</file>
+        <file>Image/eye_icon.png</file>
     </qresource>
     <qresource prefix="/icon">
         <file>Image/Logo-AI.png</file>
@@ -35,6 +36,20 @@
         <file>Image/icon/tfd_logo.png</file>
         <file>Image/icon/fe_logo.jpg</file>
         <file>Image/icon/qt_logo.png</file>
+        <file>Image/icon/5_lanes_icon.png</file>
+        <file>Image/icon/no_turn_icon.png</file>
+        <file>Image/icon/3_lanes_icon.png</file>
+        <file>Image/icon/only_turn_icon.png</file>
+        <file>Image/icon/traffic_icon.png</file>
+        <file>Image/icon/no_traffic_icon.png</file>
+        <file>Image/icon/show_dector_icon.png</file>
+        <file>Image/icon/show_sight_seeing_icon.png</file>
+        <file>Image/icon/go_through_icon.png</file>
+        <file>Image/icon/show_road_icon.png</file>
+        <file>Image/down_icon.png</file>
+        <file>Image/left_icon.png</file>
+        <file>Image/right_icon.png</file>
+        <file>Image/icon/random_icon.png</file>
     </qresource>
     <qresource prefix="/cars">
         <file>Image/Cars/Asset 1.png</file>

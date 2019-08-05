@@ -1,5 +1,6 @@
 #include "vehicle.h"
 #include "UI/simulationscene.h"
+#include <QGraphicsSceneHoverEvent>
 
 //Declear static Macro variable
 //static const double Pi = 3.14159265358979323846264338327950288419717;
@@ -11,7 +12,6 @@ Vehicle::Vehicle(QGraphicsItem *parent)
     ,m_speed(0)
     ,m_acceleration(ACCER)/*,m_color(qrand()%256,qrand()%256,qrand()%256)*/
     ,m_point_index(0)
-    ,m_on_action_state(false)
     ,m_step_count(0)
     ,m_driving_state(false)
     ,m_mode(VEHICLEMETHOD::SIGHTSEEING)
@@ -24,11 +24,13 @@ Vehicle::Vehicle(QGraphicsItem *parent)
     m_sightseeing_small->setPen(QPen(QColor(Qt::red)));
     m_sightseeing_small->setOpacity(0);
     m_sightseeing->setOpacity(0);
-    this->setTransformOriginPoint(10,5);
-    this->setFlag(QGraphicsItem::ItemIsMovable);
+    setTransformOriginPoint(10,5);
+    setAcceptHoverEvents(true);
+    setFlag(QGraphicsItem::ItemIsMovable);
+
     //this->setCacheMode(QGraphicsItem::ItemCoordinateCache);
-    this->setOffset(10,5);
-    this->setPixmap(generateImage().scaled(25,13,Qt::KeepAspectRatio,
+    setOffset(10,5);
+    setPixmap(generateImage().scaled(25,13,Qt::KeepAspectRatio,
                                            Qt::TransformationMode::SmoothTransformation));
 }
 
@@ -92,30 +94,19 @@ void Vehicle::setRegion(region r)
 {
     m_region = r;
 }
-bool Vehicle::is_on_action()
-{
-    return m_on_action_state;
-}
 
 bool Vehicle::is_in_stop_point()
 {
     if(m_point_index > 34 && m_point_index < 39){
             return true;
-        }
-        else{
+    }else{
             return false;
-        }
+    }
 }
 
-void Vehicle::setActionOn()
-{
-    m_on_action_state = true;
-}
 
-void Vehicle::setActionOff()
-{
-    m_on_action_state = false;
-}
+
+
 
 void Vehicle::reset_speed()
 {
@@ -172,6 +163,15 @@ void Vehicle::stop_advance()
     m_speed = 0;
 }
 
+bool Vehicle::isInsideIntersection()
+{
+    if(m_point_index > 35 && m_point_index < 55){
+            return true;
+    }else{
+            return false;
+    }
+}
+
 qreal Vehicle::getSpeed() const
 {
     return m_speed;
@@ -182,55 +182,50 @@ qreal Vehicle::getSpeed() const
 void Vehicle::advance(int phase)
 {
     Q_UNUSED(phase)
-    if(m_on_action_state){
-        if(this->is_in_stop_point()){
-            if(isContainedSignal()){
-                if(!ifAllowed()){
-                    //decelerate();
-                    stop_advance();
-                    return;
-                }
+    if(this->is_in_stop_point()){
+        if(isContainedSignal()){
+            if(!ifAllowed()){
+                //decelerate();
+                stop_advance();
+                return;
             }
         }
-        if(m_mode == VEHICLEMETHOD::SIGHTSEEING){
-            if(hasInfront()){
-                //decelerate();
-                if(isAboutToCrash()){
-                    stop_advance();
-                }
-                accelerate(m_leader);
+    }
+    if(m_mode == VEHICLEMETHOD::SIGHTSEEING){
+        if(hasInfront()){
+            //decelerate();
+            if(isAboutToCrash()){
+                stop_advance();
+            }
+            accelerate(m_leader);
 //                if(distanceToOtherVehicle(m_leader) <= 27.0){
 //                    stop_advance();
 //                }
-            }else{
-                m_leader = nullptr;
-                accelerate();
-            }
         }else{
             m_leader = nullptr;
-            m_acceleration = ACCER;
             accelerate();
         }
-
-        QLineF line(pos(),m_destination);
-        //qDebug()<<"Length"<<line.length();
-        if(int(line.length()) <= 1.0){
-            m_point_index++;
-            if(m_point_index >= m_path_to_follow.size()){
-                m_Is_deletable = true;
-                return;
-            }
-            m_destination = m_path_to_follow[m_point_index];
-            rotate_to_point(m_destination);
-        }
-        double theta = rotation();
-        double dy = m_speed*qSin(qDegreesToRadians(theta));
-        double dx = m_speed*qCos(qDegreesToRadians(theta));
-        setPos(x()+dx,y()+dy);
-
     }else{
-        return;
+        m_leader = nullptr;
+        m_acceleration = ACCER;
+        accelerate();
     }
+
+    QLineF line(pos(),m_destination);
+    //qDebug()<<"Length"<<line.length();
+    if(int(line.length()) <= 1.0){
+        m_point_index++;
+        if(m_point_index >= m_path_to_follow.size()){
+            m_Is_deletable = true;
+            return;
+        }
+        m_destination = m_path_to_follow[m_point_index];
+        rotate_to_point(m_destination);
+    }
+    double theta = rotation();
+    double dy = m_speed*qSin(qDegreesToRadians(theta));
+    double dx = m_speed*qCos(qDegreesToRadians(theta));
+    setPos(x()+dx,y()+dy);
 }
 
 void Vehicle::update(const VEHICLEMETHOD &mode)
@@ -247,6 +242,7 @@ void Vehicle::update(const VEHICLEMETHOD &mode)
         if(hasInfront()){
             if(isAboutToCrash()){
                 stop_advance();
+                return;
             }
             accelerate(m_leader);
         }else{
@@ -258,6 +254,7 @@ void Vehicle::update(const VEHICLEMETHOD &mode)
         m_acceleration = ACCER;
         accelerate();
     }
+
     QLineF line(pos(),m_destination);
     //qDebug()<<"Length"<<line.length();
     if(int(line.length()) <= 1.0){
@@ -269,6 +266,7 @@ void Vehicle::update(const VEHICLEMETHOD &mode)
         m_destination = m_path_to_follow[m_point_index];
         rotate_to_point(m_destination);
     }
+
     double theta = rotation();
     double dy = m_speed*qSin(qDegreesToRadians(theta));
     double dx = m_speed*qCos(qDegreesToRadians(theta));
@@ -358,6 +356,31 @@ double Vehicle::distanceToOtherVehicle(QGraphicsItem *v) const
     return sqrt((v->x() - this->x())*(v->x() - this->x()) + (v->y() - this->y())*(v->y() - this->y()) );
 }
 
+void Vehicle::adjustSpeedIntersection()
+{
+    //qDebug()<<"True";
+    if(isInsideIntersection()){
+        m_speed -= ACCER/10;
+        if(qFuzzyCompare(m_speed,0.0)){
+            accelerate();
+        }
+    }else{
+        accelerate();
+    }
+}
+
+void Vehicle::adjustSpeedIntersection(Vehicle *leader)
+{
+    if(isInsideIntersection()){
+        m_speed -= ACCER/10;
+        if(qFuzzyCompare(m_speed,0.0)){
+            accelerate();
+        }
+    }else{
+        accelerate(leader);
+    }
+}
+
 
 bool Vehicle::hasInfront()
 {
@@ -405,10 +428,28 @@ bool Vehicle::isDeletable() const
     return m_Is_deletable;
 }
 
-void Vehicle::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
+//void Vehicle::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
+//{
+//    qDebug()<<"Car's Position: "<<this->pos();
+//}
+
+void Vehicle::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
 {
-    qDebug()<<"Car's Position: "<<this->pos();
+    setCursor(Qt::OpenHandCursor);
+    //QGraphicsItem::hoverEnterEvent(event);
 }
+
+void Vehicle::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
+{
+    setCursor(Qt::ArrowCursor);
+}
+
+void Vehicle::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+    setCursor(Qt::ClosedHandCursor);
+}
+
+
 
 
 QPixmap Vehicle::generateImage() const

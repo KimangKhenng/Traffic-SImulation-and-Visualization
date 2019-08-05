@@ -2,6 +2,11 @@
 #define COMMONENUM_H
 #include <QDebug>
 #include <QTimer>
+
+#define PARALLEL 1
+
+
+
 ////////////////
 #ifndef MAX_S_N
     #define MAX_S_N 20
@@ -24,6 +29,7 @@
 #endif
 ////////////////
 /// \brief The Direction enum
+enum SimulationState{STARTED,STOPPED,PAUSED};
 enum Direction{LEFT_TURNING,THROUGH,RIGHT_TURNING};
 enum region{REGION_E_W,REGION_N_S,REGION_W_E,REGION_S_N};
 enum GENMETHOD{GEN_3,GEN_5,NO_TURN,ONLY_TURN};

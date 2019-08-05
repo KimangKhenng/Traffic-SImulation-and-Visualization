@@ -64,10 +64,8 @@ public:
     void setRegion(region r);
     /// ////////////
 
-    bool is_on_action();
+
     bool is_in_stop_point();
-    void setActionOn();
-    void setActionOff();
     QList<QPointF> get_path() const;
     bool Isinthejunction();
     QPointF get_position() const;
@@ -83,9 +81,13 @@ public:
     bool isContainedSignal() const;
     void setMode(const VEHICLEMETHOD &mode);
     bool isDeletable() const;
+     qreal getSpeed() const;
     //Reimplement Event
-    void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) override;
-    qreal getSpeed() const;
+
+//    void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) override;
+    void hoverEnterEvent(QGraphicsSceneHoverEvent *event) override;
+    void hoverLeaveEvent(QGraphicsSceneHoverEvent *event) override;
+    void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
 
 public slots:
     void advance(int phase) Q_DECL_OVERRIDE;
@@ -99,6 +101,8 @@ private:
 
     double distanceToOtherVehicle(QGraphicsItem *v) const;
 
+    void adjustSpeedIntersection();
+    void adjustSpeedIntersection(Vehicle *leader);
     bool ifAllowed() const;
     bool hasInfront();
     bool is_enter_the_junction() const;
@@ -108,6 +112,7 @@ private:
     void accelerate();
     void accelerate(Vehicle *leader);
     void stop_advance();
+    bool isInsideIntersection();
 
     qreal m_angle;
     qreal m_speed;
@@ -116,7 +121,6 @@ private:
     QList<QPointF> m_path_to_follow;
     QPointF m_destination;
     int m_point_index;
-    bool m_on_action_state;
     int m_step_count;
     bool m_driving_state;
     VehicleSight *m_sightseeing;

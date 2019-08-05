@@ -71,6 +71,7 @@ private slots:
 
     void on_m_only_turn_clicked();
 
+
 private:
     void changeVehicleMode(const VEHICLEMETHOD &mode);
     Ui::MainWindow *ui;

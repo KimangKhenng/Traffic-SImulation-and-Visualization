@@ -3,7 +3,9 @@
 
 
 
-VisualizePanel::VisualizePanel(QWidget *parent) :QWidget(parent),ui(new Ui::VisualizePanel)
+VisualizePanel::VisualizePanel(QWidget *parent)
+    :QWidget(parent)
+    ,ui(new Ui::VisualizePanel)
 {
     ui->setupUi(this);
     // Set up file for writing

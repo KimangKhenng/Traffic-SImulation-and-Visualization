@@ -1,7 +1,9 @@
 #include "lightwidgetleft.h"
 
-LightWidgetLeft::LightWidgetLeft(const QColor &color, QGraphicsItem *parent):LightWidget(color,parent)
+LightWidgetLeft::LightWidgetLeft(const QColor &color, QGraphicsItem *parent)
+    :LightWidget(color,parent)
 {
+    setAcceptHoverEvents(true);
     setTransformOriginPoint(LightSize/2,LightSize/2);
 }
 

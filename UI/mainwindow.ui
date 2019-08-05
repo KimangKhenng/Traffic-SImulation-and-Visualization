@@ -576,7 +576,7 @@ border-radius:5px;
               <number>0</number>
              </property>
              <item>
-              <widget class="VisualizePanel" name="m_visualzie_widget" native="true">
+              <widget class="VisualizePanel" name="m_visualzie_widget">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                  <horstretch>0</horstretch>
@@ -1058,21 +1058,21 @@ background-color: rgb(52, 73, 94);
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>SimulationControl</class>
-   <extends>QWidget</extends>
-   <header location="global">simulationcontrol.h</header>
-   <container>1</container>
+   <class>GraphicsView</class>
+   <extends>QGraphicsView</extends>
+   <header>UI/graphicsview.h</header>
   </customwidget>
   <customwidget>
    <class>VisualizePanel</class>
-   <extends>QWidget</extends>
-   <header location="global">visualizepanel.h</header>
+   <extends>QFrame</extends>
+   <header>UI/visualizepanel.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>GraphicsView</class>
-   <extends>QGraphicsView</extends>
-   <header>graphicsview.h</header>
+   <class>SimulationControl</class>
+   <extends>QWidget</extends>
+   <header>simulationcontrol.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>

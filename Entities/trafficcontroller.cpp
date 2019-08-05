@@ -4,7 +4,7 @@ TrafficController::TrafficController(QGraphicsItemGroup *parent):QGraphicsItemGr
 {
     //m_state = new QStateMachine();
     // ArrageDetector
-
+    setAcceptHoverEvents(true);
     for(int i = 0 ; i < 12 ; ++i){
         m_detector.append(new TrafficDetector(LENGTH));
     }
@@ -180,11 +180,6 @@ QList<QElapsedTimer *> *TrafficController::getTimer()
     return time;
 }
 
-void TrafficController::mousePressEvent(QGraphicsSceneMouseEvent *event)
-{
-    //qDebug()<<"Hello";
-    QGraphicsItem::mousePressEvent(event);
-}
 
 QList<TrafficDetector *> TrafficController::getDetector()
 {

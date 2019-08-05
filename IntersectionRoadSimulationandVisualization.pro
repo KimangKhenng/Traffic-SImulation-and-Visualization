@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui svg widgets printsupport sql opengl concurrent
+QT       += core gui svg widgets printsupport opengl
 CONFIG   += console
 LIBS     += -fopenmp
 
@@ -40,7 +40,8 @@ HEADERS += \
     UI/simulationcontrolwidget.h \
     UI/uimainwindow.h \
     UI/aboutwidget.h \
-    Utilities/roadintersectionsimulation.h
+    Utilities/roadintersectionsimulation.h \
+    UI/helpwidget.h
 
 SOURCES += \
     Entities/TrafficLight/lightwidget.cpp \
@@ -63,7 +64,8 @@ SOURCES += \
     UI/simulationcontrolwidget.cpp \
     UI/uimainwindow.cpp \
     UI/aboutwidget.cpp \
-    Utilities/roadintersectionsimulation.cpp
+    Utilities/roadintersectionsimulation.cpp \
+    UI/helpwidget.cpp
 
 FORMS += \
     UI/mainwindow.ui \
@@ -71,4 +73,9 @@ FORMS += \
     Utilities/simulationcontrol.ui \
     UI/simulationcontrolwidget.ui \
     UI/uimainwindow.ui \
-    UI/aboutwidget.ui
+    UI/aboutwidget.ui \
+    UI/helpwidget.ui
+
+DISTFILES += \
+    UiQmlForm.ui.qml \
+    UiQml.qml

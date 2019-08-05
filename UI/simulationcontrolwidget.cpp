@@ -8,12 +8,27 @@ SimulationControlWidget::SimulationControlWidget(QWidget *parent) :
     ui->setupUi(this);
 }
 
+void SimulationControlWidget::installSimulation(RoadIntersectionSimulation *instance)
+{
+    m_Simulation = instance;
+}
+
 SimulationControlWidget::~SimulationControlWidget()
 {
     delete ui;
 }
 
-void SimulationControlWidget::on_pushButton_clicked()
+void SimulationControlWidget::on_start_simulation_button_clicked()
 {
-    qDebug()<<"Test!";
+
+}
+
+void SimulationControlWidget::on_random_setup_clicked()
+{
+
+}
+
+void SimulationControlWidget::on_help_setup_button_clicked()
+{
+
 }

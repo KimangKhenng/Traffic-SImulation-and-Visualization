@@ -64,8 +64,9 @@ void UIMainWindow::on_m_setting_back_icon_clicked()
 }
 
 void UIMainWindow::on_m_simulation_play_button_clicked()
-{
+{    
     m_Simulation->startSimulation();
+    ui->m_simulation_play_button->setEnabled(false);
 }
 
 void UIMainWindow::on_m_simulation_pause_button_clicked()

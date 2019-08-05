@@ -15,6 +15,7 @@ void LightWidget::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
 {
     Q_UNUSED(option);
     Q_UNUSED(widget);
+    setAcceptHoverEvents(true);
     painter->setPen(Qt::NoPen);
     painter->setRenderHint(QPainter::Antialiasing);
     painter->setBrush(m_color);
@@ -88,15 +89,21 @@ void LightWidget::mousePressEvent(QGraphicsSceneMouseEvent *event)
     }else{
         this->turnOff();
     }
+
+}
+
+void LightWidget::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
+{
+    setCursor(Qt::PointingHandCursor);
+}
+
+void LightWidget::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
+{
+     setCursor(QCursor(Qt::ArrowCursor));
 }
 //void LightWidget::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
 //{
 //    setCursor(QCursor(Qt::PointingHandCursor));
-//}
-
-//void LightWidget::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
-//{
-//    setCursor(QCursor(Qt::ArrowCursor));
 //}
 
 //void LightWidget::hoverMoveEvent(QGraphicsSceneHoverEvent *event)

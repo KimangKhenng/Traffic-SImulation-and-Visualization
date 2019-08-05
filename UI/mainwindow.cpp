@@ -89,7 +89,6 @@ void MainWindow::check_state()
         QList<Vehicle *> car = m_scene->getVehicle();
         //QList<TrafficDetector *> detector = m_scene->getDetector();
         for(int i = 0; i<car.size() ; ++i){
-            car.at(i)->setActionOn();
             //car.at(i)->turnOnEngine();
             if(this->m_sightseeing){
                 car.at(i)->turnOnSightSeeing();
@@ -111,7 +110,7 @@ void MainWindow::check_state()
        //qDebug()<<"CTim"<<t2-t1;
     }
     }else{
-        m_scene->trunOffAllCar();
+        //m_scene->trunOffAllCar();
         ui->m_simulation_control_widget->generator()->stopGenerator();
     }
 

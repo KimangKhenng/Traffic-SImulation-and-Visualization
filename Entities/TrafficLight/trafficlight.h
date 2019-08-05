@@ -34,16 +34,16 @@ public:
     LightWidget *getMainRed() const;
     LightWidget *getMainYellow() const;
     LightWidget *getLeftGreen() const;
-//protected:
-//    virtual void mousePressEvent(QGraphicsSceneMouseEvent *event) Q_DECL_OVERRIDE;
-//    virtual void hoverEnterEvent(QGraphicsSceneHoverEvent *event) Q_DECL_OVERRIDE;
     QList<LightWidget *> *getLight() const;
 
     void setRegion(const region &region);
 
     TRAFFICMODE getMode() const;
     void setMode(const TRAFFICMODE &mode);
-
+protected:
+    void hoverEnterEvent(QGraphicsSceneHoverEvent *event) override;
+    void hoverLeaveEvent(QGraphicsSceneHoverEvent *event) override;
+    void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
 private:
     QState *makeState(LightWidget *light, int duration,QState *parent = nullptr);
     int m_red_duration;
