@@ -1,17 +1,14 @@
 #include "roadintersectionsimulation.h"
 #include <QDebug>
-RoadIntersectionSimulation::RoadIntersectionSimulation(QGraphicsView *view)
-    :m_Scene(new SimulationScene)
-    ,m_State(UNINITIALIZED)
+RoadIntersectionSimulation::RoadIntersectionSimulation()
+    :m_State(UNINITIALIZED)
     ,m_TrafficLightOn(false)
     ,m_VehicleSightSeeingOn(false)
     ,m_VisualizationOn(false)
     ,m_SimulationTimer(new QTimer)
 {
-    m_Generator = new Generator(m_Scene);
-    QObject::connect(m_SimulationTimer,SIGNAL(timeout()),this,SLOT(updateVehicle()));
-    view->setScene(m_Scene);
-    m_Scene->setSceneRect(0,0,800,600);
+
+    connect(m_SimulationTimer,&QTimer::timeout,this,&RoadIntersectionSimulation::updateVehicle);
 }
 
 RoadIntersectionSimulation::~RoadIntersectionSimulation()
@@ -21,54 +18,72 @@ RoadIntersectionSimulation::~RoadIntersectionSimulation()
     delete m_SimulationTimer;
 }
 
-void RoadIntersectionSimulation::startSimulation(const int &B_NS,
-                                                 const int &B_SN,
-                                                 const int &B_WE,
-                                                 const int &B_EW,
-                                                 const int &RED_LIGHT,
-                                                 const int &GREEN_LIGHT,
-                                                 const int &LEFT_GREEN_LIGHT,
-                                                 const int &YELLOW_LIGHT, const GENMETHOD &METh, const VEHICLEMETHOD &MODE)
+void RoadIntersectionSimulation::startSimulation()
 {
-
-
-    m_Generator->setTimer(B_NS,B_SN,B_EW,B_WE);
-    m_Generator->setMethod(METh);
-    m_Generator->setMode(MODE);
-    m_Scene->getController()->setLightDuration(GREEN_LIGHT,LEFT_GREEN_LIGHT,YELLOW_LIGHT,RED_LIGHT);
-    m_Scene->getController()->startTrafficLightAll();
-    m_Scene->showTrafficLight();
-    m_SimulationTimer->start(TIME_STEP);
-    m_Generator->startGenerator();
-    m_State = SimulationState::STARTED;
+    if(m_State == SimulationState::INITIALIZED || m_State == SimulationState::PAUSED){
+        m_SimulationTimer->start(TIME_STEP);
+        m_Generator->startGenerator();
+        m_Scene->getController()->startTrafficLightAll();
+        m_Scene->getController()->turnOnDetector();
+        m_Scene->showTrafficLight();
+        m_State = SimulationState::STARTED;
+    }
+    if(m_State == SimulationState::STARTED){
+        return;
+    }
 }
 
-void RoadIntersectionSimulation::initialize(const int &B_NS, const int &B_SN, const int &B_WE, const int &B_EW, const int &RED_LIGHT, const int &GREEN_LIGHT, const int &LEFT_GREEN_LIGHT, const int &YELLOW_LIGHT, const GENMETHOD &METh, const VEHICLEMETHOD &MODE)
+void RoadIntersectionSimulation::initialize(QGraphicsView *view,const int &B_NS, const int &B_SN, const int &B_WE, const int &B_EW, const int &RED_LIGHT, const int &GREEN_LIGHT, const int &LEFT_GREEN_LIGHT, const int &YELLOW_LIGHT, const GENMETHOD &METh, const VEHICLEMETHOD &MODE)
 {
-    m_BirthRateNorthSouth = B_NS;
-    m_BirthRateSouthNorth = B_SN;
-    m_BirthRateWestEast = B_WE;
-    m_BirthRateEastWest = B_EW;
-    m_RedLightDuration = RED_LIGHT;
-    m_GreenLightDuration = GREEN_LIGHT;
-    m_LeftGreenLightDuration = LEFT_GREEN_LIGHT;
-    m_YellowLightDuration = YELLOW_LIGHT;
-    m_GenerationMethod = METh;
-    m_VehicleMode = MODE;
-    m_State = SimulationState::INITIALIZED;
+    //Initialize Component
+    if(m_State == SimulationState::UNINITIALIZED){
+        m_Scene = new SimulationScene();
+
+        m_Generator = new Generator(m_Scene);
+        view->setScene(m_Scene);
+        m_Scene->setSceneRect(0,0,800,600);
+        //Give value to components
+        m_Generator->setTimer(B_NS,B_SN,B_EW,B_WE);
+        m_Generator->setMethod(METh);
+        m_Generator->setMode(MODE);
+        m_Scene->getController()->setLightDuration(GREEN_LIGHT,LEFT_GREEN_LIGHT,YELLOW_LIGHT,RED_LIGHT);
+        m_Scene->getController()->turnOnLightInteraction();
+        m_State = SimulationState::INITIALIZED;
+    }
 }
 
 void RoadIntersectionSimulation::stopSimulation()
 {
-    m_SimulationTimer->stop();
-    m_Generator->stopGenerator();
-    m_Scene->getController()->stopTrafficLightAll();
-    m_State = SimulationState::STOPPED;
+    if(m_State == SimulationState::STARTED || m_State == SimulationState::PAUSED){
+        pauseSimulation();
+        delete m_Scene;
+        delete m_Generator;
+        m_State = SimulationState::STOPPED;
+    }
 }
 
 void RoadIntersectionSimulation::pauseSimulation()
 {
+    if(m_State == SimulationState::STARTED){
+        m_SimulationTimer->stop();
+        //this->disconnect(m_SimulationTimer);
+        m_Generator->stopGenerator();
+        m_Scene->getController()->stopTrafficLightAll();
+        m_Scene->getController()->turnOffDetector();
+        m_State = SimulationState::PAUSED;
+    }
+}
 
+void RoadIntersectionSimulation::turnOffInteraction()
+{
+    m_Scene->turnOffInteraction();
+    m_Generator->setInteraction(false);
+}
+
+void RoadIntersectionSimulation::turnOnInteraction()
+{
+    m_Scene->turnOnInteraction();
+    m_Generator->setInteraction(true);
 }
 
 void RoadIntersectionSimulation::updateVehicle()

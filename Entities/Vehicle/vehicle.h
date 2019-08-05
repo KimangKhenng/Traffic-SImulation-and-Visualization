@@ -82,6 +82,8 @@ public:
     void setMode(const VEHICLEMETHOD &mode);
     bool isDeletable() const;
      qreal getSpeed() const;
+     void turnOffInteraction();
+     void turnOnInteraction();
     //Reimplement Event
 
 //    void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) override;

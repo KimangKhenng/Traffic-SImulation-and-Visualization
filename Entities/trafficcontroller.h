@@ -29,6 +29,8 @@ public:
 
     QList<QElapsedTimer *> *getTimer();
     void updateDetectors();
+    void turnOffLightInteraction();
+    void turnOnLightInteraction();
 
 private:
     //QStateMachine *m_state;

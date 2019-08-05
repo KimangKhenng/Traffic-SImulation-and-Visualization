@@ -31,6 +31,8 @@ public:
     bool isOn() const;
     void setOn(bool on);
     void setColor(const QColor &color);
+    void TurnOnInteraction();
+    void TurnOffInteraction();
 protected:
     virtual void mousePressEvent(QGraphicsSceneMouseEvent *event) Q_DECL_OVERRIDE;
     virtual void hoverEnterEvent(QGraphicsSceneHoverEvent *event) Q_DECL_OVERRIDE;
@@ -42,6 +44,7 @@ public slots:
 private:
     QColor m_color;
     bool m_on;
+    bool m_IsClickable;
 
 };
 

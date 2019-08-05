@@ -118,28 +118,28 @@ TrafficLight *TrafficController::getTrafficLight(region r)
 void TrafficController::turnOffDetector()
 {
     for(int i = 0 ; i < m_detector.size() ; ++i){
-        m_detector.at(i)->setOpacity(0.0);
+        m_detector.at(i)->turnOff();
     }
 }
 
 void TrafficController::turnOnDetector()
 {
     for(int i = 0 ; i < m_detector.size() ; ++i){
-        m_detector.at(i)->setOpacity(1.0);
+        m_detector.at(i)->turnOn();
     }
 }
 
 void TrafficController::showDetector()
 {
     for(int i = 0 ; i < m_detector.size() ; ++i){
-        m_detector.at(i)->setOpacity(1.0);
+        m_detector.at(i)->turnOnDisplay();
     }
 }
 
 void TrafficController::hideDetector()
 {
     for(int i = 0 ; i < m_detector.size() ; ++i){
-        m_detector.at(i)->setOpacity(0.0);
+        m_detector.at(i)->turnOffDisplay();
     }
 }
 
@@ -198,6 +198,20 @@ void TrafficController::updateDetectors()
 {
     for(int i = 0 ; i < m_detector.size() ; ++i){
         m_detector.at(i)->forward();
+    }
+}
+
+void TrafficController::turnOffLightInteraction()
+{
+    for(int i = 0 ; i < m_traffic_light.size() ; ++i){
+        m_traffic_light.at(i)->turnOffInteraction();
+    }
+}
+
+void TrafficController::turnOnLightInteraction()
+{
+    for(int i = 0 ; i < m_traffic_light.size() ; ++i){
+        m_traffic_light.at(i)->turnOnInteraction();
     }
 }
 

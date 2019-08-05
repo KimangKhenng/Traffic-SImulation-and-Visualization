@@ -614,8 +614,8 @@ background-color: rgb(52, 73, 94);
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>100</width>
-            <height>30</height>
+            <width>1280</width>
+            <height>660</height>
            </rect>
           </property>
           <property name="styleSheet">
@@ -750,7 +750,7 @@ background-color: rgb(52, 73, 94);
         </widget>
        </item>
        <item>
-        <widget class="QWidget" name="help_widget" native="true">
+        <widget class="HelpWidget" name="help_widget" native="true">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>0</horstretch>
@@ -1497,6 +1497,15 @@ Through</string>
            <property name="lineWidth">
             <number>0</number>
            </property>
+           <property name="foregroundBrush">
+            <brush brushstyle="NoBrush">
+             <color alpha="255">
+              <red>0</red>
+              <green>0</green>
+              <blue>0</blue>
+             </color>
+            </brush>
+           </property>
           </widget>
          </item>
          <item>
@@ -1772,6 +1781,12 @@ background-color: rgb(52, 73, 94);
    <class>VisualizePanel</class>
    <extends>QWidget</extends>
    <header>UI/visualizepanel.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>HelpWidget</class>
+   <extends>QWidget</extends>
+   <header>UI/helpwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

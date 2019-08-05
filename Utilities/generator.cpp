@@ -5,10 +5,15 @@ Generator::Generator(SimulationScene *scene)
     ,m_mode(VEHICLEMETHOD::GO_THROUGH)
     ,m_running_state(false)
     ,m_VisionOn(false)
+    ,m_IsInteraction(true)
 {
     for(int i = 0 ; i < 4 ; ++i){
         m_timer.append( new QTimer());
     }
+    this->connect(m_timer.at(0),SIGNAL(timeout()),this,SLOT(makeEastWest()));
+    this->connect(m_timer.at(1),SIGNAL(timeout()),this,SLOT(makeNorthSouth()));
+    this->connect(m_timer.at(2),SIGNAL(timeout()),this,SLOT(makeSouthNorth()));
+    this->connect(m_timer.at(3),SIGNAL(timeout()),this,SLOT(makeWestEast()));
     //qsrand(static_cast<uint>(QTime(0,0,0).secsTo(QTime::currentTime())));
 }
 
@@ -30,6 +35,14 @@ Generator::Generator()
     //qsrand(static_cast<uint>(QTime(0,0,0).secsTo(QTime::currentTime())));
 }
 
+Generator::~Generator()
+{
+    delete m_timer.at(0);
+    delete m_timer.at(1);
+    delete m_timer.at(2);
+    delete m_timer.at(3);
+}
+
 void Generator::setMethod(const GENMETHOD& x)
 {
     m_method = x;
@@ -38,10 +51,7 @@ void Generator::setMethod(const GENMETHOD& x)
 void Generator::startGenerator()
 {
 
-    this->connect(m_timer.at(0),SIGNAL(timeout()),this,SLOT(makeEastWest()));
-    this->connect(m_timer.at(1),SIGNAL(timeout()),this,SLOT(makeNorthSouth()));
-    this->connect(m_timer.at(2),SIGNAL(timeout()),this,SLOT(makeSouthNorth()));
-    this->connect(m_timer.at(3),SIGNAL(timeout()),this,SLOT(makeWestEast()));
+
     m_timer.at(0)->start(m_time_E_W);
     m_timer.at(1)->start(m_time_N_S);
     m_timer.at(2)->start(m_time_S_N);
@@ -52,10 +62,10 @@ void Generator::startGenerator()
 
 void Generator::stopGenerator()
 {
-    this->disconnect(m_timer.at(0),SIGNAL(timeout()),this,SLOT(makeEastWest()));
-    this->disconnect(m_timer.at(1),SIGNAL(timeout()),this,SLOT(makeNorthSouth()));
-    this->disconnect(m_timer.at(2),SIGNAL(timeout()),this,SLOT(makeSouthNorth()));
-    this->disconnect(m_timer.at(3),SIGNAL(timeout()),this,SLOT(makeWestEast()));
+    m_timer.at(0)->stop();
+    m_timer.at(1)->stop();
+    m_timer.at(2)->stop();
+    m_timer.at(3)->stop();
 }
 
 void Generator::startAutoGeneraion()
@@ -82,15 +92,15 @@ void Generator::makeNorthSouth()
         case GEN_3:
             switch (qrand()%3){
             case 0:
-                m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_N_S,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_N_S,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_N_S++;
                 break;
             case 1:
-                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_N_S,2,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_N_S,2,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_N_S++;
                 break;
             case 2:
-                m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_N_S,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_N_S,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_N_S++;
                 break;
         }
@@ -98,23 +108,23 @@ void Generator::makeNorthSouth()
         case GEN_5:
             switch (qrand()%5){
             case 0:
-                m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_N_S,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_N_S,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_N_S++;
                 break;
             case 1:
-                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_N_S,1,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_N_S,1,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_N_S++;
                 break;
             case 2:
-                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_N_S,2,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_N_S,2,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_N_S++;
                 break;
             case 3:
-                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_N_S,3,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_N_S,3,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_N_S++;
                 break;
             case 4:
-                m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_N_S,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_N_S,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_N_S++;
                 break;
         }
@@ -122,15 +132,15 @@ void Generator::makeNorthSouth()
         case NO_TURN:
             switch (qrand()%3){
                 case 0:
-                    m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_N_S,1,m_mode,m_VisionOn));
+                    m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_N_S,1,m_mode,m_VisionOn,m_IsInteraction));
                     //m_number_N_S++;
                     break;
                 case 1:
-                    m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_N_S,2,m_mode,m_VisionOn));
+                    m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_N_S,2,m_mode,m_VisionOn,m_IsInteraction));
                     //m_number_N_S++;
                     break;
                 case 2:
-                    m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_N_S,3,m_mode,m_VisionOn));
+                    m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_N_S,3,m_mode,m_VisionOn,m_IsInteraction));
                     //m_number_N_S++;
                     break;
             }
@@ -138,10 +148,10 @@ void Generator::makeNorthSouth()
     case ONLY_TURN:
         switch (qrand()%2) {
             case 0:
-                m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_N_S,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_N_S,m_mode,m_VisionOn,m_IsInteraction));
                 break;
             case 1:
-                m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_N_S,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_N_S,m_mode,m_VisionOn,m_IsInteraction));
                 break;
         }
         break;
@@ -158,15 +168,15 @@ void Generator::makeSouthNorth()
         case GEN_3:
             switch (qrand()%3){
             case 0:
-                m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_S_N,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_S_N,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_S_N++;
                 break;
             case 1:
-                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_S_N,2,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_S_N,2,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_S_N++;
                 break;
             case 2:
-                m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_S_N,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_S_N,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_S_N++;
                 break;
         }
@@ -174,23 +184,23 @@ void Generator::makeSouthNorth()
         case GEN_5:
             switch (qrand()%5){
             case 0:
-                m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_S_N,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_S_N,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_S_N++;
                 break;
             case 1:
-                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_S_N,1,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_S_N,1,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_S_N++;
                 break;
             case 2:
-                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_S_N,2,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_S_N,2,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_S_N++;
                 break;
             case 3:
-                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_S_N,3,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_S_N,3,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_S_N++;
                 break;
             case 4:
-                m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_S_N,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_S_N,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_S_N++;
                 break;
             }
@@ -198,15 +208,15 @@ void Generator::makeSouthNorth()
         case NO_TURN:
             switch (qrand()%3){
                 case 0:
-                    m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_S_N,1,m_mode,m_VisionOn));
+                    m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_S_N,1,m_mode,m_VisionOn,m_IsInteraction));
                     //m_number_N_S++;
                     break;
                 case 1:
-                    m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_S_N,2,m_mode,m_VisionOn));
+                    m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_S_N,2,m_mode,m_VisionOn,m_IsInteraction));
                     //m_number_N_S++;
                     break;
                 case 2:
-                    m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_S_N,3,m_mode,m_VisionOn));
+                    m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_S_N,3,m_mode,m_VisionOn,m_IsInteraction));
                     //m_number_N_S++;
                     break;
             }
@@ -214,10 +224,10 @@ void Generator::makeSouthNorth()
         case ONLY_TURN:
             switch (qrand()%2) {
                 case 0:
-                    m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_S_N,m_mode,m_VisionOn));
+                    m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_S_N,m_mode,m_VisionOn,m_IsInteraction));
                     break;
                 case 1:
-                    m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_S_N,m_mode,m_VisionOn));
+                    m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_S_N,m_mode,m_VisionOn,m_IsInteraction));
                     break;
             }
             break;
@@ -234,15 +244,15 @@ void Generator::makeWestEast()
         case GEN_3:
             switch (qrand()%3){
             case 0:
-                m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_W_E,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_W_E,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_W_E++;
                 break;
             case 1:
-                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_W_E,2,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_W_E,2,m_mode,m_VisionOn,m_IsInteraction));
                //m_number_W_E++;
                 break;
             case 2:
-                m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_W_E,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_W_E,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_W_E++;
                 break;
         }
@@ -250,23 +260,23 @@ void Generator::makeWestEast()
         case GEN_5:
             switch (qrand()%5){
             case 0:
-                m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_W_E,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_W_E,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_W_E++;
                 break;
             case 1:
-                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_W_E,1,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_W_E,1,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_W_E++;
                 break;
             case 2:
-                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_W_E,2,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_W_E,2,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_W_E++;
                 break;
             case 3:
-                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_W_E,3,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_W_E,3,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_W_E++;
                 break;
             case 4:
-                m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_W_E,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_W_E,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_W_E++;
                 break;
         }
@@ -274,15 +284,15 @@ void Generator::makeWestEast()
     case NO_TURN:
         switch (qrand()%3){
             case 0:
-                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_W_E,1,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_W_E,1,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_N_S++;
                 break;
             case 1:
-                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_W_E,2,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_W_E,2,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_N_S++;
                 break;
             case 2:
-                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_W_E,3,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_W_E,3,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_N_S++;
                 break;
         }
@@ -290,10 +300,10 @@ void Generator::makeWestEast()
     case ONLY_TURN:
         switch (qrand()%2) {
             case 0:
-                m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_W_E,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_W_E,m_mode,m_VisionOn,m_IsInteraction));
                 break;
             case 1:
-                m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_W_E,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_W_E,m_mode,m_VisionOn,m_IsInteraction));
                 break;
         }
         break;
@@ -311,15 +321,15 @@ void Generator::makeEastWest()
         case GEN_3:
             switch (qrand()%3){
             case 0:
-                m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_E_W,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_E_W,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_E_W++;
                 break;
             case 1:
-                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_E_W,2,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_E_W,2,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_E_W++;
                 break;
             case 2:
-                m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_E_W,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_E_W,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_E_W++;
                 break;
         }
@@ -327,23 +337,23 @@ void Generator::makeEastWest()
         case GEN_5:
             switch (qrand()%5){
             case 0:
-                m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_E_W,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_E_W,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_E_W++;
                 break;
             case 1:
-                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_E_W,1,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_E_W,1,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_E_W++;
                 break;
             case 2:
-                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_E_W,2,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_E_W,2,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_E_W++;
                 break;
             case 3:
-                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_E_W,3,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_E_W,3,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_E_W++;
                 break;
             case 4:
-                m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_E_W,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_E_W,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_E_W++;
                 break;
         }
@@ -351,15 +361,15 @@ void Generator::makeEastWest()
     case NO_TURN:
         switch (qrand()%3){
             case 0:
-                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_E_W,1,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_E_W,1,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_N_S++;
                 break;
             case 1:
-                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_E_W,2,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_E_W,2,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_N_S++;
                 break;
             case 2:
-                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_E_W,3,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getThroughVehicle(REGION_E_W,3,m_mode,m_VisionOn,m_IsInteraction));
                 //m_number_N_S++;
                 break;
         }
@@ -367,10 +377,10 @@ void Generator::makeEastWest()
     case ONLY_TURN:
         switch (qrand()%2) {
             case 0:
-                m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_E_W,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getLeftTurningVehicle(REGION_E_W,m_mode,m_VisionOn,m_IsInteraction));
                 break;
             case 1:
-                m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_E_W,m_mode,m_VisionOn));
+                m_scene->addVehicle(VehiclesGenerator::getRightTurningVehicle(REGION_E_W,m_mode,m_VisionOn,m_IsInteraction));
                 break;
         }
         break;
@@ -385,6 +395,11 @@ void Generator::setMode(const VEHICLEMETHOD &mode)
 void Generator::setVisionOn(const bool &vision)
 {
     m_VisionOn = vision;
+}
+
+void Generator::setInteraction(const bool &interact)
+{
+    m_IsInteraction = interact;
 }
 
 void Generator::setScene(SimulationScene *scene)

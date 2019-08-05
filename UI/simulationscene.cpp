@@ -28,6 +28,7 @@ SimulationScene::SimulationScene(QGraphicsScene *parent):QGraphicsScene (parent)
     m_Controller = new TrafficController;
     this->addItem(m_Controller);
 
+
 }
 
 uint SimulationScene::getNumber(const region &x) const
@@ -145,12 +146,12 @@ void SimulationScene::showIntersectionPath(const bool &show)
 
 void SimulationScene::showDetectors()
 {
-    m_Controller->turnOnDetector();
+    m_Controller->showDetector();
 }
 
 void SimulationScene::hideDetectors()
 {
-    m_Controller->turnOffDetector();
+    m_Controller->hideDetector();
 }
 
 void SimulationScene::showVehiclesVision()
@@ -202,4 +203,22 @@ void SimulationScene::updateScene(const VEHICLEMETHOD &seeing)
         }
     }
 #endif
+}
+
+void SimulationScene::turnOffInteraction()
+{
+    for(int i = 0 ; i < m_Vehicles.size() ; ++i){
+        m_Vehicles.at(i)->turnOffInteraction();
+    }
+    m_Controller->turnOffLightInteraction();
+
+
+}
+
+void SimulationScene::turnOnInteraction()
+{
+    for(int i = 0 ; i < m_Vehicles.size() ; ++i){
+        m_Vehicles.at(i)->turnOnInteraction();
+    }
+    m_Controller->turnOnLightInteraction();
 }

@@ -50,6 +50,10 @@
         <file>Image/left_icon.png</file>
         <file>Image/right_icon.png</file>
         <file>Image/icon/random_icon.png</file>
+        <file>Image/icon/back_icon_2.png</file>
+        <file>Image/icon/next_icon.png</file>
+        <file>Image/icon/icon_back_white.png</file>
+        <file>Image/icon/icon_next_white.png</file>
     </qresource>
     <qresource prefix="/cars">
         <file>Image/Cars/Asset 1.png</file>

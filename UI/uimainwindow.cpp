@@ -8,7 +8,8 @@ UIMainWindow::UIMainWindow(QWidget *parent)
     ,ui(new Ui::UIMainWindow)
 {
     ui->setupUi(this);
-    m_Simulation = new RoadIntersectionSimulation(ui->graphicsView);
+    m_Simulation = new RoadIntersectionSimulation();
+    m_Simulation->initialize(ui->graphicsView);
 
 
 }
@@ -41,6 +42,7 @@ void UIMainWindow::on_m_PlayButton_clicked()
 void UIMainWindow::on_m_HelpButton_clicked()
 {
     ui->m_stacked_widget->setCurrentIndex(2);
+    ui->help_widget->startDemo();
 }
 
 void UIMainWindow::on_m_about_back_button_clicked()
@@ -51,6 +53,7 @@ void UIMainWindow::on_m_about_back_button_clicked()
 void UIMainWindow::on_m_help_back_button_clicked()
 {
     ui->m_stacked_widget->setCurrentIndex(0);
+    ui->help_widget->stopDemo();
 }
 
 void UIMainWindow::on_m_simulation_back_icon_clicked()
@@ -67,11 +70,14 @@ void UIMainWindow::on_m_simulation_play_button_clicked()
 {    
     m_Simulation->startSimulation();
     ui->m_simulation_play_button->setEnabled(false);
+    ui->m_simulation_pause_button->setEnabled(true);
 }
 
 void UIMainWindow::on_m_simulation_pause_button_clicked()
 {
-
+    m_Simulation->pauseSimulation();
+    ui->m_simulation_play_button->setEnabled(true);
+    ui->m_simulation_pause_button->setEnabled(false);
 }
 
 void UIMainWindow::on_m_simulation_restart_button_clicked()

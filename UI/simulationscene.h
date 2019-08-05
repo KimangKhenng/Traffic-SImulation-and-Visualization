@@ -42,6 +42,8 @@ public:
     void hideVehiclesVision();
     TrafficController *getController() const;
     void updateScene(const VEHICLEMETHOD &seeing);
+    void turnOffInteraction();
+    void turnOnInteraction();
 private:
     QList<Vehicle* > m_Vehicles;
     TrafficController *m_Controller;

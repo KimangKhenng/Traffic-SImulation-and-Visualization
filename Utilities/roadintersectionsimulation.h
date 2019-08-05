@@ -11,30 +11,24 @@ class RoadIntersectionSimulation : public QObject
 {
     Q_OBJECT
 public:
-    RoadIntersectionSimulation(QGraphicsView *view);
+    RoadIntersectionSimulation();
     ~RoadIntersectionSimulation();
-    void startSimulation(const int &B_NS = 3500,
-                         const int &B_SN = 2000,
-                         const int &B_WE = 1900,
-                         const int &B_EW = 3000,
-                         const int &RED_LIGHT = 5000,
-                         const int &GREEN_LIGHT = 3500,
-                         const int &LEFT_GREEN_LIGHT = 1500,
-                         const int &YELLOW_LIGHT = 500,
-                         const GENMETHOD &METh = GENMETHOD::GEN_3,
-                         const VEHICLEMETHOD &MODE = VEHICLEMETHOD::SIGHTSEEING);
-    void initialize(const int &B_NS ,
-                    const int &B_SN ,
-                    const int &B_WE ,
-                    const int &B_EW ,
-                    const int &RED_LIGHT,
-                    const int &GREEN_LIGHT,
-                    const int &LEFT_GREEN_LIGHT,
+    void startSimulation();
+    void initialize(QGraphicsView *view,
+                    const int &B_NS = 3500,
+                    const int &B_SN = 2000,
+                    const int &B_WE = 1900,
+                    const int &B_EW = 3000,
+                    const int &RED_LIGHT = 5000,
+                    const int &GREEN_LIGHT = 3500,
+                    const int &LEFT_GREEN_LIGHT = 1500,
                     const int &YELLOW_LIGHT = 500,
                     const GENMETHOD &METh = GENMETHOD::GEN_3,
                     const VEHICLEMETHOD &MODE = VEHICLEMETHOD::SIGHTSEEING);
     void stopSimulation();
     void pauseSimulation();
+    void turnOffInteraction();
+    void turnOnInteraction();
 
     SimulationScene *Scene() const;
 

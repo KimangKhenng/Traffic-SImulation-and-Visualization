@@ -13,7 +13,7 @@ void TrafficLight::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
     painter->setRenderHint(QPainter::Antialiasing);
     painter->setBrush(QBrush(QColor("#2c3e50")));
     painter->drawRoundedRect(boundingRect(),8,8);
-    setAcceptHoverEvents(true);
+    //setAcceptHoverEvents(true);
     //painter->drawRect(this->boundingRect());
 }
 
@@ -165,7 +165,7 @@ void TrafficLight::startTrafficLight()
         //qDebug()<<"Case 2";
         return;
     }else{
-        qDebug()<<"Case 3";
+        //qDebug()<<"Case 3";
         m_state_machine->start();
     }
 }
@@ -237,6 +237,25 @@ TRAFFICMODE TrafficLight::getMode() const
 void TrafficLight::setMode(const TRAFFICMODE &mode)
 {
     m_mode = mode;
+}
+
+void TrafficLight::turnOffInteraction()
+{
+    setAcceptHoverEvents(false);
+    setFlag(QGraphicsItem::ItemIsMovable,false);
+    for(int i = 0 ; i < m_light->size() ; ++i){
+        m_light->at(i)->TurnOffInteraction();
+    }
+
+}
+
+void TrafficLight::turnOnInteraction()
+{
+    setAcceptHoverEvents(true);
+    setFlag(QGraphicsItem::ItemIsMovable,true);
+    for(int i = 0 ; i < m_light->size() ; ++i){
+        m_light->at(i)->TurnOnInteraction();
+    }
 }
 
 QState *TrafficLight::makeState(LightWidget *light, int duration, QState *parent)

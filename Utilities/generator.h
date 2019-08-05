@@ -11,6 +11,7 @@ class Generator : public QObject
 public:
     Generator(SimulationScene *scene);
     Generator();
+    ~Generator();
     void setMethod(const GENMETHOD& x);
     void startGenerator();
     void stopGenerator();
@@ -21,6 +22,7 @@ public:
     void turnOff();
     void setMode(const VEHICLEMETHOD &mode);
     void setVisionOn(const bool& vision);
+    void setInteraction(const bool& interact);
 public slots:
     void makeNorthSouth();
     void makeSouthNorth();
@@ -41,6 +43,7 @@ private:
     VEHICLEMETHOD m_mode;
     bool m_running_state;
     bool m_VisionOn;
+    bool m_IsInteraction;
 };
 
 #endif // GENERATOR_H

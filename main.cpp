@@ -4,7 +4,7 @@
 #include <QTranslator>
 #include <QLibraryInfo>
 #include "UI/uimainwindow.h"
-#include "UI/simulationcontrolwidget.h"
+
 int main(int argc, char *argv[])
 {
     qsrand(static_cast<uint>(QTime(0,0,0).secsTo(QTime::currentTime())));

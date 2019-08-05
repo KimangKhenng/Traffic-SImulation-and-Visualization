@@ -31,7 +31,6 @@ TrafficDetector::TrafficDetector(float length, QGraphicsItem *parent)
 {
     setTransformOriginPoint(QPointF(15/2,static_cast<qreal>(m_detector_length)/2));
     m_timer = new QElapsedTimer;
-    m_timer->start();
     //m_counter = new QTimer();
 
 }
@@ -186,11 +185,13 @@ void TrafficDetector::turnOnDisplay()
 void TrafficDetector::turnOn()
 {
     m_isOn = true;
+    m_timer->start();
 }
 
 void TrafficDetector::turnOff()
 {
     m_isOn = false;
+    m_timer->invalidate();
 }
 
 //void TrafficDetector::startEngine()

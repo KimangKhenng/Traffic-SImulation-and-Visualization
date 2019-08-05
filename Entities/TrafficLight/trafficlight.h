@@ -40,6 +40,8 @@ public:
 
     TRAFFICMODE getMode() const;
     void setMode(const TRAFFICMODE &mode);
+    void turnOffInteraction();
+    void turnOnInteraction();
 protected:
     void hoverEnterEvent(QGraphicsSceneHoverEvent *event) override;
     void hoverLeaveEvent(QGraphicsSceneHoverEvent *event) override;

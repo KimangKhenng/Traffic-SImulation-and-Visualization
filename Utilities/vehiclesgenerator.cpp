@@ -2,7 +2,8 @@
 
 Vehicle *VehiclesGenerator::getLeftTurningVehicle(const region &approach
                                                   , const VEHICLEMETHOD &x
-                                                  , const bool &vision)
+                                                  , const bool &vision
+                                                  , const bool &interact)
 {
     Vehicle *p = new Vehicle();
     p->extract_coordinate(road::getLeft(approach));
@@ -16,6 +17,11 @@ Vehicle *VehiclesGenerator::getLeftTurningVehicle(const region &approach
     }else{
         p->turnOffSightSeeing();
     }
+    if(interact){
+        p->turnOnInteraction();
+    }else{
+        p->turnOffInteraction();
+    }
 //    p->get_timer()->start(10);
 //    p->set_on_action(true);
     return p;
@@ -25,7 +31,8 @@ Vehicle *VehiclesGenerator::getLeftTurningVehicle(const region &approach
 Vehicle *VehiclesGenerator::getThroughVehicle(const region &approach
                                               , const int &lane
                                               , const VEHICLEMETHOD &x
-                                              , const bool& vision)
+                                              , const bool& vision
+                                              , const bool& interact)
 {
     Vehicle *p = new Vehicle();
     p->extract_coordinate(road::getThrough(approach,lane));
@@ -39,6 +46,11 @@ Vehicle *VehiclesGenerator::getThroughVehicle(const region &approach
     }else{
         p->turnOffSightSeeing();
     }
+    if(interact){
+        p->turnOnInteraction();
+    }else{
+        p->turnOffInteraction();
+    }
 //    p->get_timer()->start(10);
 //    p->set_on_action(true);
     return p;
@@ -46,7 +58,7 @@ Vehicle *VehiclesGenerator::getThroughVehicle(const region &approach
 
 Vehicle *VehiclesGenerator::getRightTurningVehicle(const region &approach
                                                    , const VEHICLEMETHOD &x
-                                                   , const bool &vision)
+                                                   , const bool &vision, const bool &interact)
 {
     Vehicle *p = new Vehicle();
     p->extract_coordinate(road::getRight(approach));
@@ -59,6 +71,11 @@ Vehicle *VehiclesGenerator::getRightTurningVehicle(const region &approach
         p->turnOnSightSeeing();
     }else{
         p->turnOffSightSeeing();
+    }
+    if(interact){
+        p->turnOnInteraction();
+    }else{
+        p->turnOffInteraction();
     }
 //    p->get_timer()->start(10);
 //    p->set_on_action(true);

@@ -177,7 +177,17 @@ qreal Vehicle::getSpeed() const
     return m_speed;
 }
 
+void Vehicle::turnOffInteraction()
+{
+    setAcceptHoverEvents(false);
+    setFlag(QGraphicsItem::ItemIsMovable,false);
+}
 
+void Vehicle::turnOnInteraction()
+{
+    setAcceptHoverEvents(true);
+    setFlag(QGraphicsItem::ItemIsMovable,true);
+}
 
 void Vehicle::advance(int phase)
 {

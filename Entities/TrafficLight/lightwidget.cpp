@@ -5,7 +5,11 @@ QRectF LightWidget::boundingRect() const
     return QRectF(0,0,LightSize,LightSize);
 }
 
-LightWidget::LightWidget(const QColor &color, QGraphicsItem *parent):QGraphicsItem(parent),m_color(color),m_on(false)
+LightWidget::LightWidget(const QColor &color, QGraphicsItem *parent)
+    :QGraphicsItem(parent)
+    ,m_color(color)
+    ,m_on(false)
+    ,m_IsClickable(true)
 {
     setTransformOriginPoint(LightSize/2,LightSize/2);
 
@@ -72,24 +76,37 @@ void LightWidget::setColor(const QColor &color)
     m_color = color;
 }
 
+void LightWidget::TurnOnInteraction()
+{
+    setAcceptHoverEvents(true);
+    m_IsClickable = true;
+}
+
+void LightWidget::TurnOffInteraction()
+{
+    setAcceptHoverEvents(false);
+    m_IsClickable = false;
+}
+
 void LightWidget::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     //QGraphicsItem::mousePressEvent(event);
     Q_UNUSED(event);
-    if(!m_on){
-        this->turnOn();
-        if(dynamic_cast<TrafficLight *>(this->parentItem())){
-            QList<LightWidget *> *widget = (dynamic_cast<TrafficLight *>(this->parentItem()))->getLight();
-            for(int i = 0 ; i < widget->size() ; i++){
-                if(widget->at(i) != this){
-                    widget->at(i)->turnOff();
+    if(m_IsClickable){
+        if(!m_on){
+            this->turnOn();
+            if(dynamic_cast<TrafficLight *>(this->parentItem())){
+                QList<LightWidget *> *widget = (dynamic_cast<TrafficLight *>(this->parentItem()))->getLight();
+                for(int i = 0 ; i < widget->size() ; i++){
+                    if(widget->at(i) != this){
+                        widget->at(i)->turnOff();
+                    }
                 }
             }
+        }else{
+            this->turnOff();
         }
-    }else{
-        this->turnOff();
     }
-
 }
 
 void LightWidget::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
