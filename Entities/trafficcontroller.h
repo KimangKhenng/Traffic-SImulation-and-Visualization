@@ -15,6 +15,8 @@ public:
     //void turnTrafficOff();
     void turnOffDetector();
     void turnOnDetector();
+    void showDetector();
+    void hideDetector();
     void startTrafficLightAll();
     void stopTrafficLightAll();
     void manualControl();

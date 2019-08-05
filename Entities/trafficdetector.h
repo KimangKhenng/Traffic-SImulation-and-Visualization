@@ -28,6 +28,8 @@ public:
     float getHeadWay() const;
     void turnOffDisplay();
     void turnOnDisplay();
+    void turnOn();
+    void turnOff();
 //    void startEngine();
 //    void stopEngine();
     QElapsedTimer *getTimer() const;
@@ -44,6 +46,7 @@ private:
     QElapsedTimer *m_timer;
     //QTimer *m_counter;
     bool m_is_active;
+    bool m_isOn;
 //    QVector<float> m_flow_data;
 //    QVector<int> m_number_data;
 //    QVector<float> m_density_data;

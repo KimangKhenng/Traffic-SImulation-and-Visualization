@@ -576,7 +576,7 @@ border-radius:5px;
               <number>0</number>
              </property>
              <item>
-              <widget class="VisualizePanel" name="m_visualzie_widget">
+              <widget class="VisualizePanel" name="m_visualzie_widget" native="true">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                  <horstretch>0</horstretch>
@@ -984,7 +984,7 @@ background-color: rgb(52, 73, 94);
      <x>0</x>
      <y>0</y>
      <width>1280</width>
-     <height>23</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -1064,14 +1064,14 @@ background-color: rgb(52, 73, 94);
   </customwidget>
   <customwidget>
    <class>VisualizePanel</class>
-   <extends>QFrame</extends>
+   <extends>QWidget</extends>
    <header>UI/visualizepanel.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>SimulationControl</class>
    <extends>QWidget</extends>
-   <header>simulationcontrol.h</header>
+   <header>Utilities/simulationcontrol.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

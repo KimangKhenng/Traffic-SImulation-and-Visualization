@@ -36,6 +36,10 @@ public:
     void showTrafficLight();
     void HideTrafficLight();
     void showIntersectionPath(const bool &show);
+    void showDetectors();
+    void hideDetectors();
+    void showVehiclesVision();
+    void hideVehiclesVision();
     TrafficController *getController() const;
     void updateScene(const VEHICLEMETHOD &seeing);
 private:

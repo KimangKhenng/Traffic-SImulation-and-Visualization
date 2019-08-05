@@ -28,6 +28,15 @@ public:
 
     SimulationState State() const;
 
+    void showRoad();
+    void hideRoad();
+    void showDetectors();
+    void hideDetectors();
+    void showVehiclesVision();
+    void hideVehiclesVision();
+    void showTraffic();
+    void hideTraffic();
+
 public slots:
     void updateVehicle();
 private:

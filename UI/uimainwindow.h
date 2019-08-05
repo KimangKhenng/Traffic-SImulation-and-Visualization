@@ -43,6 +43,25 @@ private slots:
 
     void on_m_simulation_stop_button_clicked();
 
+
+    void on_show_road_check_box_stateChanged(int arg1);
+
+    void on_show_detectors_check_box_stateChanged(int arg1);
+
+    void on_show_vehicles_vision_check_box_stateChanged(int arg1);
+
+    void on_show_traffic_light_check_box_stateChanged(int arg1);
+
+    void on_m_3_lanes_button_clicked();
+
+    void on_m_5_lanes_button_clicked();
+
+    void on_m_no_turn_button_clicked();
+
+    void on_m_turn_only_button_clicked();
+
+    void on_m_go_through_check_box_stateChanged(int arg1);
+
 private:
     Ui::UIMainWindow *ui;
     RoadIntersectionSimulation *m_Simulation;

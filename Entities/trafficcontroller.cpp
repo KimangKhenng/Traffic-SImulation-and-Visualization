@@ -129,6 +129,20 @@ void TrafficController::turnOnDetector()
     }
 }
 
+void TrafficController::showDetector()
+{
+    for(int i = 0 ; i < m_detector.size() ; ++i){
+        m_detector.at(i)->setOpacity(1.0);
+    }
+}
+
+void TrafficController::hideDetector()
+{
+    for(int i = 0 ; i < m_detector.size() ; ++i){
+        m_detector.at(i)->setOpacity(0.0);
+    }
+}
+
 void TrafficController::startTrafficLightAll()
 {
     for(int i = 0 ; i < m_traffic_light.size() ; ++i){

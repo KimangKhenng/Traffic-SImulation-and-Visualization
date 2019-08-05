@@ -614,8 +614,8 @@ background-color: rgb(52, 73, 94);
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>100</width>
-            <height>30</height>
+            <width>79</width>
+            <height>16</height>
            </rect>
           </property>
           <property name="styleSheet">
@@ -1186,21 +1186,21 @@ border-radius:1px;</string>
                 </widget>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkBox">
+                <widget class="QCheckBox" name="show_road_check_box">
                  <property name="text">
                   <string>Road </string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkBox_2">
+                <widget class="QCheckBox" name="show_detectors_check_box">
                  <property name="text">
                   <string>Detectors</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkBox_3">
+                <widget class="QCheckBox" name="show_vehicles_vision_check_box">
                  <property name="text">
                   <string>Vehicles's
 Vision</string>
@@ -1208,7 +1208,7 @@ Vision</string>
                 </widget>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkBox_4">
+                <widget class="QCheckBox" name="show_traffic_light_check_box">
                  <property name="text">
                   <string>Traffic
 Light</string>
@@ -1463,7 +1463,7 @@ border-radius:1px;
                 </widget>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkBox_5">
+                <widget class="QCheckBox" name="m_go_through_check_box">
                  <property name="text">
                   <string>Go 
 Through</string>

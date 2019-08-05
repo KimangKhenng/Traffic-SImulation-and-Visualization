@@ -90,7 +90,7 @@ public:
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
 
 public slots:
-    void advance(int phase) Q_DECL_OVERRIDE;
+//    void advance(int phase) Q_DECL_OVERRIDE;
     void update(const VEHICLEMETHOD& mode);
     //void forward();
 private:

@@ -179,54 +179,54 @@ qreal Vehicle::getSpeed() const
 
 
 
-void Vehicle::advance(int phase)
-{
-    Q_UNUSED(phase)
-    if(this->is_in_stop_point()){
-        if(isContainedSignal()){
-            if(!ifAllowed()){
-                //decelerate();
-                stop_advance();
-                return;
-            }
-        }
-    }
-    if(m_mode == VEHICLEMETHOD::SIGHTSEEING){
-        if(hasInfront()){
-            //decelerate();
-            if(isAboutToCrash()){
-                stop_advance();
-            }
-            accelerate(m_leader);
-//                if(distanceToOtherVehicle(m_leader) <= 27.0){
-//                    stop_advance();
-//                }
-        }else{
-            m_leader = nullptr;
-            accelerate();
-        }
-    }else{
-        m_leader = nullptr;
-        m_acceleration = ACCER;
-        accelerate();
-    }
+//void Vehicle::advance(int phase)
+//{
+//    Q_UNUSED(phase)
+//    if(this->is_in_stop_point()){
+//        if(isContainedSignal()){
+//            if(!ifAllowed()){
+//                //decelerate();
+//                stop_advance();
+//                return;
+//            }
+//        }
+//    }
+//    if(m_mode == VEHICLEMETHOD::SIGHTSEEING){
+//        if(hasInfront()){
+//            //decelerate();
+//            if(isAboutToCrash()){
+//                stop_advance();
+//            }
+//            accelerate(m_leader);
+////                if(distanceToOtherVehicle(m_leader) <= 27.0){
+////                    stop_advance();
+////                }
+//        }else{
+//            m_leader = nullptr;
+//            accelerate();
+//        }
+//    }else{
+//        m_leader = nullptr;
+//        m_acceleration = ACCER;
+//        accelerate();
+//    }
 
-    QLineF line(pos(),m_destination);
-    //qDebug()<<"Length"<<line.length();
-    if(int(line.length()) <= 1.0){
-        m_point_index++;
-        if(m_point_index >= m_path_to_follow.size()){
-            m_Is_deletable = true;
-            return;
-        }
-        m_destination = m_path_to_follow[m_point_index];
-        rotate_to_point(m_destination);
-    }
-    double theta = rotation();
-    double dy = m_speed*qSin(qDegreesToRadians(theta));
-    double dx = m_speed*qCos(qDegreesToRadians(theta));
-    setPos(x()+dx,y()+dy);
-}
+//    QLineF line(pos(),m_destination);
+//    //qDebug()<<"Length"<<line.length();
+//    if(int(line.length()) <= 1.0){
+//        m_point_index++;
+//        if(m_point_index >= m_path_to_follow.size()){
+//            m_Is_deletable = true;
+//            return;
+//        }
+//        m_destination = m_path_to_follow[m_point_index];
+//        rotate_to_point(m_destination);
+//    }
+//    double theta = rotation();
+//    double dy = m_speed*qSin(qDegreesToRadians(theta));
+//    double dx = m_speed*qCos(qDegreesToRadians(theta));
+//    setPos(x()+dx,y()+dy);
+//}
 
 void Vehicle::update(const VEHICLEMETHOD &mode)
 {

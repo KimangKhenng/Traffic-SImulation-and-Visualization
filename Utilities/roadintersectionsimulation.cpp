@@ -61,6 +61,46 @@ SimulationState RoadIntersectionSimulation::State() const
     return m_State;
 }
 
+void RoadIntersectionSimulation::showRoad()
+{
+    m_Scene->showIntersectionPath(true);
+}
+
+void RoadIntersectionSimulation::hideRoad()
+{
+    m_Scene->showIntersectionPath(false);
+}
+
+void RoadIntersectionSimulation::showDetectors()
+{
+    m_Scene->showDetectors();
+}
+
+void RoadIntersectionSimulation::hideDetectors()
+{
+    m_Scene->hideDetectors();
+}
+
+void RoadIntersectionSimulation::showVehiclesVision()
+{
+    m_Scene->showVehiclesVision();
+}
+
+void RoadIntersectionSimulation::hideVehiclesVision()
+{
+    m_Scene->hideVehiclesVision();
+}
+
+void RoadIntersectionSimulation::showTraffic()
+{
+    m_Scene->showTrafficLight();
+}
+
+void RoadIntersectionSimulation::hideTraffic()
+{
+    m_Scene->HideTrafficLight();
+}
+
 SimulationScene *RoadIntersectionSimulation::Scene() const
 {
     return m_Scene;

@@ -120,7 +120,7 @@ void SimulationScene::resetScene()
 
 void SimulationScene::showTrafficLight()
 {
-    for(size_t i = 0 ; i < m_Controller->getTraffic_light().size() ; ++i){
+    for(int i = 0 ; i < m_Controller->getTraffic_light().size() ; ++i){
         m_Controller->getTraffic_light().at(i)->setMode(TRAFFICMODE::HAS_SIGNAL);
         this->addItem(m_Controller->getTraffic_light().at(i));
     }
@@ -143,6 +143,30 @@ void SimulationScene::showIntersectionPath(const bool &show)
     }
 }
 
+void SimulationScene::showDetectors()
+{
+    m_Controller->turnOnDetector();
+}
+
+void SimulationScene::hideDetectors()
+{
+    m_Controller->turnOffDetector();
+}
+
+void SimulationScene::showVehiclesVision()
+{
+    for(int i = 0 ; i < m_Vehicles.size() ; ++i){
+        m_Vehicles.at(i)->turnOnSightSeeing();
+    }
+}
+
+void SimulationScene::hideVehiclesVision()
+{
+    for(int i = 0 ; i < m_Vehicles.size() ; ++i){
+        m_Vehicles.at(i)->turnOffSightSeeing();
+    }
+}
+
 TrafficController *SimulationScene::getController() const
 {
     return m_Controller;
@@ -153,7 +177,7 @@ void SimulationScene::updateScene(const VEHICLEMETHOD &seeing)
 #if PARALLEL
 
     omp_set_num_threads(4);
-
+    advance();
     #pragma omp parallel private(m_Vehicles)
     {
 
@@ -161,6 +185,7 @@ void SimulationScene::updateScene(const VEHICLEMETHOD &seeing)
             #pragma omp single nowait
             {
                 (*i)->update(seeing);
+
             }
         }
     }
@@ -173,6 +198,7 @@ void SimulationScene::updateScene(const VEHICLEMETHOD &seeing)
 #else
     for(size_t i = 0 ; i < m_Vehicles.size() ; ++i ){
         m_Vehicles.at(i)->update(seeing);
+        advance();
         if(m_Vehicles.at(i)->isDeletable()){
             removeVehicle(m_Vehicles.at(i));
         }
