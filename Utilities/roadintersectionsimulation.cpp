@@ -152,6 +152,11 @@ void RoadIntersectionSimulation::turnOffGoThrough()
     m_Scene->setGoThrough(false);
 }
 
+void RoadIntersectionSimulation::setGenerationMethod(GENMETHOD method)
+{
+    m_Generator->setMethod(method);
+}
+
 SimulationScene *RoadIntersectionSimulation::Scene() const
 {
     return m_Scene;

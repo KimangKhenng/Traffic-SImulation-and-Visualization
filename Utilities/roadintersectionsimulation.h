@@ -44,6 +44,7 @@ public:
     void hideTraffic();
     void turnOnGoThrough();
     void turnOffGoThrough();
+    void setGenerationMethod(GENMETHOD method = GENMETHOD::GEN_3);
 
 public slots:
     void updateVehicle();
@@ -57,18 +58,6 @@ private:
     bool m_VehicleSightSeeingOn;
     bool m_VisualizationOn;
     QTimer *m_SimulationTimer;
-
-    // Simulation Variables
-    int m_BirthRateNorthSouth;
-    int m_BirthRateSouthNorth;
-    int m_BirthRateWestEast;
-    int m_BirthRateEastWest;
-    int m_RedLightDuration;
-    int m_GreenLightDuration;
-    int m_LeftGreenLightDuration;
-    int m_YellowLightDuration;
-    GENMETHOD m_GenerationMethod;
-    VEHICLEMETHOD m_VehicleMode;
 };
 
 #endif // ROADINTERSECTIONSIMULATION_H

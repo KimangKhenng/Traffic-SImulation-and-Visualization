@@ -130,22 +130,22 @@ void UIMainWindow::on_show_traffic_light_check_box_stateChanged(int arg1)
 
 void UIMainWindow::on_m_3_lanes_button_clicked()
 {
-
+    m_Simulation->setGenerationMethod(GENMETHOD::GEN_3);
 }
 
 void UIMainWindow::on_m_5_lanes_button_clicked()
 {
-
+    m_Simulation->setGenerationMethod(GENMETHOD::GEN_5);
 }
 
 void UIMainWindow::on_m_no_turn_button_clicked()
 {
-
+    m_Simulation->setGenerationMethod(GENMETHOD::NO_TURN);
 }
 
 void UIMainWindow::on_m_turn_only_button_clicked()
 {
-
+    m_Simulation->setGenerationMethod(GENMETHOD::ONLY_TURN);
 }
 
 void UIMainWindow::on_m_go_through_check_box_stateChanged(int arg1)
