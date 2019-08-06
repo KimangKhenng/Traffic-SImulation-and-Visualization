@@ -41,7 +41,9 @@ HEADERS += \
     UI/uimainwindow.h \
     UI/aboutwidget.h \
     Utilities/roadintersectionsimulation.h \
-    UI/helpwidget.h
+    UI/helpwidget.h \
+    Utilities/qlightboxwidget.h \
+    UI/intropage.h
 
 SOURCES += \
     Entities/TrafficLight/lightwidget.cpp \
@@ -65,7 +67,9 @@ SOURCES += \
     UI/uimainwindow.cpp \
     UI/aboutwidget.cpp \
     Utilities/roadintersectionsimulation.cpp \
-    UI/helpwidget.cpp
+    UI/helpwidget.cpp \
+    Utilities/qlightboxwidget.cpp \
+    UI/intropage.cpp
 
 FORMS += \
     UI/mainwindow.ui \
@@ -74,7 +78,8 @@ FORMS += \
     UI/simulationcontrolwidget.ui \
     UI/uimainwindow.ui \
     UI/aboutwidget.ui \
-    UI/helpwidget.ui
+    UI/helpwidget.ui \
+    UI/intropage.ui
 
 DISTFILES += \
     UiQmlForm.ui.qml \

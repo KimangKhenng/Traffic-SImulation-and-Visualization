@@ -4,6 +4,7 @@
 #include <QTranslator>
 #include <QLibraryInfo>
 #include "UI/uimainwindow.h"
+#include "UI/intropage.h"
 
 int main(int argc, char *argv[])
 {

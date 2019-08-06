@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "Utilities/roadintersectionsimulation.h"
+#include "UI/intropage.h"
 
 namespace Ui {
 class UIMainWindow;
@@ -14,18 +15,20 @@ class UIMainWindow : public QWidget
 
 public:
     explicit UIMainWindow(QWidget *parent = 0);
+
+
     ~UIMainWindow();
+public slots:
+    void onExitButtonClicked();
+
+    void onAboutButtonClicked();
+
+    void onPlayButtonClicked();
+
+    void onHelpButtonClicked();
 
 private slots:
-    void on_m_SettingButton_clicked();
 
-    void on_m_ExitButton_clicked();
-
-    void on_m_AboutButton_clicked();
-
-    void on_m_PlayButton_clicked();
-
-    void on_m_HelpButton_clicked();
 
     void on_m_about_back_button_clicked();
 
@@ -65,6 +68,9 @@ private slots:
 private:
     Ui::UIMainWindow *ui;
     RoadIntersectionSimulation *m_Simulation;
+    RoadIntersectionSimulation *m_Demo;
+    IntroPage *m_intro_page;
+
 };
 
 #endif // UIMAINWINDOW_H

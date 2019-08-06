@@ -89,11 +89,22 @@ void RoadIntersectionSimulation::turnOnInteraction()
 void RoadIntersectionSimulation::updateVehicle()
 {
     m_Scene->updateScene(VEHICLEMETHOD::SIGHTSEEING);
+    emit updatedOneFrame();
 }
 
 SimulationState RoadIntersectionSimulation::State() const
 {
     return m_State;
+}
+
+QPixmap RoadIntersectionSimulation::updatedViewinOneFrame()
+{
+    QPixmap image;
+    startSimulation();
+    image = m_Scene->views().at(0)->grab();
+    pauseSimulation();
+    return image;
+
 }
 
 void RoadIntersectionSimulation::showRoad()

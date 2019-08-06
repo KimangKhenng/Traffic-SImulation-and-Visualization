@@ -1,5 +1,6 @@
 #include "uimainwindow.h"
 #include "ui_uimainwindow.h"
+#include "UI/intropage.h"
 #include <QDesktopServices>
 #include <QUrl>
 
@@ -11,6 +12,21 @@ UIMainWindow::UIMainWindow(QWidget *parent)
     m_Simulation = new RoadIntersectionSimulation();
     m_Simulation->initialize(ui->graphicsView);
 
+    m_Demo = new RoadIntersectionSimulation();
+    m_Demo->initialize(ui->m_demo_widget_1);
+    m_Demo->turnOffInteraction();
+    //m_Demo->startSimulation();
+
+    m_intro_page = new IntroPage(ui->m_first_page);
+    m_intro_page->AutoUpdate(true);
+
+    connect(m_intro_page,&IntroPage::PlayClicked,this,&UIMainWindow::onPlayButtonClicked);
+    connect(m_intro_page,&IntroPage::AboutClicked,this,&UIMainWindow::onAboutButtonClicked);
+    connect(m_intro_page,&IntroPage::HelpClicked,this,&UIMainWindow::onHelpButtonClicked);
+    connect(m_intro_page,&IntroPage::ExitClicked,this,&UIMainWindow::onExitButtonClicked);
+
+
+
 
 }
 
@@ -19,27 +35,23 @@ UIMainWindow::~UIMainWindow()
     delete ui;
 }
 
-void UIMainWindow::on_m_SettingButton_clicked()
-{
-    ui->m_stacked_widget->setCurrentIndex(3);
-}
-
-void UIMainWindow::on_m_ExitButton_clicked()
+void UIMainWindow::onExitButtonClicked()
 {
     QApplication::exit();
 }
 
-void UIMainWindow::on_m_AboutButton_clicked()
+void UIMainWindow::onAboutButtonClicked()
 {
     ui->m_stacked_widget->setCurrentIndex(1);
 }
 
-void UIMainWindow::on_m_PlayButton_clicked()
+void UIMainWindow::onPlayButtonClicked()
 {
     ui->m_stacked_widget->setCurrentIndex(4);
+
 }
 
-void UIMainWindow::on_m_HelpButton_clicked()
+void UIMainWindow::onHelpButtonClicked()
 {
     ui->m_stacked_widget->setCurrentIndex(2);
     ui->help_widget->startDemo();
@@ -59,6 +71,7 @@ void UIMainWindow::on_m_help_back_button_clicked()
 void UIMainWindow::on_m_simulation_back_icon_clicked()
 {
     ui->m_stacked_widget->setCurrentIndex(0);
+    m_Simulation->pauseSimulation();
 }
 
 void UIMainWindow::on_m_setting_back_icon_clicked()

@@ -17,6 +17,8 @@ public:
     void stopDemo();
     ~HelpWidget();
 
+    RoadIntersectionSimulation *demo() const;
+
 private slots:
     void on_next_button_clicked();
 

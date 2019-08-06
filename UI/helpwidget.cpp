@@ -67,3 +67,8 @@ void HelpWidget::on_back_button_clicked()
         ui->stackedWidget->setCurrentIndex(current - 1);
     }
 }
+
+RoadIntersectionSimulation *HelpWidget::demo() const
+{
+    return m_demo;
+}

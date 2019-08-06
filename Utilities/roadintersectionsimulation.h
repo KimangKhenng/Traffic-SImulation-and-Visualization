@@ -34,6 +34,8 @@ public:
 
     SimulationState State() const;
 
+    QPixmap updatedViewinOneFrame();
+
     void showRoad();
     void hideRoad();
     void showDetectors();
@@ -48,6 +50,8 @@ public:
 
 public slots:
     void updateVehicle();
+signals:
+    void updatedOneFrame();
 private:
     //Simulation Entities
 
