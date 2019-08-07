@@ -480,33 +480,24 @@ double VisualizePanel::getHeadWayEW() const
 
 void VisualizePanel::update_1()
 {
-    if(!m_w->getSimulate_state()){
-        return;
-    }
     update_NUM();
 }
 
 void VisualizePanel::update_2()
 {
-    if(!m_w->getSimulate_state()){
-        return;
-    }
+
     update_FLOW();
 }
 
 void VisualizePanel::update_3()
 {
-    if(!m_w->getSimulate_state()){
-        return;
-    }
+
     update_DEN();
 }
 
 void VisualizePanel::update_4()
 {
-    if(!m_w->getSimulate_state()){
-        return;
-    }
+
     update_HEAD();
 }
 
@@ -574,9 +565,9 @@ void VisualizePanel::update_NUM()
             //m_number_widget.at(i)->graph(0)->data().data()->clear();
             //m_number_widget.at(i)->graph(0)->data().data()->removeBefore(key-20.0);
             m_number_widget.at(i)->graph(0)->addData(key,getNumber(i));
-            QTextStream txtStream(m_queue_size.at(i));
-            txtStream<<QString::number(key)<<"\t"<<QString::number(getNumber(i))<<"\n";
-            txtStream.flush();
+            //QTextStream txtStream(m_queue_size.at(i));
+            //txtStream<<QString::number(key)<<"\t"<<QString::number(getNumber(i))<<"\n";
+            //txtStream.flush();
 
         }
         lastPointKey = key;
@@ -656,10 +647,6 @@ void VisualizePanel::setController(TrafficController *controller)
     m_controller = controller;
 }
 
-void VisualizePanel::setMainWindows(MainWindow *w)
-{
-    m_w = w;
-}
 
 //void VisualizePanel::setEtimer(QList<QElapsedTimer *> *etimer)
 //{

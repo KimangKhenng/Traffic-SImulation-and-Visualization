@@ -280,48 +280,6 @@ void Vehicle::update(const VEHICLEMETHOD &mode)
     setPos(x()+dx,y()+dy);
 }
 
-//void Vehicle::forward()
-//{
-//    if(m_on_action_state){
-//        accerlerate ();
-//        if(this->is_in_stop_point()){
-//            if(isContainedSignal()){
-//                if(!ifAllowed()){
-//                    stop_advance();
-//                    return;
-//                }
-//            }
-//        }
-//        if(m_mode == VEHICLEMETHOD::SIGHTSEEING){
-//            if(hasInfront()){
-//                stop_advance();
-//                return;
-//            }
-//        }
-//        QLineF line(pos(),m_destination);
-//        //qDebug()<<"Length"<<line.length();
-//        if(int(line.length()) <= 1.0){
-//            m_point_index++;
-//            if(m_point_index >= m_path_to_follow.size()){
-//                m_Is_deletable = true;
-//                return;
-//            }
-//            m_destination = m_path_to_follow[m_point_index];
-//            rotate_to_point(m_destination);
-//        }
-//        double theta = rotation();
-//        double dy = m_speed*qSin(qDegreesToRadians(theta));
-//        double dx = m_speed*qCos(qDegreesToRadians(theta));
-//        setPos(x()+dx,y()+dy);
-//    }else{
-//        return;
-//    }
-
-//    setPos(x()+m_speed*qSin(qDegreesToRadians(rotation())),y()+m_speed*qCos(qDegreesToRadians(rotation())));
-
-//    //qDebug()<<"Point Size"<<m_path_to_follow.size();
-//    //qDebug()<<"Point Index"<<m_point_index;
-//}
 Vehicle *Vehicle::getCollding()
 {
     Vehicle *next = nullptr;

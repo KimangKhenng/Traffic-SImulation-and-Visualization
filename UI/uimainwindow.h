@@ -1,7 +1,6 @@
 #ifndef UIMAINWINDOW_H
 #define UIMAINWINDOW_H
 
-#include <QWidget>
 #include "Utilities/roadintersectionsimulation.h"
 #include "UI/intropage.h"
 #include "UI/simulationcontrolwidget.h"
@@ -51,7 +50,6 @@ private slots:
     void on_m_simulation_restart_button_clicked();
 
     void on_m_simulation_stop_button_clicked();
-
 
     void on_show_road_check_box_stateChanged(int arg1);
 

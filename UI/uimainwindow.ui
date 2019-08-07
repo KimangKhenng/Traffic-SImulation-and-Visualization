@@ -283,8 +283,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>100</width>
-            <height>30</height>
+            <width>83</width>
+            <height>16</height>
            </rect>
           </property>
           <property name="styleSheet">
@@ -1226,7 +1226,7 @@ Through</string>
              <number>0</number>
             </property>
             <item>
-             <widget class="VisualizePanel" name="widget" native="true"/>
+             <widget class="VisualizePanel" name="m_visualize_panel" native="true"/>
             </item>
            </layout>
           </widget>

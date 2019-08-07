@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
         ui->m_visualize_frame->hide();
         ui->m_visualzie_widget->setController(m_scene->getController());
         //ui->m_visualzie_widget->setEtimer(m_controller->getTimer());
-        ui->m_visualzie_widget->setMainWindows(this);
+        //ui->m_visualzie_widget->setMainWindows(this);
         //ui->m_visualzie_widget->initialize();
         //qDebug()<<"Passed";
         SimulationControlWidget *control = new SimulationControlWidget;

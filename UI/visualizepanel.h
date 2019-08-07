@@ -4,7 +4,6 @@
 #include <QFile>
 #include <QDir>
 #include <QString>
-#include "mainwindow.h"
 #include "Utilities/qcustomplot.h"
 #include "Entities/trafficcontroller.h"
 
@@ -30,22 +29,23 @@ class VisualizePanel : public QWidget
 public:
     explicit VisualizePanel(QWidget *parent = nullptr);
     //void initialize();
-    void setEtimer(QList<QElapsedTimer *> *etimer);
+    //void setEtimer(QList<QElapsedTimer *> *etimer);
     void setController(TrafficController *controller);
-    void setMainWindows(MainWindow *w);
-    void update_all();
-    void update_1();
-    void update_2();
-    void update_3();
-    void update_4();
+
+
     ~VisualizePanel() override;
 //private slots:
 //    void update_1();
 //    void update_2();
 //    void update_3();
 //    void update_4();
+public slots:
+    void update_all();
 private:
-
+    void update_1();
+    void update_2();
+    void update_3();
+    void update_4();
     void setUpNumberWidget();
     void setUpFlowWidget();
     void setUpDensityWidget();
@@ -74,7 +74,7 @@ private:
     double getHeadWaySN() const;
     double getHeadWayWE() const;
     double getHeadWayEW() const;
-    MainWindow *m_w;
+
     Ui::VisualizePanel *ui;
     QList<QCustomPlot *> m_number_widget;
     QList<QCustomPlot *> m_flow_widget;

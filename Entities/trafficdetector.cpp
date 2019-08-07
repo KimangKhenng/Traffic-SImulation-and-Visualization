@@ -153,7 +153,8 @@ int TrafficDetector::getNumbersOfVehicles() const
             j++;
         }
     }
-    return j;
+    //qDebug()<<"Collided Item: "<<collding_vehicles.size()<<"Vehicles: "<<j
+;    return j;
 
 }
 

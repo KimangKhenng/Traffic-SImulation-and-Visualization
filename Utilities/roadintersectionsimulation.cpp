@@ -126,6 +126,7 @@ void RoadIntersectionSimulation::updateVehicle()
 void RoadIntersectionSimulation::autoInitialize()
 {
     initialize();
+    startSimulation();
 }
 
 SimulationState RoadIntersectionSimulation::State() const

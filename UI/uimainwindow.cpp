@@ -1,8 +1,5 @@
 #include "uimainwindow.h"
 #include "ui_uimainwindow.h"
-#include "UI/intropage.h"
-#include <QDesktopServices>
-#include <QUrl>
 
 UIMainWindow::UIMainWindow(QWidget *parent)
     :QWidget(parent)
@@ -20,11 +17,17 @@ UIMainWindow::UIMainWindow(QWidget *parent)
 
     //m_intro_page->AutoUpdate(true);
 
-    connect(m_Simulation,&RoadIntersectionSimulation::updatedOneFrame,m_intro_page,&IntroPage::repaintWidget);
-    connect(m_intro_page,&IntroPage::PlayClicked,this,&UIMainWindow::onPlayButtonClicked);
-    connect(m_intro_page,&IntroPage::AboutClicked,this,&UIMainWindow::onAboutButtonClicked);
-    connect(m_intro_page,&IntroPage::HelpClicked,this,&UIMainWindow::onHelpButtonClicked);
-    connect(m_intro_page,&IntroPage::ExitClicked,this,&UIMainWindow::onExitButtonClicked);
+    connect(m_Demo,&RoadIntersectionSimulation::updatedOneFrame,
+            m_intro_page,&IntroPage::repaintWidget);
+
+    connect(m_intro_page,&IntroPage::PlayClicked,
+            this,&UIMainWindow::onPlayButtonClicked);
+    connect(m_intro_page,&IntroPage::AboutClicked,
+            this,&UIMainWindow::onAboutButtonClicked);
+    connect(m_intro_page,&IntroPage::HelpClicked,
+            this,&UIMainWindow::onHelpButtonClicked);
+    connect(m_intro_page,&IntroPage::ExitClicked,
+            this,&UIMainWindow::onExitButtonClicked);
 
     m_control_widget = new SimulationControlWidget();
 
@@ -34,6 +37,10 @@ UIMainWindow::UIMainWindow(QWidget *parent)
             m_Simulation,&RoadIntersectionSimulation::autoInitialize);
     connect(m_control_widget,&SimulationControlWidget::helpClicked,
             this,&UIMainWindow::onHelpButtonClicked);
+
+    ui->m_visualize_panel->setController(m_Simulation->Scene()->getController());
+    connect(m_Simulation,&RoadIntersectionSimulation::updatedOneFrame,
+            ui->m_visualize_panel,&VisualizePanel::update_all);
 
 
 }
@@ -64,7 +71,7 @@ void UIMainWindow::onPlayButtonClicked()
     if(m_Simulation->State() == SimulationState::UNINITIALIZED){
 
         //EnableSimulationButton(false,false,false,false);
-        ui->m_simulation_page->setEnabled(false);
+        //ui->m_simulation_page->setEnabled(false);
         m_control_widget->show();
     }
 }
