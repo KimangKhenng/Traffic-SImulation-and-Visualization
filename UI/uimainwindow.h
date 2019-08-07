@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "Utilities/roadintersectionsimulation.h"
 #include "UI/intropage.h"
+#include "UI/simulationcontrolwidget.h"
 
 namespace Ui {
 class UIMainWindow;
@@ -26,6 +27,11 @@ public slots:
     void onPlayButtonClicked();
 
     void onHelpButtonClicked();
+
+    void EnableSimulationButton(const bool& play = true,
+                                const bool& pause = true,
+                                const bool& stop = true,
+                                const bool& restart = true);
 
 private slots:
 
@@ -70,6 +76,7 @@ private:
     RoadIntersectionSimulation *m_Simulation;
     RoadIntersectionSimulation *m_Demo;
     IntroPage *m_intro_page;
+    SimulationControlWidget *m_control_widget;
 
 };
 

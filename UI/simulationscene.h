@@ -38,6 +38,8 @@ public:
     void showIntersectionPath(const bool &show);
     void showDetectors();
     void hideDetectors();
+    void turnOffDetectors();
+    void turnOnDetectors();
     void showVehiclesVision();
     void hideVehiclesVision();
     TrafficController *getController() const;

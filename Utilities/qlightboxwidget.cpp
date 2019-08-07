@@ -66,16 +66,16 @@ bool QLightBoxWidget::eventFilter(QObject* _object, QEvent* _event)
 
 void QLightBoxWidget::paintEvent(QPaintEvent* _event)
 {
-    qDebug()<<"Painted";
+    //qDebug()<<"Painted";
     //
     // Draw The Background
     //
 	QPainter p;
 	p.begin(this);
 	// ... фото родительского виджета
-    p.drawPixmap(0, 0, width(), height(), grabParentWidgetPixmap());
+    p.drawPixmap(0, 0, width(), height(), m_parentWidgetPixmap);
 	// ... накладываем затемнённую область
-    p.setBrush(QBrush(QColor(44, 62, 80, 245)));
+    p.setBrush(QBrush(QColor(0, 0, 0, 230)));
 	p.drawRect(0, 0, width(), height());
 	p.end();
 
@@ -109,7 +109,7 @@ void QLightBoxWidget::updateSelf()
             // Update The Display
             //
             //hide();
-            //resize(parentWidget()->size());
+            resize(parentWidget()->size());
             //m_parentWidgetPixmap = grabParentWidgetPixmap();
 
 

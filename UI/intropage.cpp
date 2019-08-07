@@ -10,21 +10,21 @@ IntroPage::IntroPage(QWidget *parent) :
 //    connect(this,&IntroPage::HelpClicked,main,&UIMainWindow::onHelpButtonClicked);
 //    connect(this,&IntroPage::ExitClicked,main,&UIMainWindow::onExitButtonClicked);
 //    connect(this,&IntroPage::AboutClicked,main,&UIMainWindow::onAboutButtonClicked);
-    m_timer = new QTimer;
+    //m_timer = new QTimer;
 
-    connect(m_timer,&QTimer::timeout,this,&IntroPage::repaintWidget);
+    //connect(m_timer,&QTimer::timeout,this,&IntroPage::repaintWidget);
 
 
 }
 
-void IntroPage::AutoUpdate(const bool &x)
-{
-    if(x){
-        m_timer->start(10);
-    }else{
-        m_timer->stop();
-    }
-}
+//void IntroPage::AutoUpdate(const bool &x)
+//{
+//    if(x){
+//        m_timer->start(10);
+//    }else{
+//        m_timer->stop();
+//    }
+//}
 
 
 IntroPage::~IntroPage()

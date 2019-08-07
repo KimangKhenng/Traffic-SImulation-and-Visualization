@@ -15,7 +15,7 @@ class IntroPage : public QLightBoxWidget
 
 public:
     explicit IntroPage( QWidget *parent = 0);
-    void AutoUpdate(const bool& x);
+//    void AutoUpdate(const bool& x);
     ~IntroPage();
 
 signals:
@@ -37,7 +37,7 @@ public slots:
 
 private:
     Ui::IntroPage *ui;
-    QTimer *m_timer;
+    //QTimer *m_timer;
 };
 
 #endif // INTROPAGE_H

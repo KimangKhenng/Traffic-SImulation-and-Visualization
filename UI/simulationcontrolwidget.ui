@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Intersection Road Simulation and Visualization</string>
+   <string>Intersection Road Simulation and Visualization/Setup</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../resource.qrc">

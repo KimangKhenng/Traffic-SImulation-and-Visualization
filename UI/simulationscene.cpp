@@ -154,6 +154,16 @@ void SimulationScene::hideDetectors()
     m_Controller->hideDetector();
 }
 
+void SimulationScene::turnOffDetectors()
+{
+    m_Controller->turnOffDetector();
+}
+
+void SimulationScene::turnOnDetectors()
+{
+    m_Controller->turnOnDetector();
+}
+
 void SimulationScene::showVehiclesVision()
 {
     for(int i = 0 ; i < m_Vehicles.size() ; ++i){

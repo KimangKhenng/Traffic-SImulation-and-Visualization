@@ -9,9 +9,8 @@ HelpWidget::HelpWidget(QWidget *parent)
     //ui->demo_widget->setTransformationAnchor(QGraphicsView::AnchorViewCenter);
 
 
-    m_demo = new RoadIntersectionSimulation();
-    m_demo->initialize(ui->demo_widget);
-    m_demo->turnOffInteraction();
+    m_demo = new RoadIntersectionSimulation(ui->demo_widget);
+    m_demo->initialize();
     //ui->demo_widget->centerOn(ui->demo_widget->width()/2,ui->demo_widget->height()/2);
     ui->demo_widget->scale(0.55,0.55);
 
@@ -25,7 +24,7 @@ HelpWidget::HelpWidget(QWidget *parent)
 void HelpWidget::startDemo()
 {
 
-    m_demo->startSimulation();
+    m_demo->startDemo();
 }
 
 void HelpWidget::stopDemo()

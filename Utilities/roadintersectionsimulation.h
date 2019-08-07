@@ -11,11 +11,9 @@ class RoadIntersectionSimulation : public QObject
 {
     Q_OBJECT
 public:
-    RoadIntersectionSimulation();
+    RoadIntersectionSimulation(QGraphicsView *view);
     ~RoadIntersectionSimulation();
-    void startSimulation();
-    void initialize(QGraphicsView *view,
-                    const int &B_NS = 3500,
+    void initialize(const int &B_NS = 3500,
                     const int &B_SN = 2000,
                     const int &B_WE = 1900,
                     const int &B_EW = 3000,
@@ -25,10 +23,12 @@ public:
                     const int &YELLOW_LIGHT = 500,
                     const GENMETHOD &METh = GENMETHOD::GEN_3,
                     const VEHICLEMETHOD &MODE = VEHICLEMETHOD::SIGHTSEEING);
+    void startSimulation();
     void stopSimulation();
     void pauseSimulation();
     void turnOffInteraction();
     void turnOnInteraction();
+    void startDemo();
 
     SimulationScene *Scene() const;
 
@@ -50,6 +50,17 @@ public:
 
 public slots:
     void updateVehicle();
+
+    void autoInitialize();
+
+    void initializeFrominput(double north_south,
+                             double south_north,
+                             double west_east,
+                             double east_west,
+                             double red_ligt,
+                             double green_light,
+                             double left_green);
+
 signals:
     void updatedOneFrame();
 private:

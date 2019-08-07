@@ -9,23 +9,31 @@ UIMainWindow::UIMainWindow(QWidget *parent)
     ,ui(new Ui::UIMainWindow)
 {
     ui->setupUi(this);
-    m_Simulation = new RoadIntersectionSimulation();
-    m_Simulation->initialize(ui->graphicsView);
+    m_Simulation = new RoadIntersectionSimulation(ui->graphicsView);
+    //m_Simulation->initialize(ui->graphicsView);
 
-    m_Demo = new RoadIntersectionSimulation();
-    m_Demo->initialize(ui->m_demo_widget_1);
-    m_Demo->turnOffInteraction();
-    //m_Demo->startSimulation();
+    m_Demo = new RoadIntersectionSimulation(ui->m_demo_widget_1);
+    m_Demo->initialize();
+    m_Demo->startDemo();
 
     m_intro_page = new IntroPage(ui->m_first_page);
-    m_intro_page->AutoUpdate(true);
 
+    //m_intro_page->AutoUpdate(true);
+
+    connect(m_Simulation,&RoadIntersectionSimulation::updatedOneFrame,m_intro_page,&IntroPage::repaintWidget);
     connect(m_intro_page,&IntroPage::PlayClicked,this,&UIMainWindow::onPlayButtonClicked);
     connect(m_intro_page,&IntroPage::AboutClicked,this,&UIMainWindow::onAboutButtonClicked);
     connect(m_intro_page,&IntroPage::HelpClicked,this,&UIMainWindow::onHelpButtonClicked);
     connect(m_intro_page,&IntroPage::ExitClicked,this,&UIMainWindow::onExitButtonClicked);
 
+    m_control_widget = new SimulationControlWidget();
 
+    connect(m_control_widget,&SimulationControlWidget::inputedReady,
+            m_Simulation,&RoadIntersectionSimulation::initializeFrominput);
+    connect(m_control_widget,&SimulationControlWidget::randomClicked,
+            m_Simulation,&RoadIntersectionSimulation::autoInitialize);
+    connect(m_control_widget,&SimulationControlWidget::helpClicked,
+            this,&UIMainWindow::onHelpButtonClicked);
 
 
 }
@@ -33,6 +41,9 @@ UIMainWindow::UIMainWindow(QWidget *parent)
 UIMainWindow::~UIMainWindow()
 {
     delete ui;
+    delete m_Simulation;
+    delete m_Demo;
+    delete m_intro_page;
 }
 
 void UIMainWindow::onExitButtonClicked()
@@ -43,35 +54,57 @@ void UIMainWindow::onExitButtonClicked()
 void UIMainWindow::onAboutButtonClicked()
 {
     ui->m_stacked_widget->setCurrentIndex(1);
+    m_Demo->pauseSimulation();
 }
 
 void UIMainWindow::onPlayButtonClicked()
 {
     ui->m_stacked_widget->setCurrentIndex(4);
+    m_Demo->pauseSimulation();
+    if(m_Simulation->State() == SimulationState::UNINITIALIZED){
 
+        //EnableSimulationButton(false,false,false,false);
+        ui->m_simulation_page->setEnabled(false);
+        m_control_widget->show();
+    }
 }
 
 void UIMainWindow::onHelpButtonClicked()
 {
     ui->m_stacked_widget->setCurrentIndex(2);
+    m_Demo->pauseSimulation();
     ui->help_widget->startDemo();
+}
+
+void UIMainWindow::EnableSimulationButton(const bool &play,
+                                          const bool &pause,
+                                          const bool &stop,
+                                          const bool &restart)
+{
+    ui->m_simulation_play_button->setEnabled(play);
+    ui->m_simulation_pause_button->setEnabled(pause);
+    ui->m_simulation_restart_button->setEnabled(restart);
+    ui->m_simulation_stop_button->setEnabled(stop);
 }
 
 void UIMainWindow::on_m_about_back_button_clicked()
 {
     ui->m_stacked_widget->setCurrentIndex(0);
+    m_Demo->startSimulation();
 }
 
 void UIMainWindow::on_m_help_back_button_clicked()
 {
     ui->m_stacked_widget->setCurrentIndex(0);
     ui->help_widget->stopDemo();
+    m_Demo->startSimulation();
 }
 
 void UIMainWindow::on_m_simulation_back_icon_clicked()
 {
     ui->m_stacked_widget->setCurrentIndex(0);
     m_Simulation->pauseSimulation();
+    m_Demo->startSimulation();
 }
 
 void UIMainWindow::on_m_setting_back_icon_clicked()
