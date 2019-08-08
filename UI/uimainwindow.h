@@ -31,6 +31,7 @@ public slots:
                                 const bool& pause = true,
                                 const bool& stop = true,
                                 const bool& restart = true);
+    void updateStatus();
 
 private slots:
 
@@ -75,6 +76,7 @@ private:
     RoadIntersectionSimulation *m_Demo;
     IntroPage *m_intro_page;
     SimulationControlWidget *m_control_widget;
+    int m_time_frame;
 
 };
 

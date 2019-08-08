@@ -4,9 +4,12 @@
 UIMainWindow::UIMainWindow(QWidget *parent)
     :QWidget(parent)
     ,ui(new Ui::UIMainWindow)
+    ,m_time_frame(0)
 {
     ui->setupUi(this);
     m_Simulation = new RoadIntersectionSimulation(ui->graphicsView);
+    connect(m_Simulation,&RoadIntersectionSimulation::updatedOneFrame,
+            this,&UIMainWindow::updateStatus);
     //m_Simulation->initialize(ui->graphicsView);
 
     m_Demo = new RoadIntersectionSimulation(ui->m_demo_widget_1);
@@ -38,9 +41,9 @@ UIMainWindow::UIMainWindow(QWidget *parent)
     connect(m_control_widget,&SimulationControlWidget::helpClicked,
             this,&UIMainWindow::onHelpButtonClicked);
 
-    ui->m_visualize_panel->setController(m_Simulation->Scene()->getController());
-    connect(m_Simulation,&RoadIntersectionSimulation::updatedOneFrame,
-            ui->m_visualize_panel,&VisualizePanel::update_all);
+//    ui->m_visualize_panel->setController(m_Simulation->Scene()->getController());
+//    connect(m_Simulation,&RoadIntersectionSimulation::updatedOneFrame,
+//            ui->m_visualize_panel,&VisualizePanel::update_all);
 
 
 }
@@ -93,6 +96,13 @@ void UIMainWindow::EnableSimulationButton(const bool &play,
     ui->m_simulation_restart_button->setEnabled(restart);
     ui->m_simulation_stop_button->setEnabled(stop);
 }
+
+void UIMainWindow::updateStatus()
+{
+    m_time_frame++;
+
+}
+
 
 void UIMainWindow::on_m_about_back_button_clicked()
 {

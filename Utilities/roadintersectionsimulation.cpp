@@ -11,6 +11,7 @@ RoadIntersectionSimulation::RoadIntersectionSimulation(QGraphicsView *view)
     m_Scene->setSceneRect(0,0,800,600);
     view->setScene(m_Scene);
     connect(m_SimulationTimer,&QTimer::timeout,this,&RoadIntersectionSimulation::updateVehicle);
+
 }
 
 RoadIntersectionSimulation::~RoadIntersectionSimulation()
@@ -72,7 +73,22 @@ void RoadIntersectionSimulation::initializeFrominput(double north_south,
                                                      double green_light,
                                                      double left_green)
 {
-    qDebug()<<"Hello";
+    int Birth_Rate_North_South = static_cast<int>(1000/north_south);
+    int Birth_Rate_South_North = static_cast<int>(1000/south_north);
+    int Birth_Rate_West_East = static_cast<int>(1000/west_east);
+    int Birth_Rate_East_West = static_cast<int>(1000/east_west);
+    int Red_Light = static_cast<int>(red_ligt*1000);
+    int Green_Light = static_cast<int>(green_light*1000);
+    int Left_Light = static_cast<int>(left_green*1000);
+
+    initialize(Birth_Rate_North_South,
+               Birth_Rate_South_North,
+               Birth_Rate_West_East,
+               Birth_Rate_East_West,
+               Red_Light,
+               Green_Light,
+               Left_Light);
+    startSimulation();
 }
 
 void RoadIntersectionSimulation::stopSimulation()
@@ -203,6 +219,11 @@ void RoadIntersectionSimulation::turnOffGoThrough()
 void RoadIntersectionSimulation::setGenerationMethod(GENMETHOD method)
 {
     m_Generator->setMethod(method);
+}
+
+int RoadIntersectionSimulation::VehiclesNumber() const
+{
+    return m_Scene->getVehicle().size();
 }
 
 SimulationScene *RoadIntersectionSimulation::Scene() const

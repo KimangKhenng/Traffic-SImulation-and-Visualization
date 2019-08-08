@@ -47,6 +47,7 @@ public:
     void turnOnGoThrough();
     void turnOffGoThrough();
     void setGenerationMethod(GENMETHOD method = GENMETHOD::GEN_3);
+    int VehiclesNumber() const;
 
 public slots:
     void updateVehicle();

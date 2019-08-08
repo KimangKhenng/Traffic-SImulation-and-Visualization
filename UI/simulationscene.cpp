@@ -98,12 +98,12 @@ QList<TrafficLight *> SimulationScene::getTrafficLight() const
 void SimulationScene::setGoThrough(bool x)
 {
     if(x){
-        for(int i = 0 ; i < getVehicle().size() ; ++i){
-            getVehicle().at(i)->setMode(VEHICLEMETHOD::GO_THROUGH);
+        for(int i = 0 ; i < m_Vehicles.size() ; ++i){
+            m_Vehicles.at(i)->setMode(VEHICLEMETHOD::GO_THROUGH);
         }
     }else{
         for(int i = 0 ; i < getVehicle().size() ; ++i){
-            getVehicle().at(i)->setMode(VEHICLEMETHOD::SIGHTSEEING);
+            m_Vehicles.at(i)->setMode(VEHICLEMETHOD::SIGHTSEEING);
         }
     }
 }
