@@ -7,7 +7,15 @@ UIMainWindow::UIMainWindow(QWidget *parent)
     ,m_time_frame(0)
 {
     ui->setupUi(this);
+
+    ui->graphicsView->setResizeAnchor(QGraphicsView::AnchorViewCenter);
+    ui->graphicsView->setViewport(new QGLWidget(QGLFormat(QGL::SampleBuffers)));
+    ui->graphicsView->setViewportUpdateMode(QGraphicsView::SmartViewportUpdate);
+
+
+
     m_Simulation = new RoadIntersectionSimulation(ui->graphicsView);
+
     connect(m_Simulation,&RoadIntersectionSimulation::updatedOneFrame,
             this,&UIMainWindow::updateStatus);
     //m_Simulation->initialize(ui->graphicsView);
@@ -41,9 +49,9 @@ UIMainWindow::UIMainWindow(QWidget *parent)
     connect(m_control_widget,&SimulationControlWidget::helpClicked,
             this,&UIMainWindow::onHelpButtonClicked);
 
-//    ui->m_visualize_panel->setController(m_Simulation->Scene()->getController());
-//    connect(m_Simulation,&RoadIntersectionSimulation::updatedOneFrame,
-//            ui->m_visualize_panel,&VisualizePanel::update_all);
+    ui->m_visualize_panel->setController(m_Simulation->Scene()->getController());
+    connect(m_Simulation,&RoadIntersectionSimulation::updatedOneFrame,
+            ui->m_visualize_panel,&VisualizePanel::update_all);
 
 
 }

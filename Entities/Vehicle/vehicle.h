@@ -93,7 +93,7 @@ public:
 
 public slots:
     void advance(int phase) Q_DECL_OVERRIDE;
-    void update(const VEHICLEMETHOD& mode);
+    void update(const VEHICLEMETHOD& mode = VEHICLEMETHOD::SIGHTSEEING);
     //void forward();
 private:
     QPixmap generateImage() const;

@@ -75,7 +75,7 @@ void QLightBoxWidget::paintEvent(QPaintEvent* _event)
 	// ... фото родительского виджета
     p.drawPixmap(0, 0, width(), height(), m_parentWidgetPixmap);
 	// ... накладываем затемнённую область
-    p.setBrush(QBrush(QColor(0, 0, 0, 230)));
+    p.setBrush(QBrush(QColor(0, 0, 0, 200)));
 	p.drawRect(0, 0, width(), height());
 	p.end();
 

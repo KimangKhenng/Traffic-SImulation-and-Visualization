@@ -4,6 +4,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsSvgItem>
 #include <omp.h>
+#include <QtConcurrent/QtConcurrent>
 #include "Entities/Vehicle/vehicle.h"
 #include "Entities/trafficdetector.h"
 #include "Entities/trafficcontroller.h"

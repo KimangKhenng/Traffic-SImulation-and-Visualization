@@ -3,8 +3,8 @@
 #include <QDebug>
 #include <QTimer>
 
-#define PARALLEL 0
-
+#define PARALLEL_OMP 0
+#define PARALLEL_CONCURRENT 0
 
 
 ////////////////

@@ -181,6 +181,7 @@ void VisualizePanel::setUpNumberWidget()
     m_number_widget.at(1)->yAxis->setRange(0,MAX_N_S);
     m_number_widget.at(2)->yAxis->setRange(0,MAX_W_E);
     m_number_widget.at(3)->yAxis->setRange(0,MAX_S_N);
+    
     for(int i = 0 ; i < m_number_widget.size() ; ++i){
         m_number_widget.at(i)->addGraph(); // blue line
         m_number_widget.at(i)->graph(0)->setPen(QPen(QColor(40, 110, 255)));

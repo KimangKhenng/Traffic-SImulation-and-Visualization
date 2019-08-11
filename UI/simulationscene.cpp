@@ -185,7 +185,7 @@ TrafficController *SimulationScene::getController() const
 
 void SimulationScene::updateScene(const VEHICLEMETHOD &seeing)
 {
-#if PARALLEL
+#if PARALLEL_OMP
 
     omp_set_num_threads(4);
     #pragma omp parallel private(m_Vehicles)
@@ -204,6 +204,12 @@ void SimulationScene::updateScene(const VEHICLEMETHOD &seeing)
         if(m_Vehicles.at(i)->isDeletable()){
             removeVehicle(m_Vehicles.at(i));
         }
+    }
+#elif PARALLEL_CONCURRENT
+    for(int i = 0; i < m_Vehicles.size() ; ++i){
+
+        QFuture<void> f = QtConcurrent::run(m_Vehicles.at(i),&Vehicle::update,seeing);
+
     }
 #else
     advance();

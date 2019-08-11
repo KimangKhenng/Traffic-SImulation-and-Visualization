@@ -7,7 +7,7 @@
 QT       += core gui svg widgets printsupport opengl
 CONFIG   += console
 LIBS     += -fopenmp
-
+DEFINES += QCUSTOMPLOT_USE_OPENGL
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = IntersectionRoadSimulationandVisualization

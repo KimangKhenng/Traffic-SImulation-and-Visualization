@@ -2,7 +2,6 @@
 #define ROADINTERSECTIONSIMULATION_H
 
 #include "Utilities/generator.h"
-#include <QObject>
 #include <QGraphicsView>
 
 static const float TIME_STEP = 1/60;
@@ -14,9 +13,9 @@ public:
     RoadIntersectionSimulation(QGraphicsView *view);
     ~RoadIntersectionSimulation();
     void initialize(const int &B_NS = 3500,
-                    const int &B_SN = 2000,
-                    const int &B_WE = 1900,
-                    const int &B_EW = 3000,
+                    const int &B_SN = 3000,
+                    const int &B_WE = 3900,
+                    const int &B_EW = 3600,
                     const int &RED_LIGHT = 5000,
                     const int &GREEN_LIGHT = 3500,
                     const int &LEFT_GREEN_LIGHT = 1500,
