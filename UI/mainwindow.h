@@ -44,6 +44,7 @@ public:
 public slots:
     void check_state();
 private slots:
+
     void on_actionExit_triggered();
     void on_play_clicked();
     void on_back_clicked();
@@ -68,11 +69,7 @@ private slots:
     void on_m_tool_panel_check_box_clicked(bool checked);
     void on_m_visualize_panel_check_box_clicked(bool checked);
     void on_m_back_button_clicked();
-
     void on_m_only_turn_clicked();
-
-
-
 
 private:
     void changeVehicleMode(const VEHICLEMETHOD &mode);

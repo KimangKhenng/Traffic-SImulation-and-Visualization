@@ -40,18 +40,18 @@ UIMainWindow::UIMainWindow(QWidget *parent)
     connect(m_intro_page,&IntroPage::ExitClicked,
             this,&UIMainWindow::onExitButtonClicked);
 
-    m_control_widget = new SimulationControlWidget();
+    m_setup = new SimulationSetup;
 
-    connect(m_control_widget,&SimulationControlWidget::inputedReady,
+    connect(m_setup,&SimulationSetup::inputReady,
             m_Simulation,&RoadIntersectionSimulation::initializeFrominput);
-    connect(m_control_widget,&SimulationControlWidget::randomClicked,
-            m_Simulation,&RoadIntersectionSimulation::autoInitialize);
-    connect(m_control_widget,&SimulationControlWidget::helpClicked,
+    connect(m_setup,&SimulationSetup::onRandomClicked,
+            m_Simulation,&RoadIntersectionSimulation::initializeFrominput);
+    connect(m_setup,&SimulationSetup::onHelpClicked,
             this,&UIMainWindow::onHelpButtonClicked);
 
-    ui->m_visualize_panel->setController(m_Simulation->Scene()->getController());
-    connect(m_Simulation,&RoadIntersectionSimulation::updatedOneFrame,
-            ui->m_visualize_panel,&VisualizePanel::update_all);
+//    ui->m_visualize_panel->setController(m_Simulation->Scene()->getController());
+//    connect(m_Simulation,&RoadIntersectionSimulation::updatedOneFrame,
+//            ui->m_visualize_panel,&VisualizePanel::update_all);
 
 
 }
@@ -83,7 +83,7 @@ void UIMainWindow::onPlayButtonClicked()
 
         //EnableSimulationButton(false,false,false,false);
         //ui->m_simulation_page->setEnabled(false);
-        m_control_widget->show();
+        m_setup->show();
     }
 }
 
@@ -153,15 +153,15 @@ void UIMainWindow::on_m_simulation_pause_button_clicked()
 
 void UIMainWindow::on_m_simulation_restart_button_clicked()
 {
-
+    m_Simulation->stopSimulation();
+    m_setup->show();
 }
 
 void UIMainWindow::on_m_simulation_stop_button_clicked()
 {
 
+    m_Simulation->stopSimulation();
 }
-
-
 
 void UIMainWindow::on_show_road_check_box_stateChanged(int arg1)
 {

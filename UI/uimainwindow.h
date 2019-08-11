@@ -3,7 +3,7 @@
 
 #include "Utilities/roadintersectionsimulation.h"
 #include "UI/intropage.h"
-#include "UI/simulationcontrolwidget.h"
+#include "UI/simulationsetup.h"
 
 namespace Ui {
 class UIMainWindow;
@@ -75,7 +75,7 @@ private:
     RoadIntersectionSimulation *m_Simulation;
     RoadIntersectionSimulation *m_Demo;
     IntroPage *m_intro_page;
-    SimulationControlWidget *m_control_widget;
+    SimulationSetup *m_setup;
     int m_time_frame;
 
 };

@@ -7,7 +7,7 @@
 QT       += core gui svg widgets printsupport opengl
 CONFIG   += console
 LIBS     += -fopenmp
-DEFINES += QCUSTOMPLOT_USE_OPENGL
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = IntersectionRoadSimulationandVisualization
@@ -43,7 +43,8 @@ HEADERS += \
     Utilities/roadintersectionsimulation.h \
     UI/helpwidget.h \
     Utilities/qlightboxwidget.h \
-    UI/intropage.h
+    UI/intropage.h \
+    UI/simulationsetup.h
 
 SOURCES += \
     Entities/TrafficLight/lightwidget.cpp \
@@ -69,7 +70,8 @@ SOURCES += \
     Utilities/roadintersectionsimulation.cpp \
     UI/helpwidget.cpp \
     Utilities/qlightboxwidget.cpp \
-    UI/intropage.cpp
+    UI/intropage.cpp \
+    UI/simulationsetup.cpp
 
 FORMS += \
     UI/mainwindow.ui \
@@ -79,7 +81,8 @@ FORMS += \
     UI/uimainwindow.ui \
     UI/aboutwidget.ui \
     UI/helpwidget.ui \
-    UI/intropage.ui
+    UI/intropage.ui \
+    UI/simulationsetup.ui
 
 DISTFILES += \
     UiQmlForm.ui.qml \

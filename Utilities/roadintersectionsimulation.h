@@ -53,13 +53,7 @@ public slots:
 
     void autoInitialize();
 
-    void initializeFrominput(double north_south,
-                             double south_north,
-                             double west_east,
-                             double east_west,
-                             double red_ligt,
-                             double green_light,
-                             double left_green);
+    void initializeFrominput(SimulationInput input);
 
 signals:
     void updatedOneFrame();
@@ -73,6 +67,7 @@ private:
     bool m_VehicleSightSeeingOn;
     bool m_VisualizationOn;
     QTimer *m_SimulationTimer;
+    QGraphicsView *m_view;
 };
 
 #endif // ROADINTERSECTIONSIMULATION_H

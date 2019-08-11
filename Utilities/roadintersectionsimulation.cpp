@@ -10,6 +10,7 @@ RoadIntersectionSimulation::RoadIntersectionSimulation(QGraphicsView *view)
     m_Scene = new SimulationScene();
     m_Scene->setSceneRect(0,0,800,600);
     view->setScene(m_Scene);
+    m_view = view;
     connect(m_SimulationTimer,&QTimer::timeout,this,&RoadIntersectionSimulation::updateVehicle);
 
 }
@@ -52,6 +53,7 @@ void RoadIntersectionSimulation::initialize(const int &B_NS,
         if(!m_Scene){
             m_Scene = new SimulationScene();
             m_Scene->setSceneRect(0,0,800,600);
+            m_view->setScene(m_Scene);
         }
         m_Generator = new Generator(m_Scene);
 
@@ -65,30 +67,23 @@ void RoadIntersectionSimulation::initialize(const int &B_NS,
     }
 }
 
-void RoadIntersectionSimulation::initializeFrominput(double north_south,
-                                                     double south_north,
-                                                     double west_east,
-                                                     double east_west,
-                                                     double red_ligt,
-                                                     double green_light,
-                                                     double left_green)
+void RoadIntersectionSimulation::initializeFrominput(SimulationInput input)
 {
-    int Birth_Rate_North_South = static_cast<int>(1000/north_south);
-    int Birth_Rate_South_North = static_cast<int>(1000/south_north);
-    int Birth_Rate_West_East = static_cast<int>(1000/west_east);
-    int Birth_Rate_East_West = static_cast<int>(1000/east_west);
-    int Red_Light = static_cast<int>(red_ligt*1000);
-    int Green_Light = static_cast<int>(green_light*1000);
-    int Left_Light = static_cast<int>(left_green*1000);
-
-    initialize(Birth_Rate_North_South,
-               Birth_Rate_South_North,
-               Birth_Rate_West_East,
-               Birth_Rate_East_West,
-               Red_Light,
-               Green_Light,
-               Left_Light);
+    initialize(input.B_NS,
+               input.B_SN,
+               input.B_WE,
+               input.B_EW,
+               input.RED_LIGHT,
+               input.GREEN_LIGHT,
+               input.LEFT_GREEN_LIGHT,
+               input.YELLOW_LIGHT,
+               input.METh,
+               input.MODE);
     startSimulation();
+    if(input.ShowTrafficLight == false){
+        m_Scene->HideTrafficLight();
+    }
+
 }
 
 void RoadIntersectionSimulation::stopSimulation()
@@ -97,7 +92,7 @@ void RoadIntersectionSimulation::stopSimulation()
         pauseSimulation();
         delete m_Scene;
         delete m_Generator;
-        m_State = SimulationState::STOPPED;
+        m_State = SimulationState::UNINITIALIZED;
     }
 }
 
