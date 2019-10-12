@@ -5,7 +5,10 @@ VehicleSight::VehicleSight(const QRectF &rec, QGraphicsItem *parent)
     ,m_vehicle(dynamic_cast<Vehicle *>(parent))
 {
     this->setBrush(Qt::NoBrush);
-    this->setPen(QPen(QColor(Qt::black)));
+    QPen tick;
+    tick.setWidth(1);
+    tick.setColor(Qt::black);
+    this->setPen(tick);
 }
 
 Vehicle *VehicleSight::vehicle() const

@@ -283,8 +283,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>83</width>
-            <height>16</height>
+            <width>1280</width>
+            <height>660</height>
            </rect>
           </property>
           <property name="styleSheet">
