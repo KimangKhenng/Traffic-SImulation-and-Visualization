@@ -1,25 +1,29 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2017-04-05T12:14:21
-#
-#-------------------------------------------------
+cmake_minimum_required(VERSION 3.1.0)
 
-QT       += core gui svg widgets printsupport opengl
-CONFIG   += console
-LIBS     += -fopenmp
+project(IntersectionRoadSimulationandVisualization VERSION 1.0.0 LANGUAGES CXX)
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-TARGET = IntersectionRoadSimulationandVisualization
-TEMPLATE = app
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
 
+if(CMAKE_VERSION VERSION_LESS "3.7.0")
+    set(CMAKE_INCLUDE_CURRENT_DIR ON)
+endif()
 
+find_package(Qt5
+    COMPONENTS
+    Widgets
+    Core
+    Gui
+    Printsupport
+    Opengl
+    Svg
+    REQUIRED)
 
-
-RESOURCES += \
-    resource.qrc
-
-HEADERS += \
+add_executable(IntersectionRoadSimulationandVisualization
     Entities/TrafficLight/lightwidget.h \
     Entities/TrafficLight/lightwidgetleft.h \
     Entities/TrafficLight/trafficlight.h \
@@ -45,8 +49,6 @@ HEADERS += \
     Utilities/qlightboxwidget.h \
     UI/intropage.h \
     UI/simulationsetup.h
-
-SOURCES += \
     Entities/TrafficLight/lightwidget.cpp \
     Entities/TrafficLight/lightwidgetleft.cpp \
     Entities/TrafficLight/trafficlight.cpp \
@@ -72,8 +74,6 @@ SOURCES += \
     Utilities/qlightboxwidget.cpp \
     UI/intropage.cpp \
     UI/simulationsetup.cpp
-
-FORMS += \
     UI/mainwindow.ui \
     UI/visualizepanel.ui \
     Utilities/simulationcontrol.ui \
@@ -83,8 +83,24 @@ FORMS += \
     UI/helpwidget.ui \
     UI/intropage.ui \
     UI/simulationsetup.ui
+    resources.qrc
+)
 
-DISTFILES += \
-    CMakeLists.txt \
-    UiQmlForm.ui.qml \
-    UiQml.qml
+target_link_libraries(IntersectionRoadSimulationandVisualization
+    Qt5::Widgets
+    Qt5::Core
+    Qt5::Svg
+    Qt5::Gui
+    Qt5::Printsupport
+    Qt5::Opengl
+    )
+# set up a mapping so that the Release configuration for the Qt imported target is
+# used in the COVERAGE CMake configuration.
+set_target_properties(
+    Qt5::Widgets
+    Qt5::Core
+    Qt5::Svg
+    Qt5::Gui
+    Qt5::Printsupport
+    Qt5::Opengl
+    PROPERTIES MAP_IMPORTED_CONFIG_COVERAGE "RELEASE")
