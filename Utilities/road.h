@@ -16,7 +16,7 @@ public:
     static QPainterPath getLeft(const region& approach);
     static QPainterPath getThrough(const region& approach,const int& lane);
     static QPainterPath getRight(const region& approach);
-protected:
+private:
     static QPainterPath get_1_1();
     static QPainterPath get_1_2();
     static QPainterPath get_1_3();
@@ -37,7 +37,6 @@ protected:
     static QPainterPath get_4_3();
     static QPainterPath get_4_4();
     static QPainterPath get_4_5();
-private:
     static QPainterPath draw_1_1();
     static QPainterPath draw_1_2();
     static QPainterPath draw_1_3();

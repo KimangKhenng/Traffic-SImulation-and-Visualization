@@ -85,6 +85,4 @@ FORMS += \
     UI/simulationsetup.ui
 
 DISTFILES += \
-    CMakeLists.txt \
-    UiQmlForm.ui.qml \
-    UiQml.qml
+    CMakeLists.txt
