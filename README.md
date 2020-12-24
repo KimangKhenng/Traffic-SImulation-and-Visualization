@@ -1,6 +1,6 @@
 # Road Intersection Simulation and Visulization
 
-![Logo](https://github.com/KimangKhenng/Traffic-SImulation-and-Visualization/blob/master/Image/Logo-AI.png?raw=true)
+![Logo](https://github.com/KimangKhenng/Traffic-SImulation-and-Visualization/blob/master/Image/logo_inter.png?raw=true)
 
 I've decided to open-source this source code under **GPLv3(GNU General Public License, version 3)** after my graduation from the university.
 
