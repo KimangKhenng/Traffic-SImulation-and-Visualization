@@ -44,21 +44,19 @@ jobs:
           extra: '--external 7z'
 
       # Runs a single command using the runners shell
-      - name: Test Dir
-        run: dir $IQTA_TOOLS
-        shell: powershell
+
       - name: Run QMake
-        run: |
-          qmake IntersectionRoadSimulationandVisualization.pro
+        run: qmake IntersectionRoadSimulationandVisualization.pro
         shell: cmd
       - name: Build With CMake
-        run: call "%IQTA_TOOLS%/mingw810_64/bin/mingw32-make.exe"
-        shell: cmd
+        run: $IQTA_TOOLS/mingw810_64/bin/mingw32-make.exe
+        shell: powershell
       - name: Clean With CMake
-        run: call "%IQTA_TOOLS%/mingw810_64/bin/mingw32-make" clean
-        shell: cmd
+        run: $%IQTA_TOOLS%/mingw810_64/bin/mingw32-make clean
+        shell: powershell
       - name: Build Release and Packaging
         run: |
           cd release
           windeployqt --quick --no-translations .
+        shell: powershell
 
