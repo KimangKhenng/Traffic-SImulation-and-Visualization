@@ -47,8 +47,8 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Install CQtDeployer
-        uses: ./
         run: |
+          cd %Qt5_DIR%
           git clone https://github.com/QuasarApp/CQtDeployer.git
           cd CQtDeployer
           git submodule update --init --recursive
