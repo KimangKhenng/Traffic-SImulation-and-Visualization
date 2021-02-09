@@ -5,8 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui svg widgets printsupport opengl
-CONFIG   += console
-LIBS     += -fopenmp
+CONFIG   += static
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 

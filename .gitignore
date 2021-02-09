@@ -1,33 +1,56 @@
+# C++ objects and libs
+*.slo
+*.lo
+*.o
+*.a
+*.la
+*.lai
+*.so
+*.so.*
+*.dll
+*.dylib
 
-IntersectionRoadSimulationandVisualization\.pro\.user\*
-
-IntersectionRoadSimulationandVisualization\.pro
-
-simulationcontrol\.cpp\.autosave
-
-*.user
-
-\.vs/IntersectionRoadSimulationandVisualization/v15/
-
-ui_mainwindow\.h
-
-ui_simulationcontrol\.h
-
-ui_visualizepanel\.h
-
-queue_0\.txt
-
-queue_1\.txt
-
-queue_2\.txt
-
-queue_3\.txt
-
-IntersectionRoadSimulationandVisualization.pro.user.22
 .idea
 
-cmake-build-debug/CMakeFiles/
+# Qt-es
+object_script.*.Release
+object_script.*.Debug
+*_plugin_import.cpp
+/.qmake.cache
+/.qmake.stash
+*.pro.user
+*.pro.user.*
+*.qbs.user
+*.qbs.user.*
+*.moc
+moc_*.cpp
+moc_*.h
+qrc_*.cpp
+ui_*.h
+*.qmlc
+*.jsc
+Makefile*
+*build-*
+*.qm
+*.prl
 
-cmake-build-debug/
+# Qt unit tests
+target_wrapper.*
 
-.DS_Store
+# QtCreator
+*.autosave
+
+# QtCreator Qml
+*.qmlproject.user
+*.qmlproject.user.*
+
+# QtCreator CMake
+CMakeLists.txt.user*
+
+# QtCreator 4.8< compilation database 
+compile_commands.json
+
+# QtCreator local machine specific files for imported projects
+*creator.user*
+
+*_qmlcache.qrc
