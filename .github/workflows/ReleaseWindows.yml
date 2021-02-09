@@ -45,7 +45,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Test Dir
-        run: dir QT/
+        run: dir %IQTA_TOOLS%
         shell: cmd
       - name: Run QMake
         run: |
