@@ -51,8 +51,7 @@ jobs:
           git clone https://github.com/QuasarApp/CQtDeployer.git
           cd CQtDeployer
           git submodule update --init --recursive
-          SET PATH=$Qt5_DIR/Tools/mingw730_64/bin;%PATH%
-          $Qt5_DIR/5.14.2/mingw73_64/bin/qmake.exe -r
+          %IQTA_TOOLS%/mingw73_64/bin/qmake.exe -r
           migw32-make -j8
           migw32-make deploy
 
