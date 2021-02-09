@@ -47,11 +47,12 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Install CQtDeployer
+        uses: ./
         run: |
           git clone https://github.com/QuasarApp/CQtDeployer.git
           cd CQtDeployer
           git submodule update --init --recursive
-          %IQTA_TOOLS%/mingw73_64/bin/qmake.exe -r
+          call "%IQTA_TOOLS%\mingw73_64\bin\qmake.exe" -r
           migw32-make -j8
           migw32-make deploy
 
