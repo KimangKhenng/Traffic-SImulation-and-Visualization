@@ -36,7 +36,7 @@ jobs:
           install-deps: 'true'
           cached: 'false'
           setup-python: 'true'
-          tools: 'win64_mingw81'
+          tools: 'qt.tools.win64_mingw810'
           set-env: 'true'
           tools-only: 'false'
           aqtversion: '==0.11.1'
