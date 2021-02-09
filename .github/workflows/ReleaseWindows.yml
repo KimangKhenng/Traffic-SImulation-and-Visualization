@@ -46,8 +46,8 @@ jobs:
       # Runs a single command using the runners shell
       - name: Test Env Variables
         run: |
-          dir %Qt5_DIR%
-          dir %IQTA_TOOLS%
+          dir %Qt5_DIR%/
+          dir %IQTA_TOOLS%/
 
         shell: cmd
 
