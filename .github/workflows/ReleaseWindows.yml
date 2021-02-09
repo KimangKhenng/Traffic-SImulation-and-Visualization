@@ -46,8 +46,10 @@ jobs:
       # Runs a single command using the runners shell
       - name: Test Env Variables
         run: |
-          dir %Qt5_DIR%/
-          dir %IQTA_TOOLS%/
-
+          qmake IntersectionRoadSimulationandVisualization.pro
+          %IQTA_TOOLS%/mingw810_64/bin/mingw32-make
+          %IQTA_TOOLS%/mingw810_64/bin/mingw32-make clean
+          cd release
+          windeployqt --quick --no-translations .
         shell: cmd
 
