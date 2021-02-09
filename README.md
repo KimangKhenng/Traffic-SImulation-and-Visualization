@@ -3,7 +3,7 @@
 
 
 
-![Logo](https://github.com/KimangKhenng/Traffic-SImulation-and-Visualization/blob/master/Image/Logo-AI.png?raw=true)
+![Logo](https://github.com/KimangKhenng/Traffic-SImulation-and-Visualization/blob/master/Image/Logo_inter.png?raw=true)
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) ![Version](https://img.shields.io/badge/Qt-5.11-41cd52.svg)
 
