@@ -36,7 +36,7 @@ jobs:
           install-deps: 'true'
           cached: 'false'
           setup-python: 'true'
-          tools: 'tools_ifw,4.0,qt.tools.ifw.40 tools_qtcreator,4.13.2-0,qt.tools.qtcreator,qt.tools.win64_mingw810w'
+          tools: 'qt.tools.win64_mingw810w,tools_ifw,4.0,qt.tools.ifw.40 tools_qtcreator,4.13.2-0,qt.tools.qtcreator'
           set-env: 'true'
           tools-only: 'false'
           aqtversion: '==0.11.1'
