@@ -52,4 +52,5 @@ jobs:
           call "%IQTA_TOOLS%\mingw73_64\bin\qmake.exe" -r
           migw32-make -j8
           migw32-make deploy
+        shell: cmd
 
