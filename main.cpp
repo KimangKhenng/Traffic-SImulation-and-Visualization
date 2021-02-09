@@ -5,12 +5,10 @@
 
 int main(int argc, char *argv[])
 {
-    qsrand(static_cast<uint>(QTime(0,0,0).secsTo(QTime::currentTime())));
-
     QApplication a(argc, argv);
 
-    UIMainWindow ww;
-    ww.show();
+    UIMainWindow windows;
+    windows.show();
 
 
     return a.exec();

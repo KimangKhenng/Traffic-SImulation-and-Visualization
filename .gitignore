@@ -24,3 +24,10 @@ queue_2\.txt
 queue_3\.txt
 
 IntersectionRoadSimulationandVisualization.pro.user.22
+.idea
+
+cmake-build-debug/CMakeFiles/
+
+cmake-build-debug/
+
+.DS_Store
