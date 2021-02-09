@@ -44,12 +44,19 @@ jobs:
           extra: '--external 7z'
 
       # Runs a single command using the runners shell
-      - name: Test Env Variables
+      - name: Run QMake
         run: |
           qmake IntersectionRoadSimulationandVisualization.pro
-          call "%IQTA_TOOLS%/mingw810_64/bin/mingw32-make.exe"
-          call "%IQTA_TOOLS%/mingw810_64/bin/mingw32-make" clean
+
+        shell: cmd
+      - name: Build With CMake
+        run: call "%IQTA_TOOLS%/mingw810_64/bin/mingw32-make.exe"
+        shell: cmd
+      - name: Clean With CMake
+        run: call "%IQTA_TOOLS%/mingw810_64/bin/mingw32-make" clean
+        shell: cmd
+      - name: Build Release and Packaging
+        run: |
           cd release
           windeployqt --quick --no-translations .
-        shell: cmd
 
