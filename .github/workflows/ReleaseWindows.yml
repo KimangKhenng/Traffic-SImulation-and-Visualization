@@ -49,11 +49,11 @@ jobs:
         run: qmake IntersectionRoadSimulationandVisualization.pro
         shell: cmd
       - name: Build With CMake
-        run: $IQTA_TOOLS/mingw810_64/bin/mingw32-make.exe
-        shell: powershell
+        run: call "%iqta_tools%\mingw810_64\bin\mingw32-make.exe"
+        shell: cmd
       - name: Clean With CMake
-        run: $%IQTA_TOOLS%/mingw810_64/bin/mingw32-make clean
-        shell: powershell
+        run: call "%iqta_tools%\mingw810_64\bin\mingw32-make.exe" clean
+        shell: cmd
       - name: Build Release and Packaging
         run: |
           cd release
