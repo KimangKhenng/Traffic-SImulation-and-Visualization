@@ -49,7 +49,7 @@ jobs:
         run: qmake IntersectionRoadSimulationandVisualization.pro
         shell: cmd
       - name: Build With CMake
-        run: call "%iqta_tools%\mingw810_64\bin\mingw32-make.exe"
+        run: call dir "%iqta_tools%"
         shell: cmd
       - name: Clean With CMake
         run: call "%iqta_tools%\mingw810_64\bin\mingw32-make.exe" clean
