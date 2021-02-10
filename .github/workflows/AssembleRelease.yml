@@ -93,6 +93,6 @@ jobs:
           asset_name: windowsx86_64_Portable.zip
           tag: ${{ github.ref }}
           overwrite: true
-          body: "Known Issues: -Instability in low-end device due to immature optimization, inconsistency and incomplete UI"
+          body: " "
 
 
