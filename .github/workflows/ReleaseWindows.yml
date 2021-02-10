@@ -36,7 +36,7 @@ jobs:
           install-deps: 'true'
           cached: 'false'
           setup-python: 'true'
-          tools: 'tools_mingw,8.1.0-1-202004170606,qt.tools.win64_mingw810'
+          tools: 'tools_mingw,8.1.0-1-202004170606,qt.tools.win64_mingw810 tools_ifw,4.0,qt.tools.ifw.40 tools_qtcreator,4.13.2-0,qt.tools.qtcreator'
           set-env: 'true'
           tools-only: 'false'
           aqtversion: '==0.11.1'
@@ -44,7 +44,16 @@ jobs:
           extra: '--external 7z'
 
       # Runs a single command using the runners shell
-
+      - name: Install CQtDeployer
+        run: |
+          git clone https://github.com/QuasarApp/CQtDeployer.git
+          cd CQtDeployer
+          git submodule update --init --recursive
+          qmake -r
+          call "%iqta_tools%/mingw810_64/bin/mingw32-make" -j8
+          call "%iqta_tools%/mingw810_64/bin/mingw32-make" deploy
+          dir
+        shell: cmd
       - name: Run QMake
         run: |
           qmake IntersectionRoadSimulationandVisualization.pro
