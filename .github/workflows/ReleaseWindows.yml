@@ -50,8 +50,8 @@ jobs:
           cd CQtDeployer
           git submodule update --init --recursive
           qmake -r
-          call "%iqta_tools%/mingw810_64/bin/mingw32-make" -j8
-          call "%iqta_tools%/mingw810_64/bin/mingw32-make" deploy
+          call "%iqta_tools%/mingw730_64/bin/mingw32-make" -j8
+          call "%iqta_tools%/mingw730_64/bin/mingw32-make" deploy
           dir
         shell: cmd
       - name: Run QMake
@@ -63,10 +63,10 @@ jobs:
       - name: Build With CMake
         run: |
           call dir "%iqta_tools%"
-          call "%iqta_tools%/mingw810_64/bin/mingw32-make"
+          call "%iqta_tools%/mingw730_64/bin/mingw32-make"
         shell: cmd
       - name: Clean With CMake
-        run: call "%iqta_tools%/mingw810_64/bin/mingw32-make" clean
+        run: call "%iqta_tools%/mingw730_64/bin/mingw32-make" clean
         shell: cmd
       - name: Build Release and Packaging
         run: |
