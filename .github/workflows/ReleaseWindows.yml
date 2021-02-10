@@ -32,7 +32,7 @@ jobs:
           version: '5.12.10'
           host: 'windows'
           target: 'desktop'
-          arch: 'win64_msvc2017_64'
+          arch: 'win64_mingw73'
           install-deps: 'true'
           cached: 'false'
           setup-python: 'true'
