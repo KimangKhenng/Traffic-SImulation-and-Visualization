@@ -46,16 +46,16 @@ jobs:
           extra: '--external 7z'
 
       # Runs a single command using the runners shell
-      - name: Install CQtDeployer
-        run: |
-          git clone https://github.com/QuasarApp/CQtDeployer.git
-          cd CQtDeployer
-          git submodule update --init --recursive
-          qmake -r
-          call "%iqta_tools%/mingw730_64/bin/mingw32-make" -j8
-          call "%iqta_tools%/mingw730_64/bin/mingw32-make" deploy
-          dir
-        shell: cmd
+#      - name: Install CQtDeployer
+#        run: |
+#          git clone https://github.com/QuasarApp/CQtDeployer.git
+#          cd CQtDeployer
+#          git submodule update --init --recursive
+#          qmake -r
+#          call "%iqta_tools%/mingw730_64/bin/mingw32-make" -j8
+#          call "%iqta_tools%/mingw730_64/bin/mingw32-make" deploy
+#          dir
+#        shell: cmd
       - name: Run QMake
         run: |
           cd ./
@@ -90,9 +90,9 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: ${{ github.workspace }}/windowsx86_64_Portable.zip
-          asset_name: windowsx86_64_Portable
+          asset_name: windowsx86_64_Portable.zip
           tag: ${{ github.ref }}
           overwrite: true
-          body: "This is my release text"
+          body: "Known Issues: -Instability in low-end device due to immature optimization, inconsistency and incomplete UI"
 
 
