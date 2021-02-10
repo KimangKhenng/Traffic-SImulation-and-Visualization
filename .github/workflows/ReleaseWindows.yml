@@ -36,7 +36,7 @@ jobs:
           install-deps: 'true'
           cached: 'false'
           setup-python: 'true'
-          tools: 'tools_mingw 8.1.0-1-202004170606 qt.tools.win64_mingw810w'
+          tools: 'tools_mingw,8.1.0-1-202004170606,qt.tools.win64_mingw810w'
           set-env: 'true'
           tools-only: 'false'
           aqtversion: '==0.11.1'
@@ -46,13 +46,17 @@ jobs:
       # Runs a single command using the runners shell
 
       - name: Run QMake
-        run: qmake IntersectionRoadSimulationandVisualization.pro
+        run: |
+          qmake IntersectionRoadSimulationandVisualization.pro
+          dir
         shell: cmd
       - name: Build With CMake
-        run: call dir "%iqta_tools%"
+        run: |
+          call dir "%iqta_tools%"
+          call "%iqta_tools%/mingw810_64/bin/mingw32-make.exe"
         shell: cmd
       - name: Clean With CMake
-        run: call "%iqta_tools%\mingw810_64\bin\mingw32-make.exe" clean
+        run: call "%iqta_tools%/mingw810_64/bin/mingw32-make.exe" clean
         shell: cmd
       - name: Build Release and Packaging
         run: |
