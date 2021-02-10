@@ -1,4 +1,5 @@
 
+
 #  Road  Intersection  Simulation  and  Visulization
 
 
@@ -30,7 +31,7 @@ The  latest  version  is  available  for
 
 
 
-*  Windows  7
+*  Windows  7+
 
 *  macOS  10.12  and  above
 
@@ -39,17 +40,28 @@ The  latest  version  is  available  for
 
 
 ##  Build  Instructions
-
-###  Build on Windows  with  Qt  Creator
-
 RISV  requires  [Qt  5.0.0+](https://download.qt.io/archive/qt/)  to  to  complie  and  run.  The  source  code  can  be  compiled  using  one  of  these  options.
 #### Clone the source code
 ```sh
 
-$  git  clone  https://github.com/KimangKhenng/Traffic-SImulation-and-Visualization.git
+git  clone  https://github.com/KimangKhenng/Traffic-SImulation-and-Visualization.git
 
 ```
-
+###  Quick Run on Windows  with  Qt  Creator
  - Open the project with Qt Creator.
  - Configure project with either MinGW or Visual Compiler
  - Run
+###  Manually Build Release on Windows with MingGW 
+Make sure you add ***Qt/5.XX/mingw/mingwXXX_64/bin/*** and **Qt/Tools/mingwXXX_64/bin/** to your **PATH** in system environment variables.
+```sh
+$ cd Traffic-SImulation-and-Visualization
+$ qmake
+$ mingw32-make
+$ mingw32-make clean
+$ cd release
+$ windeployqt --quick --no-translations .
+```
+Then you'll have an executable file **[.exe]** inside your ***release*** folder.
+##  Contributors
+ - KimAng Kheang ( Software Architect, AI Developer, 
+ - Sokchea Kor ( Advisor, Initiator)
