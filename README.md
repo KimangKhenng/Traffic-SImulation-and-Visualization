@@ -1,4 +1,5 @@
 
+
   
   
 #  Road  Intersection  Simulation  and  Visulization  
@@ -19,35 +20,22 @@ This  is  a  intersection  simulation  software  capable  of  generating  the  a
 Obey  the  traffic  lights  or  not,  treat  front  vehicles  are  invisible  or  not.  
 **Demo** : https://www.youtube.com/watch?v=yKl4c4eQUy8
   
-```sh  
-  
-$  git  clone  https://github.com/KimangKhenng/Traffic-SImulation-and-Visualization.git  
-  
+```sh   
+$  git  clone  https://github.com/KimangKhenng/Traffic-SImulation-and-Visualization.git   
 ```  
   
-##  Supported  systems  
+##  Tested  systems  
+I have complied the source code and test on the following systems:
   
-  
-  
-The  latest  version  is  available  for  
-  
-  
-  
-* Windows  7+  
-  
-* macOS  10.12  and  above  
-  
-* Linux  
-  
-  
+* Windows  10 20H2 19042  
+* macOS  Big Sur 11.2.1
+* Ubuntu 20.04.2 LTS  
   
 ##  Build  Instructions  
 RISV  requires  [Qt  5.0.0+](https://download.qt.io/archive/qt/)  to  to  complie  and  run.  The  source  code  can  be  compiled  using  one  of  these  options.  
 #### Clone the source code  
-```sh  
-  
+```sh   
 $ git  clone  https://github.com/KimangKhenng/Traffic-SImulation-and-Visualization.git  
-  
 ```  
 ###  Quick Run on Windows, Mac, and Linux  with  Qt  Creator  
  - Open the project with Qt Creator.  
@@ -64,18 +52,6 @@ $ mingw32-make clean
 $ cd release  
 $ windeployqt --quick --no-translations .  
 ```  
-###  Manually Build Release on Linux with MingGW 
-Make sure you add ***Qt/5.XX/mingw/mingwXXX_64/bin/*** and **Qt/Tools/mingwXXX_64/bin/** to your **PATH** in system environment variables. 
- 
-```sh  
-$ cd Traffic-SImulation-and-Visualization  
-$ qmake  
-$ mingw32-make  
-$ mingw32-make clean  
-$ cd release  
-$ windeployqt --quick --no-translations .  
-```  
-Then you'll have an executable file **[.exe]** inside your ***release*** folder.  
 ##  Contributors  
  - KimAng Kheang, TFD ( Software Architect, AI Developer)   
  - Sokchea Kor, ITED, FE, RUPP ( Advisor, Initiator)   
