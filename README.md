@@ -7,7 +7,7 @@
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) ![Version](https://img.shields.io/badge/Qt-5.11-41cd52.svg)
 
-![Build Binary Release Windows x64](https://github.com/KimangKhenng/Traffic-SImulation-and-Visualization/workflows/Build%20Binary%20Release%20Windows%20x64/badge.svg)
+![Binary Release Windows x86x64](https://github.com/KimangKhenng/Traffic-SImulation-and-Visualization/workflows/Binary%20Release%20Windows%20x64/badge.svg?branch=master)
 
 I've  decided  to  open-source  this  source  code  under  **GPLv3(GNU  General  Public  License,  version  3)**  after  my  graduation  from  the  university.
 
