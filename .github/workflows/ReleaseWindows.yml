@@ -29,14 +29,14 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v2
         with:
-          version: '5.14.2'
+          version: '5.12.10'
           host: 'windows'
           target: 'desktop'
           arch: 'win64_msvc2017_64'
           install-deps: 'true'
           cached: 'false'
           setup-python: 'true'
-          tools: 'tools_mingw,8.1.0-1-202004170606,qt.tools.win64_mingw810 tools_ifw,4.0,qt.tools.ifw.40 tools_qtcreator,4.13.2-0,qt.tools.qtcreator'
+          tools: 'tools_mingw,7.3.0-1-202004170606,qt.tools.win64_mingw730 tools_ifw,4.0,qt.tools.ifw.40 tools_qtcreator,4.13.2-0,qt.tools.qtcreator'
           set-env: 'true'
           tools-only: 'false'
           aqtversion: '==0.11.1'
@@ -56,6 +56,7 @@ jobs:
         shell: cmd
       - name: Run QMake
         run: |
+          cd ./
           qmake IntersectionRoadSimulationandVisualization.pro
           dir
         shell: cmd
