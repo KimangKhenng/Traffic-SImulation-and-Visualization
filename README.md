@@ -24,7 +24,7 @@ Obey  the  traffic  lights  or  not,  treat  front  vehicles  are  invisible  or
 $  git  clone  https://github.com/KimangKhenng/Traffic-SImulation-and-Visualization.git   
 ```  
   
-##  Tested  systems  
+##  Tested  Systems  
 I have complied the source code and test on the following systems:
   
 * Windows  10 20H2 19042  
@@ -53,9 +53,10 @@ $ cd release
 $ windeployqt --quick --no-translations .  
 ```  
 ##  Contributors  
- - KimAng Kheang, TFD ( Software Architect, AI Developer)   
- - Sokchea Kor, ITED, FE, RUPP ( Advisor, Initiator)   
- - Interested in becoming one of the contributors? Wanna take part in our community? Send me an email detaling how you would like to add features, fixe certain part, or whatever on your mind to kimangkheang@gmail.com 
+ - **KimAng Kheang**, TFD ( Software Architect, AI Developer)   
+ - **Sokchea Kor**, ITED, FE, RUPP ( Advisor, Initiator)   
+
+Interested in becoming one of the contributors? Wanna take part in our community? Send me an email detaling how you would like to add features, fixe certain part, or whatever on your mind to kimangkheang@gmail.com 
 ## Acknowledgement  
 [![Logo](https://i.imgur.com/VRomAuU.jpg)](https://www.rupp.edu.kh/fe/) [![Logo](https://i.imgur.com/UyGOhnf.png)](https://www.rupp.edu.kh/) [![Logo](https://i.imgur.com/LW2lDla.png)](https://www.youtube.com/c/TeachingForDevelopment)  
  - Thanks to **endrll**  for providing [CQtDeployer](https://github.com/QuasarApp/CQtDeployer) packaging system to ship this software in production.
