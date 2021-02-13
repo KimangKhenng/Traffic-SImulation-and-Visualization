@@ -73,7 +73,7 @@ jobs:
       - name: Build Release and Packaging
         run: |
           cd release
-          $GITHUB_WORKSPACE/CQtDeployer/Distro/CQtDeployerInstaller -bin $GITHUB_WORKSPACE/release/IntersectionRoadSimulationandVisualization.exe -qmake $Qt5_DIR/bin qif
+          $GITHUB_WORKSPACE/CQtDeployer/Distro/CQtDeployerInstaller.exe -bin $GITHUB_WORKSPACE/release/IntersectionRoadSimulationandVisualization.exe -qmake $Qt5_DIR/bin/qmake.exe qif
         shell: powershell
       - name: Zip release folder
         uses: papeloto/action-zip@v1
