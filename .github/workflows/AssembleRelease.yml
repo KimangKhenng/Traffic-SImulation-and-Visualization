@@ -46,16 +46,16 @@ jobs:
           extra: '--external 7z'
 
       # Runs a single command using the runners shell
-      - name: Install CQtDeployer
-        run: |
-          git clone https://github.com/QuasarApp/CQtDeployer.git
-          cd CQtDeployer
-          git submodule update --init --recursive
-          qmake -r
-          call "%iqta_tools%/mingw730_64/bin/mingw32-make" -j8
-          call "%iqta_tools%/mingw730_64/bin/mingw32-make" deploy
-          dir
-        shell: cmd
+#       - name: Install CQtDeployer
+#         run: |
+#           git clone https://github.com/QuasarApp/CQtDeployer.git
+#           cd CQtDeployer
+#           git submodule update --init --recursive
+#           qmake -r
+#           call "%iqta_tools%/mingw730_64/bin/mingw32-make" -j8
+#           call "%iqta_tools%/mingw730_64/bin/mingw32-make" deploy
+#           dir
+#         shell: cmd
       - name: Run QMake
         run: |
           cd ./
@@ -73,7 +73,7 @@ jobs:
       - name: Build Release and Packaging
         run: |
           cd release
-          call ${{ github.workspace }}/CQtDeployer/Distro/CQtDeployerInstaller.exe -bin ${{ github.workspace }}/release/IntersectionRoadSimulationandVisualization.exe -qmake "%qt5_dir%/bin/qmake.exe" qif
+          windeployqt --quick --no-translations .
         shell: cmd
       - name: Zip release folder
         uses: papeloto/action-zip@v1
