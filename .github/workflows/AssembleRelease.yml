@@ -73,14 +73,13 @@ jobs:
       - name: Build Release and Packaging
         run: |
           cd release
-          windeployqt --quick --no-translations .
           call ${{ github.workspace }}/CQtDeployer/Distro/CQtDeployerInstaller.exe -bin ${{ github.workspace }}/release/IntersectionRoadSimulationandVisualization.exe -qmake "%qt5_dir%/bin/qmake.exe" qif
         shell: cmd
       - name: Zip release folder
         uses: papeloto/action-zip@v1
         with:
           files:
-            release/
+            release/DistributionKit/
           dest: windowsx86_64_Installer.zip
       - uses: actions/upload-artifact@v1
         with:
