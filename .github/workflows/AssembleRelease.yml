@@ -46,16 +46,16 @@ jobs:
           extra: '--external 7z'
 
       # Runs a single command using the runners shell
-#      - name: Install CQtDeployer
-#        run: |
-#          git clone https://github.com/QuasarApp/CQtDeployer.git
-#          cd CQtDeployer
-#          git submodule update --init --recursive
-#          qmake -r
-#          call "%iqta_tools%/mingw730_64/bin/mingw32-make" -j8
-#          call "%iqta_tools%/mingw730_64/bin/mingw32-make" deploy
-#          dir
-#        shell: cmd
+      - name: Install CQtDeployer
+        run: |
+          git clone https://github.com/QuasarApp/CQtDeployer.git
+          cd CQtDeployer
+          git submodule update --init --recursive
+          qmake -r
+          call "%iqta_tools%/mingw730_64/bin/mingw32-make" -j8
+          call "%iqta_tools%/mingw730_64/bin/mingw32-make" deploy
+          dir
+        shell: cmd
       - name: Run QMake
         run: |
           cd ./
@@ -73,24 +73,24 @@ jobs:
       - name: Build Release and Packaging
         run: |
           cd release
-          windeployqt --quick --no-translations .
-        shell: powershell
+          call "./CQtDeployer//Distro/CQtDeployerInstaller" -bin ./release/IntersectionRoadSimulationandVisualization.exe -qmake "%qt5_dir%\bin" qif
+        shell: cmd
       - name: Zip release folder
         uses: papeloto/action-zip@v1
         with:
           files:
             release/
-          dest: windowsx86_64_Portable.zip
+          dest: windowsx86_64_Installer.zip
       - uses: actions/upload-artifact@v1
         with:
-          name: windowsx86_64_Portable
-          path: ${{ github.workspace }}/windowsx86_64_Portable.zip
+          name: windowsx86_64_Installer.zip
+          path: ${{ github.workspace }}/windowsx86_64_Installer.zip
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ${{ github.workspace }}/windowsx86_64_Portable.zip
-          asset_name: windowsx86_64_Portable.zip
+          file: ${{ github.workspace }}/windowsx86_64_Installer.zip
+          asset_name: windowsx86_64_Installer.zip
           tag: ${{ github.ref }}
           overwrite: true
           body: " "
