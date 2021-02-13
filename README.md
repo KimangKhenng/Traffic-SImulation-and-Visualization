@@ -1,11 +1,5 @@
-
-
-  
-  
-#  Road  Intersection  Simulation  and  Visulization  
-  
-  
-  
+ #  Road  Intersection  Simulation  and  Visulization  
+   
 ![Logo](https://github.com/KimangKhenng/Traffic-SImulation-and-Visualization/blob/master/Image/logo_inter.png?raw=true)  
   
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) ![Version](https://img.shields.io/badge/Qt-5.12.10-41cd52.svg)  
@@ -23,6 +17,8 @@ Obey  the  traffic  lights  or  not,  treat  front  vehicles  are  invisible  or
 ```sh   
 $  git  clone  https://github.com/KimangKhenng/Traffic-SImulation-and-Visualization.git   
 ```  
+##  Gallery
+![alt text](https://i.imgur.com/gXGH3w4l.png)
   
 ##  Tested  Systems  
 I have complied the source code and test on the following systems:
