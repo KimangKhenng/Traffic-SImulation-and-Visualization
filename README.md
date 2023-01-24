@@ -9,9 +9,9 @@
 I've  decided  to  open-source  this  source  code  under  **GPLv3(GNU  General  Public  License,  version  3)** after  my  graduation  from  the  university.  
   
   
-This  is  a  intersection  simulation  software  capable  of  generating  the  arriving  vehicles  in  varying  controllable  rate.  The  vehicle  behavior  can  be  changed  in  realtime  in  the  following  mode:  
+This  is  an  intersection  simulation  software  capable  of  generating  the  arriving  vehicles  in  many varying  controllable  rates.  The  vehicle  behavior  can  be  changed  in  realtime  in  the  following  mode:  
   
-Obey  the  traffic  lights  or  not,  treat  front  vehicles  are  invisible  or  not.  
+whether to respect  the  traffic  lights' existence,  treat  front  vehicles  as  invisible  or  not.  
 **Demo** : https://www.youtube.com/watch?v=yKl4c4eQUy8
   
 ```sh   
