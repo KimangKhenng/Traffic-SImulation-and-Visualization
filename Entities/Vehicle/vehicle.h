@@ -2,7 +2,6 @@
 #define VEHICLE_H
 #define GAPACCAPANCE 10
 
-
 #include "Entities/TrafficLight/trafficlight.h"
 #include "vehiclesight.h"
 #include <QGraphicsPixmapItem>
@@ -12,7 +11,7 @@
 static const float ACCER = 0.01;
 
 class SimulationScene;
-class Vehicle: public QObject,public QGraphicsPixmapItem
+class Vehicle : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
     Q_INTERFACES(QGraphicsItem)
@@ -21,18 +20,18 @@ public:
     ////////
     /// \brief Vehicle
     /// Prevent Copying
-    Vehicle(const Vehicle&) = delete;
+    Vehicle(const Vehicle &) = delete;
     ///////
     /// \brief operator =
     /// \return Address of Vehicle
     /// Prevent using operator =
-    Vehicle& operator = (const Vehicle&) = delete;
+    Vehicle &operator=(const Vehicle &) = delete;
     ~Vehicle();
     //// Overloading Function
     QRectF boundingRect() const Q_DECL_OVERRIDE;
     QPainterPath shape() const Q_DECL_OVERRIDE;
-    //void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
-    // Overloading Funcion
+    // void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
+    //  Overloading Funcion
     //////////////////////
     /// \brief rotate_to_point
     /// \param point = point for vehicle to rotate to
@@ -64,7 +63,6 @@ public:
     void setRegion(region r);
     /// ////////////
 
-
     bool is_in_stop_point();
     QList<QPointF> get_path() const;
     bool Isinthejunction();
@@ -81,20 +79,21 @@ public:
     bool isContainedSignal() const;
     void setMode(const VEHICLEMETHOD &mode);
     bool isDeletable() const;
-     qreal getSpeed() const;
-     void turnOffInteraction();
-     void turnOnInteraction();
-    //Reimplement Event
+    qreal getSpeed() const;
+    void turnOffInteraction();
+    void turnOnInteraction();
+    void updateWithLeader(Vehicle *leader);
+    // Reimplement Event
 
-//    void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) override;
+    //    void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) override;
     void hoverEnterEvent(QGraphicsSceneHoverEvent *event) override;
     void hoverLeaveEvent(QGraphicsSceneHoverEvent *event) override;
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
 
 public slots:
     void advance(int phase) Q_DECL_OVERRIDE;
-    void update(const VEHICLEMETHOD& mode = VEHICLEMETHOD::SIGHTSEEING);
-    //void forward();
+    void update(const VEHICLEMETHOD &mode = VEHICLEMETHOD::SIGHTSEEING);
+    // void forward();
 private:
     QPixmap generateImage() const;
     Vehicle *getCollding();
@@ -119,7 +118,7 @@ private:
     qreal m_angle;
     qreal m_speed;
     qreal m_acceleration;
-//    QColor m_color;
+    //    QColor m_color;
     QList<QPointF> m_path_to_follow;
     QPointF m_destination;
     int m_point_index;
@@ -129,10 +128,10 @@ private:
     VehicleSight *m_sightseeing_small;
     Direction m_dir;
     region m_region;
-    //QTimer *m_internal_timer;
+    // QTimer *m_internal_timer;
     VEHICLEMETHOD m_mode;
     bool m_Is_deletable;
-    Vehicle* m_leader;
+    Vehicle *m_leader;
 };
 
 #endif // VEHICLE_H
