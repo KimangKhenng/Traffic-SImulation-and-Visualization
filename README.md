@@ -1,4 +1,4 @@
- #  Road  Intersection  Simulation  and  Visulization  
+ #  Traffic Simulation and Visualization 
    
 ![Logo](https://github.com/KimangKhenng/Traffic-SImulation-and-Visualization/blob/master/Image/logo_inter.png?raw=true)  
   
@@ -19,7 +19,9 @@ whether to respect  the  traffic  lights' existence,  treat  front  vehicles  as
 - CMake build system support for easy compilation
 - Multiple build methods (CMake, qmake, Qt Creator)
 
-**Demo** : https://www.youtube.com/watch?v=yKl4c4eQUy8```sh   
+**Demo** : https://www.youtube.com/watch?v=yKl4c4eQUy8
+
+```sh   
 $  git  clone  https://github.com/KimangKhenng/Traffic-SImulation-and-Visualization.git   
 ```  
 ##  Gallery
