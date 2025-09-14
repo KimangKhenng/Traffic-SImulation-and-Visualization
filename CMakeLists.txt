@@ -13,13 +13,21 @@ if(CMAKE_VERSION VERSION_LESS "3.7.0")
     set(CMAKE_INCLUDE_CURRENT_DIR ON)
 endif()
 
+# Add include directories
+include_directories(${CMAKE_SOURCE_DIR})
+include_directories(${CMAKE_SOURCE_DIR}/Entities)
+include_directories(${CMAKE_SOURCE_DIR}/Entities/TrafficLight)
+include_directories(${CMAKE_SOURCE_DIR}/Entities/Vehicle)
+include_directories(${CMAKE_SOURCE_DIR}/UI)
+include_directories(${CMAKE_SOURCE_DIR}/Utilities)
+
 find_package(Qt5
     COMPONENTS
     Widgets
     Core
     Gui
-    Printsupport
-    Opengl
+    PrintSupport
+    OpenGL
     Svg
     REQUIRED)
 
@@ -83,7 +91,7 @@ add_executable(IntersectionRoadSimulationandVisualization
     UI/helpwidget.ui
     UI/intropage.ui
     UI/simulationsetup.ui
-    resources.qrc
+    resource.qrc
 )
 
 target_link_libraries(IntersectionRoadSimulationandVisualization
@@ -91,8 +99,8 @@ target_link_libraries(IntersectionRoadSimulationandVisualization
     Qt5::Core
     Qt5::Svg
     Qt5::Gui
-    Qt5::Printsupport
-    Qt5::Opengl
+    Qt5::PrintSupport
+    Qt5::OpenGL
     )
 # set up a mapping so that the Release configuration for the Qt imported target is
 # used in the COVERAGE CMake configuration.
@@ -101,6 +109,6 @@ set_target_properties(
     Qt5::Core
     Qt5::Svg
     Qt5::Gui
-    Qt5::Printsupport
-    Qt5::Opengl
+    Qt5::PrintSupport
+    Qt5::OpenGL
     PROPERTIES MAP_IMPORTED_CONFIG_COVERAGE "RELEASE")
