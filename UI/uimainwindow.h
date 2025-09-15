@@ -4,6 +4,7 @@
 #include "Utilities/roadintersectionsimulation.h"
 #include "UI/intropage.h"
 #include "UI/simulationsetup.h"
+#include "UI/metricswidget.h"
 
 namespace Ui {
 class UIMainWindow;
@@ -34,7 +35,8 @@ public slots:
     void updateStatus();
 
 private slots:
-
+    void updateButtonStates();
+    void onSimulationInitialized(SimulationInput input);
 
     void on_m_about_back_button_clicked();
 
@@ -69,13 +71,18 @@ private slots:
     void on_m_turn_only_button_clicked();
 
     void on_m_go_through_check_box_stateChanged(int arg1);
+    
+    void on_show_metrics_check_box_stateChanged(int arg1);
 
 private:
+    void setupResizableVisualizePanelSplitter();
+
     Ui::UIMainWindow *ui;
     RoadIntersectionSimulation *m_Simulation;
     RoadIntersectionSimulation *m_Demo;
     IntroPage *m_intro_page;
     SimulationSetup *m_setup;
+    MetricsWidget *m_metricsWidget;
     int m_time_frame;
 
 };

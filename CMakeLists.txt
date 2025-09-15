@@ -57,6 +57,9 @@ add_executable(IntersectionRoadSimulationandVisualization
     Utilities/qlightboxwidget.h
     UI/intropage.h
     UI/simulationsetup.h
+    Utilities/spatialgrid.h
+    Utilities/performancemetrics.h
+    UI/metricswidget.h
     Entities/TrafficLight/lightwidget.cpp
     Entities/TrafficLight/lightwidgetleft.cpp
     Entities/TrafficLight/trafficlight.cpp
@@ -82,6 +85,9 @@ add_executable(IntersectionRoadSimulationandVisualization
     Utilities/qlightboxwidget.cpp
     UI/intropage.cpp
     UI/simulationsetup.cpp
+    Utilities/spatialgrid.cpp
+    Utilities/performancemetrics.cpp
+    UI/metricswidget.cpp
     UI/mainwindow.ui
     UI/visualizepanel.ui
     Utilities/simulationcontrol.ui

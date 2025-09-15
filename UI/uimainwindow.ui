@@ -47,6 +47,9 @@
    </property>
    <item>
     <widget class="QStackedWidget" name="m_stacked_widget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
      <widget class="QWidget" name="m_first_page">
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 255, 255);</string>
@@ -898,6 +901,13 @@ Light</string>
                 </spacer>
                </item>
                <item>
+                <widget class="QCheckBox" name="show_metrics_check_box">
+                 <property name="text">
+                  <string>Show Metrics</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QLabel" name="label_4">
                  <property name="styleSheet">
                   <string notr="true">background-color: rgb(241, 196, 15);</string>
@@ -1189,12 +1199,6 @@ Through</string>
             <size>
              <width>200</width>
              <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>300</width>
-             <height>16777215</height>
             </size>
            </property>
            <property name="baseSize">

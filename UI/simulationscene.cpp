@@ -27,8 +27,21 @@ SimulationScene::SimulationScene(QGraphicsScene *parent):QGraphicsScene (parent)
     setBackgroundBrush (Qt::white);
     m_Controller = new TrafficController;
     this->addItem(m_Controller);
+    
+    // Initialize spatial grid with scene bounds and appropriate cell size
+    // Using a cell size of 80 units - should be roughly the size of a few vehicles
+    QRectF sceneBounds = this->sceneRect();
+    if (sceneBounds.isEmpty()) {
+        // Set default bounds if scene rect is not set yet
+        sceneBounds = QRectF(-500, -500, 1000, 1000);
+    }
+    m_spatialGrid = new SpatialGrid(sceneBounds, 80.0);
 
+}
 
+SimulationScene::~SimulationScene()
+{
+    delete m_spatialGrid;
 }
 
 uint SimulationScene::getNumber(const region &x) const
@@ -74,11 +87,23 @@ void SimulationScene::addVehicle(Vehicle *vehicle)
 {
     m_Vehicles.append(vehicle);
     this->addItem(vehicle);
+    
+    // Add vehicle to spatial grid
+    if (m_spatialGrid) {
+        QPointF position = vehicle->pos();
+        QRectF boundingRect = vehicle->boundingRect();
+        m_spatialGrid->insert(vehicle, position, boundingRect);
+    }
 }
 
 
 void SimulationScene::removeVehicle(Vehicle *ve)
 {
+    // Remove from spatial grid first
+    if (m_spatialGrid) {
+        m_spatialGrid->remove(ve);
+    }
+    
     m_Vehicles.removeOne(ve);
     this->removeItem(ve);
     delete ve;
@@ -219,6 +244,15 @@ void SimulationScene::updateScene(const VEHICLEMETHOD &seeing)
         }
     }
 #endif
+
+    // Update spatial grid with new vehicle positions
+    if (m_spatialGrid) {
+        for (Vehicle* vehicle : m_Vehicles) {
+            QPointF position = vehicle->pos();
+            QRectF boundingRect = vehicle->boundingRect();
+            m_spatialGrid->update(vehicle, position, boundingRect);
+        }
+    }
 }
 
 void SimulationScene::turnOffInteraction()
@@ -237,4 +271,19 @@ void SimulationScene::turnOnInteraction()
         m_Vehicles.at(i)->turnOnInteraction();
     }
     m_Controller->turnOnLightInteraction();
+}
+
+QList<Vehicle*> SimulationScene::getNearbyVehicles(const QPointF& position, const QRectF& queryRect) const
+{
+    if (m_spatialGrid) {
+        return m_spatialGrid->getNearbyVehicles(position, queryRect);
+    } else {
+        // Fallback to returning all vehicles if spatial grid is not available
+        return m_Vehicles;
+    }
+}
+
+SpatialGrid* SimulationScene::getSpatialGrid() const
+{
+    return m_spatialGrid;
 }

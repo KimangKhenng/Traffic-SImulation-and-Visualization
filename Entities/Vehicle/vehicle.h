@@ -98,7 +98,9 @@ public slots:
 private:
     QPixmap generateImage() const;
     Vehicle *getCollding();
+    Vehicle *getColldingOptimized(); // New optimized collision detection method
     Vehicle *nextVehicle();
+    Vehicle *nextVehicleOptimized(); // New optimized next vehicle method
     SimulationScene *myScene() const;
 
     double distanceToOtherVehicle(QGraphicsItem *v) const;
@@ -107,8 +109,10 @@ private:
     void adjustSpeedIntersection(Vehicle *leader);
     bool ifAllowed() const;
     bool hasInfront();
+    bool hasInfrontOptimized(); // New optimized method
     bool is_enter_the_junction() const;
     bool isAboutToCrash() const;
+    bool isAboutToCrashOptimized(); // New optimized method
     void reset_speed();
     void decelerate(QPointF rhs);
     void accelerate();

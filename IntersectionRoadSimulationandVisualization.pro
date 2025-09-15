@@ -40,7 +40,10 @@ HEADERS += \
     UI/helpwidget.h \
     Utilities/qlightboxwidget.h \
     UI/intropage.h \
-    UI/simulationsetup.h
+    UI/simulationsetup.h \
+    Utilities/spatialgrid.h \
+    Utilities/performancemetrics.h \
+    UI/metricswidget.h
 
 SOURCES += \
     Entities/TrafficLight/lightwidget.cpp \
@@ -67,7 +70,10 @@ SOURCES += \
     UI/helpwidget.cpp \
     Utilities/qlightboxwidget.cpp \
     UI/intropage.cpp \
-    UI/simulationsetup.cpp
+    UI/simulationsetup.cpp \
+    Utilities/spatialgrid.cpp \
+    Utilities/performancemetrics.cpp \
+    UI/metricswidget.cpp
 
 FORMS += \
     UI/mainwindow.ui \
@@ -78,7 +84,8 @@ FORMS += \
     UI/aboutwidget.ui \
     UI/helpwidget.ui \
     UI/intropage.ui \
-    UI/simulationsetup.ui
+    UI/simulationsetup.ui \
+    UI/metricswidget.ui
 
 DISTFILES += \
     CMakeLists.txt

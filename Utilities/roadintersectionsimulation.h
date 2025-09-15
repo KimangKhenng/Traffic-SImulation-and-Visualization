@@ -2,6 +2,7 @@
 #define ROADINTERSECTIONSIMULATION_H
 
 #include "Utilities/generator.h"
+#include "Utilities/performancemetrics.h"
 #include <QGraphicsView>
 
 static const float TIME_STEP = 1/60;
@@ -25,6 +26,7 @@ public:
     void startSimulation();
     void stopSimulation();
     void pauseSimulation();
+    void restartSimulation();
     void turnOffInteraction();
     void turnOnInteraction();
     void startDemo();
@@ -32,6 +34,24 @@ public:
     SimulationScene *Scene() const;
 
     SimulationState State() const;
+    
+    /*!
+     * \brief Check if simulation can be started
+     * \return true if simulation can be started
+     */
+    bool canStart() const;
+    
+    /*!
+     * \brief Check if simulation can be paused
+     * \return true if simulation can be paused
+     */
+    bool canPause() const;
+    
+    /*!
+     * \brief Check if simulation can be stopped
+     * \return true if simulation can be stopped
+     */
+    bool canStop() const;
 
     QPixmap updatedViewinOneFrame();
 
@@ -47,6 +67,12 @@ public:
     void turnOffGoThrough();
     void setGenerationMethod(GENMETHOD method = GENMETHOD::GEN_3);
     int VehiclesNumber() const;
+    
+    /*!
+     * \brief Get the performance metrics instance
+     * \return Pointer to the performance metrics
+     */
+    PerformanceMetrics* getMetrics() const;
 
 public slots:
     void updateVehicle();
@@ -62,6 +88,7 @@ private:
 
     SimulationScene *m_Scene;
     Generator *m_Generator;
+    PerformanceMetrics *m_Metrics;
     SimulationState m_State;
     bool m_TrafficLightOn;
     bool m_VehicleSightSeeingOn;

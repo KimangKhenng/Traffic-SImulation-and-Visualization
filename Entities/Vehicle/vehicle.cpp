@@ -201,8 +201,8 @@ void Vehicle::advance(int phase)
         }
     }
     if( m_mode == VEHICLEMETHOD::SIGHTSEEING){
-        if(hasInfront()){
-            if(isAboutToCrash()){
+        if(hasInfrontOptimized()){
+            if(isAboutToCrashOptimized()){
                 stop_advance();
                 return;
             }
@@ -246,8 +246,8 @@ void Vehicle::update(const VEHICLEMETHOD &mode)
         }
     }
     if(mode == VEHICLEMETHOD::SIGHTSEEING){
-        if(hasInfront()){
-            if(isAboutToCrash()){
+        if(hasInfrontOptimized()){
+            if(isAboutToCrashOptimized()){
                 stop_advance();
                 return;
             }
@@ -536,5 +536,90 @@ bool Vehicle::ifAllowed() const
             return light_list.at(i)->checkDir(this->getDir());
         }
     }
+    return false;
+}
+
+Vehicle *Vehicle::getColldingOptimized()
+{
+    SimulationScene* scene = myScene();
+    if (!scene || !scene->getSpatialGrid()) {
+        // Fallback to original method if spatial grid is not available
+        return getCollding();
+    }
+    
+    // Get vehicles near this vehicle using spatial grid
+    QPointF position = this->pos();
+    QRectF sightRect = m_sightseeing->boundingRect();
+    sightRect.moveCenter(position);
+    
+    QList<Vehicle*> nearbyVehicles = scene->getNearbyVehicles(position, sightRect);
+    
+    // Check for actual collisions among nearby vehicles
+    for (Vehicle* vehicle : nearbyVehicles) {
+        if (vehicle != this && vehicle->collidesWithItem(m_sightseeing)) {
+            return vehicle;
+        }
+    }
+    
+    return nullptr;
+}
+
+Vehicle *Vehicle::nextVehicleOptimized()
+{
+    Vehicle* colliding = getColldingOptimized();
+    return colliding ? colliding : this;
+}
+
+bool Vehicle::hasInfrontOptimized()
+{
+    SimulationScene* scene = myScene();
+    if (!scene || !scene->getSpatialGrid()) {
+        // Fallback to original method if spatial grid is not available
+        return hasInfront();
+    }
+    
+    // Get vehicles near this vehicle using spatial grid
+    QPointF position = this->pos();
+    QRectF sightRect = m_sightseeing->boundingRect();
+    sightRect.moveCenter(position);
+    
+    QList<Vehicle*> nearbyVehicles = scene->getNearbyVehicles(position, sightRect);
+    
+    // Check for vehicles in front
+    for (Vehicle* vehicle : nearbyVehicles) {
+        if (vehicle != this && vehicle->collidesWithItem(m_sightseeing)) {
+            m_leader = vehicle;
+            this->m_sightseeing->setPen(QPen(QColor(Qt::red)));
+            return true;
+        }
+    }
+    
+    this->m_sightseeing->setPen(QPen(QColor(Qt::black)));
+    return false;
+}
+
+bool Vehicle::isAboutToCrashOptimized()
+{
+    SimulationScene* scene = myScene();
+    if (!scene || !scene->getSpatialGrid()) {
+        // Fallback to original method if spatial grid is not available
+        return isAboutToCrash();
+    }
+    
+    // Get vehicles near this vehicle using spatial grid
+    QPointF position = this->pos();
+    QRectF smallSightRect = m_sightseeing_small->boundingRect();
+    smallSightRect.moveCenter(position);
+    
+    QList<Vehicle*> nearbyVehicles = scene->getNearbyVehicles(position, smallSightRect);
+    
+    // Check for potential crashes with nearby vehicles
+    for (Vehicle* vehicle : nearbyVehicles) {
+        if (vehicle != this && vehicle->collidesWithItem(m_sightseeing_small)) {
+            this->m_sightseeing_small->setPen(QPen(QColor(Qt::red)));
+            return true;
+        }
+    }
+    
     return false;
 }
