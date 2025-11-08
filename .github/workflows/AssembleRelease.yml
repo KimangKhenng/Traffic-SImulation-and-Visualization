@@ -81,7 +81,7 @@ jobs:
           files:
             release/DistributionKit/
           dest: windowsx86_64_Installer.zip
-      - uses: actions/upload-artifact@v1
+      - uses: actions/upload-artifact@v4
         with:
           name: windowsx86_64_Installer.zip
           path: ${{ github.workspace }}/windowsx86_64_Installer.zip
